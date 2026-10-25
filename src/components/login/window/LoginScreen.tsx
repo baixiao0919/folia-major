@@ -16,6 +16,7 @@ import { LOGIN_CASE_TEXTS } from './loginCaseTexts';
 import LoginMessage, { LoginDetails, type MessageAction } from './LoginMessage';
 import LoginTile from './LoginTile';
 import { accountView, failureNoteKey, failureQuote, loginScene, sceneHeadline, stepMarks, type RowLead } from './loginView';
+import FnMusicLoginForm from './FnMusicLoginForm';
 import LoginWindow from './LoginWindow';
 import PlatformColumn from './PlatformColumn';
 
@@ -38,6 +39,8 @@ export type LoginScreenProps = {
     onChoose: (providerId: OnlineProviderId) => void;
     /** 开始（浏览器登录的那一下），或者重来，保留选过的登录方式。 */
     onStart: () => void;
+    /** 飞牛表单提交成功后，真正启动一次登录会话（retryLogin 在没有会话时直接 no-session，必须用 startLogin）。 */
+    onBeginFnMusicLogin: () => void;
     /** 用这种登录方式开始（任何时候都可以换）。 */
     onSelectMethod: (methodId: string) => void;
     onReopenBrowser: () => void;
@@ -73,7 +76,7 @@ const useReached = (at: number): boolean => {
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({
-    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
+    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onBeginFnMusicLogin, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
     buildReport, origin, done = false, onDoneLeave = nothing, onDoneEnd = nothing,
 }) => {
     const { t } = useTranslation();
@@ -84,7 +87,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     const inBrowser = login?.inBrowser ?? false;
     const service = login?.localService ?? null;
     const failure: LoginFailure | null = providerId ? login?.failure ?? null : null;
-    const scene = loginScene({ lead: chosen?.lead ?? null, phase: login?.phase ?? null, inBrowser, failed: Boolean(failure) });
+    const scene = loginScene({ lead: chosen?.lead ?? null, phase: login?.phase ?? null, inBrowser, failed: Boolean(failure), providerId });
     const texts = login?.texts ?? null;
     const retry = onStart;
     const retryLabel = t(inBrowser ? 'home.loginBrowserRetry' : 'home.retryQr');
@@ -223,23 +226,25 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                     pendingText={t('home.loginMethodPending')}
                 />
             )}
-            message={(
-                <LoginMessage
-                    sceneKey={sceneKey}
-                    headline={headline}
-                    note={note}
-                    quote={quote}
-                    methods={login && login.methods.length > 0 && chosen?.lead === 'sign-in' ? {
-                        options: login.methods.map(method => ({ value: method.id, label: t(method.labelKey), icon: loginMethodIcon(method.iconKey) })),
-                        value: login.selectedMethodId,
-                        onChange: onSelectMethod,
-                    } : undefined}
-                    actions={actions}
-                    waitFor={waitFor}
-                    details={details ? { open: detailsOpen, onToggle: () => setDetailsOpen(open => !open) } : undefined}
-                    steps={stepMarks(scene, inBrowser)}
-                />
-            )}
+            message={scene === 'form'
+                ? <FnMusicLoginForm onStart={onBeginFnMusicLogin} />
+                : (
+                    <LoginMessage
+                        sceneKey={sceneKey}
+                        headline={headline}
+                        note={note}
+                        quote={quote}
+                        methods={login && login.methods.length > 0 && chosen?.lead === 'sign-in' ? {
+                            options: login.methods.map(method => ({ value: method.id, label: t(method.labelKey), icon: loginMethodIcon(method.iconKey) })),
+                            value: login.selectedMethodId,
+                            onChange: onSelectMethod,
+                        } : undefined}
+                        actions={actions}
+                        waitFor={waitFor}
+                        details={details ? { open: detailsOpen, onToggle: () => setDetailsOpen(open => !open) } : undefined}
+                        steps={stepMarks(scene, inBrowser)}
+                    />
+                )}
             below={details ? <Unfold open={detailsOpen}>{details}</Unfold> : undefined}
         />
         {shownDone && providerId && <LoginDoneFlight parts={doneParts} providerId={providerId} label={label} user={summary?.user ?? null} />}

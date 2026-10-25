@@ -88,8 +88,9 @@ export const createLoginHostState = (ports: LoginHostPorts) => {
         turn += 1;
         confirmedSeen = false;
         set({ chosen: { providerId, lead }, done: false });
-        if (lead === 'sign-in') ports.startLogin(providerId);
-        else ports.closeLogin();
+        if (lead === 'sign-in' && providerId !== 'fnmusic') ports.startLogin(providerId);
+        // 飞牛：选中即显示账号密码表单，不自动开始登录（config 未配置时 startLogin 会直接失败）。
+        else if (lead !== 'sign-in') ports.closeLogin();
     };
 
     /** 为选中的那个平台问一件事；答的是「成了」、而且回来时还是问它的那一轮，才做 `then`。 */

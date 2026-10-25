@@ -104,6 +104,22 @@ export type SettingsPageContextValue = {
                 setNavidromeUsername: (value: string) => void;
                 testNavidromeConnection: () => Promise<void> | void;
             };
+            /** The 飞牛音乐 connection form, mirroring Navidrome. */
+            fnmusic: {
+                fnmusicConfigured: boolean;
+                fnmusicEnabled: boolean;
+                fnmusicPassword: string;
+                fnmusicTestError: string | null;
+                fnmusicTestStatus: 'idle' | 'testing' | 'success' | 'failed';
+                fnmusicUrl: string;
+                fnmusicUsername: string;
+                onClearFnMusic: () => void;
+                onToggleFnMusic: (enabled: boolean) => void;
+                setFnMusicPassword: (value: string) => void;
+                setFnMusicUrl: (value: string) => void;
+                setFnMusicUsername: (value: string) => void;
+                testFnMusicConnection: () => Promise<void> | void;
+            };
             discord: {
                 enabled: boolean;
                 onToggle: (enabled: boolean) => Promise<void> | void;

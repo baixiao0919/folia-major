@@ -1,6 +1,6 @@
 import type { LibraryLoginPhase } from '../../../library/core/account/account.contract';
 import type { LoginFailure } from '../../../types/loginFailure';
-import type { LoginTexts, ProviderAccountSummary } from '../../../types/onlineMusic';
+import type { LoginTexts, OnlineProviderId, ProviderAccountSummary } from '../../../types/onlineMusic';
 import type { RowStatus } from '../platformRows';
 import { LOGIN_CASE_TEXTS } from './loginCaseTexts';
 
@@ -35,6 +35,7 @@ export type LoginScene =
     | 'account'
     | 'accountless'
     | 'methods'         // 等用的人选登录方式
+    | 'form'            // 飞牛：账号密码表单（服务器地址 + 账号 + 密码）
     | 'browser-ready'   // 浏览器登录，等用的人点按钮
     | 'preparing'       // 正在取二维码，或者正在打开浏览器
     | 'code'            // 二维码等着扫
@@ -51,7 +52,7 @@ export const accountView = (status: RowStatus | null, hasUser: boolean): 'user' 
     status !== 'signed-in' ? 'gone' : hasUser ? 'user' : 'nameless'
 );
 
-export const loginScene = ({ lead, phase, inBrowser, failed }: {
+export const loginScene = ({ lead, phase, inBrowser, failed, providerId }: {
     /** 选中的那一行通向什么；null 是没有选。 */
     lead: RowLead | null;
     /** 这一行的登录走到哪一步；还没有登录会话（正在开始）是 null。 */
@@ -59,10 +60,14 @@ export const loginScene = ({ lead, phase, inBrowser, failed }: {
     inBrowser: boolean;
     /** 登录交出了一种失败。「浏览器没有打开」时登录还在等，也算。 */
     failed: boolean;
+    /** 选中的平台；null 是没有选。飞牛不自动开始登录，直接给账号密码表单。 */
+    providerId?: OnlineProviderId | null;
 }): LoginScene => {
     if (lead === null) return 'none';
     if (lead === 'account' || lead === 'accountless') return lead;
     if (failed) return 'failed';
+    // 飞牛：弹窗右侧直接给账号密码表单，不在弹窗里自动开始登录。
+    if (lead === 'sign-in' && providerId === 'fnmusic') return 'form';
     switch (phase) {
         case 'choosing-method': return 'methods';
         case 'ready': return 'browser-ready';

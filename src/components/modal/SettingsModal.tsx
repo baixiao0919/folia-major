@@ -6,6 +6,7 @@ import { getCacheUsageByCategory, clearCacheByCategory } from '../../services/db
 import { forgetSettledDrumHits } from '../../services/analysis/drumHits';
 import { DualTheme, StageStatus, StageSource, Theme, ThemeMode, type NowPlayingConnectionStatus, type ReplayGainMode } from '../../types';
 import { getNavidromeConfig, saveNavidromeConfig, clearNavidromeConfig, hashPassword, navidromeApi, setNavidromeEnabled, getCachedNavidromeServerProfile, refreshNavidromeServerProfile, getNavidromeConfigOrigin, dismissNavidromeServerPreset } from '../../services/navidromeService';
+import { clearFnMusicConfig, fnMusicLogin, loadFnMusicConfig, type FnMusicServerConfig } from '../../services/onlineMusic/fnmusic/fnmusicTransport';
 import { fetchNavidromeServerPreset, markNavidromeConfigAsPresetIfMatching, restoreNavidromeServerPreset } from '../../services/navidromeServerPreset';
 import { NavidromeConfig, NavidromeServerProfile } from '../../types/navidrome';
 import VisPlayground from '../visualizer/window/VisPlayground';
@@ -700,6 +701,18 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     const [navidromePresetAvailable, setNavidromePresetAvailable] = useState(false);
     const [navidromeUsesPreset, setNavidromeUsesPreset] = useState(false);
     const [navidromeRestoreFailed, setNavidromeRestoreFailed] = useState(false);
+
+    // 飞牛音乐 Settings State（镜像 Navidrome：地址 + 账号 + 密码，测试连接即真实登录）
+    const [fnmusicUrl, setFnMusicUrl] = useState(() => {
+        const config = loadFnMusicConfig();
+        return config ? `${config.https ? 'https' : 'http'}://${config.host}:${config.port}` : '';
+    });
+    const [fnmusicUsername, setFnMusicUsername] = useState(() => loadFnMusicConfig()?.account ?? '');
+    const [fnmusicPassword, setFnMusicPassword] = useState('');
+    const [fnmusicTestStatus, setFnMusicTestStatus] = useState<'idle' | 'testing' | 'success' | 'failed'>('idle');
+    const [fnmusicTestError, setFnMusicTestError] = useState<string | null>(null);
+    const [fnmusicConfigured, setFnMusicConfigured] = useState(() => Boolean(loadFnMusicConfig()));
+    const [fnmusicEnabled, setFnMusicEnabled] = useState(() => Boolean(loadFnMusicConfig()));
     const [navidromeRestoring, setNavidromeRestoring] = useState(false);
 
     // Load Navidrome config on mount
@@ -781,6 +794,59 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
         setNavidromeUsesPreset(false);
         setNavidromeServerProfile(null);
         setNavidromeTestStatus('idle');
+    };
+
+    // Drop the manual config and go back to the Docker preset
+    // 测试飞牛音乐连接：真实走一遍密码登录（authx 签名 + sha256），成功即保存配置。
+    const testFnMusicConnection = async () => {
+        setFnMusicTestError(null);
+        if (!fnmusicUrl || !fnmusicUsername || !fnmusicPassword) {
+            setFnMusicTestError('请填写服务器地址、账号和密码');
+            setFnMusicTestStatus('failed');
+            return;
+        }
+        setFnMusicTestStatus('testing');
+        let parsed: URL;
+        try {
+            parsed = new URL(fnmusicUrl.includes('://') ? fnmusicUrl : `http://${fnmusicUrl}`);
+        } catch {
+            setFnMusicTestError('服务器地址格式不正确');
+            setFnMusicTestStatus('failed');
+            return;
+        }
+        const config: FnMusicServerConfig = {
+            host: parsed.hostname,
+            port: parsed.port ? Number(parsed.port) : (parsed.protocol === 'https:' ? 5667 : 5666),
+            https: parsed.protocol === 'https:',
+            account: fnmusicUsername,
+            password: fnmusicPassword,
+            loginType: 0,
+        };
+        try {
+            await fnMusicLogin(config);
+            setFnMusicConfigured(true);
+            setFnMusicTestStatus('success');
+        } catch (error) {
+            console.warn('[Settings] 飞牛音乐 connection failed:', error);
+            const detail = error instanceof Error ? error.message : String(error);
+            setFnMusicTestError(detail || '连接失败');
+            setFnMusicTestStatus('failed');
+        }
+    };
+
+    // Toggle 飞牛音乐 enabled
+    const handleToggleFnMusic = (enabled: boolean) => {
+        setFnMusicEnabled(enabled);
+    };
+
+    // Clear 飞牛音乐 config
+    const handleClearFnMusic = () => {
+        clearFnMusicConfig();
+        setFnMusicUrl('');
+        setFnMusicUsername('');
+        setFnMusicPassword('');
+        setFnMusicConfigured(false);
+        setFnMusicTestStatus('idle');
     };
 
     // Drop the manual config and go back to the Docker preset
@@ -1085,6 +1151,21 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     setNavidromeUrl,
                     setNavidromeUsername,
                     testNavidromeConnection,
+                },
+                fnmusic: {
+                    fnmusicConfigured,
+                    fnmusicEnabled,
+                    fnmusicPassword,
+                    fnmusicTestStatus,
+                    fnmusicTestError,
+                    fnmusicUrl,
+                    fnmusicUsername,
+                    onClearFnMusic: handleClearFnMusic,
+                    onToggleFnMusic: handleToggleFnMusic,
+                    setFnMusicPassword,
+                    setFnMusicUrl,
+                    setFnMusicUsername,
+                    testFnMusicConnection,
                 },
                 discord: {
                     enabled: electronSettings.DISCORD_RICH_PRESENCE_ENABLED,

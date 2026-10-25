@@ -112,6 +112,7 @@ const LoginHost: React.FC<LoginHostProps> = ({ account }) => {
             login={shownLogin}
             onChoose={host.choose}
             onStart={() => void account.retryLogin()}
+            onBeginFnMusicLogin={() => void account.startLogin('fnmusic')}
             onSelectMethod={methodId => void account.selectLoginMethod(methodId)}
             onReopenBrowser={() => void account.openLoginPage()}
             onRestartService={() => void account.restartLocalService()}

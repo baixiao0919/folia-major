@@ -594,7 +594,7 @@ export const omni = {
     async startLogin(providerId: OmniProviderId, methodId?: string): Promise<{ key: string; imageUrl: string }> {
         const provider = requireOnlineMusicProvider(providerId);
         const auth = provider.auth;
-        if (!auth?.startLogin || (!auth.createQr && !auth.openLoginPage)) return unsupported(providerId, 'qr-login');
+        if (!auth?.startLogin) return unsupported(providerId, 'qr-login');
         return runLoginStep(auth, 'start', async () => {
             const key = await auth.startLogin!(methodId);
             return { key, imageUrl: auth.createQr ? await auth.createQr(key) : '' };
