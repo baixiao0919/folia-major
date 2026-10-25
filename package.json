@@ -102,6 +102,13 @@
         "to": "ffmpeg-audio"
       },
       {
+        "from": "build/mnn/${os}-${arch}",
+        "to": "mnn",
+        "filter": [
+          "*folia_mnn.*"
+        ]
+      },
+      {
         "from": "models",
         "to": "models",
         "filter": [

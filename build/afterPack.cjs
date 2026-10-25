@@ -16,7 +16,6 @@ const MNN_LIBRARY_FILES = { darwin: 'libfolia_mnn.dylib', linux: 'libfolia_mnn.s
  * 所以在打包时就失败，而不是发出去再靠人发现。
  */
 async function verifyBundledMnn(context) {
-  if (process.env.FOLIA_SKIP_MNN === '1' && context.electronPlatformName === 'win32') return;
   const library = MNN_LIBRARY_FILES[context.electronPlatformName];
   if (!library) return;
   const file = path.join(context.packager.getResourcesDir(context.appOutDir), 'mnn', library);
