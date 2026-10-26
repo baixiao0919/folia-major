@@ -15,13 +15,13 @@ import type {
 } from '../../../types/onlineMusic';
 import { parseFoliaLyricDocument } from '../../../utils/lyrics/foliaLyricDocument';
 import {
-    clearFnMusicConfig,
+    fnMusicBridgeStatus,
     fnMusicCoverUrl,
     fnMusicLogin,
     fnMusicLogout,
     fnMusicStreamSource,
     fnmusicRequest,
-    loadFnMusicConfig,
+    makeFnMusicDeviceId,
 } from './fnmusicTransport';
 
 // src/services/onlineMusic/fnmusic/fnmusicProvider.ts
@@ -59,11 +59,12 @@ const artistsOf = (raw: unknown): Artist[] => {
 const coverOf = (coverId: unknown): string => {
     const id = text(coverId);
     if (!id) return '';
-    const config = loadFnMusicConfig();
-    return config ? fnMusicCoverUrl(config, id) : '';
+    return fnMusicCoverUrl(id);
 };
 
-/** 归一化一首飞牛音乐歌曲（字段名取自网页端 Sj 映射器）。 */
+/** 归一化一首飞牛音乐歌曲（字段名取自网页端 Sj 映射器）。
+ *  封面：歌曲数据只携带 coverId（providerData.coverId），album.coverUrl 在归一化时用
+ *  当前代理端口生成；端口变化后重新归一化即刷新，历史歌曲数据不依赖写死的 URL。 */
 export const normalizeFnMusicSong = (raw: unknown): UnifiedSong => {
     const item = record(raw);
     if (item.sourceRef?.kind === 'online' && item.sourceRef.providerId === 'fnmusic') return item as UnifiedSong;
@@ -101,9 +102,10 @@ export const normalizeFnMusicSong = (raw: unknown): UnifiedSong => {
 
 const normalizeFnMusicUser = (raw: unknown): ProviderUser => {
     const item = record(raw);
+    const account = text(item.account ?? item.username ?? '');
     return {
-        id: text(item.guid ?? item.id ?? item.uid ?? item.account ?? 'fnmusic-user'),
-        nickname: text(item.name ?? item.nickname ?? item.account ?? item.username ?? '飞牛音乐账号'),
+        id: text(item.guid ?? item.id ?? item.uid ?? account ?? 'fnmusic-user'),
+        nickname: text(item.name ?? item.nickname ?? account) || 'fnmusic-user',
         avatarUrl: text(item.avatarUrl ?? item.avatar ?? '') || undefined,
     };
 };
@@ -128,7 +130,7 @@ const errorMessageOf = (error: unknown): string => (
     error instanceof Error ? error.message : String(error)
 );
 
-/** 歌词项取文本字段（LRC 文本）。字段名（lyric/lyrics/content/lrc）待实机确认。 */
+/** 歌词项取文本字段（LRC 文本）。接口字段名做了多候选兼容。 */
 const lyricTextOf = (raw: unknown): string => {
     const item = record(raw);
     return text(item.lyric ?? item.lyrics ?? item.content ?? item.lrc ?? item.text ?? '');
@@ -194,30 +196,11 @@ const fnMusicPageOf = (list: unknown[], total: number, offset: number, limit: nu
     fnMusicPage(list.map(normalizeFnMusicSong), total, offset, limit);
 
 export const fnMusicLibrary = {
-    /** 我的歌单。请求失败返回空页（不抛错）：登录后的账户刷新不被歌单接口卡住，保证登录成功即切换平台。网页端 playlist.list 无参数调用。 */
+    /** 我的歌单。请求失败返回空页（不抛错）：登录后的账户刷新不被歌单接口卡住，保证登录成功即切换平台。 */
     async getUserPlaylists(_userId: string, limit: number, offset: number): Promise<ProviderPage<ProviderCollection>> {
         try {
             const { total, list } = await pageList<unknown>('/music/api/v1/playlist/list', undefined);
             const items = list.map(collectionOf('playlist'));
-            // playlist/list 不返回每首歌单的歌曲数：「我的喜欢」是收藏歌单（红心 + 添加到歌单都进这里），
-            // 用 playlist/detail 拿真实 trackCount，保证收藏后数字实时正确。
-            const liked = items.find(collection => collection.name === '我的喜欢');
-            if (liked && typeof liked.id === 'string' && !liked.id.startsWith('online:')) {
-                const detail = await fnmusicRequest<{ trackCount?: unknown }>('/music/api/v1/playlist/detail', { guid: liked.id })
-                    .then(raw => Number(raw?.trackCount ?? 0))
-                    .catch(() => 0);
-                if (detail > 0) liked.trackCount = detail;
-            }
-            // 歌单封面兜底：NAS 对部分歌单（如「我的喜欢」）coverId 为 null 不存封面，
-            // 取歌单第一首有封面的歌补上，避免歌单卡片显示空白。
-            for (const collection of items) {
-                if (collection.coverUrl || typeof collection.id !== 'string' || collection.id.startsWith('online:')) continue;
-                const first = await fnmusicRequest<{ list?: unknown[] }>('/music/api/v1/track/playlist-detail/list', { playlistGUID: collection.id, page: 1, size: 1 })
-                    .then(raw => Array.isArray(raw?.list) ? raw.list[0] : undefined)
-                    .catch(() => undefined);
-                const coverId = first ? text(record(first).coverId) : '';
-                if (coverId) collection.coverUrl = coverOf(coverId);
-            }
             return { items, total, hasMore: offset + items.length < total, nextOffset: offset + items.length };
         } catch (error) {
             console.warn('[FnMusic] playlist/list failed, returning empty page:', errorMessageOf(error));
@@ -270,8 +253,6 @@ export const fnMusicLibrary = {
 export const fnMusicMutations = {
     likeSong: async (song: MediaId | SongResult, liked: boolean): Promise<void> => {
         const id = typeof song === 'string' ? song : (typeof song === 'number' ? String(song) : songIdOf(song));
-        const config = loadFnMusicConfig();
-        if (!config) throw new OnlineProviderError('unavailable', '飞牛音乐服务器未配置', 'fnmusic');
         await fnmusicRequest<unknown>(
             liked ? '/music/api/v1/favorite-track/create' : '/music/api/v1/favorite-track/delete',
             undefined,
@@ -353,7 +334,13 @@ export const fnmusicProvider: OnlineMusicProvider = {
     displayName: '飞牛音乐',
     shortName: '飞牛',
     mark: { letter: '飞', color: '#0891b2' },
-    getAvailability: () => ({ configured: true }),
+    // 仅桌面端（Electron 主进程桥）可用：网页/Docker 下浏览器丢 Cookie 受限头且受 CORS 限制。
+    getAvailability: () => {
+        if (typeof window !== 'undefined' && !(window as any).electron?.fnmusicRequest) {
+            return { configured: false, reason: 'runtime-unavailable' as const };
+        }
+        return { configured: Boolean(fnMusicBridgeStatus()?.configured) };
+    },
     capabilities: {
         search: true, playback: true, lyrics: true, wordByWordLyrics: false,
         auth: true,
@@ -413,33 +400,46 @@ export const fnmusicProvider: OnlineMusicProvider = {
     mutations: fnMusicMutations,
     auth: {
         getLoginTexts: () => ({ title: 'home.loginTitleFnMusic', note: 'home.loginNoteFnMusic' }),
+        // 表单式登录：登录窗口按声明渲染字段，提交后由本 provider 完成登录（主进程保存凭据）。
+        getLoginForm: () => ({
+            fields: [
+                { key: 'base', type: 'url', labelKey: 'fnmusic.serverUrl', placeholderKey: 'fnmusic.serverUrlPlaceholder', required: true },
+                { key: 'username', type: 'text', labelKey: 'fnmusic.username', placeholderKey: 'fnmusic.usernamePlaceholder', required: true },
+                { key: 'password', type: 'password', labelKey: 'fnmusic.password', required: true },
+            ],
+            submitLabelKey: 'fnmusic.login',
+            noteKey: 'fnmusic.loginNote',
+        }),
+        async submitLoginForm(values) {
+            await fnMusicLogin({
+                base: text(values.base),
+                username: text(values.username),
+                password: text(values.password),
+                deviceId: makeFnMusicDeviceId(),
+            });
+        },
         async getLoginStatus(): Promise<ProviderUser | null> {
-            const config = loadFnMusicConfig();
-            if (!config?.token) return null;
+            const status = fnMusicBridgeStatus();
+            if (!status?.authenticated) return null;
             return {
-                id: config.account || 'fnmusic-user',
-                nickname: config.serverName || config.account || '飞牛音乐账号',
+                id: status.username || 'fnmusic-user',
+                nickname: status.username || 'fnmusic-user',
             };
         },
         async logout() {
             await fnMusicLogout();
         },
-        // 登录入口：从已保存的服务器配置发起登录。配置入口见设置页（Navidrome 形态，待补）。
+        // 账号密码登录走 omni 通用表单（登录窗口按 provider 声明渲染表单），此处不再读本地配置。
         async startLogin(): Promise<string> {
-            const config = loadFnMusicConfig();
-            if (!config || !config.host || !config.account || !config.password) {
-                throw new OnlineProviderError(
-                    'unavailable',
-                    '请先在设置中配置飞牛音乐服务器地址与账号',
-                    'fnmusic',
-                );
-            }
-            await fnMusicLogin(config);
-            return 'fnmusic-login-done';
+            throw new OnlineProviderError(
+                'auth-required',
+                '请在登录窗口填写飞牛音乐服务器地址与账号',
+                'fnmusic',
+            );
         },
         async checkLogin(): Promise<LoginState> {
-            const config = loadFnMusicConfig();
-            return config?.token ? { state: 'confirmed' } : { state: 'error', message: '登录未完成' };
+            const status = fnMusicBridgeStatus();
+            return status?.authenticated ? { state: 'confirmed' } : { state: 'error', message: '登录未完成' };
         },
         describeLoginFailure: (_step, error): LoginFailureDetail | null => ({
             case: 'unknown',

@@ -246,8 +246,7 @@
     "music-metadata": "^11.16.1",
     "qishui-music-api": "0.2.2",
     "ws": "^8.21.3",
-    "youtubei.js": "18.1.0",
-    "fnos-music-api": "0.1.0"
+    "youtubei.js": "18.1.0"
   },
   "devDependencies": {
     "@applemusic-like-lyrics/ttml": "^1.0.1",

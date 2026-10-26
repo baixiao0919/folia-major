@@ -312,21 +312,6 @@ export default function App() {
 
     useEffect(() => initializeSyncCoordinator(), []);
 
-    // 启动时若飞牛音乐已配置但尚未登录，直接在主页弹出登录窗口（账号密码表单）。
-    useEffect(() => {
-        const openFnMusicLoginAtStartup = async () => {
-            const [{ loadFnMusicConfig }, { openLoginWindow }] = await Promise.all([
-                import('./services/onlineMusic/fnmusic/fnmusicTransport'),
-                import('./components/login/loginWindowStore'),
-            ]);
-            const config = loadFnMusicConfig();
-            if (config?.host && !config.token) {
-                openLoginWindow('fnmusic');
-            }
-        };
-        void openFnMusicLoginAtStartup();
-    }, []);
-
     const loadNavidromeFavorites = useCallback(async () => {
         if (!navidromeEnabled) {
             setStarredNavidromeSongIds(new Set());

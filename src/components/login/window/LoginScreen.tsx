@@ -16,7 +16,7 @@ import { LOGIN_CASE_TEXTS } from './loginCaseTexts';
 import LoginMessage, { LoginDetails, type MessageAction } from './LoginMessage';
 import LoginTile from './LoginTile';
 import { accountView, failureNoteKey, failureQuote, loginScene, sceneHeadline, stepMarks, type RowLead } from './loginView';
-import FnMusicLoginForm from './FnMusicLoginForm';
+import FormLogin from './FormLogin';
 import LoginWindow from './LoginWindow';
 import PlatformColumn from './PlatformColumn';
 
@@ -39,8 +39,6 @@ export type LoginScreenProps = {
     onChoose: (providerId: OnlineProviderId) => void;
     /** 开始（浏览器登录的那一下），或者重来，保留选过的登录方式。 */
     onStart: () => void;
-    /** 飞牛表单提交成功后，真正启动一次登录会话（retryLogin 在没有会话时直接 no-session，必须用 startLogin）。 */
-    onBeginFnMusicLogin: () => void;
     /** 用这种登录方式开始（任何时候都可以换）。 */
     onSelectMethod: (methodId: string) => void;
     onReopenBrowser: () => void;
@@ -76,7 +74,7 @@ const useReached = (at: number): boolean => {
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({
-    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onBeginFnMusicLogin, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
+    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
     buildReport, origin, done = false, onDoneLeave = nothing, onDoneEnd = nothing,
 }) => {
     const { t } = useTranslation();
@@ -226,8 +224,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                     pendingText={t('home.loginMethodPending')}
                 />
             )}
-            message={scene === 'form'
-                ? <FnMusicLoginForm onStart={onBeginFnMusicLogin} />
+            message={scene === 'form' && providerId
+                ? <FormLogin providerId={providerId} onStart={onStart} />
                 : (
                     <LoginMessage
                         sceneKey={sceneKey}

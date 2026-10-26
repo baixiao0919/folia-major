@@ -1,6 +1,7 @@
 import type { LibraryLoginCompletion, LibraryLoginSessionSnapshot } from '../../library/core/account/account.contract';
 import { isLoginUnderWay } from '../../library/core/account/accountRules';
 import type { OnlineProviderId, ProviderAccountSummary } from '../../types/onlineMusic';
+import { omni } from '../../services/onlineMusic/omni';
 import { rowStatus } from './platformRows';
 import { rowLeadsTo, type RowLead } from './window/loginView';
 
@@ -88,9 +89,12 @@ export const createLoginHostState = (ports: LoginHostPorts) => {
         turn += 1;
         confirmedSeen = false;
         set({ chosen: { providerId, lead }, done: false });
-        if (lead === 'sign-in' && providerId !== 'fnmusic') ports.startLogin(providerId);
-        // 飞牛：选中即显示账号密码表单，不自动开始登录（config 未配置时 startLogin 会直接失败）。
-        else if (lead !== 'sign-in') ports.closeLogin();
+        if (lead === 'sign-in') {
+            // 表单式登录平台（如账号密码类）：选中即显示表单，不自动开始登录。
+            if (!(providerId && omni.getLoginForm(providerId))) ports.startLogin(providerId);
+        } else {
+            ports.closeLogin();
+        }
     };
 
     /** 为选中的那个平台问一件事；答的是「成了」、而且回来时还是问它的那一轮，才做 `then`。 */

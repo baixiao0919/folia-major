@@ -936,15 +936,17 @@ declare global {
       restartNeteaseApi: (reason?: 'needed') => Promise<ElectronNeteaseApiStatus>;
       onNeteaseApiStatusChanged: (callback: (status: ElectronNeteaseApiStatus) => void) => () => void;
       getKugouApiStatus: () => Promise<ElectronKugouApiStatus>;
-            fnmusicRequest: (
+      fnmusicRequest: (
         operation: 'login' | 'logout' | 'request' | 'stream',
         params?: import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeParams,
       ) => Promise<import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeResult>;
       fnmusicStatusSync: () => {
-        proxying: boolean;
-        port: number | null;
+        configured: boolean;
+        authenticated: boolean;
+        username: string;
+        streamProxyPort: number;
       };
-qishuiRequest: (
+      qishuiRequest: (
         operation: import('./services/onlineMusic/qishui/qishuiTransport').QishuiOperation,
         params?: import('./services/onlineMusic/qishui/qishuiTransport').QishuiParams,
       ) => Promise<import('./services/onlineMusic/qishui/qishuiTransport').QishuiBridgeResult>;

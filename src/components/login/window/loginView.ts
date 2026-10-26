@@ -1,6 +1,7 @@
 import type { LibraryLoginPhase } from '../../../library/core/account/account.contract';
 import type { LoginFailure } from '../../../types/loginFailure';
 import type { LoginTexts, OnlineProviderId, ProviderAccountSummary } from '../../../types/onlineMusic';
+import { omni } from '../../../services/onlineMusic/omni';
 import type { RowStatus } from '../platformRows';
 import { LOGIN_CASE_TEXTS } from './loginCaseTexts';
 
@@ -60,14 +61,14 @@ export const loginScene = ({ lead, phase, inBrowser, failed, providerId }: {
     inBrowser: boolean;
     /** 登录交出了一种失败。「浏览器没有打开」时登录还在等，也算。 */
     failed: boolean;
-    /** 选中的平台；null 是没有选。飞牛不自动开始登录，直接给账号密码表单。 */
+    /** 选中的平台；null 是没有选。表单式登录平台（账号密码类）不自动开始登录，直接给表单。 */
     providerId?: OnlineProviderId | null;
 }): LoginScene => {
     if (lead === null) return 'none';
     if (lead === 'account' || lead === 'accountless') return lead;
     if (failed) return 'failed';
-    // 飞牛：弹窗右侧直接给账号密码表单，不在弹窗里自动开始登录。
-    if (lead === 'sign-in' && providerId === 'fnmusic') return 'form';
+    // 表单式登录平台：弹窗右侧直接给账号密码表单，不在弹窗里自动开始登录。
+    if (lead === 'sign-in' && providerId && omni.getLoginForm(providerId)) return 'form';
     switch (phase) {
         case 'choosing-method': return 'methods';
         case 'ready': return 'browser-ready';

@@ -275,7 +275,6 @@ function LoginWindowProbe(props: ProbeProps) {
                             login: current.login && { ...current.login, phase: 'waiting', failure: null, codeImage: current.login.inBrowser ? '' : CODE },
                         }));
                     }}
-                    onBeginFnMusicLogin={() => { setSaid('start'); }}
                     onSelectMethod={methodId => {
                         setSaid(`start ${methodId}`);
                         setShown(current => ({

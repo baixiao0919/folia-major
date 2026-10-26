@@ -63,7 +63,7 @@ const { createKugouApiBridge } = require('./kugou/kugouApiBridge.cjs');
 const { createExternalUrlOpener } = require('./externalUrlPolicy.cjs');
 const { createSenderGuardedHandler } = require('./ipcAccessGuard.cjs');
 const { createQishuiApiBridge } = require('./qishui/qishuiApiBridge.cjs');
-const { createFnMusicApiBridge, setDebugLogPath } = require('fnos-music-api');
+const { createFnmusicApiBridge } = require('./fnmusic/fnmusicApiBridge.cjs');
 const { createQishuiMediaPolicy } = require('./qishui/mediaCors.cjs');
 const { createBodianApiBridge } = require('./bodian/bodianApiBridge.cjs');
 const { createBodianMediaPolicy } = require('./bodian/mediaCors.cjs');
@@ -271,9 +271,9 @@ const transcodeService = createTranscodeService({
 // The bridge refuses Linux's plaintext `basic_text` fallback and degrades to an in-memory session.
 const kugouApiBridge = createKugouApiBridge({ store, safeStorage });
 const qishuiMediaPolicy = createQishuiMediaPolicy();
-// 飞牛音乐桥：无状态，服务器配置与 token 由渲染进程持有并在每次请求时传入（Cookie 头由主进程写入）。
-const fnMusicApiBridge = createFnMusicApiBridge();
-setDebugLogPath(app.getPath('userData'));
+// 飞牛音乐桥：服务器与凭据由主进程 safeStorage 加密保存（渲染进程只发操作）；本地代理仅在已配置时启动。
+const fnMusicApiBridge = createFnmusicApiBridge({ store, safeStorage });
+fnMusicApiBridge.restore();
 const qishuiApiBridge = createQishuiApiBridge({ store, safeStorage, fetch: (url, options) => electronNet.fetch(url, options),
   onAudioSource: url => qishuiMediaPolicy.register(url),
 });
@@ -6825,17 +6825,19 @@ ipcMain.handle('qishui-api-request', (event, operation, params) => {
   return qishuiApiBridge.request(operation, params);
 });
 
-// 飞牛音乐请求桥：渲染进程传 base/method/path/params/body/token 等，主进程负责 authx 签名、
-// Cookie 认证头与自签名证书容忍（参考 kugou-api-request 的受信窗口守卫）。
+// 飞牛音乐请求桥：服务器与凭据保存在主进程，渲染进程只发操作；authx 签名、Cookie 认证头、
+// 自签名证书容忍都在主进程桥内完成（用受信窗口守卫）。
 ipcMain.handle('fnmusic-api-request', createSenderGuardedHandler({
   channel: 'fnmusic-api-request',
-  isTrusted: isFirstPartyWindowContents,
+  isTrusted: isTrustedMainWindowContents,
   handler: (_event, operation, params) => {
     const handlerByOperation = {
       login: () => fnMusicApiBridge.login(params),
       logout: () => fnMusicApiBridge.logout(params),
       request: () => fnMusicApiBridge.request(params),
       stream: () => fnMusicApiBridge.stream(params),
+      coverUrl: () => fnMusicApiBridge.coverUrl(params),
+      getStatus: () => fnMusicApiBridge.getStatus(),
     };
     const handler = handlerByOperation[operation];
     if (!handler) return { ok: false, error: { code: 'unsupported', message: `Unknown FnMusic operation: ${operation}` } };
@@ -6845,6 +6847,10 @@ ipcMain.handle('fnmusic-api-request', createSenderGuardedHandler({
 
 // 同步查询飞牛桥状态（渲染层构造封面/播放代理 URL 需要同步拿到本地代理端口）。
 ipcMain.on('fnmusic-status-sync', (event) => {
+  if (!isTrustedMainWindowContents(event.sender)) {
+    event.returnValue = { available: false, configured: false, authenticated: false, streamProxyPort: 0, base: null, username: null };
+    return;
+  }
   event.returnValue = fnMusicApiBridge.getStatus();
 });
 
