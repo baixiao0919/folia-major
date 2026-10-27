@@ -111,7 +111,7 @@ App / ThemePark / VisPlayground / OBS source
 
 全局一个三档总设置，加每个「动感效果」自己的开关和强度（`SmartBeatSettings`，store 的 `smartBeat`：`mode` 和按效果 id 存的 `effects`），不属于任何一个模式的 tuning。三档是 `off` 关闭、`cached` 只用已分析（只读存盘的拍点和鼓点，包括 automix 存的拍点，从不启动推理；没分析过的歌保持原画面）、`on` 开启（没分析过的歌当场在 GPU 上分析）；判断一律走 `smartBeatActive` / `smartBeatMayAnalyse`（`services/beatFx/beatEffects.ts`）。存盘、同步和导出时另带一个 `enabled`（只有 `on` 为 true），给没有三档的旧版本读。总设置单独在可视化设置窗口的「全局」页（`SmartBeatSettingsCard.tsx`）；效果在「歌词动画」页各模式自己的设置里，样式选项上面（`BeatEffectsGroup.tsx`），总设置关着时那里的提示带一颗直达「全局」页的按钮：每个效果一行，四字名、说明、开关，开着时下面一条强度滑杆，0–2×，1× 是调好的样子，在滑杆正中间，没动过的效果按 1×。
 
-效果登记在模式和背景的 entry 上（`beatEffects`，类型和 id 在 `services/beatFx/beatEffects.ts`）：每个效果有 id（`<模式>.<名字>`，存盘和导出都用它）、名字和说明的 i18n key、读哪路数据（`source`：`'beats'` 是 beat_this 的拍点，`'drums'` 是 htdemucs 分出的鼓点）。一个模式以后可以有好几个效果，加一条就行，设置界面和模型调度自动跟上。现在的效果：商籁「推镜裂光」（beats）、镜台「水镜涟漪」（beats）、时计「仿真鼓面」（drums）、花火「随拍开花」与「随拍推镜」（都是 beats）。`retired: true` 的效果代码和登记都在，但不跑也不出现在设置里：时计的「齿轮随拍」和隐现背景的「潮汐脉动」（2026-10-17 用户先搁置）。
+效果登记在模式和背景的 entry 上（`beatEffects`，类型和 id 在 `services/beatFx/beatEffects.ts`）：每个效果有 id（`<模式>.<名字>`，存盘和导出都用它）、名字和说明的 i18n key、读哪路数据（`source`：`'beats'` 是 beat_this 的拍点，`'drums'` 是 htdemucs 分出的鼓点）。一个模式以后可以有好几个效果，加一条就行，设置界面和模型调度自动跟上。现在的效果：商籁「推镜裂光」（beats）、镜台「水镜涟漪」（beats）、时计「仿真鼓面」（drums）、花火「随拍开花」与「随拍推镜」（都是 beats）、凝彩「墨染奥行」（drums，同一个开关还带上景深和运镜，见 [`tempera/README.md`](tempera/README.md) 的「墨染奥行」）。`retired: true` 的效果代码和登记都在，但不跑也不出现在设置里：时计的「齿轮随拍」和隐现背景的「潮汐脉动」（2026-10-17 用户先搁置）。
 
 `beatClockTargets.ts` 按屏上的模式和背景、哪些效果开着，算出要不要 beat_this（`visualizerWantsBeats`）、要不要 htdemucs（`visualizerWantsDrumHits`）：只有读它的效果开着才跑那个模型。时计只开仿真鼓面时 beat_this 完全不跑，节拍时钟只带曲目 key 和听到的时间（`useBeatFxTrack.ts`）。每帧的效果按自己的 id 问 `beatFxLive` 的 `getBeatEffectStrength`（不播时为 0）；读 `beatImpact` / `downbeatImpact` 的拍点效果，强度已由时钟乘好（轻拍、重拍都取屏上那个拍点效果的强度）。旧的全局轻拍 / 重拍两个强度在读存盘和导入时折成商籁、镜台效果的强度（两者平均，默认 1 / 1 仍是 1）。不显示背景的模式本来就写着 `background: false`（Still）。
 
@@ -212,7 +212,7 @@ Visualizer 消费已解析的 `LyricData` / `Line` / `Word`，不负责解析 `.
 - `temperaProgram.ts` + `types.ts`：段落 / shot / slice 编译，121 种 shot kind
 - `temperaLayout.ts` + `temperaMotion.ts`：拼贴排版与逐字入场求解
 - `temperaDifferenceFilter.ts`：文字对背景逐像素反色，改动前务必先读那份说明里的约束
-- Tempera 渲染层不消费音频（`audioPower`/`audioBands` 只传给共享背景层）。
+- Tempera 渲染层不消费音频（`audioPower`/`audioBands` 只传给共享背景层）；智能动感模式的「墨染奥行」读的是鼓点（`temperaInkFlash.ts`），景深与运镜在 `temperaDepth.ts`。
 
 ### Lumiere
 

@@ -8,6 +8,7 @@ const {
     getInitialRemoteControlWindowPosition,
     isPointOverRemoteControlStrip,
     clampRemoteControlWindowX,
+    resolveRemoteControlWindowPosition,
 } = require('../../../electron/remoteControlWindowGeometry.cjs') as typeof import('../../../electron/remoteControlWindowGeometry.cjs');
 
 const windowAt = (x: number, y: number) => ({ x, y, width: REMOTE_CONTROL_WINDOW_WIDTH, height: REMOTE_CONTROL_WINDOW_HEIGHT });
@@ -69,6 +70,53 @@ describe('remote window geometry', () => {
 
     it('leaves a window that is on no screen at all alone', () => {
         expect(clampRemoteControlWindowX(windowAt(-5000, 100), [{ x: 0, y: 0, width: 1920, height: 1080 }])).toBe(-5000);
+    });
+
+    it('restores a remembered position that is still on a screen', () => {
+        const workAreas = [{ x: 0, y: 0, width: 1920, height: 1040 }];
+        expect(resolveRemoteControlWindowPosition({ x: 400, y: 300 }, workAreas)).toEqual({ x: 400, y: 300 });
+    });
+
+    it('returns null when the remembered spot is on no screen any more', () => {
+        const workAreas = [{ x: 0, y: 0, width: 1920, height: 1040 }];
+        expect(resolveRemoteControlWindowPosition({ x: 2500, y: 300 }, workAreas)).toBeNull();
+    });
+
+    it('returns null when the window would hang off the right edge', () => {
+        const workAreas = [{ x: 0, y: 0, width: 1920, height: 1040 }];
+        // 1800 + 602 runs 482 px past the edge, taking the card in use with it.
+        expect(resolveRemoteControlWindowPosition({ x: 1800, y: 300 }, workAreas)).toBeNull();
+    });
+
+    it('returns null when the remembered y no longer sits on a screen', () => {
+        const workAreas = [{ x: 0, y: 0, width: 1920, height: 1040 }];
+        // 1040 tall work area, window 184 tall: y = 1000 leaves 144 px of the window off the bottom.
+        expect(resolveRemoteControlWindowPosition({ x: 400, y: 1000 }, workAreas)).toBeNull();
+    });
+
+    it('lets the empty strip sit off screen only while the cover is collapsed', () => {
+        const workAreas = [{ x: 0, y: 0, width: 1920, height: 1040 }];
+        // The card in use starts 4 + 174 px in, so at x = -174 it is 4 px from the edge.
+        expect(resolveRemoteControlWindowPosition({ x: -174, y: 300 }, workAreas, false)).toEqual({ x: -174, y: 300 });
+        expect(resolveRemoteControlWindowPosition({ x: -174, y: 300 }, workAreas, true)).toBeNull();
+        expect(resolveRemoteControlWindowPosition({ x: -174, y: 300 }, workAreas)).toBeNull();
+    });
+
+    it('restores a position on a second screen while that screen is there', () => {
+        const workAreas = [
+            { x: 0, y: 0, width: 1920, height: 1040 },
+            { x: 1920, y: 0, width: 2560, height: 1400 },
+        ];
+        expect(resolveRemoteControlWindowPosition({ x: 2500, y: 300 }, workAreas)).toEqual({ x: 2500, y: 300 });
+    });
+
+    it('returns null for an absent or malformed position', () => {
+        const workAreas = [{ x: 0, y: 0, width: 1920, height: 1040 }];
+        expect(resolveRemoteControlWindowPosition(null, workAreas)).toBeNull();
+        expect(resolveRemoteControlWindowPosition({ x: 'a', y: 100 }, workAreas)).toBeNull();
+        expect(resolveRemoteControlWindowPosition({ x: 400 }, workAreas)).toBeNull();
+        expect(resolveRemoteControlWindowPosition({ x: Number.NaN, y: 100 }, workAreas)).toBeNull();
+        expect(resolveRemoteControlWindowPosition(undefined, workAreas)).toBeNull();
     });
 
     it('lets the card in use reach the left edge when the cover is collapsed', () => {

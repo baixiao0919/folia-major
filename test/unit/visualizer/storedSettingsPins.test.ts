@@ -87,8 +87,7 @@ const start = async (stored: Stored) => {
         /** Everything the store holds that is not an action, each as the text it would be written as: that pins the order of an object's fields too. */
         held: () => Object.fromEntries(Object.entries(state()).filter(([, value]) => typeof value !== 'function').map(([key, value]) => [key, json(value)])),
         text: (key: string) => values.get(key) ?? null,
-        // The language the app runs in is stored by the language setting, not by these settings.
-        keys: () => [...values.keys()].filter(key => key !== 'i18nextLng').sort(),
+        keys: () => [...values.keys()].sort(),
     };
 };
 

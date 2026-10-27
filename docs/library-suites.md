@@ -91,6 +91,8 @@ P5 收尾后，首页、集合与歌手业务的真源统一为 core 资源、�
 
 在线曲目缓存沿用 main 的 schema 7，保留原始 `nextOffset`、`hasMore` 与 `total`。混合分页的可见歌曲数可能少于上游位置，不能按行数恢复；旧快照缺少安全游标时重新读取，已完成快照也不按集合估计总数继续补页。日推卡片由首页 feed 的 provider 能力决定，空结果与不支持分别表达。
 
+没有可靠更新时间的歌单与专辑，已读取的资源在现有有界 LRU 中最多复用 5 分钟（从首页成功读取时算起，不因再次打开延长），不把无版本磁盘快照视为有效。此类资源按账号隔离；歌曲数变化、手动刷新、删除曲目或超时后重新读取，不对每日推荐与私人 FM 启用此兜底。QQ 自建歌单使用 `/user/playlist` 的秒级 `updateTime` 转成毫秒作为版本，缓存回读保留毫秒值；空的“我喜欢”实测该值随读取变化，不采用它的版本。
+
 ## 一次「打开歌单并删一首歌」是怎么走的
 
 1. 用户在首页点开一个歌单。首页只调用 `onOpenGridView(歌单描述)`，导航 store 记下「现在打开的是它」。
@@ -275,6 +277,7 @@ suite 自己的外观操作（bravais 的缝等级、打开面板、定位正在
 | `resync-folder` / `resync-all-folders` | 重新扫描文件夹 | 可选 | `mutations.resyncFolder` / `resyncAllFolders` |
 | `export-playlist` | 导出本地歌单 | 可选 | `mutations.exportPlaylist` |
 | `edit-entity` / `organize-song-info` / `match-song` | 打开宿主的编辑 / 整理 / 匹配对话框 | 可选，几乎零成本（对话框由宿主提供） | `mutations.editEntity` / `organizeSongInfo` / `matchSong` |
+| `set-cover` | 打开宿主的集合封面对话框（本地文件夹 / 专辑 / 歌单的自定义封面：poster.png、上传、选一首歌的封面，或恢复默认） | 可选，几乎零成本（对话框由宿主提供） | `mutations.setCover`；能力 `capabilities.setCover`。封面本身由 core 解析好（首页分组、集合描述的 `coverUrl`、本地歌手页的专辑），suite 不必自己查；画曲目本身时用描述的 `automaticCoverUrl` |
 | `daily-date` | 切换每日推荐的历史日期 | 可选 | `mutations.setDailyDate` |
 | `add-to-playlist` / `create-playlist` | 加入 / 新建 Navidrome 歌单 | 可选，需要歌单选择器 | `mutations.addToPlaylist` / `createPlaylist` |
 | `open-album` / `open-artist` | 打开曲目上的专辑 / 歌手（嵌套压栈） | 推荐 | `resolveTrackAlbumLink` / `resolveTrackArtistLinks`（`core/shared/trackLinks`，在线曲目注入 `canResolveSongCatalogRef`）→ `onOpenAlbum` / `onOpenArtist` |

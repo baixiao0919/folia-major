@@ -1,6 +1,7 @@
 // electron/remoteControlWindowGeometry.cjs
-// Where the remote control window opens, which part of it lets clicks through, and how far left
-// it may be dragged. Pure: screen positions in, screen positions out.
+// Where the remote control window opens, which part of it lets clicks through, how far left it
+// may be dragged, and whether a remembered spot still fits. Pure: screen positions in, screen
+// positions out.
 
 // The window is one size for good: 4 px of room around a 594 x 176 card. The card in use is the
 // right 420 of it; the 174 to its left hold the large cover of the idle look and are empty in use
@@ -73,10 +74,36 @@ function clampRemoteControlWindowX(bounds, screenBounds, expandCover = true) {
   return home ? Math.max(drawn.x, home.x) - inset : bounds.x;
 }
 
+/**
+ * A remembered remote-control position, kept only if it can be opened at as it is: what is drawn
+ * (the whole window with the cover expanded, the card in use with it collapsed, as in
+ * clampRemoteControlWindowX) must sit wholly inside one screen's work area. Otherwise the spot no
+ * longer exists (monitor unplugged, resolution changed) and the caller falls back to the centred
+ * default. Returns null for an invalid or absent saved position.
+ */
+function resolveRemoteControlWindowPosition(saved, workAreas, expandCover = true) {
+  if (!saved || typeof saved !== 'object' || !Number.isFinite(saved.x) || !Number.isFinite(saved.y)
+    || !Array.isArray(workAreas)) {
+    return null;
+  }
+
+  const bounds = { x: saved.x, y: saved.y, width: REMOTE_CONTROL_WINDOW_WIDTH, height: REMOTE_CONTROL_WINDOW_HEIGHT };
+  const inset = expandCover ? 0 : getRemoteControlStripWidth(bounds);
+  const drawn = { x: bounds.x + inset, y: bounds.y, width: bounds.width - inset, height: bounds.height };
+  const fitsOnSomeScreen = workAreas.some(area => (
+    drawn.x >= area.x
+    && drawn.y >= area.y
+    && drawn.x + drawn.width <= area.x + area.width
+    && drawn.y + drawn.height <= area.y + area.height
+  ));
+  return fitsOnSomeScreen ? { x: bounds.x, y: bounds.y } : null;
+}
+
 module.exports = {
   REMOTE_CONTROL_WINDOW_WIDTH,
   REMOTE_CONTROL_WINDOW_HEIGHT,
   getInitialRemoteControlWindowPosition,
   isPointOverRemoteControlStrip,
   clampRemoteControlWindowX,
+  resolveRemoteControlWindowPosition,
 };
