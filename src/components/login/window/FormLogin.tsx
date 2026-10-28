@@ -5,8 +5,8 @@ import { omni } from '../../../services/onlineMusic/omni';
 
 // src/components/login/window/FormLogin.tsx
 // 通用表单式登录：按 provider 声明的 ProviderLoginForm（omni.getLoginForm）渲染字段并提交。
-// 提交成功交给登录状态机（onStart → retryLogin → confirmed）。接入账号密码平台不需要再改登录界面。
-export const FormLogin: React.FC<{ providerId: OnlineProviderId; onStart: () => void }> = ({ providerId, onStart }) => {
+// 提交成功即登录完成（表单式登录不走浏览器确认链），直接通知窗口：刷新状态并关闭。
+export const FormLogin: React.FC<{ providerId: OnlineProviderId; onStart: () => void; onLoggedIn: () => void }> = ({ providerId, onStart, onLoggedIn }) => {
     const { t } = useTranslation();
     const form = omni.getLoginForm(providerId);
     const texts = omni.getLoginTexts(providerId);
@@ -24,10 +24,16 @@ export const FormLogin: React.FC<{ providerId: OnlineProviderId; onStart: () => 
         setError(null);
         try {
             await omni.submitLoginForm(providerId, values);
-            onStart();
+            // 表单式登录：提交成功即已登录（token 已存主进程），不走 retryLogin/浏览器确认链。
+            // 主动读一次账号，让账户 store 立刻更新为「已登录」（否则要重启窗口才读到）。
+            void omni.readAccount(providerId, 'sign-in');
+            onLoggedIn();
         } catch (caught) {
             console.warn('[FormLogin] login failed:', caught);
-            setError(caught instanceof Error ? caught.message : String(caught));
+            const message = caught instanceof Error
+                ? (caught.message || '登录失败（无错误详情，请检查服务器地址/网络后重试）')
+                : String(caught ?? '登录失败（未知错误）');
+            setError(message);
         } finally {
             setBusy(false);
         }
@@ -55,7 +61,11 @@ export const FormLogin: React.FC<{ providerId: OnlineProviderId; onStart: () => 
                     />
                 </label>
             ))}
-            {error && <div className="mt-2.5 text-[13px] text-red-400">{error}</div>}
+            {error && (
+                <div className="mt-3 rounded-lg border border-red-400/50 bg-red-950/50 px-3 py-2 text-[13px] font-semibold leading-relaxed text-red-200 break-all">
+                    {error}
+                </div>
+            )}
             <button
                 type="button"
                 disabled={!canSubmit}

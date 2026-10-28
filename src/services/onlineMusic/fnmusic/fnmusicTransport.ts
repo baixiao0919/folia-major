@@ -54,9 +54,13 @@ export const fnMusicBridgeStatus = (): FnMusicBridgeStatus | null => {
 const bridgeError = (result: FnMusicBridgeResult & { ok: false }, operation: string): OnlineProviderError => {
     const msg = result.error?.msg || `飞牛音乐 ${operation} 失败`;
     const code = text(result.error?.code);
+    // 飞牛音乐接口业务码：120001 = 账号或密码错误（NAS 账号与音乐独立账号是两套体系，提示用户核对）。
+    if (code === '120001') {
+        return new OnlineProviderError('invalid-response', `账号或密码错误（HTTP ${result.status}）。飞牛支持 NAS 账号与音乐独立账号两种，确认用对了账号类型`, 'fnmusic');
+    }
     if (code === 'network') return new OnlineProviderError('network', msg, 'fnmusic');
     if (code && !Number.isNaN(Number(code))) {
-        return new OnlineProviderError('invalid-response', `飞牛音乐 ${operation} 业务错误: ${msg}`, 'fnmusic');
+        return new OnlineProviderError('invalid-response', `飞牛音乐 ${operation} 业务错误(code=${code}, HTTP ${result.status}): ${msg}`, 'fnmusic');
     }
     return new OnlineProviderError('invalid-response', msg, 'fnmusic');
 };

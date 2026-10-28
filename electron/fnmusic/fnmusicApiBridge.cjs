@@ -219,7 +219,8 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
           const targetUrl = `${config.base.replace(/\/+$/, '')}/music/api/v1/track/stream?${query.toString()}`;
           const headers = { Accept: '*/*' };
           if (config.token) headers.Cookie = `music-token=${encodeURIComponent(config.token)}`;
-          headers.authx = buildAuthxHeader({ pathname: '/music/api/v1/track/stream', method: 'GET', params: { guid: trackGUID }, body: undefined });
+          // 2026-10-28 服务端实测：track/stream 不带 authx 同样返回音频（200 audio/x-flac）。
+          // 播放链路不带签名，排除电脑系统时钟偏差导致签名校验失败的变量。
           if (req.headers.range) headers.Range = req.headers.range;
           const transport = targetUrl.startsWith('https:') ? https : http;
           const upstream = transport.request(targetUrl, { method: 'GET', headers }, (up) => {
@@ -287,6 +288,20 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     proxyServer = server;
   };
 
+  // 等本地代理就绪（listen 完成、proxyPort 已设）。登录成功与播放/封面操作前调用，
+  // 避免登录刚返回、代理还在监听中就搜歌/播放导致封面为空或「代理未就绪」。
+  const proxyReady = () => new Promise((resolve) => {
+    if (proxyPort) { resolve(); return; }
+    if (!proxyServer) startProxy();
+    const startedAt = Date.now();
+    const timer = setInterval(() => {
+      if (proxyPort || Date.now() - startedAt > 3000) {
+        clearInterval(timer);
+        resolve();
+      }
+    }, 25);
+  });
+
   return {
     /** 当前桥状态：是否已配置、是否已登录、代理端口（供渲染层拼音频/封面地址）。 */
     getStatus() {
@@ -311,6 +326,9 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
         method: 'POST',
         path: '/music/api/v1/user/password-login',
         body: { username, password: SHA256(password), deviceId },
+        // 登录接口实测不校验 authx 签名（2026-10-28 服务端实测：无 authx 同样 code 0 登录成功），
+        // 因此登录不带签名，排除电脑系统时钟偏差导致签名校验失败的变量。
+        unsigned: true,
       });
       if (!result.ok) return result;
       if (!result.data?.userToken || !result.data?.user) {
@@ -321,7 +339,8 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
         };
       }
       writeConfig({ base: base.replace(/\/+$/, ''), username, token: result.data.userToken, deviceId });
-      startProxy();
+      // 等本地代理就绪再返回：登录刚成功就搜歌/播放时封面与音频请求不会因端口未就绪而失败。
+      await proxyReady();
       return { ok: true, status: result.status, data: { user: result.data.user } };
     },
 
@@ -346,9 +365,10 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     },
 
     /** 播放地址：返回本地代理 URL（代理从主进程配置取 base/token，URL 不带任何凭据）。 */
-    stream({ trackId, quality }) {
+    async stream({ trackId, quality }) {
       const config = readConfig();
       if (!config?.base) return { ok: false, status: 0, error: { code: 'unconfigured', msg: '飞牛尚未配置服务器' } };
+      await proxyReady();
       if (!proxyPort) return { ok: false, status: 0, error: { code: 'proxy-unavailable', msg: '播放代理未就绪' } };
       const q = new URLSearchParams({ trackGUID: trackId });
       if (quality) q.set('quality', quality);
@@ -356,9 +376,10 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     },
 
     /** 封面地址：返回本地代理 URL（coverId 由歌曲携带，地址在显示时生成，端口变化不影响已存数据）。 */
-    coverUrl({ coverId, size }) {
+    async coverUrl({ coverId, size }) {
       const config = readConfig();
       if (!config?.base) return { ok: false, status: 0, error: { code: 'unconfigured', msg: '飞牛尚未配置服务器' } };
+      await proxyReady();
       if (!proxyPort) return { ok: false, status: 0, error: { code: 'proxy-unavailable', msg: '封面代理未就绪' } };
       const q = new URLSearchParams({ coverId });
       if (size) q.set('size', String(size));

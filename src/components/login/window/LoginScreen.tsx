@@ -39,6 +39,8 @@ export type LoginScreenProps = {
     onChoose: (providerId: OnlineProviderId) => void;
     /** 开始（浏览器登录的那一下），或者重来，保留选过的登录方式。 */
     onStart: () => void;
+    /** 表单式登录提交成功：登录已完成，直接刷新状态并关闭窗口。 */
+    onFormLoggedIn: () => void;
     /** 用这种登录方式开始（任何时候都可以换）。 */
     onSelectMethod: (methodId: string) => void;
     onReopenBrowser: () => void;
@@ -74,7 +76,7 @@ const useReached = (at: number): boolean => {
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({
-    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
+    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onFormLoggedIn, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
     buildReport, origin, done = false, onDoneLeave = nothing, onDoneEnd = nothing,
 }) => {
     const { t } = useTranslation();
@@ -225,7 +227,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 />
             )}
             message={scene === 'form' && providerId
-                ? <FormLogin providerId={providerId} onStart={onStart} />
+                ? <FormLogin providerId={providerId} onStart={onStart} onLoggedIn={onFormLoggedIn} />
                 : (
                     <LoginMessage
                         sceneKey={sceneKey}

@@ -112,6 +112,10 @@ const LoginHost: React.FC<LoginHostProps> = ({ account }) => {
             login={shownLogin}
             onChoose={host.choose}
             onStart={() => void account.retryLogin()}
+            // 表单式登录提交成功 = 登录已完成（FormLogin 已主动读账号刷新 store）：直接关闭登录窗口。
+            onFormLoggedIn={() => {
+                closeLoginWindow();
+            }}
             onSelectMethod={methodId => void account.selectLoginMethod(methodId)}
             onReopenBrowser={() => void account.openLoginPage()}
             onRestartService={() => void account.restartLocalService()}
