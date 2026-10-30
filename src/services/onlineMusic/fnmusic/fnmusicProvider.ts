@@ -21,7 +21,6 @@ import {
     fnMusicLogout,
     fnMusicStreamSource,
     fnmusicRequest,
-    makeFnMusicDeviceId,
 } from './fnmusicTransport';
 
 // src/services/onlineMusic/fnmusic/fnmusicProvider.ts
@@ -32,7 +31,7 @@ import {
 //        duration(ms) / coverId / trackNo / discNo / isFavorite / isCue / createdAt(秒)
 //  搜索: GET /music/api/v1/search/track?q=&page=&size= → { total, list }
 //  歌词: GET /music/api/v1/lyric/list?trackGUID= → { list, preferred }
-//  播放: GET /music/api/v1/track/stream?trackGUID= → 播放源（hls:// 经 /api/stream/unified 转 m3u8）
+//  播放: GET /music/api/v1/track/stream?guid= → 播放源（hls:// 经 /api/stream/unified 转 m3u8）
 
 type FnMusicRecord = Record<string, any>;
 const record = (value: unknown): FnMusicRecord => (
@@ -64,10 +63,20 @@ const coverOf = (coverId: unknown): string => {
 
 /** 归一化一首飞牛音乐歌曲（字段名取自网页端 Sj 映射器）。
  *  封面：歌曲数据只携带 coverId（providerData.coverId），album.coverUrl 在归一化时用
- *  当前代理端口生成；端口变化后重新归一化即刷新，历史歌曲数据不依赖写死的 URL。 */
+ *  协议地址生成（folia-fnmusic://cover/<coverId>?size=），地址不含端口；历史、恢复的队列、
+ *  账户快照里存过旧版 http://127.0.0.1:<端口>/fnmusic-cover 的歌，只要 coverId 还在就重写，
+ *  重启后封面不失效（review 第 5 点）。 */
 export const normalizeFnMusicSong = (raw: unknown): UnifiedSong => {
     const item = record(raw);
-    if (item.sourceRef?.kind === 'online' && item.sourceRef.providerId === 'fnmusic') return item as UnifiedSong;
+    if (item.sourceRef?.kind === 'online' && item.sourceRef.providerId === 'fnmusic') {
+        const source = item.sourceRef as { providerData?: { coverId?: unknown } | null };
+        const savedCoverId = source.providerData?.coverId;
+        if (savedCoverId) {
+            // 已归一化的歌：封面按当前协议地址重写（旧数据里的 http://127.0.0.1:<端口> 地址作废）。
+            return { ...item, album: { ...(record(item.album) as UnifiedSong['album']), coverUrl: coverOf(savedCoverId) } } as UnifiedSong;
+        }
+        return item as UnifiedSong;
+    }
     const id = text(item.guid ?? item.id ?? item.mediaId ?? '');
     if (!id) throw new OnlineProviderError('invalid-response', '飞牛音乐歌曲缺少 guid', 'fnmusic');
     const album = record(item.album);
@@ -125,10 +134,8 @@ const songIdOf = (song: SongResult): string => {
     return text(source.mediaId);
 };
 
-/** 统一错误文案（日志用）。 */
-const errorMessageOf = (error: unknown): string => (
-    error instanceof Error ? error.message : String(error)
-);
+/** 统一错误（日志用，交错误本身而非只有 message）。 */
+const errorMessageOf = (error: unknown): unknown => error;
 
 /** 歌词项取文本字段（LRC 文本）。接口字段名做了多候选兼容。 */
 const lyricTextOf = (raw: unknown): string => {
@@ -185,66 +192,52 @@ const collectionDetailOf = (type: 'playlist' | 'album' | 'artist') => (raw: unkn
     return collectionOf(type)(item);
 };
 
-/** 歌曲列表响应里的歌曲数组：兼容 tracks/list/items/songs 等常见字段名。 */
-const trackListOf = (raw: unknown): unknown[] => {
-    const item = record(raw);
-    const list = item.tracks ?? item.list ?? item.items ?? item.songs ?? item.songList;
-    return Array.isArray(list) ? list : [];
-};
-
 const fnMusicPageOf = (list: unknown[], total: number, offset: number, limit: number): ProviderPage<UnifiedSong> =>
     fnMusicPage(list.map(normalizeFnMusicSong), total, offset, limit);
 
 export const fnMusicLibrary = {
-    /** 我的歌单。请求失败返回空页（不抛错）：登录后的账户刷新不被歌单接口卡住，保证登录成功即切换平台。 */
+    /** 我的歌单。请求失败抛错：accountRead 不能用空列表覆盖账户歌单。 */
     async getUserPlaylists(_userId: string, limit: number, offset: number): Promise<ProviderPage<ProviderCollection>> {
-        try {
-            const { total, list } = await pageList<unknown>('/music/api/v1/playlist/list', undefined);
-            const items = list.map(collectionOf('playlist'));
-            return { items, total, hasMore: offset + items.length < total, nextOffset: offset + items.length };
-        } catch (error) {
-            console.warn('[FnMusic] playlist/list failed, returning empty page:', errorMessageOf(error));
-            return { items: [], total: 0, hasMore: false, nextOffset: offset };
-        }
+        const { total, list } = await pageList<unknown>('/music/api/v1/playlist/list', {
+            page: Math.floor(offset / limit) + 1,
+            size: limit,
+        });
+        const items = list.map(collectionOf('playlist'));
+        return { items, total, hasMore: offset + items.length < total, nextOffset: offset + items.length };
     },
 
-    /** 专辑列表（Folia 的「专辑」页）。请求失败返回空页。 */
+    /** 专辑列表（Folia 的「专辑」页）。请求失败抛错。 */
     async getUserAlbums(_userId: string, limit: number, offset: number): Promise<ProviderPage<ProviderCollection>> {
-        try {
-            const { total, list } = await pageList<unknown>('/music/api/v1/album/list', {
-                page: Math.floor(offset / limit) + 1,
-                size: limit,
-            });
-            const items = list.map(collectionOf('album'));
-            return { items, total, hasMore: offset + items.length < total, nextOffset: offset + items.length };
-        } catch (error) {
-            console.warn('[FnMusic] album/list failed, returning empty page:', errorMessageOf(error));
-            return { items: [], total: 0, hasMore: false, nextOffset: offset };
-        }
+        const { total, list } = await pageList<unknown>('/music/api/v1/album/list', {
+            page: Math.floor(offset / limit) + 1,
+            size: limit,
+        });
+        const items = list.map(collectionOf('album'));
+        return { items, total, hasMore: offset + items.length < total, nextOffset: offset + items.length };
     },
 
-    /** 我喜欢的歌曲 id 全量（favorite-track/list 分页循环）。失败返回空（不抛错）。 */
+    /** 我喜欢的歌曲 id 全量（favorite-track/list 分页循环）。没读到尾必须回 whole:false。 */
     async getLikedSongIds(): Promise<ProviderLikedSongIds> {
         const ids: string[] = [];
-        try {
-            const PAGE = 100;
-            for (let page = 1; page <= 20; page += 1) {
-                const raw = await fnmusicRequest<{ list?: unknown; total?: unknown }>(
-                    '/music/api/v1/favorite-track/list',
-                    { page, size: PAGE },
-                );
-                const list = Array.isArray(raw?.list) ? raw.list : [];
-                const pageIds = list
-                    .map((entry) => text(record(entry).trackGUID ?? record(entry).guid ?? record(entry).id ?? ''))
-                    .filter(Boolean);
-                ids.push(...pageIds);
-                const total = Number(raw?.total ?? 0);
-                if (list.length < PAGE || (total > 0 && ids.length >= total)) break;
-            }
-        } catch (error) {
-            console.warn('[FnMusic] favorite-track/list failed:', errorMessageOf(error));
+        const PAGE = 100;
+        // 上限：超过它还没读完，whole 回 false（没读到的歌可能也是喜欢的，不能去掉红心）。
+        const PAGE_LIMIT = 100;
+        for (let page = 1; page <= PAGE_LIMIT; page += 1) {
+            const raw = await fnmusicRequest<{ list?: unknown; total?: unknown }>(
+                '/music/api/v1/favorite-track/list',
+                { page, size: PAGE },
+            );
+            const list = Array.isArray(raw?.list) ? raw.list : [];
+            const pageIds = list
+                .map((entry) => text(record(entry).trackGUID ?? record(entry).guid ?? record(entry).id ?? ''))
+                .filter(Boolean);
+            ids.push(...pageIds);
+            const total = Number(raw?.total ?? 0);
+            if (list.length < PAGE) return { ids, whole: total > 0 ? ids.length >= total : true };
+            if (total > 0 && ids.length >= total) return { ids, whole: true };
+            // 一页满了、总数未知或还没读完：继续下一页。
         }
-        return { ids, whole: true };
+        return { ids, whole: false };
     },
 } as const;
 
@@ -335,12 +328,13 @@ export const fnmusicProvider: OnlineMusicProvider = {
     shortName: '飞牛',
     mark: { letter: '飞', color: '#0891b2' },
     // 仅桌面端（Electron 主进程桥）可用：网页/Docker 下浏览器丢 Cookie 受限头且受 CORS 限制。
-    getAvailability: () => {
-        if (typeof window !== 'undefined' && !(window as any).electron?.fnmusicRequest) {
-            return { configured: false, reason: 'runtime-unavailable' as const };
-        }
-        return { configured: Boolean(fnMusicBridgeStatus()?.configured) };
-    },
+    // 桌面端恒 configured:true（照桌面端平台惯例）：桥在未登录时也能进登录表单（configured 不能由“已登录”决定，
+    // 否则未登录/登出后那一行是 off，永远进不了表单）。
+    getAvailability: () => (
+        typeof window !== 'undefined' && window.electron?.fnmusicRequest
+            ? { configured: true } as const
+            : { configured: false, reason: 'runtime-unavailable' as const }
+    ),
     capabilities: {
         search: true, playback: true, lyrics: true, wordByWordLyrics: false,
         auth: true,
@@ -409,13 +403,18 @@ export const fnmusicProvider: OnlineMusicProvider = {
             ],
             submitLabelKey: 'fnmusic.login',
             noteKey: 'fnmusic.loginNote',
+            // 错误按 code 走 i18n（120001 → auth-required；网络失败 → network）。
+            errorKeys: {
+                'auth-required': 'fnmusic.errorBadCredentials',
+                network: 'fnmusic.errorNetwork',
+                'invalid-response': 'fnmusic.errorBadResponse',
+            },
         }),
         async submitLoginForm(values) {
             await fnMusicLogin({
                 base: text(values.base),
                 username: text(values.username),
                 password: text(values.password),
-                deviceId: makeFnMusicDeviceId(),
             });
         },
         async getLoginStatus(): Promise<ProviderUser | null> {

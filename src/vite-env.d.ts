@@ -937,15 +937,10 @@ declare global {
       onNeteaseApiStatusChanged: (callback: (status: ElectronNeteaseApiStatus) => void) => () => void;
       getKugouApiStatus: () => Promise<ElectronKugouApiStatus>;
       fnmusicRequest: (
-        operation: 'login' | 'logout' | 'request' | 'stream',
+        operation: import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeOperation,
         params?: import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeParams,
       ) => Promise<import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeResult>;
-      fnmusicStatusSync: () => {
-        configured: boolean;
-        authenticated: boolean;
-        username: string;
-        streamProxyPort: number;
-      };
+      fnmusicStatusSync: () => import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeStatus;
       qishuiRequest: (
         operation: import('./services/onlineMusic/qishui/qishuiTransport').QishuiOperation,
         params?: import('./services/onlineMusic/qishui/qishuiTransport').QishuiParams,
