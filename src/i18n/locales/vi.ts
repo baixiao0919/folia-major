@@ -1423,7 +1423,10 @@ export default {
     "noteDeviceLimit": "Vui lòng đăng xuất khỏi các thiết bị không dùng trên điện thoại rồi thử lại",
     "noteWrongScanApp": "Vui lòng quét bằng ứng dụng tương ứng với phương thức đăng nhập này, hoặc chọn phương thức khác",
     "noteCloseBrowser": "Vui lòng đóng trình duyệt đó rồi thử lại",
-    "noteUnknown": "Lỗi không xác định"
+    "noteUnknown": "Lỗi không xác định",
+    "submit": "Gửi",
+    "submitting": "Đang gửi…",
+    "formErrorUnknown": "Đăng nhập thất bại. Kiểm tra thông tin đã nhập và thử lại."
   },
   "failure": {
     "unreachable": "Không thể kết nối tới {{provider}}",
@@ -4066,26 +4069,18 @@ export default {
     "cloudDrive": "Ổ đĩa đám mây",
     "cloudDriveDesc": "Ổ đĩa NetEase Cloud Music",
     "qqCloudDriveDesc": "Ổ nhạc đám mây Weiyun",
-  },"fnmusic": {
-    "title": "Fn",
-    "enable": "Kết nối fnOS Music (Thử nghiệm)",
-    "settings": "Cài đặt fnOS Music",
+  },
+  "fnmusic": {
     "serverUrl": "Địa chỉ máy chủ",
     "serverUrlPlaceholder": "vd: http://192.168.1.10:5666",
     "username": "Tài khoản",
     "usernamePlaceholder": "Tài khoản fnOS Music hoặc tài khoản NAS",
     "password": "Mật khẩu",
-    "testConnection": "Kiểm tra kết nối",
-    "testing": "Đang kết nối...",
-    "connectionSuccess": "Đã kết nối",
-    "connectionFailed": "Kết nối thất bại",
-    "notConfigured": "fnOS Music chưa được cấu hình",
-    "signedInAs": "Đã đăng nhập: {{account}}",
-    "clearSettings": "Xóa cài đặt",
     "login": "Đăng nhập",
-    "loginTitle": "Đăng nhập fnOS Music",
     "loginNote": "Nhập địa chỉ máy chủ, tài khoản và mật khẩu fnOS Music",
-    "badUrl": "Địa chỉ máy chủ không hợp lệ",
+    "errorBadCredentials": "Sai tài khoản hoặc mật khẩu",
+    "errorNetwork": "Không thể kết nối máy chủ. Kiểm tra địa chỉ và kết nối của bạn.",
+    "errorBadResponse": "Máy chủ trả về phản hồi không nhận dạng được"
   },
   "hifi": {
     "settings": {

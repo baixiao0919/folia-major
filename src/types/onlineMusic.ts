@@ -460,6 +460,11 @@ export interface ProviderLoginForm {
     submitLabel?: string;
     noteKey?: string;               // 表单下方的提示文字（i18n key）
     note?: string;
+    /**
+     * 提交失败时按错误 code 显示的 i18n key（键是 OnlineProviderError.code，如 'network' / 'auth-required'）。
+     * 没有对应项的 code 由界面显示通用失败文案；provider 错误信息只进日志，不直接上屏。
+     */
+    errorKeys?: Record<string, string>;
 }
 
 // 平台的记号：一个字和一种颜色，画在登录窗口、切换器和账号头像的角上。平台自己声明；没有声明的

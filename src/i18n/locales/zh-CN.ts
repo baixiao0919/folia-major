@@ -1423,7 +1423,10 @@ export default {
     "noteDeviceLimit": "请在手机上退出不用的设备后重试",
     "noteWrongScanApp": "请用这种登录方式对应的 App 扫码，或改选别的登录方式",
     "noteCloseBrowser": "请关闭该浏览器后重试",
-    "noteUnknown": "未知错误"
+    "noteUnknown": "未知错误",
+    "submit": "提交",
+    "submitting": "提交中…",
+    "formErrorUnknown": "登录失败，请检查填写内容后重试"
   },
   "failure": {
     "unreachable": "无法连接{{provider}}",
@@ -4066,26 +4069,18 @@ export default {
     "cloudDrive": "云盘",
     "cloudDriveDesc": "网易云音乐云盘",
     "qqCloudDriveDesc": "微云音乐网盘",
-  },"fnmusic": {
-    "title": "飞牛",
-    "enable": "连接飞牛音乐 (实验性)",
-    "settings": "飞牛音乐 设置",
+  },
+  "fnmusic": {
     "serverUrl": "服务器地址",
     "serverUrlPlaceholder": "例如: http://192.168.1.10:5666",
     "username": "账号",
     "usernamePlaceholder": "飞牛音乐账号或 NAS 账号",
     "password": "密码",
-    "testConnection": "测试连接",
-    "testing": "连接中...",
-    "connectionSuccess": "连接成功",
-    "connectionFailed": "连接失败",
-    "notConfigured": "飞牛音乐尚未配置",
-    "signedInAs": "已登录: {{account}}",
-    "clearSettings": "清除设置",
     "login": "登录",
-    "loginTitle": "登录飞牛音乐",
     "loginNote": "输入你的飞牛（fnOS）音乐服务器地址与账号密码",
-    "badUrl": "服务器地址格式不正确",
+    "errorBadCredentials": "账号或密码错误",
+    "errorNetwork": "无法连接服务器，请检查地址与网络",
+    "errorBadResponse": "服务器返回了无法识别的响应"
   },
   "hifi": {
     "settings": {

@@ -153,6 +153,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         // 'title'：平台自己的登录标题；没有声明的平台是「登录到 平台名」。
         headline = key.includes('.') ? t(key) : texts ? t(texts.title) : t('home.loginToProvider', { provider: label });
         if (texts && scene !== 'none' && scene !== 'scanned' && scene !== 'reading') note = t(texts.note);
+        if (scene === 'form' && texts) {
+            // 表单式登录：窗口标题条已经说了「登录到 平台名」，这里用平台的说明当标题，不再重复「登录…」。
+            headline = t(texts.note);
+            note = undefined;
+        }
         if (scene === 'browser-ready') actions = [{ label: t('login.openBrowser'), primary: true, onClick: onStart }];
         if (scene === 'browser' && login?.canReopenLoginPage) actions = [{ label: t('home.loginBrowserOpen'), onClick: onReopenBrowser }];
     }
@@ -227,7 +232,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 />
             )}
             message={scene === 'form' && providerId
-                ? <FormLogin providerId={providerId} onStart={onStart} onLoggedIn={onFormLoggedIn} />
+                ? <FormLogin providerId={providerId} onLoggedIn={onFormLoggedIn} />
                 : (
                     <LoginMessage
                         sceneKey={sceneKey}

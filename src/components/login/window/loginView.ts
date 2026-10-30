@@ -36,7 +36,7 @@ export type LoginScene =
     | 'account'
     | 'accountless'
     | 'methods'         // 等用的人选登录方式
-    | 'form'            // 飞牛：账号密码表单（服务器地址 + 账号 + 密码）
+    | 'form'            // 账号密码类平台：表单式登录（字段按 provider 声明的 getLoginForm 渲染）
     | 'browser-ready'   // 浏览器登录，等用的人点按钮
     | 'preparing'       // 正在取二维码，或者正在打开浏览器
     | 'code'            // 二维码等着扫
@@ -93,6 +93,7 @@ export const sceneHeadline = (scene: LoginScene, inBrowser: boolean): string => 
         case 'scanned': return 'home.qrScanned';
         case 'reading': return 'login.readingAccount';
         case 'failed': return 'case';
+        case 'form': return 'title';
         default: return 'title';
     }
 };

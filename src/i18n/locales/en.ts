@@ -1423,7 +1423,10 @@ export default {
     "noteDeviceLimit": "Sign out of a device you no longer use on your phone, then try again",
     "noteWrongScanApp": "Scan with the app this sign-in method is for, or choose another method",
     "noteCloseBrowser": "Close that browser, then try again",
-    "noteUnknown": "Unknown error"
+    "noteUnknown": "Unknown error",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "formErrorUnknown": "Sign-in failed. Check what you entered and try again."
   },
   "failure": {
     "unreachable": "Cannot connect to {{provider}}",
@@ -4066,26 +4069,18 @@ export default {
     "cloudDrive": "Cloud Drive",
     "cloudDriveDesc": "NetEase Cloud Music Drive",
     "qqCloudDriveDesc": "Weiyun Music Drive",
-  },"fnmusic": {
-    "title": "Fn",
-    "enable": "Connect fnOS Music (Experimental)",
-    "settings": "fnOS Music Settings",
+  },
+  "fnmusic": {
     "serverUrl": "Server address",
     "serverUrlPlaceholder": "e.g. http://192.168.1.10:5666",
     "username": "Account",
     "usernamePlaceholder": "fnOS Music account or NAS account",
     "password": "Password",
-    "testConnection": "Test connection",
-    "testing": "Connecting...",
-    "connectionSuccess": "Connected",
-    "connectionFailed": "Connection failed",
-    "notConfigured": "fnOS Music is not configured",
-    "signedInAs": "Signed in: {{account}}",
-    "clearSettings": "Clear settings",
     "login": "Log in",
-    "loginTitle": "Sign in to fnOS Music",
     "loginNote": "Enter your fnOS Music server address, account and password",
-    "badUrl": "Invalid server address",
+    "errorBadCredentials": "Account or password is wrong",
+    "errorNetwork": "Cannot reach the server. Check the address and your connection.",
+    "errorBadResponse": "The server returned an unexpected response"
   },
   "hifi": {
     "settings": {

@@ -90,8 +90,9 @@ export const createLoginHostState = (ports: LoginHostPorts) => {
         confirmedSeen = false;
         set({ chosen: { providerId, lead }, done: false });
         if (lead === 'sign-in') {
-            // 表单式登录平台（如账号密码类）：选中即显示表单，不自动开始登录。
-            if (!(providerId && omni.getLoginForm(providerId))) ports.startLogin(providerId);
+            // 表单式登录平台（如账号密码类）：选中即显示表单，不自动开始登录；关掉上一个平台的扫码会话。
+            if (providerId && omni.getLoginForm(providerId)) ports.closeLogin();
+            else ports.startLogin(providerId);
         } else {
             ports.closeLogin();
         }

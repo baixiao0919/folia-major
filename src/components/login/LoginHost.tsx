@@ -112,9 +112,10 @@ const LoginHost: React.FC<LoginHostProps> = ({ account }) => {
             login={shownLogin}
             onChoose={host.choose}
             onStart={() => void account.retryLogin()}
-            // 表单式登录提交成功 = 登录已完成（FormLogin 已主动读账号刷新 store）：直接关闭登录窗口。
+            // 表单式登录提交成功：走账户 controller 的完成链路（读账号 → activate-after-login → 报完成），
+            // 完成的一声由 host.completed 接到，和扫码确认一样放动画/关窗。不自己读账号、不自己关窗。
             onFormLoggedIn={() => {
-                closeLoginWindow();
+                if (providerId) void account.completeFormLogin(providerId);
             }}
             onSelectMethod={methodId => void account.selectLoginMethod(methodId)}
             onReopenBrowser={() => void account.openLoginPage()}

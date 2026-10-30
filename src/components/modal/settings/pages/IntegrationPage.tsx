@@ -40,7 +40,7 @@ const IntegrationPage: React.FC = () => {
         <>
             <Group def={SERVICES}>
                 <NavidromeRows />
-                                <SyncServerRows />
+                <SyncServerRows />
                 {isElectron && (
                     <>
                         <Row option={O.discord} hint={t('options.discordRichPresenceDesc')}>

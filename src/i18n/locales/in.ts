@@ -1423,7 +1423,10 @@ export default {
     "noteDeviceLimit": "Keluar dari perangkat yang tidak dipakai di ponsel, lalu coba lagi",
     "noteWrongScanApp": "Pindai dengan aplikasi untuk metode masuk ini, atau pilih metode lain",
     "noteCloseBrowser": "Tutup browser itu, lalu coba lagi",
-    "noteUnknown": "Kesalahan tidak diketahui"
+    "noteUnknown": "Kesalahan tidak diketahui",
+    "submit": "Kirim",
+    "submitting": "Mengirim…",
+    "formErrorUnknown": "Gagal masuk. Periksa isian Anda dan coba lagi."
   },
   "failure": {
     "unreachable": "Tidak dapat terhubung ke {{provider}}",
@@ -4066,26 +4069,18 @@ export default {
     "cloudDrive": "Cloud Drive",
     "cloudDriveDesc": "NetEase Cloud Music Drive",
     "qqCloudDriveDesc": "Weiyun Music Drive"
-  },"fnmusic": {
-    "title": "Fn",
-    "enable": "Sambungkan fnOS Music (Eksperimental)",
-    "settings": "Pengaturan fnOS Music",
+  },
+  "fnmusic": {
     "serverUrl": "Alamat server",
     "serverUrlPlaceholder": "cth: http://192.168.1.10:5666",
     "username": "Akun",
     "usernamePlaceholder": "Akun fnOS Music atau akun NAS",
     "password": "Kata sandi",
-    "testConnection": "Uji koneksi",
-    "testing": "Menghubungkan...",
-    "connectionSuccess": "Terhubung",
-    "connectionFailed": "Koneksi gagal",
-    "notConfigured": "fnOS Music belum dikonfigurasi",
-    "signedInAs": "Masuk: {{account}}",
-    "clearSettings": "Bersihkan pengaturan",
     "login": "Masuk",
-    "loginTitle": "Masuk ke fnOS Music",
     "loginNote": "Masukkan alamat server, akun, dan kata sandi fnOS Music",
-    "badUrl": "Alamat server tidak valid",
+    "errorBadCredentials": "Akun atau kata sandi salah",
+    "errorNetwork": "Tidak dapat menghubungi server. Periksa alamat dan koneksi Anda.",
+    "errorBadResponse": "Server mengembalikan respons yang tidak dikenali"
   },
   "hifi": {
     "settings": {
