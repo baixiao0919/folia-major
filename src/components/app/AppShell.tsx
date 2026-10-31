@@ -220,14 +220,17 @@ const AppShell: React.FC<AppShellProps> = ({
             />
           )}
           <div className="relative h-full">
+            <div className={`pl-3 pt-1 tracking-tight flex items-center gap-3 ${isDaylight?'[text-shadow:_0_0px_2px_#fff] [text-shadow:_0_0px_4px_#fff] [text-shadow:_0_0px_6px_#fff]' : '[text-shadow:_0_0px_2px_#000] [text-shadow:_0_0px_4px_#000] [text-shadow:_0_0px_6px_#000]'}`}>
+              Folia
+            </div>
             <TitlebarDragZone active={usesCustomWindowChrome} />
             <div
               className={`pointer-events-auto absolute top-0 z-20 h-full flex items-center ${
-                hasFullscreenTitlebarButton ? "right-[224px]" : "right-[180px]"
+                hasFullscreenTitlebarButton ? "right-[300px]" : "right-[224px]"
               }`}
               style={{ WebkitAppRegion: "no-drag" } as React.CSSProperties}
             >
-              {/* <button
+              <button
                 type="button"
                 aria-label={
                   isMainWindowClickThroughEnabled
@@ -259,7 +262,7 @@ const AppShell: React.FC<AppShellProps> = ({
                 ) : (
                   <LockOpen size={14} />
                 )}
-              </button> */}
+              </button>
             </div>
             <div className="pointer-events-auto absolute top-0 right-0 z-10 h-full">
               <WindowControls
