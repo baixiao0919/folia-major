@@ -289,7 +289,9 @@ export default {
     "dioramaReset": "Diorama tuning reset",
     "temperaReset": "Tempera tuning reset",
     "lumiereReset": "Lumiere tuning reset",
+    "nebbiaReset": "Nebbia tuning reset",
     "hanabiReset": "Hanabi tuning reset",
+    "machiReset": "Machi tuning reset",
     "uploadEmojiFirst": "Please upload a custom emoji pack first",
     "monetBgUpdated": "Monet background image updated",
     "monetBgCleared": "Monet background image cleared",
@@ -376,6 +378,7 @@ export default {
     "syncFailed": "Sync failed",
     "loginExpired": "Login expired. Please sign in again",
     "songPreviewOnly": "This account can only play a preview",
+    "songVipFullUnavailable": "Third-party players can't get full VIP songs for now",
     "songSubscriptionRequired": "Paid {{provider}} account required",
     "songRegionRestricted": "Plays on mainland China networks only",
     "songRetrying": "Connection failed. Retrying…",
@@ -668,6 +671,7 @@ export default {
       "video-layer-toggle": { "title": "Video layer behind lyrics", "description": "Show or hide the muted video layer behind the lyrics" },
       "video-layer-pick": { "title": "Video layer: pick a local video", "description": "Choose a local video to play behind the lyrics" },
       "visualizer-toggle-random-per-song": { "title": "Random visualizer for every song", "description": "Toggle a random lyric animation mode whenever the song changes" },
+      "visualizer-machi-camera-bar": { "title": "Machi: Viewfinder", "description": "Show or hide Machi's viewfinder bar on the player page to set the view, focus, aperture and drift" },
       "visualizer-toggle-glow-blur-quantize": { "title": "Fix lyric animation freeze on Linux", "description": "Change how some lyric animations draw their glow, fixing occasional freezes after long playback on Linux" },
       "settings-visualizer": { "title": "Visualizer settings", "description": "Open lyrics animation workbench" },
       "settings-theme-park": { "title": "Color", "description": "Open theme editor" },
@@ -759,6 +763,7 @@ export default {
       "library-wall-seam-direction-picker": { "title": "Pick info strip direction", "description": "Open the info strip as a column, a row across the wall, or by the screen shape" },
       "settings-theme-presets": { "title": "Theme presets", "description": "Jump to the built-in and saved theme presets" },
       "settings-liquid-glass": { "title": "Liquid glass", "description": "Jump to liquid glass strength, blur and presets" },
+      "settings-lyric-render-quality": { "title": "Lyric canvas resolution and anti-aliasing", "description": "Jump to the resolution and anti-aliasing every canvas / WebGL lyric style follows by default" },
       "settings-lyrics-renderer": { "title": "Lyrics renderer", "description": "Jump to how lyrics are drawn on the player" },
       "settings-grid-card-style": { "title": "Grid card style", "description": "Jump to how the home grid draws its cards" },
       "settings-queue-behavior": { "title": "Queue behavior", "description": "Jump to how the play queue is built and kept" },
@@ -828,7 +833,9 @@ export default {
       "smart-beat-on": { "title": "Smart beat mode: On", "description": "Turn the beat effects on (Sonnet and Diorama on the beats, Pendolo on the drums), analysing a track not analysed yet" },
       "visualizer-tempera": { "title": "Visualizer: Tempera", "description": "Switch to the Tempera color-block lyric PV" },
       "visualizer-lumiere": { "title": "Visualizer: Lumiere", "description": "Switch to the Lumiere stage-light lyric PV" },
+      "visualizer-nebbia": { "title": "Visualizer: Nebbia", "description": "Switch to Nebbia, lyrics written on a fogged-up bus window" },
       "visualizer-hanabi": { "title": "Visualizer: Hanabi", "description": "Switch to the Hanabi fireworks lyric PV" },
+      "visualizer-machi": { "title": "Visualizer: Machi", "description": "Switch to the Machi town dioramas" },
       "desktop-toggle-remote-control": { "title": "Toggle remote control window", "description": "Open or close the remote control window" },
       "desktop-toggle-main-window-always-on-top": { "title": "Toggle main window always on top", "description": "Pin or unpin the main window above other windows" },
       "background-monet-full-overlay": { "title": "Background: Monet Full Screen Overlay", "description": "Switch background to Monet full screen overlay layout" },
@@ -924,7 +931,9 @@ export default {
     "visualizerSonnet": "Sonnet",
     "visualizerTempera": "Tempera",
     "visualizerLumiere": "Lumiere",
+    "visualizerNebbia": "Nebbia",
     "visualizerHanabi": "Hanabi",
+    "visualizerMachi": "Machi",
     "cadenzeTuning": "Mindscape Tuning",
     "resetVisualizerTuning": "Reset Lyrics Animation Tuning",
     "cadenzeOnly": "Mindscape only",
@@ -1125,6 +1134,7 @@ export default {
     "queueReplaceUndoGone": "The queue has changed since it was replaced, so there is nothing to undo",
     "queueReplaceHint": "Can replace the whole play queue at once and end Personal FM; Folia then says which mod did it, and you can undo it until the queue changes again.",
     "equalizerControlHint": "Changes your sound settings: can switch your sound preset, or put its own equalizer curve in place.",
+    "renderQualityHint": "Changes the lyric canvas render quality: can change the lyric canvas resolution and anti-aliasing in Performance & motion.",
     "signatureVerified": "Verified",
     "signatureVerifiedDetail": "Carries a valid official Folium signature ({{key}}): its source and content were reviewed by Folium and have not changed since signing. Once enabled it still runs with the app's full privileges.",
     "signatureBeta": "Preview",
@@ -1430,10 +1440,7 @@ export default {
     "noteDeviceLimit": "Sign out of a device you no longer use on your phone, then try again",
     "noteWrongScanApp": "Scan with the app this sign-in method is for, or choose another method",
     "noteCloseBrowser": "Close that browser, then try again",
-    "noteUnknown": "Unknown error",
-    "submit": "Submit",
-    "submitting": "Submitting…",
-    "formErrorUnknown": "Sign-in failed. Check what you entered and try again."
+    "noteUnknown": "Unknown error"
   },
   "failure": {
     "unreachable": "Cannot connect to {{provider}}",
@@ -1449,7 +1456,7 @@ export default {
     "noteSignIn": "Sign in again",
     "noteUnknown": "Unknown error",
     "accountRefused": "This {{provider}} account cannot play here",
-    "noteAccountRefused": "The platform blocks accounts created since late 2024 from playing in third-party players",
+    "noteAccountRefused": "Audio unavailable due to official restrictions",
     "noteMaybeSignIn": "Signing in may make it playable",
     "noteMaybeSubscription": "May need a membership to play",
     "noteMaybeRegion": "May be restricted in your region",
@@ -1495,8 +1502,6 @@ export default {
     "loginNoteQishui": "Scan with the Douyin app and confirm authorization",
     "loginTitleBodian": "Scan with Bodian Music",
     "loginNoteBodian": "Scan this code with the Bodian Music app and confirm sign-in",
-    "loginTitleFnMusic": "Sign in to fnOS Music",
-    "loginNoteFnMusic": "Enter your fnOS Music server address and account to play your NAS music library",
     "loginTitleYtm": "Sign in to YouTube Music",
     "loginNoteYtmBrowser": "A separate browser window opens. Sign in to Google there, and close that window once YouTube Music shows your account.",
     "loginNoteYtmBrowserMac": "A separate browser window opens. Sign in to Google there, and quit that browser (⌘Q) once YouTube Music shows your account.",
@@ -1735,6 +1740,7 @@ export default {
     "releaseNotes": "What's new",
     "releaseNotesDescription": "Review the changes in this version",
     "majorUpdateLabel": "{{codename}} Update · Major update",
+    "servicePackLabel": "{{codename}} Update SP{{servicePack}} · Major update",
     "ponder": "Ponder Help",
     "ponderDescription": "Learn Folia's basic controls and operating model",
     "version": "Version"
@@ -2115,6 +2121,8 @@ export default {
     "bravaisSeamDirectionDesc": "Vertical opens the info strip between two block columns, parting the wall left and right. Horizontal opens it between two block rows, parting the wall top and bottom, with the strip running across the screen. List panels, forms and the artist / album posters always stay vertical.",
     "bravaisSeamDirectionAuto": "Automatic",
     "bravaisSeamDirectionAutoDesc": "A row on tall screens (a phone held upright, a tall window), a column on wide ones; switches when the screen turns.",
+    "bravaisSeamDirectionAutoReverse": "Automatic (reversed)",
+    "bravaisSeamDirectionAutoReverseDesc": "A column on tall screens, a row on wide ones (a desktop window, a phone held sideways); switches when the screen turns.",
     "bravaisSeamDirectionVertical": "Vertical",
     "bravaisSeamDirectionVerticalDesc": "Opens between two block columns; the wall parts left and right.",
     "bravaisSeamDirectionHorizontal": "Horizontal",
@@ -2541,7 +2549,7 @@ export default {
     "subtitleOverlayOpacity": "Subtitle Opacity",
     "subtitleOverlayBackground": "Subtitle Background",
     "subtitleOverlayBackgroundDesc": "Add a theme-aware, soft diffused halo to improve readability over busy visuals.",
-    "subtitleUpcomingLyricsBlur": "Blur non-translation lyrics",
+    "subtitleUpcomingLyricsBlur": "Blur upcoming lyrics",
     "showHarmonySubtitle": "Show Harmony Subtitles",
     "showHarmonySubtitleDesc": "Show or hide the top harmony lyric overlay.",
     "harmonySubtitleBackground": "Harmony Subtitle Background",
@@ -2554,6 +2562,17 @@ export default {
     "subtitleContentRomanization": "Romanization",
     "subtitleContentBoth": "Romanization + Translation",
     "subtitleContentNone": "None",
+    "subtitleContentModeDesc": "What Monet, Pendolo, Lattice and Still show in the subtitle they lay out themselves, and in the harmony subtitle at the top. The bottom subtitle follows the rows above.",
+    "subtitleOverlayRows": "Bottom Subtitle Rows",
+    "subtitleOverlayRowsDesc": "With two or three rows the first is always the current line; each row after it can be the next line, the translation or the romanization.",
+    "subtitleOverlayRowsOne": "One",
+    "subtitleOverlayRowsTwo": "Two",
+    "subtitleOverlayRowsThree": "Three",
+    "subtitleOverlayRow1": "First Row",
+    "subtitleOverlayRow2": "Second Row",
+    "subtitleOverlayRow3": "Third Row",
+    "subtitleOverlaySourceCurrent": "Current Line",
+    "subtitleOverlaySourceNext": "Next Line",
     "classicSettings": "Classic Tuning",
     "classicWordRotation": "Per-word Rotation",
     "classicBreathingFloatMultiplier": "Breathing Float Range",
@@ -2677,6 +2696,7 @@ export default {
     "beatEffectsOpenSmartBeat": "Go to Global",
     "beatEffectStrength": "Strength",
     "beatEffectNeedsDrums": "The HTDemucs model is missing from this install; reinstall Folia. On a song without drums there is no effect either.",
+    "beatEffectNeedsStems": "The HTDemucs model is missing from this install; reinstall Folia.",
     "beatEffect_sonnetLensTear": "Lens Tear",
     "beatEffect_sonnetLensTearDesc": "On the beats beat_this detects: every beat punches the camera in; each bar's first beat tears and flares.",
     "beatEffect_dioramaRipple": "Mirror Ripples",
@@ -2685,6 +2705,10 @@ export default {
     "beatEffect_pendoloDrumheadDesc": "On the drums HTDemucs separates: the kick swells the dial, a hard one shakes the screen; the snare strikes off centre and tilts it that way; hats light the ticks and the inner ring.",
     "beatEffect_temperaInkFlash": "Sumizome Depth",
     "beatEffect_temperaInkFlashDesc": "Gives Tempera depth and a moving camera: the watermark and background pictures sit behind and slightly blurred, foreground pictures in front and blurrier, parting as the camera moves; each shot pans up, down, left or right; bigger glyphs sit nearer and stronger, smaller ones further and fainter. And on the drums HTDemucs separates: the paper rests under a faint grey stain, and each kick and snare spreads an ink blot across the screen that fades within half a second, in the accent colour of Tempera's palette.",
+    "beatEffect_nebbiaDrizzleRide": "Drizzle Ride",
+    "beatEffect_nebbiaDrizzleRideDesc": "Nebbia's rain and bus follow the song HTDemucs separates. The rain follows the voice: the louder the singing, the more small drops hit the glass, and a big drop lands on each sung syllable, away from the line being sung. The bus jolts on the kick drum instead of at random. Rain and jolts each have their own strength; at 0 there is no rain, or no jolts. Until the track is analysed, the rain follows the vocal range of the mix and the bus jolts at random.",
+    "beatEffectPart_nebbiaRain": "Rain strength",
+    "beatEffectPart_nebbiaBump": "Jolt strength",
     "beatEffect_pendoloGearBeats": "Gear Beat",
     "beatEffect_pendoloGearBeatsDesc": "The gears step on the beats beat_this detects. (Retired)",
     "beatEffect_latentPulse": "Tidal Pulse",
@@ -2693,6 +2717,12 @@ export default {
     "beatEffect_hanabiBeatBurstsDesc": "On the beats beat_this detects: a small firework opens in the sky on every beat, and a shell climbs ahead of each bar's first beat to burst right on it. Harder beats open bigger.",
     "beatEffect_hanabiBeatPulse": "Beat Push",
     "beatEffect_hanabiBeatPulseDesc": "On the beats beat_this detects: the whole scene pushes in and sways a little on every beat, deeper on each bar's first beat.",
+    "beatEffect_machiNeonPulse": "Neon Pulse",
+    "beatEffect_machiNeonPulseDesc": "On the beats beat_this detects: the neon signs take turns in three groups, each beat slowly lighting the next group up and letting it fade, so the street glows in waves rather than flashing; the shop lights and lit windows swell gently once a bar.",
+    "beatEffect_machiDrumRipple": "Kick Ripples",
+    "beatEffect_machiDrumRippleDesc": "On the drums HTDemucs separates: each kick rings a ripple out over the wet ground from under the lyric screen, rocking the reflections; on dry ground the light pools jump instead.",
+    "beatEffect_machiScreenFlash": "Screen Flash",
+    "beatEffect_machiScreenFlashDesc": "On the drums HTDemucs separates: each snare slowly brightens a patch of the lyric screen and lets it fade, one after another in different places; even dense snares only make it rise and fall gently, never strobe.",
     "temperaMotionSection": "Motion & Color",
     "temperaDisplaySection": "Visibility",
     "temperaLyricSection": "Lyric Shots",
@@ -2795,6 +2825,64 @@ export default {
     "lumiereFrontBokeh": "Foreground bokeh",
     "lumiereLineArt": "Line art",
     "lumiereOverlayFrame": "Frame",
+    "nebbiaWriting": "Writing on the fog",
+    "nebbiaWindow": "Window and street",
+    "nebbiaAppear": "Appear",
+    "nebbiaAppearAuto": "Auto",
+    "nebbiaAppearWrite": "Write",
+    "nebbiaAppearFade": "Fade in",
+    "nebbiaFade": "Disappear",
+    "nebbiaFadeFog": "Fog over",
+    "nebbiaFadeFingers": "Wipe away",
+    "nebbiaFadeMix": "Mixed",
+    "nebbiaAppearBreath": "Breathe, then write",
+    "nebbiaCustom": "Custom",
+    "nebbiaAppearHint": "Each line picks one of the writing styles that are on. With Fade in also on, it is used only for lines too quick to write out. The breath that clears a full screen is not affected.",
+    "nebbiaFadeHint": "With both on, each line picks one at random.",
+    "nebbiaLayouts": "Composition",
+    "nebbiaLayoutsHint": "Each line takes the best fit among the compositions that are on; a line too long for any still goes in three rows.",
+    "nebbiaJitter": "Handwriting tilt",
+    "nebbiaWarp": "Handwriting warp",
+    "nebbiaCredits": "Write the title at the end",
+    "nebbiaCreditsHint": "After the last line, the song title is written in the middle of the glass with the artist below, and stays until the song ends.",
+    "nebbiaLayout_ribbon": "Ribbon",
+    "nebbiaLayout_lines2": "Two staggered rows",
+    "nebbiaLayout_lines3": "Three staggered rows",
+    "nebbiaLayout_cross": "Cross",
+    "nebbiaLayout_pillar": "Pillar",
+    "nebbiaLayout_header": "Masthead",
+    "nebbiaLayout_badge": "Badge",
+    "nebbiaLayout_columns": "Vertical columns",
+    "nebbiaLayout_orbit": "Orbit",
+    "nebbiaStrokeWidth": "Stroke width",
+    "nebbiaWriteSpeed": "Writing speed",
+    "nebbiaDoodle": "Doodle after a line",
+    "nebbiaMist": "Fog density",
+    "nebbiaHold": "Hold after the next line",
+    "nebbiaRefog": "Time to fog over",
+    "nebbiaBusSpeed": "Bus speed",
+    "nebbiaNeon": "Neon",
+    "nebbiaBump": "Bumps",
+    "nebbiaSpot": "Spotlights",
+    "nebbiaSpotX": "Spotlight position",
+    "nebbiaRainHit": "Raindrops on the glass",
+    "nebbiaRainBig": "Drops on each word",
+    "nebbiaScenery": "Scenery",
+    "nebbiaSceneryHint": "Each part of the view can be turned off on its own; with all off only the sky remains. Bokeh lights are the neon, street lamps and signs; with the road off, car lights and bokeh have no reflections. Raindrops on the glass are set with the sliders above.",
+    "nebbiaScenery_spot": "Spotlights",
+    "nebbiaScenery_buildings": "Buildings",
+    "nebbiaScenery_lights": "Bokeh lights",
+    "nebbiaScenery_cars": "Car lights",
+    "nebbiaScenery_road": "Road",
+    "nebbiaRain": "Rain outside",
+    "nebbiaRainHint": "The rain outside shows only inside the spotlight beams, where the glass is wiped clear; slanted rain leans with the bus speed.",
+    "nebbiaRain_slant": "Slanted",
+    "nebbiaRain_straight": "Straight",
+    "nebbiaRain_off": "Off",
+    "nebbiaBehind": "Outside the window",
+    "nebbiaBehindHint": "The street at night, or the shared background behind the fog. With the background the fog turns into a translucent mist (white with a daylight theme, dark with a night theme) and the wiped strokes show what is behind; a transparent player page always works this way and shows the desktop.",
+    "nebbiaBehind_night": "Night street",
+    "nebbiaBehind_backdrop": "Background",
     "lumiereUnlitOpacity": "Unsung text opacity",
     "lumiereWindowNeighbors": "Neighbouring lines",
     "lumiereWindowNeighborsPrev": "Previous + current",
@@ -2819,6 +2907,91 @@ export default {
     "lumiereRenderQualityLow": "Low",
     "lumiereRenderQualityHint": "Balanced and Low render the light field and glow at reduced resolution and cap haze detail, saving power at some cost in sharpness.",
     "hanabiFontSizeAutoNotice": "Hanabi sizes lyrics from the viewport and each shot's text region; the generic font size setting only affects the subtitles in this mode.",
+    "machiFontSizeAutoNotice": "Machi fits the lyrics to the screens and signs in the scene; the generic font size setting only affects the subtitles in this mode.",
+    "machiSceneSection": "Scene",
+    "machiScene": "Scene",
+    "machiSceneHint": "Auto picks a scene for each song; the same song always gets the same one.",
+    "machiSceneAuto": "Auto",
+    "machiSceneKonbini": "Konbini",
+    "machiSceneStation": "Gas station",
+    "machiSceneKowloon": "Walled City bar",
+    "machiSkySection": "Time and weather",
+    "machiTimeOfDay": "Time of day",
+    "machiTimeOfDayHint": "Auto follows your local clock: day, dusk or night.",
+    "machiTimeAuto": "Auto",
+    "machiTimeDay": "Day",
+    "machiTimeDusk": "Dusk",
+    "machiTimeNight": "Night",
+    "machiWeather": "Weather",
+    "machiWeatherHint": "Auto picks the weather for each song. When it rains, lightning strikes at the start of each chorus.",
+    "machiWeatherAuto": "Auto",
+    "machiWeatherClear": "Clear",
+    "machiWeatherRain": "Rain",
+    "machiWeatherSnow": "Snow",
+    "machiWeatherFog": "Fog",
+    "machiCameraSection": "Camera",
+    "machiCameraMode": "View",
+    "machiCameraModeHint": "Drag the picture to turn, scroll to zoom, right-drag (or use two fingers) to pan. Default view: about 8 seconds after you let go it returns to the default framing. Custom view: it stays where you leave it and is remembered, one for each scene; the sliders below adjust it too.",
+    "machiCameraDefault": "Default view",
+    "machiCameraCustom": "Custom view",
+    "machiViewAzimuth": "Turn",
+    "machiViewElevation": "Tilt",
+    "machiViewZoom": "Zoom",
+    "machiViewPanX": "Pan sideways",
+    "machiViewPanZ": "Pan forward / back",
+    "machiViewReset": "Back to default framing",
+    "machiViewScene": "Scene to adjust",
+    "machiViewSceneHint": "With the scene on Auto, whose view the sliders below adjust; by default the scene being shown.",
+    "machiCameraMotion": "Camera drift",
+    "machiCameraMotionHint": "The camera slowly turns, pushes in and pulls back, and pans around the view, pausing with the song. Dragging stops it; it picks up again once the camera is back at the view.",
+    "machiCameraMotionSpeed": "Drift speed",
+    "machiCameraBar": "Viewfinder",
+    "machiCameraBarView": "View",
+    "machiCameraBarLens": "Focus & aperture",
+    "machiCameraBarMotion": "Drift",
+    "machiCameraBarReset": "Reset",
+    "machiCameraBarClose": "Close",
+    "machiDofSection": "Depth of field",
+    "machiAperture": "Aperture",
+    "machiApertureHint": "Further right opens the aperture: a thinner slice in focus, everything else softer, and the lights and neon blur into round discs. f/8 is the original miniature look.",
+    "machiDof": "Strength",
+    "machiDofHint": "The further from the focus, the softer; 0 turns it off.",
+    "machiDofRange": "Sharp range",
+    "machiTiltShift": "Tilt-shift",
+    "machiTiltShiftHint": "Softens the top and bottom of the picture, like a photo of a miniature.",
+    "machiFocus": "Focus",
+    "machiFocusHint": "Centre: the point the camera turns around. Lyric screen: the scene's lyric screen. Manual: moved nearer or further from the centre.",
+    "machiFocusCenter": "Centre",
+    "machiFocusLyrics": "Lyric screen",
+    "machiFocusManual": "Manual",
+    "machiFocusOffset": "Focus distance",
+    "machiQualitySection": "Quality",
+    "machiQuality": "Preset",
+    "machiQualityHint": "High, Balanced and Low are ready-made combinations; changing any option below makes it Custom. The frame-rate limit lives in Settings › Performance & motion and applies to every style.",
+    "machiQualityCustom": "Custom",
+    "machiQualityHigh": "High",
+    "machiQualityBalanced": "Balanced",
+    "machiQualityLow": "Low",
+    "machiRenderScale": "Resolution",
+    "machiRenderScaleHint": "Draws at a share of the screen's pixels: lower is a little softer but much faster. On high-DPI screens it counts at most 2× the layout size. Follow global uses the lyric canvas resolution in Performance & motion (now {{value}}; above 1× supersamples).",
+    "machiAntialias": "Anti-aliasing",
+    "machiAntialiasHint": "FXAA is the cheapest but softens text slightly; SMAA gives clean edges and also smooths the ink lines and rain, at a little more cost; Supersampling draws at twice the resolution and scales down, the finest and the most expensive. Follow global is SMAA while the global setting is on (now {{value}}) and off while it is off.",
+    "machiAntialiasOff": "Off",
+    "machiAntialiasFxaa": "FXAA",
+    "machiAntialiasSmaa": "SMAA",
+    "machiAntialiasSsaa": "Supersampling",
+    "machiShadows": "Shadows",
+    "machiShadowsHint": "Shadows cast by the moon and the sun.",
+    "machiReflections": "Reflections",
+    "machiReflectionsHint": "Lights and signs reflected in the wet road; only drawn while the road is wet.",
+    "machiLevelOff": "Off",
+    "machiLevelLow": "Low",
+    "machiLevelHigh": "High",
+    "machiGlow": "Glow and streaks",
+    "machiGlowHint": "The halo around lights and signs at night, and the horizontal lens streaks.",
+    "machiAdaptive": "Auto-degrade",
+    "machiAdaptiveHint": "When the frame rate stays low, steps down below these settings (depth-of-field blur first, then supersampling and edge MSAA, then reflections, glow, resolution and post anti-aliasing, shadows last), never above what you chose. Changing a setting starts over from the new one.",
+    "machiAdaptiveActive": "Currently {{count}} step(s) down.",
     "hanabiFireworksSection": "Fireworks",
     "hanabiStageSection": "Stage",
     "hanabiTextSection": "Text",
@@ -2958,13 +3131,13 @@ export default {
     "gpuPreferenceCommandLineNotice": "This launch passed a GPU switch on the command line, which takes precedence",
     "gpuPreferenceActive": "In use",
     "visualizerFrameRateValue": "Limit",
-    "liquidGlassSection": "Advanced Materials",
+    "liquidGlassSection": "Liquid Glass",
     "liquidGlassSectionDesc": "Adjust the material of Folia's interface components.",
     "liquidGlassPreset": "Presets",
     "liquidGlassPresetDesc": "Quick looks that set strength, blur and edge bend distance together.",
     "liquidGlassPresetFrosted": "Frosted glass",
-    "liquidGlassPresetClear": "Clear fluid",
-    "liquidGlassPresetHazy": "Hazy fluid",
+    "liquidGlassPresetClear": "Clear liquid glass",
+    "liquidGlassPresetHazy": "Hazy liquid glass",
     "liquidGlassPresetEco": "Power saving",
     "liquidGlassStrength": "Refraction Strength",
     "liquidGlassStrengthDesc": "How strongly the glass edges refract what sits behind them.",
@@ -2980,6 +3153,17 @@ export default {
     "liquidGlassJellyDesc": "Stretches when dragged and springs back on release.",
     "liquidGlassGpuBlockedNotice": "Liquid glass is unavailable while the render GPU is set to Power saving; switch back to Auto or High performance and restart Folia to re-enable it.",
     "liquidGlassValueLabel": "Value",
+    "lyricRenderScale": "Lyric canvas resolution",
+    "lyricRenderScaleDesc": "Lyric styles drawn with canvas or WebGL (Machi, Hanabi, Lumiere, Nebbia and others) render at this multiple; 1× is each style's usual sharpness, above 1× supersamples for finer edges at more GPU cost. Every style follows this unless its own settings pick a value.",
+    "lyricAntialias": "Lyric canvas anti-aliasing",
+    "lyricAntialiasDesc": "Auto keeps each style's own default; On smooths geometric edges (lines, cards, blocks of color) at the cost of video memory and a little frame rate. Every style follows this by default.",
+    "lyricAntialiasAuto": "Auto",
+    "lyricAntialiasOn": "On",
+    "lyricAntialiasOff": "Off",
+    "lyricRenderSection": "Rendering",
+    "lyricRenderFollowGlobal": "Follow global",
+    "lyricRenderScaleStyleHint": "How many times the resolution this style draws at; above 1× supersamples. Follow global uses the setting in Performance & motion (now {{value}}).",
+    "lyricAntialiasStyleHint": "Follow global uses the setting in Performance & motion (now {{value}}).",
     "themePresets": "Theme Presets",
     "themePresetsDefault": "Default",
     "openThemePark": "Open Theme Park",
@@ -3473,6 +3657,52 @@ export default {
         "description": "When signed in, your own private playlists now load their songs, with real paging. Self-hosted backends must run qq-music-api 3.1.2 or later; older backends fall back automatically, and a playlist that cannot be read now says it is not public instead of silently showing as empty."
       }
     },
+    "v0_7_25": {
+      "intro": "Welcome to 0.7.25, Rainy Update SP1—a hotfix for 0.7.24 that fixes the performance problems of the Nebbia lyric style: switching to it no longer stalls, and it plays at a higher frame rate with less load. Switching the theme source on the control page back to Default now really restores the default theme, too. Everything else is still the Rainy Update: two rainy-night lyric styles—Nebbia, which writes the lyrics on the fogged-up window of a bus, and Machi, a 3D miniature town; bottom subtitles in one to three rows; and a desktop remote control window that can expand to show the play queue.",
+      "nebbia": {
+        "title": "Nebbia",
+        "description": "New lyric style Nebbia: on a bus on a rainy night, a fingertip writes the lyrics on the fogged-up window. Chinese characters are written stroke by stroke in stroke order, each stroke wiping the fog clear onto the city outside; beads gather along the strokes and run down, the fog slowly creeps back, and two spotlights from the street follow the word being sung. Lines can be handwritten, fade in, or be written after a breath on the glass, and leave by fogging over or being wiped away by a finger; after the last line, the song title and artist are written on the glass. In Smart beat mode, Drizzle Ride makes raindrops hit the glass with the vocals and the bus jolt on the kick drum."
+      },
+      "machi": {
+        "title": "Machi",
+        "description": "New 3D lyric style Machi: miniature dioramas of a Japanese town whose signs carry the lyrics—the current line lights up word by word on an LED screen, the next line runs along an LED ticker, the song title sits on the shop signs, and the theme's colors and icons repaint the chain store. Scenes include a convenience store, a gas station and a walled-city bar; time of day (day, dusk, night) and weather (clear, rain, snow, fog) can each be left on Auto. In the rain the street turns glossy with long reflections, and thunder rolls at the start of each chorus. Drag to turn the view and keep a custom view for each scene; the camera drifts slowly, and aperture, focus and tilt-shift can be adjusted from the framing bar on the player page. In Smart beat mode the neon swells in waves on the beats, kicks ring ripples across the wet ground, and the lyric screen glows up on the snare."
+      },
+      "subtitleRows": {
+        "title": "Subtitle Rows",
+        "description": "The bottom subtitles can be one, two or three rows: a single row shows the current line, the translation or the romanization; with more rows, the first is the current line and each row after it can show the next line, the translation or the romanization. Set it in the lyric style window's subtitle settings—it no longer follows Subtitle Content, and your old setting converts to the matching layout. Between lines, the subtitles stay on the line just sung. Lattice's expanded song card now shows harmony subtitles too."
+      },
+      "remoteQueue": {
+        "title": "Remote Control Queue",
+        "description": "The desktop remote control window gains a queue button that expands it to show the play queue, centered on the current song and searchable; each song can be played, played next, moved to the end or removed. The window expands downward or upward depending on the room left on the screen, folds back a few seconds after the pointer leaves, and Esc clears the search first, then folds it."
+      },
+      "moreDetails": {
+        "title": "More Improvements",
+        "description": "Bravais's info strip direction gains Automatic (reversed), which picks the opposite orientation from Automatic. Current Output Device now also applies to playback that goes through Web Audio, instead of playing from the system default. When a Qishui VIP song falls back to its preview clip, the notice now says third-party players can't get the full VIP song for now; when Spotify won't provide audio, the notice now calls it an official restriction. Hovering the last row of the platform list in the login window no longer blanks the interface."
+      }
+    },
+    "v0_7_24": {
+      "intro": "Welcome to 0.7.24, the Rainy Update—a major release. It brings two rainy-night lyric styles: Nebbia, which writes the lyrics on the fogged-up window of a bus, and Machi, a 3D miniature town. The bottom subtitles can now be laid out in one to three rows, and the desktop remote control window can expand to show the play queue.",
+      "nebbia": {
+        "title": "Nebbia",
+        "description": "New lyric style Nebbia: on a bus on a rainy night, a fingertip writes the lyrics on the fogged-up window. Chinese characters are written stroke by stroke in stroke order, each stroke wiping the fog clear onto the city outside; beads gather along the strokes and run down, the fog slowly creeps back, and two spotlights from the street follow the word being sung. Lines can be handwritten, fade in, or be written after a breath on the glass, and leave by fogging over or being wiped away by a finger; after the last line, the song title and artist are written on the glass. In Smart beat mode, Drizzle Ride makes raindrops hit the glass with the vocals and the bus jolt on the kick drum."
+      },
+      "machi": {
+        "title": "Machi",
+        "description": "New 3D lyric style Machi: miniature dioramas of a Japanese town whose signs carry the lyrics—the current line lights up word by word on an LED screen, the next line runs along an LED ticker, the song title sits on the shop signs, and the theme's colors and icons repaint the chain store. Scenes include a convenience store, a gas station and a walled-city bar; time of day (day, dusk, night) and weather (clear, rain, snow, fog) can each be left on Auto. In the rain the street turns glossy with long reflections, and thunder rolls at the start of each chorus. Drag to turn the view and keep a custom view for each scene; the camera drifts slowly, and aperture, focus and tilt-shift can be adjusted from the framing bar on the player page. In Smart beat mode the neon swells in waves on the beats, kicks ring ripples across the wet ground, and the lyric screen glows up on the snare."
+      },
+      "subtitleRows": {
+        "title": "Subtitle Rows",
+        "description": "The bottom subtitles can be one, two or three rows: a single row shows the current line, the translation or the romanization; with more rows, the first is the current line and each row after it can show the next line, the translation or the romanization. Set it in the lyric style window's subtitle settings—it no longer follows Subtitle Content, and your old setting converts to the matching layout. Between lines, the subtitles stay on the line just sung. Lattice's expanded song card now shows harmony subtitles too."
+      },
+      "remoteQueue": {
+        "title": "Remote Control Queue",
+        "description": "The desktop remote control window gains a queue button that expands it to show the play queue, centered on the current song and searchable; each song can be played, played next, moved to the end or removed. The window expands downward or upward depending on the room left on the screen, folds back a few seconds after the pointer leaves, and Esc clears the search first, then folds it."
+      },
+      "moreDetails": {
+        "title": "More Improvements",
+        "description": "Bravais's info strip direction gains Automatic (reversed), which picks the opposite orientation from Automatic. Current Output Device now also applies to playback that goes through Web Audio, instead of playing from the system default. When a Qishui VIP song falls back to its preview clip, the notice now says third-party players can't get the full VIP song for now; when Spotify won't provide audio, the notice now calls it an official restriction. Hovering the last row of the platform list in the login window no longer blanks the interface."
+      }
+    },
     "v0_7_23": {
       "intro": "Welcome to 0.7.23. The desktop app adds an mpv playback engine that sends local and Navidrome songs to your output device as they are; ReplayGain gains Smart balance, which adjusts by measured loudness; lyric filtering becomes a list of rules; Tempera gets a new drum effect, Sumizome Depth; and the interface is now available in Vietnamese.",
       "hifi": {
@@ -3501,30 +3731,30 @@ export default {
       }
     },
     "v0_7_22": {
-      "intro": "This is the 0.7.22 Beta build, released early so everyone can try 0.7.22 ahead of the official release — the whole player looks clear and translucent.",
-      "glassUpgrade": {
-        "title": "Liquid glass, reworked",
-        "description": "Fluid glass gains four presets (frosted, clear, hazy, eco), each with a preview image you can apply in one click. A new \"refraction distance\" setting controls how far the refracting edge reaches from the border toward the center, and a new \"light effect\" adds a highlight that follows the pointer over the glass and brightens when it is pressed. Scenarios that were not covered by liquid glass at all (lists, poster walls) are fixed. The parameters travel with the appearance config's import and export, and reach the OBS visual settings as well."
+      "intro": "Welcome to 0.7.22, the Sparkle Update—a major release. It adds Qishui Music; brings Hanabi, a Japanese fireworks lyric style; lets you choose which styles the per-song random style picks from; gives the desktop app global playback shortcuts; and lets AI settings pick a provider and model directly.",
+      "qishui": {
+        "title": "Qishui Music",
+        "description": "Qishui Music arrives on desktop: sign in from the login window by scanning with Douyin. Search, play (standard quality), read word-synced lyrics and artists' top songs, and open your own playlists and \"Recently played on Qishui\"; the recommendation feed and scene stations play as Personal FM, and the scene cards on the home screen start playing in one tap. You can like songs, add and remove songs in playlists you created, and use Dislike in Personal FM. Songs without a directly playable source can't be played, and browsing albums, creating playlists and saving playlists aren't supported yet. Local songs matched to a Qishui song can fetch its lyrics too."
       },
-      "glassJelly": {
-        "title": "Jelly deformation, reworked",
-        "description": "Dragging a glass panel now follows a saturating curve: the further you drag, the less it moves, so a panel never flies off. It stretches along the direction you drag while the other axis shrinks, each axis has a cap, and the panel can be neither squashed flat nor blown up. The spring that brings it back is stiffer, so the shape follows your hand more closely. With the jelly effect off, scrolling and animation on glass panels feel smoother too."
+      "hanabi": {
+        "title": "Hanabi",
+        "description": "A new lyric style in the look of a Japanese lyric PV: each line enters character by character on blocks of color, firework-like ornaments bloom along the text, and between shots the whole scene spins and rises with the launching fireworks, with film strips, stickers and tape as collage decor and a glow that lifts during the chorus. Fireworks, text, decor and colors are adjustable in the style settings, with quality tiers; in Smart beat mode a firework bursts in the night sky on every beat and the camera pushes in with it."
       },
-      "exploreImmersive": {
-        "title": "Explore, immersed",
-        "description": "The Explore list is now fixed over the whole window: the top fades by how far you have scrolled, the bottom by how much is still below. Both edges are built from three stacked blurs, so the content blurs away instead of being cut off. The scrollbar becomes a glass pill at the right edge of the window; its thumb shows where the list stands, and each section's mark jumps straight to it. While GridMap is open the header fades piece by piece, and it comes back as soon as the map starts leaving."
+      "randomStyles": {
+        "title": "Choose Your Random Styles",
+        "description": "The lyric style picker gains Random: tick some or all built-in styles to form a random pool, and each song switches to one of them, never the same twice in a row, each with its own saved settings. From the player panel you can redraw a style for the current song or edit the pool; the pool is included in config import, export and sync."
       },
-      "pageSwitchPerf": {
-        "title": "Switching tabs no longer stutters",
-        "description": "Home tabs now keep a layer each: switching only changes visibility and a sideways offset instead of remounting the whole view, so glass displacement maps are kept and covers are not decoded again. The transition moves sideways without touching opacity, which keeps the glass panels on screen for the whole animation. The grid renders only the cards the viewport needs, so scrolling no longer flashes empty space; the rendering glitch under fast repeated tab switches, and the map being covered by the home layer, are fixed as well."
+      "globalShortcuts": {
+        "title": "Global Playback Shortcuts",
+        "description": "Desktop gains Shortcuts → Global shortcuts: control playback even when Folia isn't in front, with Ctrl+Alt+Shift (Control+Option+Shift on macOS) plus a letter or digit. Bind play/pause, previous, next, volume up and down, mute, repeat and shuffle, as well as commands provided by mods; combinations taken by another app are marked. Under native Wayland, one button registers them with your desktop environment, where you assign the keys. The command palette also gains play/pause and volume up/down."
       },
-      "playerBarGlow": {
-        "title": "Pinned player bar and a water wave",
-        "description": "The bottom player bar gains a pin: once pinned it no longer shrinks when the pointer leaves, and you can toggle it from the command palette or from settings. While music plays, a water-surface waveform rises along its lower edge — the spectrum is laid out logarithmically into a wave that swells with the music and drifts slowly. Its color runs from white out to the theme accent, and the center of the glow wanders slowly sideways."
+      "aiProviders": {
+        "title": "AI Providers and Models",
+        "description": "AI settings on desktop now let you pick a provider: Gemini, DeepSeek, Xiaomi MiMo, Alibaba Cloud Qwen, Tencent Cloud TokenHub, OpenAI, Anthropic, Kimi, Zhipu GLM, or a custom compatible endpoint. Built-in providers need no URL; enter a key to fetch the model list, choose from a dropdown, and start with a recommended model prefilled. Thinking, temperature and similar parameters are handled per provider and model, and retired models are flagged. After switching songs, an unfinished AI theme from the previous song no longer lands on the new one."
       },
-      "morePolish": {
-        "title": "More details",
-        "description": "Lattice lists get their animation, and the jelly styling is fixed. The reflection under a grid card is no longer sliced off by the scrolling container; it now fades away naturally. The \"transparent background\" switch on the player page and its twin in the remote sheet are gone; the system blur is now called \"acrylic background\", with a note that liquid glass does not refract system acrylic."
+      "moreDetails": {
+        "title": "More Improvements",
+        "description": "Sign-ins on every platform are no longer cleared after a restart just because the network or server was down. Smart beat mode gains an \"Analysed only\" setting, and its main switch moves to a new Global page in the lyric style window; local and Navidrome songs now get automix transition analysis too; local scanning supports DSD (.dsf and .dff). Windows gains a Render GPU setting, and Performance & motion adds Background throttling (off by default), which holds the lyric animation while the window is minimized or hidden. Bravais' info bar can be automatic, vertical or horizontal, and its Explore wall now includes recently played. The mod API moves up to Folium 1.7."
       }
     },
     "v0_7_21": {
@@ -3581,25 +3811,6 @@ export default {
         "description": "The Bravais home settings tile now tells you when a new version is available. Searching from the Bravais home no longer shows an empty result page, and no longer searches the wrong platform on KuGou or QQ. Vertical Chinese labels no longer pile up on some Linux distributions, and artist or album posters no longer flash the default colors as they flip away. The desktop app tightens security checks on external links and internal messaging, and AI keys are only sent to the address they were saved for."
       }
     },
-    "v0_7_19s-shino": {
-      "intro": "0.7.19s (Shino mod) builds on official 0.7.19: the Bravais home tool grid hints when a new version is found, IPC and external-link handling are hardened, liquid glass display issues at high blur are fixed, and liquid glass is faster so large panels stay smooth while resizing.",
-      "homeUpdateHint": {
-        "title": "Home Tool Grid Hints at a New Version",
-        "description": "Bravais now follows update status: with update checks on, a new version found, and nothing seen yet in Settings, a clickable \"New version found\" line appears under the settings tool cell (or an accent dot on the settings icon when the spine is too narrow for text); clicking it opens the help page just like the settings button. Opening Settings marks it seen and the hint disappears. Both home layouts share one update state."
-      },
-      "ipcSecurity": {
-        "title": "Hardened IPC and External Link Handling",
-        "description": "Only http(s) links are handed to the system now; custom schemes such as file:// and ms-settings: are blocked so untrusted URLs cannot trigger unexpected system protocol calls. The OBS browser-source status and KuGou API IPC channels also gained window-source checks, so other windows can no longer call them."
-      },
-      "liquidGlassBlurFix": {
-        "title": "Liquid Glass Fixed at High Blur",
-        "description": "The liquid glass filter chain is reordered (saturation and blur first, edge refraction last), fixing display issues that appeared when the blur level was turned up."
-      },
-      "liquidGlassPerf": {
-        "title": "Faster Liquid Glass",
-        "description": "Displacement maps are generated at a capped resolution, and repeated pixel-by-pixel rebuilds while a large panel keeps resizing are merged into one per throttling window instead of running every frame: resizing large windows or animated panels stays smooth, with no noticeable loss in glass quality."
-      }
-    },
     "v0_7_19": {
       "intro": "0.7.19 turns the artist and album pages in Bravais into Tempera-style posters. When an online song fails to play, Folia now tells you the real reason instead of always saying it was removed; word-by-word visualizers such as Tempera split Chinese and Japanese lyrics more naturally; and the web version starts up offline again.",
       "artistPoster": {
@@ -3627,23 +3838,8 @@ export default {
         "description": "On Android, opening Options or other overlays on the Bravais or Lattice wall no longer flashes the wall underneath. Fixed an occasional crash when resizing the window while Tempera is playing. The Sora background stops drawing while paused, and its stars hold still in static mode. The release notes window shown at startup now closes with Esc."
       }
     },
-    "v0_7_18s-shino": {
-      "intro": "0.7.18s (Shino mod) builds on official 0.7.18 with a stronger liquid glass experience: it restores missing liquid glass coverage on components affected by the 0.7.18 update, softens selected buttons, and adds liquid glass settings so you can tune refraction, blur, and saturation. Note: liquid glass is only supported on Windows.",
-      "liquidGlassFix": {
-        "title": "Liquid Glass Coverage Fixed",
-        "description": "Restores liquid glass on components that lost coverage after the 0.7.18 update, so frosted surfaces such as buttons and panels get a consistent glass look again."
-      },
-      "liquidGlassSoften": {
-        "title": "Softer Liquid Glass Buttons",
-        "description": "Selected buttons now have a softer glass treatment with smoother edge transitions, improving both the look and the feel of the interface."
-      },
-      "liquidGlassSettings": {
-        "title": "New Liquid Glass Settings",
-        "description": "Freely adjust liquid glass refraction strength, blur, and saturation to customize the glass texture to your taste. Note: liquid glass is only supported on Windows."
-      }
-    },
     "v0_7_18": {
-      "intro": "0.7.18 adds a play queue you can work with right from the wall tools in Bravais and Lattice, and both walls now share one tools panel. Several lyric visualizers use fewer resources, switching between local songs is smoother, QQ Music QR sign-in tells you what to do when your device limit is reached, and the desktop app now stores AI keys encrypted. Window animations now use an iOS 26-like gradient transition, and the side play queue gains a rotation effect.",
+      "intro": "0.7.18 adds a play queue you can work with right from the wall tools in Bravais and Lattice, and both walls now share one tools panel. Several lyric visualizers use fewer resources, switching between local songs is smoother, QQ Music QR sign-in tells you what to do when your device limit is reached, and the desktop app now stores AI keys encrypted.",
       "queueIsland": {
         "title": "Manage the Queue on the Wall",
         "description": "Open Wall tools in the bottom-right corner of Bravais or Lattice and choose Play queue to show the queue above the panel. Click a song to play it without leaving the page, drag the handle to reorder, hover to play next, move to the end or remove, save the queue as a local playlist, or clear it with a two-step confirm. Keyboard: ↑↓ to move, Alt+↑↓ to reorder, Delete to remove. Not available in Personal FM; while an external Stage is playing you can only pick songs."
@@ -3667,10 +3863,6 @@ export default {
       "aiKeySecure": {
         "title": "Encrypted AI Keys on Desktop",
         "description": "The desktop app now stores Gemini / OpenAI keys encrypted with the system's secure storage, and plain-text keys from older versions are migrated at startup. Saved keys are never shown again: leave the field blank to keep a key, type a new one to replace it, or use the separate Clear button. Testing the connection with a blank field uses the saved key."
-      },
-      "windowAnimation": {
-        "title": "Window Animation Adjusted",
-        "description": "Window animations now use a gradient transition similar to iOS 26, and the side play queue gains a rotation effect for a smoother, more natural switch."
       }
     },
     "v0_7_17": {
@@ -3701,7 +3893,7 @@ export default {
       }
     },
     "v0_7_16": {
-      "intro": "0.7.16 moves AMLL lyrics to the official API, finds far more AMLL lyrics for QQ Music songs, and lets manual matching search AMLL directly. It also adds Tab switching between home tabs and fixes missing album and artist links in local search results. The Shino mod additionally brings liquid glass to frosted surfaces such as buttons and the top bar, and restyles the window buttons after Windows 8 RP.",
+      "intro": "0.7.16 moves AMLL lyrics to the official API, finds far more AMLL lyrics for QQ Music songs, and lets manual matching search AMLL directly. It also adds Tab switching between home tabs and fixes missing album and artist links in local search results.",
       "amllSource": {
         "title": "AMLL Lyrics via the Official API",
         "description": "AMLL lyrics now come from the official AMLL API."
@@ -3717,14 +3909,6 @@ export default {
       "searchLinks": {
         "title": "Local Search Results Keep Their Links",
         "description": "If you search right after importing a folder, album and artist links in the results now fill in once the library finishes loading, without searching again."
-      },
-      "liquidGlass": {
-        "title": "Liquid Glass Added",
-        "description": "Liquid glass effects are now applied to frosted surfaces such as buttons and the top bar, giving the interface a richer glass texture."
-      },
-      "windowButtons": {
-        "title": "Window Buttons Restyled",
-        "description": "The window buttons have been adjusted to mimic the style of Windows 8 RP."
       }
     },
     "v0_7_15": {
@@ -4149,18 +4333,6 @@ export default {
     "cloudDrive": "Cloud Drive",
     "cloudDriveDesc": "NetEase Cloud Music Drive",
     "qqCloudDriveDesc": "Weiyun Music Drive",
-  },
-  "fnmusic": {
-    "serverUrl": "Server address",
-    "serverUrlPlaceholder": "e.g. http://192.168.1.10:5666",
-    "username": "Account",
-    "usernamePlaceholder": "fnOS Music account or NAS account",
-    "password": "Password",
-    "login": "Log in",
-    "loginNote": "Enter your fnOS Music server address, account and password",
-    "errorBadCredentials": "Account or password is wrong",
-    "errorNetwork": "Cannot reach the server. Check the address and your connection.",
-    "errorBadResponse": "The server returned an unexpected response"
   },
   "hifi": {
     "settings": {
@@ -4628,6 +4800,10 @@ export default {
     "loopAll": "Loop all",
     "loopOne": "Loop one",
     "more": "More",
+    "queue": "Queue",
+    "queueSearch": "Search the queue ({{count}})",
+    "queueSearchClear": "Clear search",
+    "queueNoMatch": "No songs match",
     "noTrack": "No active track",
     "unknownArtist": "Unknown artist",
     "tabMainWindow": "Main window",
@@ -5511,8 +5687,8 @@ export default {
         "combineBackground": "Change only the background: the lyric style stays. The background's own settings are on the Background page of the Lyrics Style window.",
         "combineStyle": "Now change only the lyric style: the background you just picked stays. Any background works with any lyric style; only the Still style draws no background.",
         "subtitleShared": "Most lyric styles share this one subtitle line at the bottom. Monet, Pendolo and Still set translations inside their own layout and do not use it.",
-        "subtitleContent": "Its settings are on the Subtitle page of the Lyrics Style window and apply to every style that uses it. The second row picks translation, romanization, both stacked, or none.",
-        "subtitleBlur": "Turn off “Blur non-translation lyrics” and the subtitle is no longer blurred.",
+        "subtitleContent": "Its settings are on the Subtitle page of the Lyrics Style window and apply to every style that uses it. It shows one, two or three rows, each the current line, the next line, the translation or the romanization.",
+        "subtitleBlur": "Turn off “Blur upcoming lyrics” and the subtitle is no longer blurred.",
         "subtitleFont": "Turn off “Subtitle Uses Lyrics Font” to give the subtitle its own font and weight. “Subtitle scale” sets its size on its own and is always available."
       },
       "visPlayground": {
@@ -5529,8 +5705,8 @@ export default {
         "animation": "The lyric style is picked on the shelf of pictures under the preview: click one and it changes. There are more of them than fit a chapter and they are worth looking through on your own, so they are not listed here.",
         "perMode": "The Lyrics page holds the settings of the style you picked; change the style and this page changes with it.",
         "background": "The Background page works the same way: pick a background from this grid of pictures, then tune that background. It is a separate layer from the lyric style, so the two are chosen independently and any pair is allowed.",
-        "subtitleContent": "The second row decides what the subtitle shows: the translation, the romanization, both stacked with the romanization on top, or none. Monet, Pendolo and Still show only the translation when both is chosen.",
-        "subtitleLegibility": "The three rows under it are about reading the subtitle over a moving picture: “Subtitle Opacity”, “Subtitle Background” and “Blur non-translation lyrics”.",
+        "subtitleContent": "First pick how many rows the bottom subtitle has, one, two or three, then what each row shows: the current line, the next line, the translation or the romanization. “Subtitle Content” below is only for the subtitle Monet, Pendolo and Still lay out themselves.",
+        "subtitleLegibility": "The three rows under it are about reading the subtitle over a moving picture: “Subtitle Opacity”, “Subtitle Background” and “Blur upcoming lyrics”.",
         "subtitleFont": "The subtitle follows the lyric font by default. Turn that off and its own font and weight appear; “Subtitle scale” is always there."
       },
       "themePark": {
