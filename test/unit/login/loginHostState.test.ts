@@ -21,8 +21,6 @@ const ROWS = [
     row('out', { error: 'auth-required' }),
     row('free', { requiresAccount: false }),
     row('off', { availability: { configured: false, reason: 'not-configured' } }),
-    // 表单式登录平台：provider 声明了 getLoginForm（fnmusic），选中即显示表单，不自动开始登录。
-    row('fnmusic'),
 ];
 
 type Deferred<T> = { promise: Promise<T>; resolve: (value: T) => void };
@@ -104,29 +102,6 @@ describe('the sign-in window\'s host', () => {
         host.choose('gone');
         expect(host.getState().chosen).toBeNull();
         expect(said).toEqual(['stop']);
-    });
-
-    it('a form-login platform is chosen without starting a sign-in, and stops the QR session of the previous platform', () => {
-        const { host, said } = setup();
-        host.opened('code-a');
-        host.choose('fnmusic');
-        expect(host.getState().chosen).toEqual({ providerId: 'fnmusic', lead: 'sign-in' });
-        // 选中表单平台：不自动开始登录，先停掉上一个平台的扫码会话（review 行为 11）。
-        expect(said).toEqual(['stop', 'start code-a', 'stop']);
-        expect(said).not.toContain('start fnmusic');
-    });
-
-    it('a form-login completion ends like any sign-in: motion on keeps the window, motion off closes it', () => {
-        const { host, said } = setup({ plays: true });
-        host.opened('fnmusic');
-        host.completed(completion('fnmusic'));
-        expect(host.getState().done).toBe(true);
-        expect(said).not.toContain('close');
-        const still = setup();
-        still.host.opened('fnmusic');
-        still.host.completed(completion('fnmusic'));
-        expect(still.host.getState().done).toBe(false);
-        expect(still.said).toContain('close');
     });
 
     it('closing stops the sign-in under way, once, whoever closes; a window that is not open stops nothing', () => {

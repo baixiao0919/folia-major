@@ -110,9 +110,9 @@
 
 ## 飞牛音乐（`fnmusic`，仅桌面端）
 
-- **上游**：用户自己的飞牛（fnOS）NAS 上的飞牛音乐服务，走其网页端 HTTP API（`/music/api/v1/...`，fnOS 内网服务）。登录走网页端的设备注册流程（SHA-256 密码摘要 + deviceId），请求带 `music-token` Cookie；登录与播放流**不需要** `authx` 签名（2026-10-28 服务端实测）。
-- **版本**：无外部 npm 包；协议按用户机器上运行的 fnOS 网页端实测（接口路径与答复字段记录在 `docs/fnmusic-protocol.md` 与 `src/services/onlineMusic/fnmusic/` 下）。没有要装的依赖。
-- **怎么用**：`electron/fnmusic/fnmusicApiBridge.cjs` 导出 `createFnmusicApiBridge({ store, safeStorage })`，凭据用 `safeStorage` 加密保存（系统加密不可用时只保存在本次运行内，不落盘）。播放与封面走 `folia-fnmusic://` 自定义协议（`protocol.handle`，带一次性 key），**没有本地 HTTP 端口**；`base` 与 `token` 由主进程每次请求实时从配置读取，URL 上只有歌曲/封面 id。渲染进程的 `fnmusicTransport.ts` 只发操作名，不经手凭据与 token。
+- **上游**：用户自己的飞牛（fnOS）NAS 上的飞牛音乐服务，走其网页端 HTTP API（`/music/api/v1/...`，fnOS 内网服务）。登录 `POST /music/api/v1/user/password-login`（SHA-256 密码摘要 + 32hex deviceId；2026-10-28 实测不需要 `authx` 签名），后续请求带设备 Cookie（`music-token`）。
+- **版本**：无外部 npm 包；协议按用户机器上运行的 fnOS 网页端实测（接口路径与答复字段记录在 `src/services/onlineMusic/fnmusic/` 下）。没有要装的依赖。
+- **怎么用**：`electron/fnmusic/fnmusicApiBridge.cjs` 导出 `createFnmusicApiBridge({ store, safeStorage })`，凭据用 `safeStorage` 加密保存，地址与 token 都从主进程读取，不从 URL 取。播放与封面走 `folia-fnmusic://` 自定义协议（主进程 `protocol.handle` 实时转发、带 Cookie，无需本地 HTTP 代理）。渲染进程的 `fnmusicTransport.ts` 只发操作名，不经手凭据与 token。
 - **我们不改上游**：Folia 不覆盖 fnOS 网页端文件，不保留客户端标识、签名或协议实现，只适配其公开 HTTP 接口。
 - **上游变了怎么跟**：fnOS 网页端改接口或字段后，`fnmusicApiBridge.cjs` 的请求与 `fnmusicProvider.ts` 的归一化要跟着改；登录失败、接口返回变化以 `[FnMusic]` 前缀日志为准。
-- **测试**：`test/unit/fnmusic/` 覆盖归一化、登录参数构造、翻页与可播性检查；桥接层逻辑在 `test/unit/electron/fnmusicApiBridge.test.ts` 用替身测操作白名单、加密配置恢复、一次性 key 校验与私网证书策略。
+- **测试**：`test/unit/fnmusic/` 覆盖归一化、登录参数构造、翻页与可播性检查；桥接层逻辑在 `test/unit/electron/` 下用替身测操作白名单与加密配置恢复。

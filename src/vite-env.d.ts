@@ -937,7 +937,7 @@ declare global {
       onNeteaseApiStatusChanged: (callback: (status: ElectronNeteaseApiStatus) => void) => () => void;
       getKugouApiStatus: () => Promise<ElectronKugouApiStatus>;
       fnmusicRequest: (
-        operation: import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeOperation,
+        operation: 'login' | 'logout' | 'request' | 'stream' | 'coverUrl',
         params?: import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeParams,
       ) => Promise<import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeResult>;
       fnmusicStatusSync: () => import('./services/onlineMusic/fnmusic/fnmusicTransport').FnMusicBridgeStatus;
