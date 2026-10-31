@@ -345,6 +345,8 @@ export default {
     "themeSourceCover": "Tạo chủ đề chuyển sang trích xuất màu bìa",
     "aiThemeUpdatedCustomPreferred": "Đã cập nhật chủ đề AI, vẫn ưu tiên chủ đề tùy chỉnh",
     "aiThemeGeneratedCustomPreferred": "Đã tạo chủ đề AI, nhưng vẫn ưu tiên chủ đề tùy chỉnh",
+    "playerBarPinned": "Thanh trình phát giữ nguyên mở rộng",
+    "playerBarUnpinned": "Thanh trình phát thu gọn lại khi con trỏ rời đi",
   },
   "status": {
     "playerChromeAlwaysHidden": "Giao diện luôn ẩn",
@@ -745,6 +747,8 @@ export default {
       "playback-entry-view-lattice": { "title": "Khi phát mở: Lattice", "description": "Nhấn phát để mở hàng đợi Lattice" },
       "playback-entry-view-stay": { "title": "Khi phát: Ở lại đây", "description": "Nhấn phát chỉ bắt đầu bài hát và giữ nguyên vị trí hiện tại" },
       "settings-library-suite": { "title": "Giao diện thư viện", "description": "Đi đến cài đặt giao diện sử dụng cho thư viện" },
+      "settings-liquid-glass": { "title": "Kính lỏng", "description": "Đi tới độ mạnh, độ mờ và các mẫu kính lỏng" },
+      "settings-toggle-player-bar-pinned": { "title": "Ghim thanh trình phát", "description": "Giữ thanh trình phát dưới cùng luôn mở rộng thay vì thu gọn" },
       "library-suite-picker": { "title": "Chọn giao diện thư viện", "description": "Chuyển đổi giao diện dùng để duyệt thư viện" },
       "library-wall-look-picker": { "title": "Chọn độ trong suốt thư viện", "description": "Chọn mức độ hiệu ứng thị giác hiển thị xuyên qua thư viện" },
       "library-wall-windows-picker": { "title": "Số ô cửa sổ mỗi khối", "description": "Chọn số ô trong suốt làm cửa sổ trong mỗi khối Không gian Bravais" },
@@ -838,6 +842,7 @@ export default {
       "background-latent-both": { "title": "Latent: Kết hợp", "description": "Hiển thị cả hai lớp shader" },
       "background-url": { "title": "Nền: Trang Web", "description": "Chuyển nền sang chế độ trang web" },
       "background-sora": { "title": "Nền: Sora", "description": "Chuyển nền sang bầu trời sao Sora" },
+      "background-transparent": { "title": "Nền: Trong suốt", "description": "Chuyển nền sang bố cục hoàn toàn trong suốt" },
       "settings-toggle-transparent": { "title": "Bật/tắt trong suốt", "description": "Bật/tắt nền trong suốt cho trình phát" },
       "settings-toggle-daylight": { "title": "Chuyển đổi sáng/tối", "description": "Chuyển đổi chủ đề ngày/đêm" },
       "settings-toggle-player-back-button": { "title": "Luôn hiện nút quay lại trình phát", "description": "Bật/tắt hiển thị cố định nút quay lại trang phát" },
@@ -1009,6 +1014,8 @@ export default {
     "exitFullscreen": "Thoát toàn màn hình",
     "maximizeWindow": "Phóng to",
     "restoreWindow": "Khôi phục cửa sổ",
+    "pinWindowControls": "Ghim thanh điều khiển cửa sổ",
+    "unpinWindowControls": "Bỏ ghim thanh điều khiển cửa sổ",
     "remoteControl": "Điều khiển từ xa",
     "seek": "Tua",
     "clearActiveCommand": "Xóa lệnh hiện tại",
@@ -1684,7 +1691,9 @@ export default {
     "noMoreDailyRecommendations": "Hôm nay không còn gợi ý nào khác",
     "dislikeRecommendationFailed": "Không thể đổi gợi ý này. Hãy thử lại sau.",
     "removeTrackFailed": "Gỡ bài hát thất bại",
-    "stage": "Sân khấu"
+    "stage": "Sân khấu",
+    "exploreScrollbar": "Thanh cuộn Khám phá",
+    "exploreJumpToSection": "Chuyển tới {{section}}",
   },
   "animation": {
     "calm": "Êm dịu",
@@ -3012,8 +3021,6 @@ export default {
     "geminiApiKey": "Khóa API Gemini",
     "aiApiKeySavedPlaceholder": "Đã lưu (để trống để giữ nguyên)",
     "aiApiKeySavedDesc": "Khóa được lưu mã hóa an toàn trên thiết bị này và sẽ không hiển thị lại. Nhập khóa mới và lưu để thay thế.",
-    "aiApiKeyEndpointMismatchDesc": "Khóa đã lưu chỉ được gửi đến {{endpoint}}. Nhập lại khóa để sử dụng địa chỉ khác.",
-    "aiApiKeyOtherProviderDesc": "Khóa đã lưu thuộc về {{provider}} trước đó và không thể sử dụng sau khi đổi dịch vụ. Vui lòng nhập khóa mới rồi lưu.",
     "aiApiKeyClear": "Xóa",
     "openaiApiTemperature": "Temperature",
     "openaiApiStream": "Truyền luồng",
@@ -3249,8 +3256,69 @@ export default {
     "lyricFilterRegexDesc": "Quy tắc lọc từng dòng và cách xử lý phần thông tin tác giả ở đầu lời bài hát.",
     "visualizerMode": "Chế độ",
     "noDescription": "Chưa có mô tả",
+    "playerBarPin": "Ghim thanh trình phát",
+    "playerBarUnpin": "Bỏ ghim thanh trình phát",
+    "visualizerBackgroundModeTransparent": "Trong suốt",
+    "visualizerBackgroundModeTransparentDesc": "Lấp đầy lớp nền bằng ảnh bìa bài hát, bỏ lớp màu và độ mờ của Monet, không xếp thêm gì lên trên.",
+    "liquidGlassSection": "Vật liệu nâng cao",
+    "liquidGlassSectionDesc": "Điều chỉnh vật liệu của các thành phần giao diện Folia.",
+    "liquidGlassPreset": "Mẫu sẵn",
+    "liquidGlassPresetDesc": "Bộ nhìn nhanh đặt đồng thời độ mạnh, độ mờ và khoảng bẻ cong cạnh.",
+    "liquidGlassPresetFrosted": "Kính mờ",
+    "liquidGlassPresetClear": "Chất lỏng trong",
+    "liquidGlassPresetHazy": "Chất lỏng mờ sương",
+    "liquidGlassPresetEco": "Tiết kiệm điện",
+    "liquidGlassStrength": "Độ mạnh khúc xạ",
+    "liquidGlassStrengthDesc": "Mức độ cạnh kính khúc xạ những gì nằm phía sau.",
+    "liquidGlassBend": "Khoảng khúc xạ",
+    "liquidGlassBendDesc": "Khoảng cách tính bằng pixel mà cạnh khúc xạ vươn từ viền vào giữa. Càng lớn thì vùng phẳng ở giữa càng nhỏ.",
+    "liquidGlassBlur": "Độ mờ",
+    "liquidGlassBlurDesc": "Mức độ mờ của các thành phần trong suốt.",
+    "liquidGlassSat": "Độ bão hòa",
+    "liquidGlassSatDesc": "Độ bão hòa của nền nhìn xuyên qua kính.",
+    "liquidGlassLight": "Hiệu ứng ánh sáng",
+    "liquidGlassLightDesc": "Vệt sáng đi theo con trỏ trên kính, sáng hơn khi nhấn.",
+    "liquidGlassJelly": "Hiệu ứng thạch",
+    "liquidGlassJellyDesc": "Giãn ra khi kéo và bật trở lại khi thả.",
+    "liquidGlassGpuBlockedNotice": "Không dùng được kính lỏng khi GPU kết xuất đặt ở chế độ Tiết kiệm điện; hãy chuyển lại Tự động hoặc Hiệu năng cao rồi khởi động lại Folia.",
+    "liquidGlassValueLabel": "Giá trị",
+    "importGroupLiquidGlass": "Kính lỏng",
   },
   "releaseNotes": {
+    "v0_7_19s-shino": {
+      "intro": "0.7.19s (bản mod Shino) dựa trên 0.7.19 chính thức.",
+      "homeUpdateHint": {
+        "title": "Lưới công cụ trang chủ báo bản mới",
+        "description": "Bravais giờ theo dõi trạng thái cập nhật: khi bật kiểm tra cập nhật và có bản mới."
+      },
+      "ipcSecurity": {
+        "title": "Tăng cường IPC và xử lý liên kết ngoài",
+        "description": "Giờ chỉ chuyển liên kết http(s) cho hệ thống; các giao thức như file:// bị chặn."
+      },
+      "liquidGlassBlurFix": {
+        "title": "Sửa kính lỏng ở độ mờ cao",
+        "description": "Chuỗi bộ lọc kính lỏng được sắp xếp lại (bão hòa và mờ trước, khúc xạ cạnh sau)."
+      },
+      "liquidGlassPerf": {
+        "title": "Kính lỏng nhanh hơn",
+        "description": "Bản đồ dịch chuyển được tạo ở độ phân giải giới hạn."
+      }
+    },
+    "v0_7_18s-shino": {
+      "intro": "0.7.18s (bản mod Shino) dựa trên 0.7.18 chính thức với trải nghiệm kính lỏng mạnh hơn.",
+      "liquidGlassFix": {
+        "title": "Sửa phạm vi kính lỏng",
+        "description": "Khôi phục kính lỏng trên các thành phần bị mất sau bản 0.7.18."
+      },
+      "liquidGlassSoften": {
+        "title": "Nút kính lỏng mềm hơn",
+        "description": "Các nút được chọn có lớp kính mềm hơn với chuyển cạnh mượt hơn."
+      },
+      "liquidGlassSettings": {
+        "title": "Cài đặt kính lỏng mới",
+        "description": "Tự do điều chỉnh độ mạnh khúc xạ, độ mờ và độ bão hòa của kính lỏng."
+      }
+    },
     "v0_7_0": {
       "intro": "Dưới đây là các tính năng mới và cải tiến trong phiên bản 0.7.0.",
       "temperaVisualExpansion": {
@@ -3468,30 +3536,30 @@ export default {
     },
     "v0_7_22": {
       "intro": "Chào mừng bạn đến với phiên bản 0.7.22, Bản cập nhật Sparkle — một bản phát hành lớn. Bổ sung nền tảng Qishui Music; giới thiệu phong cách lời bài hát pháo hoa Nhật Bản Hanabi; cho phép tùy chọn phạm vi ngẫu nhiên kiểu lời theo từng bài; trang bị phím tắt điều khiển phát nhạc toàn cầu cho bản máy tính; và cải tiến cài đặt AI chọn trực tiếp nhà cung cấp cùng mô hình.",
-      "qishui": {
-        "title": "Qishui Music",
-        "description": "Qishui Music đã có mặt trên máy tính: đăng nhập từ cửa sổ đăng nhập bằng cách quét mã qua Douyin. Tìm kiếm, phát nhạc (chất lượng tiêu chuẩn), xem lời đồng bộ từng từ và bài hát thịnh hành của nghệ sĩ, mở danh sách phát cá nhân và mục \"Đã phát gần đây trên Qishui\"; luồng gợi ý và đài phát theo chủ đề hoạt động dưới dạng Radio cá nhân, các thẻ chủ đề ở trang chủ chỉ cần chạm một lần là phát ngay. Bạn có thể thả tim yêu thích, thêm/xóa bài hát trong danh sách tự tạo và bấm Không thích trong Radio cá nhân. Những bài không có nguồn phát trực tiếp sẽ không thể phát; hiện chưa hỗ trợ duyệt album, tạo mới hoặc lưu danh sách phát. Bài hát cục bộ khớp với Qishui cũng có thể lấy lời từ nền tảng này."
+      "glassUpgrade": {
+        "title": "Kính lỏng, làm lại",
+        "description": "Kính lỏng có thêm bốn mẫu sẵn (kính mờ, trong, mờ sương, tiết kiệm điện), mỗi mẫu có ảnh xem trước.",
       },
-      "hanabi": {
-        "title": "Hanabi",
-        "description": "Phong cách lời bài hát mới mang dáng dấp của một video ca nhạc (PV) phong cách anime Nhật Bản: từng câu lời bước vào theo từng ký tự trên các khối màu rực rỡ, họa tiết trang trí dạng pháo hoa nở rộ dọc theo dòng chữ, và giữa các cú máy toàn bộ khung cảnh xoay nghiêng rồi vút bay lên theo những chùm pháo hoa thắp sáng, điểm xuyết các dải phim nhựa, nhãn dán, băng keo cắt dán và vầng sáng bừng lên trong đoạn điệp khúc. Pháo hoa, câu chữ, đồ trang trí và màu sắc đều có thể tùy chỉnh trong bảng cài đặt phong cách với nhiều mức chất lượng hiển thị; ở chế độ Nhịp thông minh, một chùm pháo hoa sẽ nở rộ trên bầu trời đêm theo từng nhịp điệu và ống kính sẽ đẩy lại gần theo nhịp đập."
+      "glassJelly": {
+        "title": "Biến dạng thạch, làm lại",
+        "description": "Kéo một tấm kính giờ theo đường cong bão hòa: kéo càng xa thì biến dạng tăng càng ít.",
       },
-      "randomStyles": {
-        "title": "Tự chọn kiểu ngẫu nhiên",
-        "description": "Trình chọn phong cách lời bài hát bổ sung tùy chọn Ngẫu nhiên: tích chọn một số hoặc tất cả kiểu có sẵn để tạo thành danh sách ngẫu nhiên; mỗi bài hát sẽ tự đổi sang một kiểu riêng biệt không trùng lặp liên tiếp, mỗi kiểu ghi nhớ đúng cấu hình đã lưu. Từ thanh điều khiển người nghe có thể bốc lại kiểu khác cho bài hiện tại hoặc chỉnh sửa danh sách ngẫu nhiên; danh sách này cũng được lưu và đồng bộ khi xuất/nhập cấu hình."
+      "exploreImmersive": {
+        "title": "Khám phá, đắm chìm",
+        "description": "Danh sách Khám phá giờ cố định trên toàn cửa sổ: phần trên mờ dần theo mức cuộn.",
       },
-      "globalShortcuts": {
-        "title": "Phím tắt phát nhạc toàn cục",
-        "description": "Bản máy tính bổ sung mục Thao tác nhanh → Phím tắt toàn cục: điều khiển phát nhạc ngay cả khi Folia không ở cửa sổ tiền cảnh bằng tổ hợp Ctrl+Alt+Shift (Control+Option+Shift trên macOS) kèm một phím chữ cái hoặc chữ số. Gán phát/tạm dừng, bài trước, bài kế tiếp, tăng giảm âm lượng, tắt tiếng, lặp lại và xáo trộn, cũng như các lệnh do mod cung cấp; các tổ hợp phím bị ứng dụng khác chiếm dụng sẽ được đánh dấu rõ ràng. Trên Wayland gốc, một nút bấm sẽ đăng ký trực tiếp vào môi trường desktop để bạn gán phím trong cài đặt hệ thống. Bảng lệnh nhanh cũng bổ sung lệnh phát/tạm dừng và tăng/giảm âm lượng."
+      "pageSwitchPerf": {
+        "title": "Chuyển tab không còn giật",
+        "description": "Các tab trang chủ giữ riêng một lớp: chuyển tab chỉ đổi hiển thị và độ lệch ngang.",
       },
-      "aiProviders": {
-        "title": "Dịch vụ & mô hình AI",
-        "description": "Cài đặt AI trên máy tính nay cho phép chọn thẳng nhà cung cấp dịch vụ: Gemini, DeepSeek, Xiaomi MiMo, Alibaba Cloud Qwen, Tencent Cloud TokenHub, OpenAI, Anthropic, Kimi, Zhipu GLM hoặc điểm cuối tương thích tùy chỉnh. Các nhà cung cấp tích hợp sẵn không cần điền URL; chỉ cần nhập khóa API là có thể lấy danh sách mô hình từ menu thả xuống và được điền sẵn mô hình đề xuất; các tham số như suy nghĩ (thinking), nhiệt độ (temperature) được xử lý thông minh theo từng dịch vụ và mô hình, kèm cảnh báo khi mô hình đã ngừng hoạt động. Sau khi chuyển bài hát, chủ đề AI chưa kịp tạo xong của bài trước sẽ không bị ghi đè lên bài mới."
+      "playerBarGlow": {
+        "title": "Ghim thanh trình phát và gợn nước",
+        "description": "Thanh trình phát dưới cùng có thêm nút ghim: khi đã ghim thì không thu nhỏ khi con trỏ rời đi, và đáy thanh có gợn nước theo nhịp nhạc.",
       },
-      "moreDetails": {
-        "title": "Thêm nhiều cải tiến",
-        "description": "Phiên đăng nhập trên các nền tảng sẽ không còn bị xóa sạch sau khi khởi động lại chỉ vì lỗi mạng hoặc máy chủ gián đoạn tạm thời. Chế độ Nhịp thông minh có thêm tùy chọn \"Chỉ dùng bài đã phân tích\", và công tắc chính được dời sang trang Toàn cục mới trong cửa sổ phong cách lời; các bài hát cục bộ và Navidrome nay cũng được phân tích chuyển bài tự động; quét thư mục nội bộ hỗ trợ chuẩn DSD (.dsf và .dff). Windows bổ sung cài đặt \"GPU kết xuất\", mục Hiệu năng & chuyển động có thêm \"Tiết kiệm tài nguyên khi chạy nền\" (mặc định tắt) giúp tạm dừng hoạt ảnh lời bài hát khi cửa sổ bị thu nhỏ hoặc ẩn. Thanh thông tin của giao diện Bravais có thể chọn Tự động, Dọc hoặc Ngang, và Tường khám phá hiển thị thêm mục Đã phát gần đây. Giao diện mod được nâng cấp lên Folium 1.7."
-      }
+      "morePolish": {
+        "title": "Nhiều chi tiết hơn",
+        "description": "Danh sách Lattice có hoạt ảnh, kiểu thạch được sửa.",
+      },
     },
     "v0_7_21": {
       "intro": "Chào mừng bạn đến với phiên bản 0.7.21, bản cập nhật Sabbat-of-the-witch — một bản phát hành lớn. Ứng dụng máy tính bổ sung Spotify và YouTube Music, và mọi nền tảng hiện đăng nhập thông qua một cửa sổ đăng nhập duy nhất; màn hình chính có thêm tab Khám phá; Sonnet, Diorama và Pendolo có thêm chế độ Nhịp thông minh chuyển động theo nhịp điệu và tiếng trống; QQ Music có thể đăng nhập bằng ứng dụng QQ Music, và giao diện hiện đã hỗ trợ tiếng Trung Phồn thể.",
@@ -3599,7 +3667,11 @@ export default {
       "aiKeySecure": {
         "title": "Mã hóa khóa AI an toàn trên máy tính",
         "description": "Ứng dụng máy tính lưu khóa Gemini / OpenAI được mã hóa bằng kho lưu trữ an toàn của hệ thống, và khóa dạng văn bản thuần từ các phiên bản cũ được tự động di chuyển khi khởi động. Khóa đã lưu sẽ không hiển thị lại: để trống ô nhập để giữ khóa, nhập khóa mới để thay thế, hoặc dùng nút Xóa riêng biệt. Kiểm tra kết nối khi để trống ô sẽ sử dụng khóa đã lưu."
-      }
+      },
+      "windowAnimation": {
+        "title": "Điều chỉnh hoạt ảnh cửa sổ",
+        "description": "Hoạt ảnh cửa sổ dùng chuyển sắc tương tự iOS 26.",
+      },
     },
     "v0_7_17": {
       "intro": "Chào mừng bạn đến với 0.7.17, bản cập nhật Spica — một bản phát hành lớn. Thư viện sở hữu giao diện Bravais hoàn toàn mới: không gian poster 3D cho phép kéo duyệt linh hoạt. Sau khi cập nhật, Folia sẽ hỏi một lần để bạn chọn Bravais hay dạng lưới cổ điển; chế độ xem mở khi phát nhạc có thêm tùy chọn \"Ở lại đây\", cùng khả năng đánh dấu bài hát nội bộ là nhạc không lời.",
@@ -3645,7 +3717,15 @@ export default {
       "searchLinks": {
         "title": "Kết quả tìm kiếm nội bộ giữ nguyên liên kết",
         "description": "Khi tìm kiếm ngay sau khi nhập thư mục, các liên kết album và nghệ sĩ trong kết quả sẽ tự động điền đầy đủ sau khi thư viện tải xong mà không cần tìm kiếm lại."
-      }
+      },
+      "liquidGlass": {
+        "title": "Thêm kính lỏng",
+        "description": "Hiệu ứng kính lỏng được áp dụng cho các bề mặt như nút và thanh trên.",
+      },
+      "windowButtons": {
+        "title": "Tạo lại kiểu nút cửa sổ",
+        "description": "Các nút cửa sổ được điều chỉnh theo phong cách Windows 8 RP.",
+      },
     },
     "v0_7_15": {
       "intro": "Phiên bản 0.7.15 cải thiện khả năng xử lý tiếng Trung trong lời bài hát nội bộ và thẻ MP3, giúp đăng nhập bằng mã QR ổn định hơn kèm hướng dẫn rõ ràng khi gặp lỗi, hỗ trợ phím tắt từ thao tác mô phỏng, đồng thời sửa lỗi lịch sử quay lại phình to giữa trang nghệ sĩ và album cùng lỗi chuyển mã trên Apple Silicon.",
