@@ -1,4 +1,4 @@
-﻿
+
 
 export default {
   "libraryBravais": {
@@ -3131,7 +3131,7 @@ export default {
     "gpuPreferenceCommandLineNotice": "Peluncuran ini memakai parameter GPU di baris perintah, yang lebih diutamakan",
     "gpuPreferenceActive": "Sedang dipakai",
     "visualizerFrameRateValue": "Batas",
-    "liquidGlassSection": "Material Lanjutan",
+    "liquidGlassSection": "Kaca cair",
     "liquidGlassSectionDesc": "Sesuaikan material komponen antarmuka Folia.",
     "liquidGlassPreset": "Preset",
     "liquidGlassPresetDesc": "Tampilan siap pakai yang menyetel kekuatan, blur, dan jarak lengkung tepi sekaligus.",
