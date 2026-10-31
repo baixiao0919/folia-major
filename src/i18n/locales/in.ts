@@ -289,7 +289,9 @@ export default {
     "dioramaReset": "Pengaturan Diorama direset",
     "temperaReset": "Setelan Tempera direset",
     "lumiereReset": "Setelan Lumiere direset",
+    "nebbiaReset": "Setelan Nebbia direset",
     "hanabiReset": "Setelan Hanabi direset",
+    "machiReset": "Setelan Machi direset",
     "uploadEmojiFirst": "Unggah dulu paket emoji kustom",
     "monetBgUpdated": "Gambar latar Monet diperbarui",
     "monetBgCleared": "Gambar latar Monet dihapus",
@@ -376,6 +378,7 @@ export default {
     "syncFailed": "Sinkronisasi gagal",
     "loginExpired": "Login kedaluwarsa. Silakan login lagi",
     "songPreviewOnly": "Akun ini hanya dapat memutar pratinjau",
+    "songVipFullUnavailable": "Pemutar pihak ketiga untuk sementara tidak dapat memperoleh lagu VIP lengkap",
     "songSubscriptionRequired": "Perlu akun {{provider}} berbayar",
     "songRegionRestricted": "Hanya dapat diputar dari jaringan Tiongkok daratan",
     "songRetrying": "Koneksi gagal. Mencoba lagi…",
@@ -610,8 +613,8 @@ export default {
       "settings-help": { "title": "Buka Bantuan", "description": "Buka panduan dan pintasan" },
       "ponder-current-page": { "title": "Ponder halaman ini", "description": "Buka panduan interaktif untuk halaman saat ini" },
       "settings-options": { "title": "Buka Opsi", "description": "Buka pusat opsi" },
-      "settings-ai-provider": { "title": "Pengaturan penyedia AI", "description": "Pilih penyedia dan model AI" },
       "settings-now-playing-card-position": { "title": "Atur posisi kartu lagu", "description": "Seret kartu yang sedang diputar ke posisi baru" },
+      "settings-ai-provider": { "title": "Pengaturan penyedia AI", "description": "Pilih penyedia dan model AI" },
       "settings-appearance": { "title": "Pengaturan tampilan", "description": "Buka pengaturan visual dan tampilan" },
       "settings-general": { "title": "Pengaturan umum", "description": "Buka preferensi aplikasi umum" },
       "settings-playback": { "title": "Pengaturan pemutaran", "description": "Buka pengaturan perilaku pemutaran" },
@@ -668,6 +671,7 @@ export default {
       "video-layer-toggle": { "title": "Lapisan video di belakang lirik", "description": "Tampilkan atau sembunyikan lapisan video tanpa suara di belakang lirik" },
       "video-layer-pick": { "title": "Lapisan video: pilih video lokal", "description": "Pilih video lokal untuk diputar di belakang lirik" },
       "visualizer-toggle-random-per-song": { "title": "Visualizer acak tiap lagu", "description": "Alihkan mode animasi lirik acak tiap pergantian lagu" },
+      "visualizer-machi-camera-bar": { "title": "Machi: Jendela bidik", "description": "Tampilkan atau sembunyikan bilah jendela bidik Machi di halaman pemutar untuk mengatur tampilan, fokus, bukaan, dan gerakan kamera" },
       "visualizer-toggle-glow-blur-quantize": { "title": "Perbaiki animasi lirik macet di Linux", "description": "Ubah cara beberapa animasi lirik menggambar glow, memperbaiki macet yang sesekali terjadi setelah pemutaran lama di Linux" },
       "settings-visualizer": { "title": "Pengaturan visualizer", "description": "Buka bengkel animasi lirik" },
       "settings-theme-park": { "title": "Warna", "description": "Buka editor tema" },
@@ -759,6 +763,7 @@ export default {
       "library-wall-seam-direction-picker": { "title": "Pilih arah strip info", "description": "Buka strip info sebagai kolom, baris melintang dinding, atau menurut bentuk layar" },
       "settings-theme-presets": { "title": "Prasetel tema", "description": "Langsung ke prasetel tema bawaan dan tersimpan" },
       "settings-liquid-glass": { "title": "Kaca cair", "description": "Langsung ke kekuatan, blur, dan prasetel kaca cair" },
+      "settings-lyric-render-quality": { "title": "Resolusi dan anti-aliasing kanvas lirik", "description": "Langsung ke resolusi dan anti-aliasing yang diikuti semua gaya lirik canvas / WebGL secara bawaan" },
       "settings-lyrics-renderer": { "title": "Perender lirik", "description": "Langsung ke pengaturan cara lirik digambar di pemutar" },
       "settings-grid-card-style": { "title": "Gaya kartu kisi", "description": "Langsung ke pengaturan gaya kartu pada kisi beranda" },
       "settings-queue-behavior": { "title": "Perilaku antrean", "description": "Langsung ke pengaturan cara antrean putar dibentuk dan disimpan" },
@@ -828,7 +833,9 @@ export default {
       "smart-beat-on": { "title": "Mode ketukan pintar: Aktif", "description": "Aktifkan efek ketukan (Sonnet dan Diorama mengikuti ketukan, Pendolo mengikuti drum), lagu yang belum dianalisis dianalisis saat itu" },
       "visualizer-tempera": { "title": "Visualizer: Tempera", "description": "Alihkan ke PV lirik blok warna Tempera" },
       "visualizer-lumiere": { "title": "Visualizer: Lumiere", "description": "Alihkan ke PV lirik cahaya panggung Lumiere" },
+      "visualizer-nebbia": { "title": "Visualizer: Nebbia", "description": "Alihkan ke Nebbia, lirik ditulis di jendela bus yang berembun" },
       "visualizer-hanabi": { "title": "Visualizer: Hanabi", "description": "Alihkan ke PV lirik kembang api Hanabi" },
+      "visualizer-machi": { "title": "Visualizer: Machi", "description": "Alihkan ke diorama kota Machi" },
       "desktop-toggle-remote-control": { "title": "Alihkan jendela remote control", "description": "Buka atau tutup jendela remote control" },
       "desktop-toggle-main-window-always-on-top": { "title": "Alihkan jendela utama selalu di atas", "description": "Sematkan atau lepas jendela utama di atas jendela lain" },
       "background-monet-full-overlay": { "title": "Latar: Overlay Layar Penuh Monet", "description": "Alihkan latar ke tata letak overlay layar penuh Monet" },
@@ -924,7 +931,9 @@ export default {
     "visualizerSonnet": "Sonnet",
     "visualizerTempera": "Tempera",
     "visualizerLumiere": "Lumiere",
+    "visualizerNebbia": "Nebbia",
     "visualizerHanabi": "Hanabi",
+    "visualizerMachi": "Machi",
     "cadenzeTuning": "Penyetelan Mindscape",
     "resetVisualizerTuning": "Reset Penyetelan Animasi Lirik",
     "cadenzeOnly": "Hanya Mindscape",
@@ -1125,6 +1134,7 @@ export default {
     "queueReplaceUndoGone": "Antrean sudah berubah setelah diganti, jadi tidak ada yang bisa diurungkan",
     "queueReplaceHint": "Dapat mengganti seluruh antrean putar sekaligus dan mengakhiri FM Pribadi; Folia lalu memberi tahu mod mana yang melakukannya, dan Anda dapat mengurungkannya selama antrean belum diubah lagi.",
     "equalizerControlHint": "Mengubah pengaturan suara Anda: dapat mengganti preset suara, atau memasang kurva equalizer miliknya sendiri.",
+    "renderQualityHint": "Mengubah kualitas render kanvas lirik: dapat mengubah resolusi dan anti-aliasing kanvas lirik di Performa & gerakan.",
     "signatureVerified": "Terverifikasi",
     "signatureVerifiedDetail": "Memiliki tanda tangan resmi Folium yang valid ({{key}}): sumber dan isinya telah ditinjau Folium dan tidak berubah sejak ditandatangani. Setelah diaktifkan, mod tetap berjalan dengan hak penuh aplikasi.",
     "signatureBeta": "Pratinjau",
@@ -1430,10 +1440,7 @@ export default {
     "noteDeviceLimit": "Keluar dari perangkat yang tidak dipakai di ponsel, lalu coba lagi",
     "noteWrongScanApp": "Pindai dengan aplikasi untuk metode masuk ini, atau pilih metode lain",
     "noteCloseBrowser": "Tutup browser itu, lalu coba lagi",
-    "noteUnknown": "Kesalahan tidak diketahui",
-    "submit": "Kirim",
-    "submitting": "Mengirim…",
-    "formErrorUnknown": "Gagal masuk. Periksa isian Anda dan coba lagi."
+    "noteUnknown": "Kesalahan tidak diketahui"
   },
   "failure": {
     "unreachable": "Tidak dapat terhubung ke {{provider}}",
@@ -1449,7 +1456,7 @@ export default {
     "noteSignIn": "Masuk lagi",
     "noteUnknown": "Kesalahan tidak diketahui",
     "accountRefused": "Akun {{provider}} ini tidak dapat memutar di sini",
-    "noteAccountRefused": "Platform memblokir akun yang dibuat sejak akhir 2024 untuk memutar di pemutar pihak ketiga",
+    "noteAccountRefused": "Audio tidak tersedia karena pembatasan resmi",
     "noteMaybeSignIn": "Mungkin bisa diputar setelah masuk",
     "noteMaybeSubscription": "Mungkin perlu keanggotaan untuk memutar",
     "noteMaybeRegion": "Mungkin dibatasi di wilayah Anda",
@@ -1495,8 +1502,6 @@ export default {
     "loginNoteQishui": "Pindai dengan aplikasi Douyin dan konfirmasi otorisasi",
     "loginTitleBodian": "Pindai dengan Bodian Music",
     "loginNoteBodian": "Pindai kode ini dengan aplikasi Bodian Music dan konfirmasi masuk",
-    "loginTitleFnMusic": "Masuk ke fnOS Music",
-    "loginNoteFnMusic": "Masukkan alamat server dan akun fnOS Music untuk memutar musik NAS Anda",
     "loginTitleYtm": "Masuk ke YouTube Music",
     "loginNoteYtmBrowser": "Jendela browser terpisah akan terbuka. Masuk ke Google di sana, lalu tutup jendela itu setelah YouTube Music menampilkan akun Anda.",
     "loginNoteYtmBrowserMac": "Jendela browser terpisah akan terbuka. Masuk ke Google di sana, lalu keluar dari browser itu (⌘Q) setelah YouTube Music menampilkan akun Anda.",
@@ -1735,6 +1740,7 @@ export default {
     "releaseNotes": "Yang baru",
     "releaseNotesDescription": "Lihat perubahan pada versi ini",
     "majorUpdateLabel": "{{codename}} Update · Pembaruan besar",
+    "servicePackLabel": "{{codename}} Update SP{{servicePack}} · Pembaruan besar",
     "ponder": "Ponder Bantuan",
     "ponderDescription": "Pelajari kontrol dasar dan cara kerja Folia",
     "version": "Versi"
@@ -2115,6 +2121,8 @@ export default {
     "bravaisSeamDirectionDesc": "Vertikal membuka strip info di antara dua kolom blok, membelah dinding kiri dan kanan. Horizontal membukanya di antara dua baris blok, membelah dinding atas dan bawah, dengan strip melintang layar. Panel daftar, formulir, dan poster artis / album selalu vertikal.",
     "bravaisSeamDirectionAuto": "Otomatis",
     "bravaisSeamDirectionAutoDesc": "Baris pada layar tinggi (ponsel tegak, jendela tinggi), kolom pada layar lebar; berganti saat layar diputar.",
+    "bravaisSeamDirectionAutoReverse": "Otomatis (terbalik)",
+    "bravaisSeamDirectionAutoReverseDesc": "Kolom pada layar tinggi, baris pada layar lebar (jendela desktop, ponsel miring); berganti saat layar diputar.",
     "bravaisSeamDirectionVertical": "Vertikal",
     "bravaisSeamDirectionVerticalDesc": "Terbuka di antara dua kolom blok; dinding terbelah kiri dan kanan.",
     "bravaisSeamDirectionHorizontal": "Horizontal",
@@ -2330,8 +2338,8 @@ export default {
     "hidePlayerRightPanelButton": "Sembunyikan tombol sisi kanan pemutar",
     "transparentPlayerBackground": "Latar belakang pemutar transparan",
     "transparentPlayerBackgroundDesc": "Jendela transparan untuk sumber browser OBS atau overlay chroma key.",
-    "enablePlayerPageNativeBlur": "Latar belakang akrilik",
-    "enablePlayerPageNativeBlurHint": "Menggantikan latar pemutar dengan blur sistem, tetapi liquid glass tidak merefraksi akrilik sistem",
+    "enablePlayerPageNativeBlur": "Aktifkan Blur Asli Halaman Pemutar",
+    "enablePlayerPageNativeBlurHint": "Blur sistem menggantikan latar pemutar; memakai lebih banyak sumber daya",
     "enablePlayerPageNativeBlurDesc": "Hanya berlaku di aplikasi desktop dalam mode non-transparan; memindahkan jendela mungkin tersendat.",
     "nativeBlurConfirmTitle": "Efek kaca sistem",
     "nativeBlurConfirmDesc": "Ini mengubah jendela menjadi latar belakang tembus pandang menggunakan efek kaca sistem. Latar belakang Folia tidak akan ditampilkan.",
@@ -2541,7 +2549,7 @@ export default {
     "subtitleOverlayOpacity": "Opasitas Subtitle",
     "subtitleOverlayBackground": "Latar Belakang Subtitle",
     "subtitleOverlayBackgroundDesc": "Tambahkan halo lembut yang peka tema untuk meningkatkan keterbacaan di atas visual yang ramai.",
-    "subtitleUpcomingLyricsBlur": "Buramkan lirik non-terjemahan",
+    "subtitleUpcomingLyricsBlur": "Buramkan lirik berikutnya",
     "showHarmonySubtitle": "Tampilkan Subtitle Harmoni",
     "showHarmonySubtitleDesc": "Tampilkan atau sembunyikan overlay lirik harmoni atas.",
     "harmonySubtitleBackground": "Latar Belakang Subtitle Harmoni",
@@ -2554,6 +2562,17 @@ export default {
     "subtitleContentRomanization": "Romanisasi",
     "subtitleContentBoth": "Romanisasi + Terjemahan",
     "subtitleContentNone": "Tidak Ada",
+    "subtitleContentModeDesc": "Isi subtitle yang ditata sendiri oleh Monet, Pendolo, Lattice, dan Still, serta subtitle harmoni di atas. Subtitle bawah mengikuti pengaturan baris di atas.",
+    "subtitleOverlayRows": "Baris Subtitle Bawah",
+    "subtitleOverlayRowsDesc": "Dengan dua atau tiga baris, baris pertama selalu baris lirik saat ini; tiap baris sesudahnya bisa baris berikutnya, terjemahan, atau romanisasi.",
+    "subtitleOverlayRowsOne": "Satu",
+    "subtitleOverlayRowsTwo": "Dua",
+    "subtitleOverlayRowsThree": "Tiga",
+    "subtitleOverlayRow1": "Baris Pertama",
+    "subtitleOverlayRow2": "Baris Kedua",
+    "subtitleOverlayRow3": "Baris Ketiga",
+    "subtitleOverlaySourceCurrent": "Baris Saat Ini",
+    "subtitleOverlaySourceNext": "Baris Berikutnya",
     "classicSettings": "Penyetelan Classic",
     "classicWordRotation": "Rotasi Per Kata",
     "classicBreathingFloatMultiplier": "Rentang Melayang Pernapasan",
@@ -2761,6 +2780,64 @@ export default {
     "lumiereFrontBokeh": "Bokeh latar depan",
     "lumiereLineArt": "Seni garis",
     "lumiereOverlayFrame": "Bingkai",
+    "nebbiaWriting": "Menulis di embun",
+    "nebbiaWindow": "Jendela dan jalan",
+    "nebbiaAppear": "Muncul",
+    "nebbiaAppearAuto": "Otomatis",
+    "nebbiaAppearWrite": "Ditulis",
+    "nebbiaAppearFade": "Memudar masuk",
+    "nebbiaFade": "Menghilang",
+    "nebbiaFadeFog": "Berembun lagi",
+    "nebbiaFadeFingers": "Diusap",
+    "nebbiaFadeMix": "Acak",
+    "nebbiaAppearBreath": "Hembus, lalu tulis",
+    "nebbiaCustom": "Kustom",
+    "nebbiaAppearHint": "Setiap baris memilih salah satu gaya menulis yang aktif. Jika Memudar masuk juga aktif, itu hanya dipakai untuk baris yang terlalu cepat untuk ditulis. Embusan saat layar penuh tidak terpengaruh.",
+    "nebbiaFadeHint": "Jika keduanya aktif, setiap baris memilih secara acak.",
+    "nebbiaLayouts": "Komposisi",
+    "nebbiaLayoutsHint": "Setiap baris memakai komposisi aktif yang paling pas; baris yang terlalu panjang tetap ditata tiga baris.",
+    "nebbiaJitter": "Kemiringan tulisan",
+    "nebbiaWarp": "Distorsi tulisan",
+    "nebbiaCredits": "Tulis judul di akhir",
+    "nebbiaCreditsHint": "Setelah baris terakhir, judul lagu ditulis di tengah kaca dengan nama artis di bawahnya, dan tetap ada sampai lagu selesai.",
+    "nebbiaLayout_ribbon": "Pita",
+    "nebbiaLayout_lines2": "Dua baris berselang",
+    "nebbiaLayout_lines3": "Tiga baris berselang",
+    "nebbiaLayout_cross": "Silang",
+    "nebbiaLayout_pillar": "Pilar",
+    "nebbiaLayout_header": "Kepala surat",
+    "nebbiaLayout_badge": "Lencana",
+    "nebbiaLayout_columns": "Kolom vertikal",
+    "nebbiaLayout_orbit": "Orbit",
+    "nebbiaStrokeWidth": "Tebal goresan",
+    "nebbiaWriteSpeed": "Kecepatan menulis",
+    "nebbiaDoodle": "Coretan di akhir baris",
+    "nebbiaMist": "Kepekatan embun",
+    "nebbiaHold": "Tahan setelah baris berikutnya",
+    "nebbiaRefog": "Waktu berembun lagi",
+    "nebbiaBusSpeed": "Kecepatan bus",
+    "nebbiaNeon": "Neon",
+    "nebbiaBump": "Guncangan",
+    "nebbiaSpot": "Lampu sorot",
+    "nebbiaSpotX": "Posisi lampu sorot",
+    "nebbiaRainHit": "Tetes hujan di kaca",
+    "nebbiaRainBig": "Tetes besar tiap kata",
+    "nebbiaScenery": "Pemandangan",
+    "nebbiaSceneryHint": "Setiap bagian pemandangan bisa dimatikan sendiri; jika semua mati hanya langit yang tersisa. Bokeh adalah neon, lampu jalan, dan papan nama; jika jalan dimatikan, lampu mobil dan bokeh tidak punya pantulan. Tetesan hujan di kaca diatur dengan penggeser di atas.",
+    "nebbiaScenery_spot": "Lampu sorot",
+    "nebbiaScenery_buildings": "Gedung",
+    "nebbiaScenery_lights": "Bokeh",
+    "nebbiaScenery_cars": "Lampu mobil",
+    "nebbiaScenery_road": "Jalan",
+    "nebbiaRain": "Hujan di luar",
+    "nebbiaRainHint": "Hujan di luar hanya terlihat di dalam sorotan lampu sorot, di bagian kaca yang sudah diusap bersih; hujan miring condong mengikuti kecepatan bus.",
+    "nebbiaRain_slant": "Miring",
+    "nebbiaRain_straight": "Tegak",
+    "nebbiaRain_off": "Mati",
+    "nebbiaBehind": "Di luar jendela",
+    "nebbiaBehindHint": "Jalanan malam berhujan, atau latar bersama. Dengan latar, kabut menjadi lapisan tembus pandang (putih dengan tema siang, gelap dengan tema malam) dan goresan yang diusap memperlihatkan latar di belakangnya; halaman pemutar transparan selalu begini dan memperlihatkan desktop.",
+    "nebbiaBehind_night": "Jalanan malam",
+    "nebbiaBehind_backdrop": "Latar",
     "lumiereUnlitOpacity": "Opasitas teks yang belum dinyanyikan",
     "lumiereWindowNeighbors": "Baris sekitar",
     "lumiereWindowNeighborsPrev": "Sebelumnya + saat ini",
@@ -2789,6 +2866,7 @@ export default {
     "beatEffectsOpenSmartBeat": "Buka Global",
     "beatEffectStrength": "Kekuatan",
     "beatEffectNeedsDrums": "Model HTDemucs tidak ada di instalasi ini; instal ulang Folia. Pada lagu tanpa drum juga tidak ada efek.",
+    "beatEffectNeedsStems": "Model HTDemucs tidak ada di instalasi ini; instal ulang Folia.",
     "beatEffect_sonnetLensTear": "Robekan Lensa",
     "beatEffect_sonnetLensTearDesc": "Mengikuti ketukan yang dideteksi beat_this: setiap ketukan mendorong kamera; ketukan pertama tiap birama memberi efek sobek dan kilau.",
     "beatEffect_dioramaRipple": "Riak Cermin",
@@ -2797,6 +2875,10 @@ export default {
     "beatEffect_pendoloDrumheadDesc": "Mengikuti drum yang dipisahkan HTDemucs: kick menggembungkan dial, yang keras mengguncang layar; snare memukul di luar tengah dan memiringkannya ke sana; hi-hat menyalakan garis skala dan cincin dalam.",
     "beatEffect_temperaInkFlash": "Kedalaman Tinta",
     "beatEffect_temperaInkFlashDesc": "Memberi Tempera kedalaman dan kamera yang bergerak: watermark dan gambar latar ada di belakang dan sedikit buram, gambar depan ada di depan dan lebih buram, bergeser saat kamera bergerak; tiap shot bergeser ke atas, bawah, kiri, atau kanan; huruf besar lebih dekat dan tegas, huruf kecil lebih jauh dan pudar. Juga mengikuti drum yang dipisahkan HTDemucs: kertas diam di bawah noda abu-abu tipis, dan setiap kick dan snare menyebarkan noda tinta yang memudar dalam setengah detik, dengan warna aksen palet Tempera.",
+    "beatEffect_nebbiaDrizzleRide": "Gerimis Perjalanan",
+    "beatEffect_nebbiaDrizzleRideDesc": "Hujan dan bus Nebbia mengikuti lagu yang dipisahkan HTDemucs. Hujan mengikuti vokal: makin keras nyanyiannya, makin banyak tetes kecil yang mengenai kaca, dan satu tetes besar jatuh di setiap suku kata, menjauhi baris yang sedang dinyanyikan. Bus terguncang mengikuti kick drum, bukan acak. Hujan dan guncangan masing-masing punya kekuatan sendiri; di 0 tidak ada hujan atau guncangan. Sebelum lagu selesai dianalisis, hujan mengikuti rentang vokal dari campuran dan bus terguncang acak.",
+    "beatEffectPart_nebbiaRain": "Kekuatan hujan",
+    "beatEffectPart_nebbiaBump": "Kekuatan guncangan",
     "beatEffect_pendoloGearBeats": "Gigi Berdetak",
     "beatEffect_pendoloGearBeatsDesc": "Roda gigi melangkah mengikuti ketukan yang dideteksi beat_this. (Dihentikan)",
     "beatEffect_latentPulse": "Denyut Pasang",
@@ -2805,6 +2887,12 @@ export default {
     "beatEffect_hanabiBeatBurstsDesc": "Mengikuti ketukan yang dideteksi beat_this: kembang api kecil mekar di langit setiap ketukan, dan satu peluru naik lebih dulu agar meledak tepat pada ketukan pertama tiap birama. Ketukan yang lebih keras mekar lebih besar.",
     "beatEffect_hanabiBeatPulse": "Dorong Ketukan",
     "beatEffect_hanabiBeatPulseDesc": "Mengikuti ketukan yang dideteksi beat_this: seluruh adegan mendekat dan bergoyang sedikit setiap ketukan, lebih dalam pada ketukan pertama tiap birama.",
+    "beatEffect_machiNeonPulse": "Denyut Neon",
+    "beatEffect_machiNeonPulseDesc": "Mengikuti ketukan yang dideteksi beat_this: papan neon bergantian dalam tiga kelompok, setiap ketukan perlahan menyalakan kelompok berikutnya lalu meredupkannya, sehingga jalan berpendar bergelombang alih-alih berkedip; lampu toko dan jendela yang menyala menguat lembut sekali setiap birama.",
+    "beatEffect_machiDrumRipple": "Riak Kick",
+    "beatEffect_machiDrumRippleDesc": "Mengikuti drum yang dipisahkan HTDemucs: setiap kick memancarkan satu riak di atas tanah basah dari bawah layar lirik, menggoyangkan pantulannya; saat tanah kering, genangan cahayanya yang melonjak.",
+    "beatEffect_machiScreenFlash": "Kilat Layar",
+    "beatEffect_machiScreenFlashDesc": "Mengikuti drum yang dipisahkan HTDemucs: setiap snare perlahan menerangi satu bagian layar lirik lalu meredup, bergantian di tempat yang berbeda; snare yang rapat pun hanya membuatnya naik turun dengan lembut, tidak berkedip cepat.",
     "lumiereHideTrails": "Sembunyikan garis lintasan",
     "lumiereHideTrailsHint": "Menyembunyikan semua garis lintasan lirik, termasuk tata letak silang dan perubahan orientasi. Lirik tetap terbang mengikuti lintasan yang sama dan transisi mulus tetap berjalan.",
     "lumiereSeamlessTransitions": "Transisi mulus",
@@ -2819,6 +2907,91 @@ export default {
     "lumiereRenderQualityLow": "Hemat daya",
     "lumiereRenderQualityHint": "Seimbang dan Hemat daya merender medan cahaya dan pendar pada resolusi lebih rendah serta membatasi detail kabut, lebih hemat daya dengan sedikit mengorbankan ketajaman.",
     "hanabiFontSizeAutoNotice": "Hanabi menyesuaikan ukuran lirik berdasarkan area pandang dan wilayah teks tiap shot; pengaturan ukuran font umum hanya memengaruhi subtitle dalam mode ini.",
+    "machiFontSizeAutoNotice": "Machi menyesuaikan ukuran lirik dengan layar dan papan di dalam adegan; pengaturan ukuran font umum hanya memengaruhi subtitle dalam mode ini.",
+    "machiSceneSection": "Adegan",
+    "machiScene": "Adegan",
+    "machiSceneHint": "Otomatis memilih adegan untuk tiap lagu; lagu yang sama selalu mendapat adegan yang sama.",
+    "machiSceneAuto": "Otomatis",
+    "machiSceneKonbini": "Konbini",
+    "machiSceneStation": "Pom bensin",
+    "machiSceneKowloon": "Bar Kota Bertembok",
+    "machiSkySection": "Waktu dan cuaca",
+    "machiTimeOfDay": "Waktu",
+    "machiTimeOfDayHint": "Otomatis mengikuti jam lokal: siang, senja, atau malam.",
+    "machiTimeAuto": "Otomatis",
+    "machiTimeDay": "Siang",
+    "machiTimeDusk": "Senja",
+    "machiTimeNight": "Malam",
+    "machiWeather": "Cuaca",
+    "machiWeatherHint": "Otomatis memilih cuaca untuk tiap lagu. Saat hujan, petir menyambar di awal tiap chorus.",
+    "machiWeatherAuto": "Otomatis",
+    "machiWeatherClear": "Cerah",
+    "machiWeatherRain": "Hujan",
+    "machiWeatherSnow": "Salju",
+    "machiWeatherFog": "Kabut",
+    "machiCameraSection": "Kamera",
+    "machiCameraMode": "Tampilan",
+    "machiCameraModeHint": "Seret gambar untuk memutar, gulir untuk zoom, seret dengan klik kanan (atau dua jari) untuk menggeser. Tampilan bawaan: sekitar 8 detik setelah dilepas kembali ke bingkai bawaan. Tampilan khusus: tetap di tempat Anda meninggalkannya dan diingat, satu untuk setiap adegan; penggeser di bawah juga bisa mengaturnya.",
+    "machiCameraDefault": "Tampilan bawaan",
+    "machiCameraCustom": "Tampilan khusus",
+    "machiViewAzimuth": "Putar",
+    "machiViewElevation": "Kemiringan",
+    "machiViewZoom": "Zoom",
+    "machiViewPanX": "Geser ke samping",
+    "machiViewPanZ": "Geser maju / mundur",
+    "machiViewReset": "Kembali ke bingkai bawaan",
+    "machiViewScene": "Adegan yang diatur",
+    "machiViewSceneHint": "Saat adegan diatur ke Otomatis, tampilan adegan mana yang diatur penggeser di bawah; bawaannya adegan yang sedang ditampilkan.",
+    "machiCameraMotion": "Gerakan kamera",
+    "machiCameraMotionHint": "Kamera perlahan berputar, mendekat dan menjauh, serta bergeser di sekitar tampilan, berhenti saat lagu dijeda. Menyeret menghentikannya; gerakan berlanjut setelah kamera kembali ke tampilannya.",
+    "machiCameraMotionSpeed": "Kecepatan gerakan",
+    "machiCameraBar": "Jendela bidik",
+    "machiCameraBarView": "Tampilan",
+    "machiCameraBarLens": "Fokus & bukaan",
+    "machiCameraBarMotion": "Gerakan",
+    "machiCameraBarReset": "Atur ulang",
+    "machiCameraBarClose": "Tutup",
+    "machiDofSection": "Kedalaman bidang",
+    "machiAperture": "Bukaan",
+    "machiApertureHint": "Makin ke kanan makin lebar bukaannya: bidang fokus makin tipis, sisanya makin kabur, dan lampu serta neon melebur menjadi bulatan cahaya. f/8 adalah tampilan miniatur semula.",
+    "machiDof": "Kekuatan",
+    "machiDofHint": "Makin jauh dari titik fokus, makin kabur; 0 mematikannya.",
+    "machiDofRange": "Rentang tajam",
+    "machiTiltShift": "Tilt-shift",
+    "machiTiltShiftHint": "Mengaburkan bagian atas dan bawah gambar, seperti foto miniatur.",
+    "machiFocus": "Fokus",
+    "machiFocusHint": "Tengah: titik tempat kamera berputar. Layar lirik: layar lirik di adegan. Manual: digeser lebih dekat atau lebih jauh dari tengah.",
+    "machiFocusCenter": "Tengah",
+    "machiFocusLyrics": "Layar lirik",
+    "machiFocusManual": "Manual",
+    "machiFocusOffset": "Jarak fokus",
+    "machiQualitySection": "Kualitas",
+    "machiQuality": "Prasetel",
+    "machiQualityHint": "Tinggi, Seimbang, dan Rendah adalah kombinasi siap pakai; mengubah opsi mana pun di bawah menjadikannya Kustom. Batas frame rate ada di Pengaturan › Performa & gerakan dan berlaku untuk semua gaya.",
+    "machiQualityCustom": "Kustom",
+    "machiQualityHigh": "Tinggi",
+    "machiQualityBalanced": "Seimbang",
+    "machiQualityLow": "Rendah",
+    "machiRenderScale": "Resolusi",
+    "machiRenderScaleHint": "Menggambar dengan sebagian piksel layar: lebih rendah sedikit lebih lembut tetapi jauh lebih cepat. Di layar DPI tinggi paling banyak dihitung 2× ukuran tata letak. Ikuti global memakai resolusi kanvas lirik di Performa & gerakan (sekarang {{value}}; di atas 1× melakukan supersampling).",
+    "machiAntialias": "Anti-aliasing",
+    "machiAntialiasHint": "FXAA paling hemat tetapi sedikit melunakkan teks; SMAA memberi tepi yang bersih dan juga menghaluskan garis tinta serta hujan, dengan biaya sedikit lebih besar; Supersampling menggambar dengan resolusi dua kali lalu diperkecil, paling halus dan paling mahal. Ikuti global berarti SMAA selama pengaturan global aktif (sekarang {{value}}) dan mati saat global mati.",
+    "machiAntialiasOff": "Mati",
+    "machiAntialiasFxaa": "FXAA",
+    "machiAntialiasSmaa": "SMAA",
+    "machiAntialiasSsaa": "Supersampling",
+    "machiShadows": "Bayangan",
+    "machiShadowsHint": "Bayangan dari bulan dan matahari.",
+    "machiReflections": "Pantulan",
+    "machiReflectionsHint": "Lampu dan papan nama yang terpantul di jalan basah; hanya digambar saat jalan basah.",
+    "machiLevelOff": "Mati",
+    "machiLevelLow": "Rendah",
+    "machiLevelHigh": "Tinggi",
+    "machiGlow": "Pendar dan kilau lensa",
+    "machiGlowHint": "Pendar di sekitar lampu dan papan nama pada malam hari, serta kilau lensa mendatar.",
+    "machiAdaptive": "Turunkan otomatis",
+    "machiAdaptiveHint": "Jika frame rate terus rendah, kualitas diturunkan bertahap di bawah pengaturan ini (blur kedalaman bidang dulu, lalu supersampling dan MSAA tepi, kemudian pantulan, pendar, resolusi, dan anti-aliasing akhir, bayangan paling akhir), tidak pernah melebihi pilihanmu. Mengubah pengaturan memulai lagi dari yang baru.",
+    "machiAdaptiveActive": "Saat ini turun {{count}} tingkat.",
     "hanabiFireworksSection": "Kembang api",
     "hanabiStageSection": "Panggung",
     "hanabiTextSection": "Teks",
@@ -2980,6 +3153,17 @@ export default {
     "liquidGlassJellyDesc": "Memanjang saat diseret lalu memantul kembali.",
     "liquidGlassGpuBlockedNotice": "Kaca cair tidak tersedia selama GPU render disetel ke Hemat daya; kembali ke Otomatis atau Performa tinggi lalu mulai ulang Folia untuk mengaktifkannya kembali.",
     "liquidGlassValueLabel": "Nilai",
+    "lyricRenderScale": "Resolusi kanvas lirik",
+    "lyricRenderScaleDesc": "Gaya lirik yang digambar dengan canvas atau WebGL (Machi, Hanabi, Lumiere, Nebbia, dan lainnya) dirender pada kelipatan ini; 1× adalah ketajaman bawaan tiap gaya, di atas 1× melakukan supersampling untuk tepi lebih halus dengan beban GPU lebih besar. Setiap gaya mengikuti ini kecuali pengaturannya sendiri memilih nilai lain.",
+    "lyricAntialias": "Anti-aliasing kanvas lirik",
+    "lyricAntialiasDesc": "Otomatis memakai bawaan tiap gaya; Aktif menghaluskan tepi geometris (garis, kartu, blok warna) dengan biaya memori video dan sedikit laju bingkai. Setiap gaya mengikuti ini secara bawaan.",
+    "lyricAntialiasAuto": "Otomatis",
+    "lyricAntialiasOn": "Aktif",
+    "lyricAntialiasOff": "Mati",
+    "lyricRenderSection": "Rendering",
+    "lyricRenderFollowGlobal": "Ikuti global",
+    "lyricRenderScaleStyleHint": "Berapa kali resolusi gaya ini digambar; di atas 1× melakukan supersampling. Ikuti global memakai pengaturan di Performa & gerakan (sekarang {{value}}).",
+    "lyricAntialiasStyleHint": "Ikuti global memakai pengaturan di Performa & gerakan (sekarang {{value}}).",
     "themePresets": "Preset Tema",
     "themePresetsDefault": "Bawaan",
     "openThemePark": "Buka Taman Tema",
@@ -3047,6 +3231,8 @@ export default {
     "geminiApiKey": "Kunci API Gemini",
     "aiApiKeySavedPlaceholder": "Tersimpan (kosongkan untuk mempertahankan)",
     "aiApiKeySavedDesc": "Kunci disimpan terenkripsi di perangkat ini dan tidak ditampilkan lagi. Masukkan kunci baru lalu simpan untuk menggantinya.",
+    "aiApiKeyEndpointMismatchDesc": "Kunci tersimpan dibuat untuk {{endpoint}} dan tidak bisa dipakai di alamat lain. Masukkan kunci baru lalu simpan.",
+    "aiApiKeyOtherProviderDesc": "Kunci tersimpan dibuat untuk {{provider}} dan tidak bisa dipakai setelah berganti penyedia. Masukkan kunci baru lalu simpan.",
     "aiApiKeyClear": "Hapus",
     "openaiApiTemperature": "Temperatur",
     "openaiApiStream": "Streaming",
@@ -3473,6 +3659,52 @@ export default {
         "description": "Setelah masuk, playlist pribadi buatan Anda kini dapat memuat lagu dengan paging sungguhan. Backend yang di-host sendiri harus memakai qq-music-api 3.1.2 atau lebih baru; backend lama beralih otomatis, dan playlist yang tidak dapat dibaca kini menjelaskan bahwa playlist itu tidak publik, alih-alih tampil kosong tanpa keterangan."
       }
     },
+    "v0_7_25": {
+      "intro": "Selamat datang di 0.7.25, Rainy Update SP1—perbaikan cepat untuk 0.7.24 yang memperbaiki masalah performa gaya lirik Nebbia: beralih ke gaya ini tidak lagi tersendat, dan saat diputar frame rate-nya lebih tinggi dengan beban lebih ringan. Mengembalikan sumber tema di halaman kontrol ke Default kini benar-benar memulihkan tema default. Selebihnya tetap isi Rainy Update: dua gaya lirik bertema malam hujan—Nebbia, yang menulis lirik di jendela bus yang berembun, dan Machi, sebuah kota miniatur 3D; subtitle bawah dalam satu sampai tiga baris; dan jendela remote di desktop yang bisa dibentangkan untuk menampilkan antrean putar.",
+      "nebbia": {
+        "title": "Nebbia",
+        "description": "Gaya lirik baru Nebbia: di dalam bus pada malam hujan, ujung jari menuliskan lirik di jendela yang berembun. Aksara Tionghoa ditulis goresan demi goresan sesuai urutan goresannya, setiap goresan menghapus embun hingga tampak kota di luar; butiran air berkumpul di sepanjang goresan lalu mengalir turun, embun perlahan kembali, dan dua lampu sorot dari jalan mengikuti kata yang sedang dinyanyikan. Baris bisa ditulis tangan, muncul perlahan, atau ditulis setelah kaca dihembus napas, lalu hilang dengan berembun kembali atau diusap jari; setelah baris terakhir, judul lagu dan artisnya ditulis di kaca. Dalam mode ketukan pintar, Gerimis Perjalanan membuat tetes hujan mengenai kaca mengikuti vokal dan bus terguncang mengikuti kick drum."
+      },
+      "machi": {
+        "title": "Machi",
+        "description": "Gaya lirik 3D baru Machi: diorama miniatur sebuah kota Jepang yang papan-papannya membawa lirik—baris saat ini menyala kata demi kata di layar LED, baris berikutnya berjalan di ticker LED, judul lagu terpasang di papan toko, dan warna serta ikon tema mengecat ulang toko jaringannya. Adegannya ada toko serba ada, pom bensin, dan bar kota bertembok; waktu (siang, senja, malam) dan cuaca (cerah, hujan, salju, kabut) masing-masing bisa dibiarkan Otomatis. Saat hujan, jalan tampak basah mengilap dengan pantulan memanjang, dan guntur terdengar di awal setiap reff. Seret untuk memutar pandangan dan simpan pandangan khusus untuk setiap adegan; kamera bergerak perlahan, dan bukaan, fokus, serta tilt-shift bisa diatur dari bilah pembingkaian di halaman pemutar. Dalam mode ketukan pintar, neon berpendar bergelombang mengikuti ketukan, kick memancarkan riak di atas tanah basah, dan layar lirik menyala perlahan pada snare."
+      },
+      "subtitleRows": {
+        "title": "Baris Subtitle",
+        "description": "Subtitle bawah bisa terdiri dari satu, dua, atau tiga baris: satu baris menampilkan baris saat ini, terjemahan, atau romanisasi; dengan lebih banyak baris, baris pertama adalah baris saat ini dan setiap baris setelahnya bisa menampilkan baris berikutnya, terjemahan, atau romanisasi. Atur di pengaturan subtitle pada jendela gaya lirik—tidak lagi mengikuti Konten Subtitle, dan pengaturan lama otomatis diubah ke tata letak yang sesuai. Di jeda antarbaris, subtitle tetap pada baris yang baru dinyanyikan. Kartu lagu Lattice yang dibentangkan kini juga menampilkan subtitle harmoni."
+      },
+      "remoteQueue": {
+        "title": "Antrean di Jendela Remote",
+        "description": "Jendela remote di desktop mendapat tombol antrean yang membentangkannya untuk menampilkan antrean putar, dengan lagu saat ini di tengah dan bisa dicari; setiap lagu bisa diputar, diputar berikutnya, dipindah ke akhir, atau dihapus. Jendela membentang ke bawah atau ke atas sesuai ruang yang tersisa di layar, menutup kembali beberapa detik setelah penunjuk pergi, dan Esc mengosongkan pencarian dulu, lalu menutupnya."
+      },
+      "moreDetails": {
+        "title": "Peningkatan Lainnya",
+        "description": "Arah strip info Bravais mendapat Otomatis (terbalik), yang memilih orientasi kebalikan dari Otomatis. Perangkat Output Saat Ini kini juga berlaku untuk pemutaran yang melalui Web Audio, tidak lagi berbunyi dari perangkat bawaan sistem. Saat lagu VIP Qishui beralih ke cuplikan pratinjau, pemberitahuannya kini menyebut pemutar pihak ketiga untuk sementara tidak bisa mendapatkan lagu VIP lengkap; saat Spotify tidak memberikan audio, pemberitahuannya kini menyebutnya batasan resmi. Mengarahkan penunjuk ke baris terakhir daftar platform di jendela login tidak lagi membuat antarmuka kosong."
+      }
+    },
+    "v0_7_24": {
+      "intro": "Selamat datang di 0.7.24, Rainy Update—sebuah pembaruan besar. Versi ini menghadirkan dua gaya lirik bertema malam hujan: Nebbia, yang menulis lirik di jendela bus yang berembun, dan Machi, sebuah kota miniatur 3D. Subtitle bawah kini bisa disusun dalam satu sampai tiga baris, dan jendela remote di desktop bisa dibentangkan untuk menampilkan antrean putar.",
+      "nebbia": {
+        "title": "Nebbia",
+        "description": "Gaya lirik baru Nebbia: di dalam bus pada malam hujan, ujung jari menuliskan lirik di jendela yang berembun. Aksara Tionghoa ditulis goresan demi goresan sesuai urutan goresannya, setiap goresan menghapus embun hingga tampak kota di luar; butiran air berkumpul di sepanjang goresan lalu mengalir turun, embun perlahan kembali, dan dua lampu sorot dari jalan mengikuti kata yang sedang dinyanyikan. Baris bisa ditulis tangan, muncul perlahan, atau ditulis setelah kaca dihembus napas, lalu hilang dengan berembun kembali atau diusap jari; setelah baris terakhir, judul lagu dan artisnya ditulis di kaca. Dalam mode ketukan pintar, Gerimis Perjalanan membuat tetes hujan mengenai kaca mengikuti vokal dan bus terguncang mengikuti kick drum."
+      },
+      "machi": {
+        "title": "Machi",
+        "description": "Gaya lirik 3D baru Machi: diorama miniatur sebuah kota Jepang yang papan-papannya membawa lirik—baris saat ini menyala kata demi kata di layar LED, baris berikutnya berjalan di ticker LED, judul lagu terpasang di papan toko, dan warna serta ikon tema mengecat ulang toko jaringannya. Adegannya ada toko serba ada, pom bensin, dan bar kota bertembok; waktu (siang, senja, malam) dan cuaca (cerah, hujan, salju, kabut) masing-masing bisa dibiarkan Otomatis. Saat hujan, jalan tampak basah mengilap dengan pantulan memanjang, dan guntur terdengar di awal setiap reff. Seret untuk memutar pandangan dan simpan pandangan khusus untuk setiap adegan; kamera bergerak perlahan, dan bukaan, fokus, serta tilt-shift bisa diatur dari bilah pembingkaian di halaman pemutar. Dalam mode ketukan pintar, neon berpendar bergelombang mengikuti ketukan, kick memancarkan riak di atas tanah basah, dan layar lirik menyala perlahan pada snare."
+      },
+      "subtitleRows": {
+        "title": "Baris Subtitle",
+        "description": "Subtitle bawah bisa terdiri dari satu, dua, atau tiga baris: satu baris menampilkan baris saat ini, terjemahan, atau romanisasi; dengan lebih banyak baris, baris pertama adalah baris saat ini dan setiap baris setelahnya bisa menampilkan baris berikutnya, terjemahan, atau romanisasi. Atur di pengaturan subtitle pada jendela gaya lirik—tidak lagi mengikuti Konten Subtitle, dan pengaturan lama otomatis diubah ke tata letak yang sesuai. Di jeda antarbaris, subtitle tetap pada baris yang baru dinyanyikan. Kartu lagu Lattice yang dibentangkan kini juga menampilkan subtitle harmoni."
+      },
+      "remoteQueue": {
+        "title": "Antrean di Jendela Remote",
+        "description": "Jendela remote di desktop mendapat tombol antrean yang membentangkannya untuk menampilkan antrean putar, dengan lagu saat ini di tengah dan bisa dicari; setiap lagu bisa diputar, diputar berikutnya, dipindah ke akhir, atau dihapus. Jendela membentang ke bawah atau ke atas sesuai ruang yang tersisa di layar, menutup kembali beberapa detik setelah penunjuk pergi, dan Esc mengosongkan pencarian dulu, lalu menutupnya."
+      },
+      "moreDetails": {
+        "title": "Peningkatan Lainnya",
+        "description": "Arah strip info Bravais mendapat Otomatis (terbalik), yang memilih orientasi kebalikan dari Otomatis. Perangkat Output Saat Ini kini juga berlaku untuk pemutaran yang melalui Web Audio, tidak lagi berbunyi dari perangkat bawaan sistem. Saat lagu VIP Qishui beralih ke cuplikan pratinjau, pemberitahuannya kini menyebut pemutar pihak ketiga untuk sementara tidak bisa mendapatkan lagu VIP lengkap; saat Spotify tidak memberikan audio, pemberitahuannya kini menyebutnya batasan resmi. Mengarahkan penunjuk ke baris terakhir daftar platform di jendela login tidak lagi membuat antarmuka kosong."
+      }
+    },
     "v0_7_23": {
       "intro": "Selamat datang di 0.7.23. Aplikasi desktop menambahkan mesin pemutaran mpv yang mengirim lagu lokal dan Navidrome ke perangkat output apa adanya; ReplayGain mendapat mode Pintar yang menyesuaikan berdasarkan kenyaringan terukur; filter lirik kini berupa daftar aturan; Tempera mendapat efek drum baru, Kedalaman Tinta; dan antarmuka kini tersedia dalam bahasa Vietnam.",
       "hifi": {
@@ -3501,30 +3733,30 @@ export default {
       }
     },
     "v0_7_22": {
-      "intro": "Ini versi Beta 0.7.22, dirilis lebih awal agar semua orang bisa mencicipi 0.7.22 sebelum rilis resminya — seluruh pemutar terlihat bening dan tembus pandang.",
-      "glassUpgrade": {
-        "title": "Kaca Cair, Ditulis Ulang",
-        "description": "Kaca cair mendapat empat preset (frosted, clear, hazy, eco), masing-masing dengan gambar pratinjau yang bisa langsung dipakai sekali klik. Pengaturan \"jarak refraksi\" yang baru mengatur seberapa jauh tepi yang merefraksi menjangkau dari batas ke tengah, dan \"efek cahaya\" yang baru menambah pantulan yang mengikuti penunjuk di atas kaca dan lebih terang saat ditekan. Bagian yang sama sekali tidak tercakup kaca cair (daftar, dinding poster) sudah diperbaiki. Parameter ini ikut terbawa pada impor dan ekspor konfigurasi tampilan, dan sampai juga ke pengaturan visual OBS."
+      "intro": "Selamat datang di 0.7.22, Sparkle Update—sebuah rilis besar. Rilis ini menambahkan Qishui Music; menghadirkan Hanabi, gaya lirik kembang api ala Jepang; membiarkan Anda memilih gaya mana yang diacak per lagu; memberi aplikasi desktop pintasan pemutaran global; dan membuat pengaturan AI bisa langsung memilih penyedia dan model.",
+      "qishui": {
+        "title": "Qishui Music",
+        "description": "Qishui Music hadir di desktop: masuk dari jendela login dengan memindai memakai Douyin. Cari, putar (kualitas standar), baca lirik tersinkron per kata dan lagu teratas artis, serta buka playlist Anda sendiri dan \"Terakhir diputar di Qishui\"; feed rekomendasi dan stasiun suasana diputar sebagai FM Pribadi, dan kartu suasana di beranda langsung memutar dengan satu ketukan. Anda bisa menyukai lagu, menambah dan menghapus lagu di playlist buatan sendiri, dan memakai Tidak suka di FM Pribadi. Lagu tanpa sumber yang bisa langsung diputar tidak dapat diputar, dan menjelajah album, membuat playlist, serta menyimpan playlist belum didukung. Lagu lokal yang cocok dengan lagu Qishui juga bisa mengambil liriknya."
       },
-      "glassJelly": {
-        "title": "Deformasi Jelly, Ditulis Ulang",
-        "description": "Menyeret panel kaca kini mengikuti kurva yang jenuh: semakin jauh ditarik, semakin sedikit pergerakannya, jadi panel tidak pernah terlempar keluar. Panel meregang searah tarikan sementara arah tegak lurusnya menyusut, tiap sumbu punya batas, dan panel tidak bisa gepeng atau membesar berlebihan. Pegas yang将他туarkannya lebih keras, sehingga bentuknya lebih mengikuti tangan. Dengan efek jelly dimatikan, pengguliran dan animasi pada panel kaca juga terasa lebih halus."
+      "hanabi": {
+        "title": "Hanabi",
+        "description": "Gaya lirik baru bernuansa PV lirik Jepang: setiap baris muncul huruf demi huruf di atas blok warna, ornamen seperti kembang api mekar di sepanjang teks, dan di antara adegan seluruh pemandangan berputar dan naik mengikuti kembang api yang meluncur, dengan potongan film, stiker, dan selotip sebagai hiasan kolase serta cahaya yang menguat saat reff. Kembang api, teks, hiasan, dan warna bisa diatur di pengaturan gaya, dengan tingkat kualitas; di Mode ketukan pintar, kembang api meletus di langit malam setiap ketukan dan kamera mendorong mendekat mengikutinya."
       },
-      "exploreImmersive": {
-        "title": "Jelajahi, Terendam",
-        "description": "Daftar Jelajahi kini terkunci menutupi seluruh jendela: bagian atas memudar sesuai jarak yang digulir, bagian bawah memudar sesuai apa yang masih tersisa di bawah. Kedua tepinya disusun dari tiga lapis blur yang bertumpuk, jadi isinya memudar menghilang, bukan terpotong. Bilah geser berubah menjadi pil kaca di tepi kanan jendela; ibu jarinya menunjukkan posisi daftar, dan tanda tiap bagian bisa langsung melompat ke sana. Saat GridMap terbuka, kepala halaman memudar sedikit demi sedikit, dan kembali begitu peta mulai keluar."
+      "randomStyles": {
+        "title": "Pilih Gaya Acak Sendiri",
+        "description": "Pemilih gaya lirik mendapat Acak: centang sebagian atau semua gaya bawaan untuk membentuk kumpulan acak, dan setiap lagu beralih ke salah satunya, tidak pernah sama dua kali berturut-turut, masing-masing dengan pengaturan tersimpannya sendiri. Dari panel pemutar Anda bisa mengundi ulang gaya untuk lagu saat ini atau mengubah kumpulannya; kumpulan ini ikut dalam impor, ekspor, dan sinkronisasi konfigurasi."
       },
-      "pageSwitchPerf": {
-        "title": "Berpindah Tab Tidak Lagi Tersendat",
-        "description": "Tab beranda kini menyimpan lapisannya masing-masing: berpindah hanya mengubah visibilitas dan geseran ke samping, bukan memasang ulang seluruh tampilan, jadi peta perpindahan kaca tetap utuh dan sampul tidak didekode ulang. Transisinya bergeser ke samping tanpa menyentuh opasitas, sehingga panel kaca tetap terlihat sepanjang animasi. Grid hanya menggambar kartu yang dibutuhkan layar, jadi menggulir tidak lagi berkedip kosong; gangguan gambar saat berpindah tab berulang cepat, dan peta yang tertutup lapisan beranda, ikut diperbaiki."
+      "globalShortcuts": {
+        "title": "Pintasan Pemutaran Global",
+        "description": "Desktop mendapat Pintasan → Pintasan global: kendalikan pemutaran meski Folia tidak di depan, dengan Ctrl+Alt+Shift (Control+Option+Shift di macOS) ditambah satu huruf atau angka. Ikat putar/jeda, sebelumnya, berikutnya, volume naik dan turun, bisukan, ulangi, dan acak, juga perintah yang disediakan mod; kombinasi yang sudah dipakai aplikasi lain ditandai. Di Wayland asli, satu tombol mendaftarkannya ke lingkungan desktop Anda, tempat Anda menetapkan tombolnya. Palet perintah juga mendapat putar/jeda serta volume naik/turun."
       },
-      "playerBarGlow": {
-        "title": "Bilah Pemutar yang Disematkan dan Gelombang Air",
-        "description": "Bilah pemutar bawah mendapat tombol sematan: setelah disematkan, ia tidak lagi menyusut saat penunjuk pergi, dan bisa dihidupkan dari palet perintah maupun dari pengaturan. Sambil musik berbunyi, gelombang permukaan air naik di tepi bawahnya—spektrum ditata secara logaritma menjadi gelombang yang membesar mengikuti musik dan menghanyut perlahan. Warnanya mengalir dari putih ke warna aksen tema, dan pusat cahayanya melayang perlahan ke samping."
+      "aiProviders": {
+        "title": "Penyedia dan Model AI",
+        "description": "Pengaturan AI di desktop kini bisa memilih penyedia: Gemini, DeepSeek, Xiaomi MiMo, Alibaba Cloud Qwen, Tencent Cloud TokenHub, OpenAI, Anthropic, Kimi, Zhipu GLM, atau endpoint kompatibel kustom. Penyedia bawaan tidak perlu URL; masukkan kunci untuk mengambil daftar model, pilih dari menu tarik-turun, dan mulai dengan model rekomendasi yang sudah terisi. Pemikiran, suhu, dan parameter serupa ditangani per penyedia dan model, dan model yang sudah dihentikan diberi tanda. Setelah berganti lagu, tema AI lagu sebelumnya yang belum selesai tidak lagi diterapkan ke lagu baru."
       },
-      "morePolish": {
-        "title": "Detail Lainnya",
-        "description": "Daftar Lattice mendapat animasinya, dan gaya jelly yang bermasalah sudah diperbaiki. Bayangan di bawah kartu grid tidak lagi terpotong oleh wadah yang bisa digulir; kini ia memudar secara alami. Sakelar \"latar transparan\" di halaman pemutar dan kembarannya di panel kendali jarak jauh dihapus; kabut sistem kini disebut \"latar akrilik\", dengan catatan bahwa kaca cair tidak merefraksi akrilik sistem."
+      "moreDetails": {
+        "title": "Peningkatan Lainnya",
+        "description": "Login di setiap platform tidak lagi terhapus setelah mulai ulang hanya karena jaringan atau server sedang bermasalah. Mode ketukan pintar mendapat pilihan \"Hanya yang sudah dianalisis\", dan sakelar utamanya pindah ke halaman Global baru di jendela gaya lirik; lagu lokal dan Navidrome kini juga mendapat analisis transisi automix; pemindaian lokal mendukung DSD (.dsf dan .dff). Windows mendapat pengaturan GPU render, dan Performa & gerakan menambahkan Pembatasan latar belakang (nonaktif secara bawaan), yang menahan animasi lirik saat jendela diminimalkan atau disembunyikan. Bilah info Bravais bisa otomatis, vertikal, atau horizontal, dan dinding Jelajahi-nya kini menyertakan putaran terakhir. API mod naik ke Folium 1.7."
       }
     },
     "v0_7_21": {
@@ -3581,25 +3813,6 @@ export default {
         "description": "Ubin pengaturan di beranda Bravais kini memberi tahu saat ada versi baru. Pencarian dari beranda Bravais tidak lagi menampilkan halaman hasil kosong dan tidak lagi mencari di platform yang salah saat memakai KuGou atau QQ. Label Tionghoa vertikal tidak lagi bertumpuk di beberapa distribusi Linux, dan poster artis atau album tidak lagi berkedip ke warna bawaan saat dibalik. Aplikasi desktop memperketat pemeriksaan keamanan untuk tautan eksternal dan komunikasi internal, dan kunci AI hanya dikirim ke alamat tempat kunci itu disimpan."
       }
     },
-    "v0_7_19s-shino": {
-      "intro": "0.7.19s (mod Shino) dibangun di atas 0.7.19 resmi: kotak alat beranda Bravais kini menandai adanya versi baru, penanganan IPC dan tautan eksternal diperkuat, masalah tampilan liquid glass pada blur tinggi diperbaiki, dan liquid glass dioptimalkan agar panel besar tetap lancar saat diubah ukurannya.",
-      "homeUpdateHint": {
-        "title": "Kotak Alat Beranda Menandai Versi Baru",
-        "description": "Bravais kini mengikuti status pembaruan: saat pemeriksaan pembaruan aktif, versi baru ditemukan, dan belum pernah dilihat di Pengaturan, sebuah baris \"Versi baru ditemukan\" yang bisa diklik muncul di bawah kotak alat pengaturan (atau titik warna aksen di pojok kanan atas ikon pengaturan saat punggung tidak muat teks); mengkliknya membuka halaman bantuan sama seperti tombol pengaturan. Membuka Pengaturan menandainya sudah dilihat dan petunjuk pun hilang. Kedua tata letak beranda memakai satu status pembaruan yang sama."
-      },
-      "ipcSecurity": {
-        "title": "Penanganan IPC dan Tautan Eksternal Diperkuat",
-        "description": "Hanya tautan http(s) yang diserahkan ke sistem; skema kustom seperti file:// dan ms-settings: diblokir agar URL tidak tepercaya tidak memicu pemanggilan protokol sistem yang tidak diinginkan. Kanal IPC status browser source OBS dan API KuGou juga mendapat pemeriksaan sumber jendela, sehingga jendela lain tidak lagi bisa memakainya."
-      },
-      "liquidGlassBlurFix": {
-        "title": "Liquid Glass Diperbaiki pada Blur Tinggi",
-        "description": "Rantai filter liquid glass disusun ulang (saturasi dan blur lebih dulu, refraksi tepi terakhir), memperbaiki masalah tampilan yang muncul saat tingkat blur dinaikkan."
-      },
-      "liquidGlassPerf": {
-        "title": "Liquid Glass Lebih Cepat",
-        "description": "Peta pergeseran dibuat pada resolusi berbatas, dan pembangunan ulang piksel demi piksel yang berulang saat panel besar terus mengubah ukuran digabung menjadi satu per jendela pengatur waktu alih-alih berjalan tiap frame: mengubah ukuran jendela besar atau panel beranimasi tetap lancar, tanpa penurunan kualitas kaca yang terasa."
-      }
-    },
     "v0_7_19": {
       "intro": "0.7.19 mengubah halaman artis dan album di Bravais menjadi poster bergaya Tempera. Saat lagu online gagal diputar, Folia kini menyebutkan alasan sebenarnya, tidak lagi selalu menyebutnya dihapus; visualizer per kata seperti Tempera memotong lirik Tionghoa dan Jepang dengan lebih wajar; dan versi web kembali bisa dibuka tanpa jaringan.",
       "artistPoster": {
@@ -3627,23 +3840,8 @@ export default {
         "description": "Di Android, membuka Opsi atau lapisan lain di dinding Bravais atau Lattice tidak lagi memperlihatkan kilasan dinding di bawahnya. Memperbaiki crash sesekali saat mengubah ukuran jendela ketika Tempera sedang diputar. Latar Sora berhenti menggambar saat dijeda, dan bintangnya diam dalam mode statis. Jendela catatan rilis yang muncul saat aplikasi dimulai kini bisa ditutup dengan Esc."
       }
     },
-    "v0_7_18s-shino": {
-      "intro": "0.7.18s (mod Shino) dibangun di atas 0.7.18 resmi dengan pengalaman liquid glass yang lebih kuat: memulihkan cakupan liquid glass yang hilang pada komponen terdampak pembaruan 0.7.18, melembutkan tombol terpilih, serta menambahkan pengaturan liquid glass agar Anda bisa menyesuaikan refraksi, blur, dan saturasi. Catatan: liquid glass hanya didukung di Windows.",
-      "liquidGlassFix": {
-        "title": "Cakupan Liquid Glass Diperbaiki",
-        "description": "Memulihkan liquid glass pada komponen yang kehilangan cakupan setelah pembaruan 0.7.18, sehingga permukaan buram seperti tombol dan panel kembali mendapat tampilan kaca yang konsisten."
-      },
-      "liquidGlassSoften": {
-        "title": "Tombol Liquid Glass Lebih Lembut",
-        "description": "Tombol terpilih kini mendapat perlakuan kaca yang lebih lembut dengan transisi tepi yang lebih halus, meningkatkan tampilan sekaligus kenyamanan antarmuka."
-      },
-      "liquidGlassSettings": {
-        "title": "Pengaturan Liquid Glass Baru",
-        "description": "Bebas menyesuaikan kekuatan refraksi, blur, dan saturasi liquid glass untuk mengkustomisasi tekstur kaca sesuai selera. Catatan: liquid glass hanya didukung di Windows."
-      }
-    },
     "v0_7_18": {
-      "intro": "0.7.18 menambahkan antrean putar yang bisa langsung diatur dari alat dinding di Bravais dan Lattice, dan kedua dinding kini memakai panel alat yang sama. Beberapa visualizer lirik lebih hemat sumber daya, perpindahan antar lagu lokal lebih mulus, login QR QQ Music menjelaskan langkahnya saat batas perangkat tercapai, dan aplikasi desktop kini menyimpan kunci AI secara terenkripsi. Animasi jendela kini memakai transisi gradien ala iOS 26, dan antrean putar samping mendapat efek rotasi.",
+      "intro": "0.7.18 menambahkan antrean putar yang bisa langsung diatur dari alat dinding di Bravais dan Lattice, dan kedua dinding kini memakai panel alat yang sama. Beberapa visualizer lirik lebih hemat sumber daya, perpindahan antar lagu lokal lebih mulus, login QR QQ Music menjelaskan langkahnya saat batas perangkat tercapai, dan aplikasi desktop kini menyimpan kunci AI secara terenkripsi.",
       "queueIsland": {
         "title": "Atur Antrean dari Dinding",
         "description": "Buka Alat dinding di pojok kanan bawah Bravais atau Lattice lalu pilih Antrean putar untuk menampilkan antrean di atas panel. Klik lagu untuk memutarnya tanpa pindah halaman, seret pegangan untuk mengurutkan, arahkan kursor untuk putar berikutnya, pindah ke akhir, atau hapus, simpan antrean sebagai playlist lokal, atau kosongkan dengan konfirmasi dua langkah. Keyboard: ↑↓ untuk berpindah, Alt+↑↓ untuk menggeser, Delete untuk menghapus. Tidak tersedia di FM Pribadi; saat Stage eksternal sedang memutar, Anda hanya bisa memilih lagu."
@@ -3667,10 +3865,6 @@ export default {
       "aiKeySecure": {
         "title": "Kunci AI Terenkripsi di Desktop",
         "description": "Aplikasi desktop kini menyimpan kunci Gemini / OpenAI secara terenkripsi dengan penyimpanan aman sistem, dan kunci teks biasa dari versi lama dipindahkan saat aplikasi dimulai. Kunci yang tersimpan tidak ditampilkan lagi: kosongkan kolom untuk mempertahankannya, ketik kunci baru untuk menggantinya, atau gunakan tombol Hapus tersendiri. Uji koneksi dengan kolom kosong memakai kunci yang tersimpan."
-      },
-      "windowAnimation": {
-        "title": "Animasi Jendela Disesuaikan",
-        "description": "Animasi jendela kini memakai transisi gradien menyerupai iOS 26, dan antrean putar samping mendapat efek rotasi untuk perpindahan yang lebih mulus dan alami."
       }
     },
     "v0_7_17": {
@@ -3701,7 +3895,7 @@ export default {
       }
     },
     "v0_7_16": {
-      "intro": "0.7.16 memindahkan lirik AMLL ke API resmi, menemukan jauh lebih banyak lirik AMLL untuk lagu QQ Music, dan memungkinkan pencocokan manual mencari langsung di AMLL. Rilis ini juga menambahkan perpindahan tab beranda dengan Tab serta memperbaiki tautan album dan artis yang hilang di hasil pencarian lokal. Mod Shino juga menambahkan liquid glass pada permukaan buram seperti tombol dan bilah atas, serta mengubah gaya tombol jendela menyerupai Windows 8 RP.",
+      "intro": "0.7.16 memindahkan lirik AMLL ke API resmi, menemukan jauh lebih banyak lirik AMLL untuk lagu QQ Music, dan memungkinkan pencocokan manual mencari langsung di AMLL. Rilis ini juga menambahkan perpindahan tab beranda dengan Tab serta memperbaiki tautan album dan artis yang hilang di hasil pencarian lokal.",
       "amllSource": {
         "title": "Lirik AMLL lewat API Resmi",
         "description": "Lirik AMLL kini diambil dari API resmi AMLL."
@@ -3717,14 +3911,6 @@ export default {
       "searchLinks": {
         "title": "Tautan Hasil Pencarian Lokal Tidak Lagi Hilang",
         "description": "Jika Anda mencari tepat setelah mengimpor folder, tautan album dan artis di hasilnya kini terisi setelah pustaka selesai dimuat, tanpa perlu mencari ulang."
-      },
-      "liquidGlass": {
-        "title": "Liquid Glass Ditambahkan",
-        "description": "Efek liquid glass kini diterapkan pada permukaan buram seperti tombol dan bilah atas, memberi tekstur kaca yang lebih kaya pada antarmuka."
-      },
-      "windowButtons": {
-        "title": "Tombol Jendela Diganti Gaya",
-        "description": "Tombol jendela telah disesuaikan untuk menyerupai gaya Windows 8 RP."
       }
     },
     "v0_7_15": {
@@ -4149,18 +4335,6 @@ export default {
     "cloudDrive": "Cloud Drive",
     "cloudDriveDesc": "NetEase Cloud Music Drive",
     "qqCloudDriveDesc": "Weiyun Music Drive"
-  },
-  "fnmusic": {
-    "serverUrl": "Alamat server",
-    "serverUrlPlaceholder": "cth: http://192.168.1.10:5666",
-    "username": "Akun",
-    "usernamePlaceholder": "Akun fnOS Music atau akun NAS",
-    "password": "Kata sandi",
-    "login": "Masuk",
-    "loginNote": "Masukkan alamat server, akun, dan kata sandi fnOS Music",
-    "errorBadCredentials": "Akun atau kata sandi salah",
-    "errorNetwork": "Tidak dapat menghubungi server. Periksa alamat dan koneksi Anda.",
-    "errorBadResponse": "Server mengembalikan respons yang tidak dikenali"
   },
   "hifi": {
     "settings": {
@@ -4628,6 +4802,10 @@ export default {
     "loopAll": "Ulangi Semua",
     "loopOne": "Ulangi Satu",
     "more": "Lainnya",
+    "queue": "Antrean",
+    "queueSearch": "Cari di {{count}} lagu",
+    "queueSearchClear": "Hapus pencarian",
+    "queueNoMatch": "Tidak ada lagu yang cocok",
     "noTrack": "Tidak ada lagu aktif",
     "unknownArtist": "Artis tidak dikenal",
     "tabMainWindow": "Jendela utama",
@@ -5511,8 +5689,8 @@ export default {
         "combineBackground": "Ganti latarnya saja: gaya lirik tetap. Pengaturan latar ada di halaman Latar pada jendela Gaya Lirik.",
         "combineStyle": "Sekarang ganti gaya liriknya saja: latar yang baru dipilih tetap. Latar apa pun cocok dengan gaya lirik apa pun; hanya gaya Still yang tidak menggambar latar.",
         "subtitleShared": "Sebagian besar gaya lirik berbagi satu baris subtitel di bawah ini. Monet, Pendolo, dan Still menaruh terjemahan di tata letaknya sendiri dan tidak memakainya.",
-        "subtitleContent": "Pengaturannya ada di halaman Subtitle pada jendela Gaya Lirik dan berlaku untuk semua gaya yang memakainya. Baris kedua memilih terjemahan, romanisasi, keduanya bertumpuk, atau tidak ada.",
-        "subtitleBlur": "Matikan “Buramkan lirik non-terjemahan”, dan subtitel tidak lagi buram.",
+        "subtitleContent": "Pengaturannya ada di halaman Subtitle pada jendela Gaya Lirik dan berlaku untuk semua gaya yang memakainya. Ia menampilkan satu, dua, atau tiga baris, masing-masing baris lirik saat ini, baris berikutnya, terjemahan, atau romanisasi.",
+        "subtitleBlur": "Matikan “Buramkan lirik berikutnya”, dan subtitel tidak lagi buram.",
         "subtitleFont": "Matikan “Subtitle Menggunakan Font Lirik” untuk memberi subtitel font dan ketebalan sendiri. “Skala subtitle” mengatur ukurannya sendiri dan selalu tersedia."
       },
       "visPlayground": {
@@ -5529,8 +5707,8 @@ export default {
         "animation": "Gaya lirik dipilih di deretan gambar di bawah pratinjau: klik satu dan gayanya berganti. Jumlahnya lebih banyak daripada yang muat dalam satu bab dan layak kamu telusuri sendiri, jadi tidak didaftar di sini.",
         "perMode": "Halaman Lirik berisi pengaturan milik gaya yang kamu pilih; ganti gayanya dan halaman ini ikut berganti.",
         "background": "Halaman Latar bekerja dengan cara yang sama: pilih latar dari kisi gambar ini, lalu setel latar itu. Ia lapisan terpisah dari gaya lirik, jadi keduanya dipilih sendiri-sendiri dan pasangan mana pun boleh.",
-        "subtitleContent": "Baris kedua menentukan isi subtitle: terjemahan, romanisasi, keduanya dengan romanisasi di atas, atau tidak ada. Monet, Pendolo, dan Still hanya menampilkan terjemahan saat memilih keduanya.",
-        "subtitleLegibility": "Tiga baris di bawahnya soal keterbacaan subtitle di atas gambar yang bergerak: “Opasitas Subtitle”, “Latar Belakang Subtitle”, dan “Buramkan lirik non-terjemahan”.",
+        "subtitleContent": "Pertama pilih jumlah baris subtitle bawah, satu, dua, atau tiga, lalu isi tiap baris: baris lirik saat ini, baris berikutnya, terjemahan, atau romanisasi. “Konten Subtitle” di bawahnya hanya untuk subtitle yang ditata sendiri oleh Monet, Pendolo, dan Still.",
+        "subtitleLegibility": "Tiga baris di bawahnya soal keterbacaan subtitle di atas gambar yang bergerak: “Opasitas Subtitle”, “Latar Belakang Subtitle”, dan “Buramkan lirik berikutnya”.",
         "subtitleFont": "Secara bawaan subtitle mengikuti fon lirik. Matikan itu dan fon serta ketebalannya sendiri muncul; “Skala subtitle” selalu ada."
       },
       "themePark": {
