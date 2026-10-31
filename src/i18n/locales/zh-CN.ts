@@ -289,7 +289,9 @@ export default {
     "dioramaReset": "镜台参数已重置",
     "temperaReset": "凝彩参数已重置",
     "lumiereReset": "绘光参数已重置",
+    "nebbiaReset": "雾笺参数已重置",
     "hanabiReset": "花火参数已重置",
+    "machiReset": "町景参数已重置",
     "uploadEmojiFirst": "请先上传自定义表情包",
     "monetBgUpdated": "Monet 背景图已更新",
     "monetBgCleared": "Monet 背景图已清空",
@@ -364,7 +366,7 @@ export default {
     "noSongPlaying": "当前没有正在播放的歌曲",
     "neteaseApiStartupFailed": "网易云接口启动失败，部分在线功能不可用",
     "neteaseApiStartupFailedDetail": "网易云接口启动失败，部分在线功能不可用：{{reason}}",
-    "generatingTheme": "少女祈祷中...",
+    "generatingTheme": "主题构想中...",
     "themeApplied": "已应用主题: {{themeName}}",
     "aiThemeUpdated": "AI 主题已更新: {{themeName}}",
     "themeGenerationFailed": "主题生成失败。",
@@ -376,6 +378,7 @@ export default {
     "syncFailed": "同步失败",
     "loginExpired": "登录状态已失效，请重新登录",
     "songPreviewOnly": "当前账号仅可试听此歌曲",
+    "songVipFullUnavailable": "第三方播放器暂时无法获取完整VIP歌曲",
     "songSubscriptionRequired": "{{provider}}需要会员才能播放",
     "songRegionRestricted": "仅限中国大陆网络播放",
     "songRetrying": "连接失败，正在重试…",
@@ -610,8 +613,8 @@ export default {
       "settings-help": { "title": "打开帮助", "description": "打开帮助和快捷键" },
       "ponder-current-page": { "title": "思索当前页面", "description": "打开当前页面的交互式介绍" },
       "settings-options": { "title": "打开选项", "description": "打开设置中心" },
-      "settings-ai-provider": { "title": "AI 供应商设置", "description": "选择 AI 供应商和模型" },
       "settings-now-playing-card-position": { "title": "调整卡片位置", "description": "拖动正在播放卡片到新的位置" },
+      "settings-ai-provider": { "title": "AI 供应商设置", "description": "选择 AI 供应商和模型" },
       "settings-appearance": { "title": "外观设置", "description": "打开视觉和外观设置" },
       "settings-general": { "title": "通用设置", "description": "打开全局应用偏好" },
       "settings-playback": { "title": "播放设置", "description": "打开播放行为设置" },
@@ -668,6 +671,7 @@ export default {
       "video-layer-toggle": { "title": "歌词后方视频层", "description": "显示或隐藏歌词后方的静音视频层" },
       "video-layer-pick": { "title": "视频层：选择本地视频", "description": "选择在歌词后方播放的本地视频" },
       "visualizer-toggle-random-per-song": { "title": "每首歌随机歌词动画", "description": "歌曲切换时随机使用一种歌词动画模式" },
+      "visualizer-machi-camera-bar": { "title": "町景：取景", "description": "在播放页显示或收起町景的取景控制条，调视角、对焦、光圈和运镜" },
       "visualizer-toggle-glow-blur-quantize": { "title": "修复 Linux 歌词动画卡死", "description": "改变部分歌词动画的发光绘制方式，修复 Linux 下长时间播放后偶发的卡死问题" },
       "settings-visualizer": { "title": "歌词动画样式设置", "description": "打开歌词动画实验台" },
       "settings-theme-park": { "title": "配色", "description": "打开主题编辑器" },
@@ -759,6 +763,7 @@ export default {
       "library-wall-seam-direction-picker": { "title": "选择信息条方向", "description": "信息条竖着开、从块的横向缝隙横着开，或按屏幕形状自动选" },
       "settings-theme-presets": { "title": "预设配色", "description": "直接跳到内置和已保存的预设配色" },
       "settings-liquid-glass": { "title": "流体玻璃", "description": "直接跳到流体玻璃强度、模糊与预设" },
+      "settings-lyric-render-quality": { "title": "歌词画布分辨率与抗锯齿", "description": "直接跳到 canvas / WebGL 歌词样式默认跟随的分辨率和抗锯齿设置" },
       "settings-lyrics-renderer": { "title": "歌词渲染方式", "description": "直接跳到播放器歌词的绘制方式设置" },
       "settings-grid-card-style": { "title": "网格卡片样式", "description": "直接跳到首页网格卡片的绘制样式" },
       "settings-queue-behavior": { "title": "队列行为", "description": "直接跳到播放队列的组建与保留方式" },
@@ -828,7 +833,9 @@ export default {
       "smart-beat-on": { "title": "智能动感模式：开启", "description": "开启智能动感模式（商籁、镜台按节拍，时计按鼓点驱动画面），没分析过的歌当场分析" },
       "visualizer-tempera": { "title": "切换到可视化：凝彩", "description": "切换到凝彩色块 PV 可视化" },
       "visualizer-lumiere": { "title": "切换到可视化：绘光", "description": "切换到绘光舞台光 PV 可视化" },
+      "visualizer-nebbia": { "title": "切换到可视化：雾笺", "description": "切换到雾笺：在起雾的公交车窗上写歌词" },
       "visualizer-hanabi": { "title": "切换到可视化：花火", "description": "切换到花火烟花歌词 PV 可视化" },
+      "visualizer-machi": { "title": "切换到可视化：町景", "description": "切换到町景微缩街景可视化" },
       "desktop-toggle-remote-control": { "title": "切换遥控窗口", "description": "打开或关闭遥控窗口" },
       "desktop-toggle-main-window-always-on-top": { "title": "切换主窗口置顶", "description": "置顶或取消置顶主窗口" },
       "background-monet-full-overlay": { "title": "背景切换到 莫奈: 全屏叠色", "description": "切换背景到莫奈全屏叠色" },
@@ -841,11 +848,9 @@ export default {
       "background-latent-both": { "title": "背景切换到隐现：混合", "description": "同时显示 隐现 像素与流体层" },
       "background-url": { "title": "背景切换到 嵌入背景", "description": "切换背景到嵌入网页模式" },
       "background-sora": { "title": "背景切换：空", "description": "将背景切换到星空 (Sora)" },
-      "background-transparent": { "title": "背景切换到 透明", "description": "将背景切换为完全透明" },
       "settings-toggle-transparent": { "title": "透明化", "description": "切换播放器背景透明度" },
       "settings-toggle-daylight": { "title": "切换明暗", "description": "切换主题日夜模式" },
       "settings-toggle-player-back-button": { "title": "始终显示播放页返回按钮", "description": "切换播放页左上角返回按钮的常驻显示" },
-      "settings-toggle-player-bar-pinned": { "title": "固定播放条", "description": "让底部播放条保持展开，不再自动收缩" },
       "settings-gridview-cards": { "title": "网格卡片外观", "description": "直接调整全画幅封面和网格卡片的远近缩放与淡出" },
       "settings-toggle-gridview-full-bleed-cover": { "title": "全画幅封面", "description": "开关网格卡片的封面铺满整张卡片" },
       "settings-toggle-gridview-square-cards": { "title": "正方形网格卡片", "description": "开关全画幅网格卡片使用正方形而非竖版比例" },
@@ -924,7 +929,9 @@ export default {
     "visualizerSonnet": "商籁",
     "visualizerTempera": "凝彩",
     "visualizerLumiere": "绘光",
+    "visualizerNebbia": "雾笺",
     "visualizerHanabi": "花火",
+    "visualizerMachi": "町景",
     "cadenzeTuning": "心象参数",
     "resetVisualizerTuning": "重置歌词动画参数",
     "cadenzeOnly": "仅心象",
@@ -1125,6 +1132,7 @@ export default {
     "queueReplaceUndoGone": "队列在替换之后又改过了，没有可以撤销的替换",
     "queueReplaceHint": "可以一次换掉整个播放队列，并结束私人 FM；替换后会提示是哪个模组换的，在队列再被改动之前可以撤销。",
     "equalizerControlHint": "会改写你的音效设置：可以切换音效预设，或换上它自己的均衡器曲线。",
+    "renderQualityHint": "会改写歌词画布的渲染质量：可以修改「性能与动效」里的歌词画布分辨率与抗锯齿。",
     "signatureVerified": "官方认证",
     "signatureVerifiedDetail": "带有有效的 Folium 官方签名（{{key}}）：来源与内容经过官方审查，签名后未被修改。它启用后仍以应用的完整权限运行。",
     "signatureBeta": "先行测试",
@@ -1430,10 +1438,7 @@ export default {
     "noteDeviceLimit": "请在手机上退出不用的设备后重试",
     "noteWrongScanApp": "请用这种登录方式对应的 App 扫码，或改选别的登录方式",
     "noteCloseBrowser": "请关闭该浏览器后重试",
-    "noteUnknown": "未知错误",
-    "submit": "提交",
-    "submitting": "提交中…",
-    "formErrorUnknown": "登录失败，请检查填写内容后重试"
+    "noteUnknown": "未知错误"
   },
   "failure": {
     "unreachable": "无法连接{{provider}}",
@@ -1449,7 +1454,7 @@ export default {
     "noteSignIn": "请重新登录",
     "noteUnknown": "未知错误",
     "accountRefused": "此{{provider}}账号无法播放",
-    "noteAccountRefused": "平台限制 2024 年底后注册的账号在第三方播放器中播放",
+    "noteAccountRefused": "官方限制，无法获取音频",
     "noteMaybeSignIn": "登录后或许可以播放",
     "noteMaybeSubscription": "可能需要会员才能播放",
     "noteMaybeRegion": "可能受地区限制",
@@ -1495,8 +1500,6 @@ export default {
     "loginNoteQishui": "请使用抖音 App 扫码并确认授权",
     "loginTitleBodian": "使用波点音乐 App 扫码",
     "loginNoteBodian": "打开波点音乐 App 扫描二维码并确认登录",
-    "loginTitleFnMusic": "登录飞牛音乐",
-    "loginNoteFnMusic": "填入你的飞牛音乐服务器地址与账号，畅听 NAS 私有音乐库",
     "loginTitleYtm": "登录 YouTube Music",
     "loginNoteYtmBrowser": "会打开一个单独的浏览器窗口。在里面登录 Google，看到 YouTube Music 显示你的账号后，关掉那个窗口。",
     "loginNoteYtmBrowserMac": "会打开一个单独的浏览器窗口。在里面登录 Google，看到 YouTube Music 显示你的账号后，退出那个浏览器（⌘Q）。",
@@ -1735,6 +1738,7 @@ export default {
     "releaseNotes": "版本更新",
     "releaseNotesDescription": "查看这个版本带来的变化",
     "majorUpdateLabel": "{{codename}} Update · 重大更新",
+    "servicePackLabel": "{{codename}} Update SP{{servicePack}} · 重大更新",
     "ponder": "思索帮助页",
     "ponderDescription": "了解 Folia 的基本操作与运行逻辑",
     "version": "版本"
@@ -2115,6 +2119,8 @@ export default {
     "bravaisSeamDirectionDesc": "竖向时信息条从块与块之间的竖缝裂开，墙左右分开；横向时从块行之间的横缝裂开，墙上下分开，信息条是一道横跨屏幕的横条。列表面板、表单与歌手 / 专辑海报始终是竖的。",
     "bravaisSeamDirectionAuto": "自动",
     "bravaisSeamDirectionAutoDesc": "竖着的屏幕（手机竖屏、竖长的窗口）用横条，横着的用竖缝；转屏时随之切换。",
+    "bravaisSeamDirectionAutoReverse": "自动（反向）",
+    "bravaisSeamDirectionAutoReverseDesc": "竖着的屏幕用竖缝，横着的屏幕（桌面窗口、手机横屏）用横条；转屏时随之切换。",
     "bravaisSeamDirectionVertical": "竖向",
     "bravaisSeamDirectionVerticalDesc": "从块与块之间的竖缝裂开，墙左右分开。",
     "bravaisSeamDirectionHorizontal": "横向",
@@ -2330,8 +2336,8 @@ export default {
     "hidePlayerRightPanelButton": "隐藏右侧按钮",
     "transparentPlayerBackground": "播放页透明背景",
     "transparentPlayerBackgroundDesc": "透明窗口模式，适合 OBS 浏览器源或抠像叠加。",
-    "enablePlayerPageNativeBlur": "亚克力背景",
-    "enablePlayerPageNativeBlurHint": "用系统毛玻璃替代播放页背景，但流体玻璃不会折射系统亚克力",
+    "enablePlayerPageNativeBlur": "开启播放页原生毛玻璃背景",
+    "enablePlayerPageNativeBlurHint": "用系统毛玻璃替代播放页背景，更耗性能",
     "enablePlayerPageNativeBlurDesc": "仅在桌面版的非透明模式下生效；移动窗口时可能卡顿。",
     "nativeBlurConfirmTitle": "系统毛玻璃效果",
     "nativeBlurConfirmDesc": "开启后，窗口会变为系统毛玻璃效果的半透明背景，Folia 的各种背景将不再显示。如果系统不支持，则会显示为白色不透明背景。",
@@ -2541,7 +2547,7 @@ export default {
     "subtitleOverlayOpacity": "字幕透明度",
     "subtitleOverlayBackground": "字幕背景",
     "subtitleOverlayBackgroundDesc": "为底部字幕添加主题自适应的柔和扩散光晕，提高复杂画面中的可读性。",
-    "subtitleUpcomingLyricsBlur": "非翻译歌词添加模糊效果",
+    "subtitleUpcomingLyricsBlur": "下一句歌词添加模糊效果",
     "showHarmonySubtitle": "显示和声字幕",
     "showHarmonySubtitleDesc": "显示或隐藏顶部的和声歌词层。",
     "harmonySubtitleBackground": "和声字幕背景",
@@ -2554,6 +2560,17 @@ export default {
     "subtitleContentRomanization": "罗马音",
     "subtitleContentBoth": "罗马音 + 翻译",
     "subtitleContentNone": "不显示",
+    "subtitleContentModeDesc": "莫奈、时计、Lattice 和静止排进自己版面的副字幕，以及顶部和声字幕显示什么。底部字幕按上面的行数和每行内容显示。",
+    "subtitleOverlayRows": "底部字幕行数",
+    "subtitleOverlayRowsDesc": "双行和三行的第一行固定是当前句，后面每行可选下一句、翻译或罗马音。",
+    "subtitleOverlayRowsOne": "单行",
+    "subtitleOverlayRowsTwo": "双行",
+    "subtitleOverlayRowsThree": "三行",
+    "subtitleOverlayRow1": "第一行",
+    "subtitleOverlayRow2": "第二行",
+    "subtitleOverlayRow3": "第三行",
+    "subtitleOverlaySourceCurrent": "当前句",
+    "subtitleOverlaySourceNext": "下一句",
     "classicSettings": "流光参数",
     "classicWordRotation": "逐字旋转",
     "classicBreathingFloatMultiplier": "呼吸浮动范围",
@@ -2677,6 +2694,7 @@ export default {
     "beatEffectsOpenSmartBeat": "前往「全局」",
     "beatEffectStrength": "强度",
     "beatEffectNeedsDrums": "这次安装缺少 HTDemucs 模型，请重新安装 Folia。没有鼓的歌也不出效果。",
+    "beatEffectNeedsStems": "这次安装缺少 HTDemucs 模型，请重新安装 Folia。",
     "beatEffect_sonnetLensTear": "推镜裂光",
     "beatEffect_sonnetLensTearDesc": "跟着 beat_this 识别的节拍：每拍镜头推近，小节第一拍撕裂并泛起辉光。",
     "beatEffect_dioramaRipple": "水镜涟漪",
@@ -2685,6 +2703,10 @@ export default {
     "beatEffect_pendoloDrumheadDesc": "跟着 HTDemucs 分离出的鼓声：底鼓让表盘鼓起，重的震屏；军鼓打在偏处，表盘朝那边倾；镲片点亮刻度和内圈。",
     "beatEffect_temperaInkFlash": "墨染奥行",
     "beatEffect_temperaInkFlashDesc": "给凝彩加上景深和运镜：水印和背景图片在后、略虚，前景图片在前、更虚，随镜头前后错开；每个镜头朝上下左右随机一个方向平移；字越大越近越实，越小越远越淡。并跟着 HTDemucs 分离出的鼓声：平时纸面带一层浅灰水渍，底鼓、军鼓打下时漫过一片墨渍，约半秒淡回，墨色跟随凝彩配色的强调色。",
+    "beatEffect_nebbiaDrizzleRide": "疏雨轻车",
+    "beatEffect_nebbiaDrizzleRideDesc": "雾笺的雨和车跟着 HTDemucs 分离出的歌走：雨跟人声，唱得越响，砸在玻璃上的小雨点越多，每个吐字砸下一颗大雨点，躲开正在唱的那句；车跟底鼓颠，不再随机颠簸。雨点和颠簸各有一条强度，拉到 0 就不下雨或不颠。歌还没分析完时，雨点跟着混音里人声那一段频率走，车照旧随机颠。",
+    "beatEffectPart_nebbiaRain": "雨点强度",
+    "beatEffectPart_nebbiaBump": "颠簸强度",
     "beatEffect_pendoloGearBeats": "齿轮随拍",
     "beatEffect_pendoloGearBeatsDesc": "齿轮跟着 beat_this 识别的节拍转动。（已停用）",
     "beatEffect_latentPulse": "潮汐脉动",
@@ -2693,6 +2715,12 @@ export default {
     "beatEffect_hanabiBeatBurstsDesc": "跟着 beat_this 识别的节拍：每拍在夜空里开一朵小烟花，小节第一拍提前升空、正好在拍上开一朵大的；重的拍开得更大。",
     "beatEffect_hanabiBeatPulse": "随拍推镜",
     "beatEffect_hanabiBeatPulseDesc": "跟着 beat_this 识别的节拍：整个画面每拍推近一下、轻轻一摆，小节第一拍推得更深。",
+    "beatEffect_machiNeonPulse": "霓虹随拍",
+    "beatEffect_machiNeonPulseDesc": "跟着 beat_this 识别的节拍：招牌霓虹分成三组，每拍轮到一组慢慢亮起、再慢慢暗下，此起彼伏；店里的灯和亮窗每小节跟着慢慢涨落一点。",
+    "beatEffect_machiDrumRipple": "鼓点涟漪",
+    "beatEffect_machiDrumRippleDesc": "跟着 HTDemucs 分离出的鼓声：底鼓打下时，从歌词屏脚下在湿地面上荡开一圈涟漪，地上的倒影跟着晃；地面干的时候改成地上的光斑跳一下。",
+    "beatEffect_machiScreenFlash": "大屏闪拍",
+    "beatEffect_machiScreenFlashDesc": "跟着 HTDemucs 分离出的鼓声：每下军鼓在歌词大屏的一处慢慢亮起、再慢慢暗下，先后几下落在不同的位置；军鼓再密也只是柔和地起伏，不会频闪。",
     "temperaMotionSection": "动态与调色",
     "temperaDisplaySection": "显示内容",
     "temperaLyricSection": "歌词分镜",
@@ -2795,6 +2823,64 @@ export default {
     "lumiereFrontBokeh": "前景散景",
     "lumiereLineArt": "线稿",
     "lumiereOverlayFrame": "画框",
+    "nebbiaWriting": "雾上写字",
+    "nebbiaWindow": "车窗与街景",
+    "nebbiaAppear": "出现",
+    "nebbiaAppearAuto": "自动",
+    "nebbiaAppearWrite": "手指书写",
+    "nebbiaAppearFade": "慢慢显现",
+    "nebbiaFade": "消失",
+    "nebbiaFadeFog": "慢慢起雾",
+    "nebbiaFadeFingers": "手指抹掉",
+    "nebbiaFadeMix": "随机",
+    "nebbiaAppearBreath": "哈气后书写",
+    "nebbiaCustom": "自定义",
+    "nebbiaAppearHint": "书写的两种开着几种就每句随机挑一种；慢慢显现和书写一起开时，只用在来不及写完的句子上。屏上写满时的哈气不受这里影响。",
+    "nebbiaFadeHint": "两种都开就每句随机。",
+    "nebbiaLayouts": "构图",
+    "nebbiaLayoutsHint": "每句在打开的构图里挑最合适的一种；实在放不下的长句仍按三行摆。",
+    "nebbiaJitter": "手写歪斜",
+    "nebbiaWarp": "手写变形",
+    "nebbiaCredits": "片尾写曲名和歌手",
+    "nebbiaCreditsHint": "最后一句唱完后，在玻璃正中手写出曲名，下面写歌手，一直留到歌曲结束。",
+    "nebbiaLayout_ribbon": "横条",
+    "nebbiaLayout_lines2": "两行错落",
+    "nebbiaLayout_lines3": "三行错落",
+    "nebbiaLayout_cross": "十字",
+    "nebbiaLayout_pillar": "竖柱",
+    "nebbiaLayout_header": "刊头",
+    "nebbiaLayout_badge": "徽章",
+    "nebbiaLayout_columns": "竖排几列",
+    "nebbiaLayout_orbit": "环绕",
+    "nebbiaStrokeWidth": "笔画粗细",
+    "nebbiaWriteSpeed": "书写速度",
+    "nebbiaDoodle": "句尾画图标",
+    "nebbiaMist": "雾气浓度",
+    "nebbiaHold": "下一句开始后保持",
+    "nebbiaRefog": "重新起雾用时",
+    "nebbiaBusSpeed": "车速",
+    "nebbiaNeon": "霓虹",
+    "nebbiaBump": "颠簸",
+    "nebbiaSpot": "聚光灯",
+    "nebbiaSpotX": "聚光灯位置",
+    "nebbiaRainHit": "雨点打在玻璃上",
+    "nebbiaRainBig": "吐字时的大雨点",
+    "nebbiaScenery": "窗外显示",
+    "nebbiaSceneryHint": "窗外每样都能单独关掉，全关时只剩天色。光斑是霓虹、路灯和招牌；关掉马路时车灯和光斑也没有倒影。玻璃上的雨点在上面的滑块里调。",
+    "nebbiaScenery_spot": "聚光灯",
+    "nebbiaScenery_buildings": "楼群",
+    "nebbiaScenery_lights": "光斑",
+    "nebbiaScenery_cars": "车灯",
+    "nebbiaScenery_road": "马路",
+    "nebbiaRain": "窗外的雨",
+    "nebbiaRainHint": "窗外的雨只在聚光灯的光柱里、玻璃擦干净的地方看得见；斜着落时随车速倾斜。",
+    "nebbiaRain_slant": "斜着",
+    "nebbiaRain_straight": "竖直",
+    "nebbiaRain_off": "不下",
+    "nebbiaBehind": "窗外",
+    "nebbiaBehindHint": "雨夜街景，或者用共用背景。用背景时雾变成一层半透明的雾（日间主题是白雾、夜间主题是深色的雾），擦开的字透出后面的背景；播放页透明时总是这样，透出的是桌面。",
+    "nebbiaBehind_night": "雨夜街景",
+    "nebbiaBehind_backdrop": "背景",
     "lumiereUnlitOpacity": "未唱字透明度",
     "lumiereWindowNeighbors": "邻行",
     "lumiereWindowNeighborsPrev": "上一行 + 当前行",
@@ -2819,6 +2905,91 @@ export default {
     "lumiereRenderQualityLow": "省电",
     "lumiereRenderQualityHint": "均衡 / 省电会降低光场与辉光的分辨率并限制烟雾细节，画面略软但更省电。",
     "hanabiFontSizeAutoNotice": "花火模式会根据画面尺寸和每个镜头的文字区自动计算歌词字号；通用字体尺寸设置在此模式下只影响底部字幕。",
+    "machiFontSizeAutoNotice": "町景会按场景里屏幕和招牌的大小自动排歌词字号；通用字体尺寸设置在此模式下只影响底部字幕。",
+    "machiSceneSection": "场景",
+    "machiScene": "场景",
+    "machiSceneHint": "自动：每首歌选一个场景，同一首歌总是同一个。",
+    "machiSceneAuto": "自动",
+    "machiSceneKonbini": "便利店",
+    "machiSceneStation": "加油站",
+    "machiSceneKowloon": "城寨酒吧",
+    "machiSkySection": "时间与天气",
+    "machiTimeOfDay": "时间",
+    "machiTimeOfDayHint": "自动：跟本地时间走，白天、黄昏或夜里。",
+    "machiTimeAuto": "自动",
+    "machiTimeDay": "白天",
+    "machiTimeDusk": "黄昏",
+    "machiTimeNight": "夜间",
+    "machiWeather": "天气",
+    "machiWeatherHint": "自动：按歌决定天气。下雨时每段副歌开头会打雷。",
+    "machiWeatherAuto": "自动",
+    "machiWeatherClear": "晴",
+    "machiWeatherRain": "雨",
+    "machiWeatherSnow": "雪",
+    "machiWeatherFog": "雾",
+    "machiCameraSection": "镜头",
+    "machiCameraMode": "视角",
+    "machiCameraModeHint": "在画面上拖动转视角、滚轮缩放、右键（或双指）拖动平移。默认视角：松手约 8 秒后回到默认构图。自定义视角：松手就停在那里并记住，也可以用下面的滑块调；每个场景各记一份。",
+    "machiCameraDefault": "默认视角",
+    "machiCameraCustom": "自定义视角",
+    "machiViewAzimuth": "水平转角",
+    "machiViewElevation": "俯仰",
+    "machiViewZoom": "远近",
+    "machiViewPanX": "左右平移",
+    "machiViewPanZ": "前后平移",
+    "machiViewReset": "回到默认构图",
+    "machiViewScene": "调哪个场景",
+    "machiViewSceneHint": "场景是“自动”时，下面的滑块调哪个场景的视角；默认是正在画的那个。",
+    "machiCameraMotion": "运镜",
+    "machiCameraMotionHint": "镜头在视角附近缓慢地转动、推近拉远、平移，跟着歌曲暂停。拖动时停下，回到视角后再接着走。",
+    "machiCameraMotionSpeed": "运镜速度",
+    "machiCameraBar": "取景",
+    "machiCameraBarView": "视角",
+    "machiCameraBarLens": "对焦与光圈",
+    "machiCameraBarMotion": "运镜",
+    "machiCameraBarReset": "复位",
+    "machiCameraBarClose": "收起",
+    "machiDofSection": "景深",
+    "machiAperture": "光圈",
+    "machiApertureHint": "往右光圈越大：清晰的那一层越薄，焦外越虚，灯光和霓虹虚成圆形的光斑。f/8 是原来的微缩感。",
+    "machiDof": "景深强度",
+    "machiDofHint": "离对焦处越远越虚；0 是关掉。",
+    "machiDofRange": "清晰范围",
+    "machiTiltShift": "移轴",
+    "machiTiltShiftHint": "画面上下两头虚掉，像微缩模型的照片。",
+    "machiFocus": "对焦",
+    "machiFocusHint": "画面中心：镜头绕着转的那一点。歌词屏：对在场景里的歌词屏上。手动：从画面中心往前或往后挪。",
+    "machiFocusCenter": "画面中心",
+    "machiFocusLyrics": "歌词屏",
+    "machiFocusManual": "手动",
+    "machiFocusOffset": "对焦前后",
+    "machiQualitySection": "画质",
+    "machiQuality": "预设",
+    "machiQualityHint": "高、平衡、低是几套现成的组合；改了下面任何一项就成了自定义。帧率上限在设置的「性能与动效」里，对所有样式生效。",
+    "machiQualityCustom": "自定义",
+    "machiQualityHigh": "高",
+    "machiQualityBalanced": "平衡",
+    "machiQualityLow": "低",
+    "machiRenderScale": "分辨率",
+    "machiRenderScaleHint": "按屏幕像素的几成来画：低一些会糊一点，但快很多。高 DPI 屏上最多按 2 倍算。跟随全局时用「性能与动效」里的歌词画布分辨率（现在是 {{value}}，高于 1× 按超采样画）。",
+    "machiAntialias": "抗锯齿",
+    "machiAntialiasHint": "FXAA 最省，字会略软；SMAA 边缘干净，墨线和雨丝也平滑，代价稍高；超采样按 2 倍分辨率画再缩回来，最细也最贵。跟随全局时，全局挡位开着（现在是{{value}}）就是 SMAA，关着就是关。",
+    "machiAntialiasOff": "关",
+    "machiAntialiasFxaa": "FXAA",
+    "machiAntialiasSmaa": "SMAA",
+    "machiAntialiasSsaa": "超采样",
+    "machiShadows": "阴影",
+    "machiShadowsHint": "月光和太阳的投影。",
+    "machiReflections": "倒影",
+    "machiReflectionsHint": "湿路面上灯和招牌的倒影；只在路面湿的时候才画。",
+    "machiLevelOff": "关",
+    "machiLevelLow": "低",
+    "machiLevelHigh": "高",
+    "machiGlow": "辉光与光条",
+    "machiGlowHint": "夜里灯和招牌晕开的光，以及横向的镜头光条。",
+    "machiAdaptive": "自动降级",
+    "machiAdaptiveHint": "帧率长期偏低时，在这套设置之下逐步降低（先关景深的虚化，再退超采样和几何边缘的 MSAA，然后是倒影、辉光、分辨率、后期抗锯齿，阴影最后），不会高过你选的。改了设置会从新的这套重新开始。",
+    "machiAdaptiveActive": "现在已经降了 {{count}} 档。",
     "hanabiFireworksSection": "烟花",
     "hanabiStageSection": "画面",
     "hanabiTextSection": "文字",
@@ -2958,13 +3129,13 @@ export default {
     "gpuPreferenceCommandLineNotice": "这次启动带了显卡参数，以启动参数为准",
     "gpuPreferenceActive": "当前使用",
     "visualizerFrameRateValue": "限制档位",
-    "liquidGlassSection": "高级材质",
+    "liquidGlassSection": "液态玻璃",
     "liquidGlassSectionDesc": "调整Folia界面组件的材质。",
     "liquidGlassPreset": "预设",
     "liquidGlassPresetDesc": "一键套用一组强度、模糊与边缘弯曲距离的常见观感。",
     "liquidGlassPresetFrosted": "毛玻璃",
-    "liquidGlassPresetClear": "通透流体",
-    "liquidGlassPresetHazy": "朦胧流体",
+    "liquidGlassPresetClear": "通透液态玻璃",
+    "liquidGlassPresetHazy": "朦胧液态玻璃",
     "liquidGlassPresetEco": "节能",
     "liquidGlassStrength": "折射强度",
     "liquidGlassStrengthDesc": "玻璃边缘折射背后内容的强弱。",
@@ -2980,6 +3151,17 @@ export default {
     "liquidGlassJellyDesc": "拖拽时拉伸、松手回弹。",
     "liquidGlassGpuBlockedNotice": "渲染显卡选择了「省电」，流体玻璃不可用；切回「自动」或「高性能」并重启 Folia 后恢复。",
     "liquidGlassValueLabel": "当前值",
+    "lyricRenderScale": "歌词画布分辨率",
+    "lyricRenderScaleDesc": "用 canvas / WebGL 画的歌词样式（町景、花火、绘光、雾笺等）按这个倍数渲染，1× 是各样式原来的清晰度；高于 1× 是超采样，边缘更细，也更吃显卡。各样式默认跟随这里，也能在样式自己的设置里单独指定。",
+    "lyricAntialias": "歌词画布抗锯齿",
+    "lyricAntialiasDesc": "自动是各样式自己的默认；打开时几何边缘（线条、卡片、色块）更平滑，代价是显存和一点帧率。各样式默认跟随这里。",
+    "lyricAntialiasAuto": "自动",
+    "lyricAntialiasOn": "开",
+    "lyricAntialiasOff": "关",
+    "lyricRenderSection": "渲染",
+    "lyricRenderFollowGlobal": "跟随全局",
+    "lyricRenderScaleStyleHint": "这个样式按几倍分辨率画，高于 1× 是超采样。跟随全局时用「性能与动效」里的挡位（现在是 {{value}}）。",
+    "lyricAntialiasStyleHint": "跟随全局时用「性能与动效」里的挡位（现在是{{value}}）。",
     "themePresets": "配色主题预设",
     "themePresetsDefault": "墨染 / 素白",
     "openThemePark": "打开主题乐园",
@@ -3047,6 +3229,8 @@ export default {
     "geminiApiKey": "Gemini 密钥",
     "aiApiKeySavedPlaceholder": "已保存（留空则保持不变）",
     "aiApiKeySavedDesc": "密钥已加密保存在本机，不会再显示。输入新密钥并保存可替换。",
+    "aiApiKeyEndpointMismatchDesc": "已保存的密钥是之前 {{endpoint}} 用的，换了地址就不能再用。请输入新的密钥并保存。",
+    "aiApiKeyOtherProviderDesc": "已保存的密钥是之前 {{provider}} 的，切换服务商后不能再用。请输入新的密钥并保存。",
     "aiApiKeyClear": "清除",
     "openaiApiTemperature": "温度",
     "openaiApiStream": "流式传输",
@@ -3193,7 +3377,7 @@ export default {
     "importGroupSongTheme": "歌曲主题自动化",
     "importGroupTrackCard": "歌曲信息卡片",
     "importGroupLibraryWall": "资料库墙面",
-    "importGroupLiquidGlass": "流体玻璃",
+    "importGroupLiquidGlass": "液态玻璃",
     "importDerivedUnpin": "将同时关闭「固定自定义主题」",
     "importDerivedUploadedFont": "你上传的字体将被替换并删除，需要重新上传",
     "importFontUnavailable": "本机未安装此字体，导入后会回落到内置字体栈",
@@ -3473,6 +3657,52 @@ export default {
         "description": "登录后，自己创建的不公开歌单也能读取歌曲，并支持真正的分页加载。自建后端需要升级到 qq-music-api 3.1.2 或更新版本；旧后端会自动回退，读不到时会明确提示「不是公开歌单」，不再静默显示为空。"
       }
     },
+    "v0_7_25": {
+      "intro": "欢迎来到 0.7.25「Rainy Update SP1」：这是 0.7.24 的热修复版本，修复了歌词样式「雾笺」的性能问题——切换到它时不再卡住，播放时帧率更高、占用更低；控制页的主题来源切回「默认」时，也会真正换回默认主题。以下仍是 Rainy Update 带来的内容：两个雨夜歌词样式，在起雾的公交车窗上写歌词的「雾笺」，和三维微缩街景「町景」；底部字幕可以排成一到三行，桌面版的遥控窗口也能展开播放队列。",
+      "nebbia": {
+        "title": "雾笺",
+        "description": "新增歌词样式「雾笺」：雨夜的公交车上，手指在起雾的车窗上写下歌词。汉字按笔顺一笔一笔写出来，写过的地方擦出窗外的夜景，水珠沿着笔画聚起、往下淌，雾又慢慢漫回来；街上两束聚光灯跟着正在唱的字。歌词可以手写、慢慢显现或哈一口气再写，消失时慢慢起雾或被手指抹掉；最后一句唱完，玻璃上会写出曲名和歌手。智能动感模式「疏雨轻车」下，雨点跟着人声砸在玻璃上，车跟着底鼓颠簸。"
+      },
+      "machi": {
+        "title": "町景",
+        "description": "新增三维歌词样式「町景」：一座日本小镇的微缩街景，歌词写在镇上的招牌里——当前这句在 LED 大屏上逐字亮起，下一句在滚动字幕条上，歌名挂在店招上，主题的颜色和图标会换上连锁店的招牌。场景有便利店、加油站和城寨酒吧，时间有白天、黄昏和夜里，天气有晴、雨、雪、雾，都可以交给「自动」；下雨时路面湿亮、倒影拉长，副歌开头会打雷。拖动画面可以转视角，每个场景各记一份自定义视角；镜头会缓慢运镜，光圈、对焦和移轴在播放页的取景条里就能调。智能动感模式下霓虹跟着节拍此起彼伏，底鼓在湿地面上荡开涟漪，军鼓处歌词屏慢慢亮起。"
+      },
+      "subtitleRows": {
+        "title": "底部字幕行布局",
+        "description": "底部字幕可以排成单行、双行或三行：单行可选当前句、翻译或罗马音；多行时第一行是当前句，后面每行可选下一句、翻译或罗马音。在歌词样式窗口的字幕设置里调，不再跟着「副字幕内容」走，旧的设置会自动换成对应的布局。两句之间的空档里，字幕停在刚唱完的那句。Lattice 展开的歌曲卡片上也会显示和声字幕。"
+      },
+      "remoteQueue": {
+        "title": "遥控窗口播放队列",
+        "description": "桌面版遥控窗口新增队列按钮，展开后显示播放队列，当前这首居中，可以搜索；每首歌可以点播、下一首播放、移到队尾或移除。窗口按屏幕剩下的空间向下或向上展开，指针离开几秒后自动收起，按 Esc 先清空搜索再收起。"
+      },
+      "moreDetails": {
+        "title": "更多改进",
+        "description": "Bravais 的信息条方向新增「自动（反向）」，横竖屏的选择和「自动」正好相反。「当前播放声卡」现在对经过 Web Audio 的播放同样生效，不会再从系统默认设备出声。汽水的 VIP 歌改播试听片段时，提示改为第三方播放器暂时拿不到完整的 VIP 歌曲；Spotify 不给音频时，提示改为官方限制。登录窗口里鼠标停在平台列表最后一行时，界面不会再变成空白。"
+      }
+    },
+    "v0_7_24": {
+      "intro": "欢迎来到 0.7.24「Rainy Update」：这是一次重大更新。这一版新增两个雨夜歌词样式：在起雾的公交车窗上写歌词的「雾笺」，和三维微缩街景「町景」；底部字幕可以排成一到三行，桌面版的遥控窗口也能展开播放队列。",
+      "nebbia": {
+        "title": "雾笺",
+        "description": "新增歌词样式「雾笺」：雨夜的公交车上，手指在起雾的车窗上写下歌词。汉字按笔顺一笔一笔写出来，写过的地方擦出窗外的夜景，水珠沿着笔画聚起、往下淌，雾又慢慢漫回来；街上两束聚光灯跟着正在唱的字。歌词可以手写、慢慢显现或哈一口气再写，消失时慢慢起雾或被手指抹掉；最后一句唱完，玻璃上会写出曲名和歌手。智能动感模式「疏雨轻车」下，雨点跟着人声砸在玻璃上，车跟着底鼓颠簸。"
+      },
+      "machi": {
+        "title": "町景",
+        "description": "新增三维歌词样式「町景」：一座日本小镇的微缩街景，歌词写在镇上的招牌里——当前这句在 LED 大屏上逐字亮起，下一句在滚动字幕条上，歌名挂在店招上，主题的颜色和图标会换上连锁店的招牌。场景有便利店、加油站和城寨酒吧，时间有白天、黄昏和夜里，天气有晴、雨、雪、雾，都可以交给「自动」；下雨时路面湿亮、倒影拉长，副歌开头会打雷。拖动画面可以转视角，每个场景各记一份自定义视角；镜头会缓慢运镜，光圈、对焦和移轴在播放页的取景条里就能调。智能动感模式下霓虹跟着节拍此起彼伏，底鼓在湿地面上荡开涟漪，军鼓处歌词屏慢慢亮起。"
+      },
+      "subtitleRows": {
+        "title": "底部字幕行布局",
+        "description": "底部字幕可以排成单行、双行或三行：单行可选当前句、翻译或罗马音；多行时第一行是当前句，后面每行可选下一句、翻译或罗马音。在歌词样式窗口的字幕设置里调，不再跟着「副字幕内容」走，旧的设置会自动换成对应的布局。两句之间的空档里，字幕停在刚唱完的那句。Lattice 展开的歌曲卡片上也会显示和声字幕。"
+      },
+      "remoteQueue": {
+        "title": "遥控窗口播放队列",
+        "description": "桌面版遥控窗口新增队列按钮，展开后显示播放队列，当前这首居中，可以搜索；每首歌可以点播、下一首播放、移到队尾或移除。窗口按屏幕剩下的空间向下或向上展开，指针离开几秒后自动收起，按 Esc 先清空搜索再收起。"
+      },
+      "moreDetails": {
+        "title": "更多改进",
+        "description": "Bravais 的信息条方向新增「自动（反向）」，横竖屏的选择和「自动」正好相反。「当前播放声卡」现在对经过 Web Audio 的播放同样生效，不会再从系统默认设备出声。汽水的 VIP 歌改播试听片段时，提示改为第三方播放器暂时拿不到完整的 VIP 歌曲；Spotify 不给音频时，提示改为官方限制。登录窗口里鼠标停在平台列表最后一行时，界面不会再变成空白。"
+      }
+    },
     "v0_7_23": {
       "intro": "欢迎来到 0.7.23。桌面版新增 mpv 播放引擎，本地和 Navidrome 的歌可以按原样送到输出设备；ReplayGain 有了按实测响度调整的「智能平衡」，歌词过滤改成一条条规则；凝彩新增鼓点效果「墨染奥行」，界面也能切换成越南语。",
       "hifi": {
@@ -3501,30 +3731,30 @@ export default {
       }
     },
     "v0_7_22": {
-      "intro": "该版本是0.7.22 Beta版本，该版本供大家提前尝鲜，比官方更先一步体验0.7.22，整个播放器都很通透。",
-      "glassUpgrade": {
-        "title": "流体玻璃全面升级",
-        "description": "流体玻璃新增四组预设（毛玻璃、通透流体、朦胧流体、节能），每组都配了预览图，一键套用；新增「折射面距离」，控制边缘的折射区域从边框往中心延伸多远；新增「光效」，指针悬停在玻璃上时会有跟着走的高光，按下时更亮。修复了部分场景（列表、海报墙等）没有覆盖到流体玻璃的问题。这些参数同样会跟着外观配置一起导入导出，也会同步到 OBS 视觉设置。"
+      "intro": "欢迎来到 0.7.22「Sparkle Update」：这是一次重大更新。这一版接入了汽水音乐；新增日系烟花歌词样式「花火」，每首歌随机换样式时可以自己挑范围；桌面版有了全局播放快捷键，AI 设置可以直接选服务商和模型。",
+      "qishui": {
+        "title": "汽水音乐",
+        "description": "桌面版新增汽水音乐，在登录窗口用抖音扫码登录。可以搜索、播放（标准音质）、看逐字歌词和歌手热门歌曲，读取自己的歌单和「汽水最近播放」；推荐流和场景电台作为私人 FM 播放，首页场景卡点一下就开播。可以红心、在自建歌单里加歌删歌，私人 FM 支持「不喜欢」。没有可直接播放音源的歌放不了；暂不支持浏览专辑、新建歌单和收藏歌单。本地歌曲匹配到汽水的歌时，也能取回它的歌词。"
       },
-      "glassJelly": {
-        "title": "果冻形变修复",
-        "description": "拖动玻璃面板时，位移走一条会饱和的曲线：拖得越远跟得越慢，面板不会被甩出去；沿着拖动的方向被拉长，垂直方向同时收窄，单个方向的形变有上限，面板不会被压扁或撑爆；松手回弹的弹簧更硬一些，形变更跟手。关掉果冻效果时，玻璃面板的滚动和动画也更流畅。"
+      "hanabi": {
+        "title": "花火",
+        "description": "新增歌词样式「花火」：日系歌词 PV 的画风，每句歌词带着色块逐字出场，烟花一样的装饰沿着字开花，镜头之间整个画面跟着升空的烟花一边旋转一边往上走，还有胶片、贴纸、胶带等拼贴装饰，副歌时画面亮起一层辉光。烟花、文字、装饰、配色都能在样式设置里调，也有画质档；智能动感模式下每拍在夜空开一朵烟花、画面随拍推近。"
       },
-      "exploreImmersive": {
-        "title": "探索页沉浸化",
-        "description": "探索页的列表固定铺满窗口：上方按滚动量淡出，下方按还没滚到的部分淡出；列表的两条边各由三层模糊叠成，越靠边越糊，内容是「淡出去」而不是「被切掉」。滚动条变成贴在窗口右缘的玻璃药丸，滑块显示列表停在哪里，每个分区的记号可以直接跳过去。打开 GridMap 时页头逐块淡出，地图开始退场时页头就淡回来。"
+      "randomStyles": {
+        "title": "随机歌词样式自选范围",
+        "description": "歌词样式选择里新增「随机」：从内建样式里勾选几种或全部组成随机池，每首歌换一种，不会连着重复，每种样式用它自己保存的参数。播放面板上可以给这首歌重新抽一种，或改随机池；随机池会跟着配置导入导出和同步。"
       },
-      "pageSwitchPerf": {
-        "title": "切页不再卡顿",
-        "description": "首页的页签各自常驻一层：切换页签只改变可见性和横向位移，不重挂整个视图，不丢玻璃的位移图、不重新解码封面。切换动画只做横向位移、不动透明度，玻璃面板在整个动画期间都保持显示。网格卡片的渲染窗口按视口自适应，滑动时不再整片闪空白；连续快速切页签时的渲染异常、以及地图被首页层级压住的问题也一并修好。"
+      "globalShortcuts": {
+        "title": "全局播放快捷键",
+        "description": "桌面版「快捷操作 → 全局快捷键」：Folia 不在前台时也能用 Ctrl+Alt+Shift（macOS 是 Control+Option+Shift）加一个字母或数字控制播放，可绑定播放/暂停、上一首、下一首、音量加减、静音、循环和随机，模组提供的命令也能绑定；被别的程序占用的组合会标出来。原生 Wayland 下改为一键注册到桌面环境，在系统设置里绑定按键。命令面板也新增了播放/暂停和音量加减。"
       },
-      "playerBarGlow": {
-        "title": "播放条浮岛与水面波形",
-        "description": "底部播放条新增「固定」：固定之后鼠标移开也不会收起，可以从命令面板或设置里开关。播放时底边会泛起一层水面波形——频谱按对数频率铺成波形，跟着音乐起伏并缓缓流动；颜色从白色射向主题强调色，泛光的心沿横向慢慢游走。"
+      "aiProviders": {
+        "title": "AI 服务商与模型",
+        "description": "桌面版的 AI 设置改为直接选服务商：Gemini、DeepSeek、小米 MiMo、阿里云 Qwen、腾讯云 TokenHub、OpenAI、Anthropic、Kimi、智谱 GLM，或自定义兼容接口。内置服务商不用填地址，填好密钥就能获取模型列表下拉选择，并预填推荐模型；思考、温度等参数按服务商和模型自动处理，用到已停用的模型会提示。切歌后，上一首没生成完的 AI 主题不会再盖到这首歌上。"
       },
-      "morePolish": {
-        "title": "更多细节",
-        "description": "Lattice 列表补上了动画，果冻样式的问题也修好了。网格卡片的倒影不再被滚动容器拦腰切断，改成自然地淡出。播放页的「透明背景」开关与遥控器里的同类设置被去掉；系统毛玻璃改称「亚克力背景」，并说明流体玻璃不会折射系统亚克力。"
+      "moreDetails": {
+        "title": "更多改进",
+        "description": "重启后各平台的登录不会再因为断网或服务器出错被清掉。智能动感模式多了「只用已分析」一档，总开关挪到歌词样式窗口新的「全局」页；本地和 Navidrome 的歌也会做自动混音的过渡分析；本地扫描支持 DSD（.dsf、.dff）。Windows 新增「渲染显卡」设置，「性能与动效」新增默认关闭的「后台节流」，窗口最小化或隐藏时停住歌词动画。Bravais 的信息条可以选自动、竖向或横向，探索墙也放上了最近播放。模组接口升级到 Folium 1.7。"
       }
     },
     "v0_7_21": {
@@ -3581,25 +3811,6 @@ export default {
         "description": "Bravais 首页的设置格在有新版本时会提示；在 Bravais 首页搜索不再一直显示无结果，也不再在酷狗、QQ 下搜错平台；修复部分 Linux 发行版上竖排中文标签叠在一起；歌手 / 专辑海报翻走时不再闪回默认配色。桌面版收紧了外部链接与内部通信的安全检查，AI 密钥只会发往保存时的地址。"
       }
     },
-    "v0_7_19s": {
-      "intro": "0.7.19s 魔改版在官方 0.7.19 基础上更新：主要强化流体玻璃和修改普通布局。",
-      "homeUpdateHint": {
-        "title": "首页工具格提示发现新版本",
-        "description": "Bravais 首页接入更新状态：开启更新检查、发现新版本且还没在设置里查看时，设置工具格下方会出现一行可点的「发现新版本」（书脊放不下文字时改为设置图标右上角的强调色圆点），点击与点设置一样打开帮助页；打开设置看过后提示自动消失。Bravais 与经典网格两种首页共用同一套更新状态。"
-      },
-      "ipcSecurity": {
-        "title": "IPC 与外部链接处理的安全加固",
-        "description": "外部链接只有 http(s) 会交给系统打开，file://、ms-settings: 等自定义协议一律拦截，避免不可信 URL 触发非预期的系统协议调用；OBS 浏览器源状态与酷狗 API 请求等 IPC 通道补上窗口来源校验，其它窗口无法再冒用调用。"
-      },
-      "liquidGlassBlurFix": {
-        "title": "高模糊度下流体玻璃修复",
-        "description": "调整流体玻璃的滤镜链顺序（先饱和度与模糊、最后边缘折射），修复把模糊度调高后流体玻璃显示异常的问题。"
-      },
-      "liquidGlassPerf": {
-        "title": "流体玻璃性能优化",
-        "description": "位移图按分辨率上限生成；面板等大元素连续改变尺寸时，逐像素重建按节流窗口合并，不再每帧重画：大窗口或面板动画改尺寸更流畅，玻璃画质无可感知变化。"
-      }
-    },
     "v0_7_19": {
       "intro": "0.7.19 把 Bravais 的歌手页和专辑页做成了凝彩风格的海报；在线播放失败时会说明真正的原因，不再一律报「已下架」；凝彩等按词排版的模式对中文、日文的分词更自然；网页版断网也能正常启动。",
       "artistPoster": {
@@ -3627,23 +3838,8 @@ export default {
         "description": "Android 上在 Bravais / Lattice 墙面打开设置等覆盖层时，不再闪出底下的墙；凝彩播放时调整窗口大小偶尔崩溃的问题已修复；Sora 背景在暂停时停止绘制，静态模式下星点定格；启动时弹出的版本更新窗口可以按 Esc 关闭。"
       }
     },
-    "v0_7_18s-shino": {
-      "intro": "0.7.18s 魔改版在官方 0.7.18 基础上强化了流体玻璃体验：修复部分组件缺失的流体玻璃覆盖，为部分按钮追加软化效果，并新增可自由调整折射、模糊与饱和度的流体玻璃设置。温馨提示：流体玻璃仅支持 Windows 系统。",
-      "liquidGlassFix": {
-        "title": "流体玻璃修复",
-        "description": "修复 0.7.18 更新后部分组件缺少流体玻璃覆盖的情况，让按钮、面板等毛玻璃场景重新获得统一的流体玻璃效果。"
-      },
-      "liquidGlassSoften": {
-        "title": "流体玻璃组件软化",
-        "description": "对部分按钮增加软化处理，边缘过渡更柔和，提升页面整体观感与操作体验。"
-      },
-      "liquidGlassSettings": {
-        "title": "新增流体玻璃设置",
-        "description": "可以自由调整流体玻璃的折射强度、模糊与饱和度，按自己的喜好定制玻璃质感。温馨提示：流体玻璃仅支持 Windows 系统。"
-      }
-    },
     "v0_7_18": {
-      "intro": "0.7.18 给 Bravais 与 Lattice 的墙面工具加上可以直接操作的播放队列，工具面板也统一成同一套布局；多个歌词可视化模式更省资源，本地歌曲连续播放切歌更顺，QQ 扫码遇到登录设备超限会直接告诉你怎么处理，桌面版的 AI 密钥改为加密保存。窗口动画调整为类似 iOS 26 的渐变过渡，侧边播放列表增加旋转效果。",
+      "intro": "0.7.18 给 Bravais 与 Lattice 的墙面工具加上可以直接操作的播放队列，工具面板也统一成同一套布局；多个歌词可视化模式更省资源，本地歌曲连续播放切歌更顺，QQ 扫码遇到登录设备超限会直接告诉你怎么处理，桌面版的 AI 密钥改为加密保存。",
       "queueIsland": {
         "title": "墙面上直接管理播放队列",
         "description": "在 Bravais 或 Lattice 右下角的「墙面工具」里点「播放队列」，面板上方会展开队列：点歌直接播放、不跳页，拖动手柄排序，悬停可下一首播放、移到末尾或移除，还能存为本地歌单或两步确认清空。键盘可用 ↑↓ 移动、Alt+↑↓ 挪动、Delete 移除。私人 FM 下不可用，外部舞台播放时只能点歌。"
@@ -3667,10 +3863,6 @@ export default {
       "aiKeySecure": {
         "title": "桌面版 AI 密钥加密保存",
         "description": "桌面版的 Gemini / OpenAI 密钥改用系统的安全存储加密保存，旧版本留下的明文会在启动时自动迁移。保存后不再回显，留空即保持不变，替换需输入新密钥，清除是单独的按钮；测试连接时留空会使用已保存的密钥。"
-      },
-      "windowAnimation": {
-        "title": "窗口动画调整",
-        "description": "窗口动画调整为类似 iOS 26 的渐变过渡效果，侧边播放列表增加旋转效果，切换时更顺滑自然。"
       }
     },
     "v0_7_17": {
@@ -3701,7 +3893,7 @@ export default {
       }
     },
     "v0_7_16": {
-      "intro": "0.7.16 把 AMLL 歌词切到官方接口，QQ 音乐歌曲能找到的 AMLL 歌词更多，手动匹配也能直接搜 AMLL；另外新增首页用 Tab 切换页签，并修复本地搜索结果缺少专辑与歌手链接的问题。魔改版还在按钮、顶栏等多个毛玻璃场景增加了流体玻璃效果，窗口按钮也调整为模仿 Windows 8 RP 的样式。",
+      "intro": "0.7.16 把 AMLL 歌词切到官方接口，QQ 音乐歌曲能找到的 AMLL 歌词更多，手动匹配也能直接搜 AMLL；另外新增首页用 Tab 切换页签，并修复本地搜索结果缺少专辑与歌手链接的问题。",
       "amllSource": {
         "title": "AMLL 歌词改用官方接口",
         "description": "AMLL 歌词改为从 AMLL 官方接口获取。"
@@ -3717,14 +3909,6 @@ export default {
       "searchLinks": {
         "title": "本地搜索结果的链接不再缺失",
         "description": "刚导入文件夹就搜索时，结果里的专辑与歌手链接会在曲库加载完后自动补上，不必重新搜索。"
-      },
-      "liquidGlass": {
-        "title": "增加流体玻璃",
-        "description": "在按钮、顶栏等多个毛玻璃场景增加了流体玻璃的效果，界面质感更强。"
-      },
-      "windowButtons": {
-        "title": "窗口按钮变更",
-        "description": "窗口按钮进行了调整，模仿 Windows 8 RP 的样式。"
       }
     },
     "v0_7_15": {
@@ -4149,18 +4333,6 @@ export default {
     "cloudDrive": "云盘",
     "cloudDriveDesc": "网易云音乐云盘",
     "qqCloudDriveDesc": "微云音乐网盘",
-  },
-  "fnmusic": {
-    "serverUrl": "服务器地址",
-    "serverUrlPlaceholder": "例如: http://192.168.1.10:5666",
-    "username": "账号",
-    "usernamePlaceholder": "飞牛音乐账号或 NAS 账号",
-    "password": "密码",
-    "login": "登录",
-    "loginNote": "输入你的飞牛（fnOS）音乐服务器地址与账号密码",
-    "errorBadCredentials": "账号或密码错误",
-    "errorNetwork": "无法连接服务器，请检查地址与网络",
-    "errorBadResponse": "服务器返回了无法识别的响应"
   },
   "hifi": {
     "settings": {
@@ -4628,6 +4800,10 @@ export default {
     "loopAll": "列表循环",
     "loopOne": "单曲循环",
     "more": "更多",
+    "queue": "播放队列",
+    "queueSearch": "在 {{count}} 首里搜索",
+    "queueSearchClear": "清空搜索",
+    "queueNoMatch": "没有符合的歌曲",
     "noTrack": "没有正在播放的歌曲",
     "unknownArtist": "未知艺术家",
     "tabMainWindow": "主窗口",
@@ -5511,8 +5687,8 @@ export default {
         "combineBackground": "只换背景：歌词样式不动。背景自己的参数在歌词样式窗口的「背景」页。",
         "combineStyle": "再只换歌词样式：刚选的背景留着。任意背景都能配任意歌词样式；只有「静止」样式不渲染背景。",
         "subtitleShared": "多数歌词样式在底部共用这一条副字幕。莫奈、时计和静止把翻译排进自己的版面，不用这一条。",
-        "subtitleContent": "它的设置在歌词样式窗口的「字幕」页，对所有使用它的样式一起生效。第二行选择显示翻译、罗马音、罗马音加翻译两行，或不显示。",
-        "subtitleBlur": "关闭「非翻译歌词添加模糊效果」，副字幕就不再模糊。",
+        "subtitleContent": "它的设置在歌词样式窗口的「字幕」页，对所有使用它的样式一起生效。可以显示单行、双行或三行，每行是当前句、下一句、翻译或罗马音。",
+        "subtitleBlur": "关闭「下一句歌词添加模糊效果」，副字幕就不再模糊。",
         "subtitleFont": "关闭「字幕继承歌词字体」后，可以给字幕单独设置字体和字重；「字幕缩放」单独调整字号，随时可用。"
       },
       "visPlayground": {
@@ -5529,8 +5705,8 @@ export default {
         "animation": "歌词样式在预览下面这一架图里选，点一张就换。样式比一章能讲完的多，值得你自己翻一遍，所以这里不把清单念一遍。",
         "perMode": "「歌词动画」页是当前样式自己的参数；换样式，这一页也跟着换。",
         "background": "「背景」页是同一套做法：先在这一格图里挑背景，再调这个背景。它和歌词样式是两层，各挑各的，任意组合都成立。",
-        "subtitleContent": "字幕第二行可选：翻译、罗马音、罗马音在上翻译在下的两行，或不显示。莫奈、时计和静止选两行时只显示翻译。",
-        "subtitleLegibility": "下面三行管字幕看不看得清：「字幕透明度」「字幕背景」，以及「非翻译歌词添加模糊效果」。",
+        "subtitleContent": "底部字幕先选行数：单行、双行或三行，再选每行显示当前句、下一句、翻译或罗马音。下面的「副字幕内容」只管莫奈、时计和静止排进自己版面的那一条。",
+        "subtitleLegibility": "下面三行管字幕看不看得清：「字幕透明度」「字幕背景」，以及「下一句歌词添加模糊效果」。",
         "subtitleFont": "字幕默认跟随歌词字体。关闭后，字幕自己的字体和字重设置才会出现；「字幕缩放」一直都在。"
       },
       "themePark": {
