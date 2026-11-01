@@ -220,9 +220,6 @@ const AppShell: React.FC<AppShellProps> = ({
             />
           )}
           <div className="relative h-full">
-            <div className={`pl-3 pt-1 tracking-tight flex items-center gap-3 ${isDaylight?'[text-shadow:_0_0px_2px_#fff] [text-shadow:_0_0px_4px_#fff] [text-shadow:_0_0px_6px_#fff]' : '[text-shadow:_0_0px_2px_#000] [text-shadow:_0_0px_4px_#000] [text-shadow:_0_0px_6px_#000]'}`}>
-              Folia
-            </div>
             <TitlebarDragZone active={usesCustomWindowChrome} />
             <div
               className={`pointer-events-auto absolute top-0 z-20 h-full flex items-center ${

@@ -1,5 +1,3 @@
-
-
 export default {
   "libraryBravais": {
     "suiteName": "Bravais 墙面",
@@ -46,7 +44,14 @@ export default {
     "helpFilter": "直接打字：过滤当前页",
     "helpSearch": "搜索在线平台（首页）",
     "filterPlaceholder": "过滤当前页",
-    "kind": {"track": "歌曲", "playlist": "歌单", "album": "专辑", "artist": "歌手", "folder": "文件夹", "feed": "电台"}
+    "kind": {
+      "track": "歌曲",
+      "playlist": "歌单",
+      "album": "专辑",
+      "artist": "歌手",
+      "folder": "文件夹",
+      "feed": "电台"
+    }
   },
   "wallTools": {
     "shuffle": "打乱播放队列",
@@ -77,7 +82,11 @@ export default {
     "openPlayerUnavailable": "还没有在播放的歌",
     "openSettings": "打开设置",
     "goHome": "回到主页",
-    "wallSection": "墙面"
+    "wallSection": "墙面",
+    "queueSearch": "搜索队列",
+    "queueSearchPlaceholder": "在 {{count}} 首里搜索",
+    "queueSearchClose": "关闭搜索",
+    "queueNoMatch": "没有符合的歌曲"
   },
   "libraryBravaisHome": {
     "hide": "隐藏",
@@ -112,7 +121,16 @@ export default {
       "localTitle": "还没有导入本地音乐",
       "localBody": "在信息条的「⋯」里选「{{action}}」，文件夹、专辑和歌手会铺满这面墙。"
     },
-    "special": {"liked": "我喜欢的音乐", "cloud": "云盘", "personal-fm": "私人FM", "daily": "每日推荐", "all-songs": "全部歌曲", "local-favorites": "我喜欢", "navidrome-random": "随机音乐", "navidrome-favorites": "收藏"}
+    "special": {
+      "liked": "我喜欢的音乐",
+      "cloud": "云盘",
+      "personal-fm": "私人FM",
+      "daily": "每日推荐",
+      "all-songs": "全部歌曲",
+      "local-favorites": "我喜欢",
+      "navidrome-random": "随机音乐",
+      "navidrome-favorites": "收藏"
+    }
   },
   "libraryTui": {
     "back": "返回",
@@ -149,7 +167,16 @@ export default {
     "columnType": "类型",
     "columnTracks": "曲目",
     "columnDescription": "说明",
-    "itemType": {"playlist": "歌单", "album": "专辑", "artist": "歌手", "folder": "文件夹", "cloud": "云盘", "radio": "电台", "daily_recommendations": "每日", "personal_fm": "FM"},
+    "itemType": {
+      "playlist": "歌单",
+      "album": "专辑",
+      "artist": "歌手",
+      "folder": "文件夹",
+      "cloud": "云盘",
+      "radio": "电台",
+      "daily_recommendations": "每日",
+      "personal_fm": "FM"
+    },
     "homeHints": "↑↓ 移动 · PgUp/PgDn 翻页 · Tab 分区 · F6 来源 · Enter 打开 · Esc 先清筛选再关闭",
     "homeTreeHints": "←→ 折叠",
     "homeBatchHints": "Ins 选中 · Ctrl+A 全选 · Ctrl+Enter 播放 · Ctrl+Shift+Enter 入队",
@@ -311,8 +338,6 @@ export default {
     "panelCloseBtnShown": "已显示面板关闭按钮",
     "panelCloseBtnHidden": "已隐藏面板关闭按钮",
     "playerBackButtonAlwaysShown": "播放页左上角返回按钮将始终显示",
-    "playerBarPinned": "播放条将保持展开",
-    "playerBarUnpinned": "播放条将在指针移开后收缩",
     "trackSwitchButtonsAlwaysShown": "进度条切歌箭头将始终显示",
     "trackSwitchButtonsAutoHidden": "进度条切歌箭头将悬停显示",
     "playerBackButtonAutoHidden": "播放页左上角返回按钮将悬停显示",
@@ -349,6 +374,8 @@ export default {
     "themeSourceCover": "主题生成已切换为封面取色",
     "aiThemeUpdatedCustomPreferred": "AI 主题已更新，自定义主题仍为首选",
     "aiThemeGeneratedCustomPreferred": "AI 主题已生成，但当前仍优先使用自定义主题",
+    "playerBarPinned": "播放条将保持展开",
+    "playerBarUnpinned": "播放条将在指针移开后收缩"
   },
   "status": {
     "playerChromeAlwaysHidden": "UI 将始终隐藏",
@@ -454,6 +481,7 @@ export default {
     "disconnected": "连接失败",
     "randomVisualizerModePerSongOn": "已开启每首歌随机歌词动画",
     "randomVisualizerModePerSongOff": "已关闭每首歌随机歌词动画",
+    "playlistUpdateFailed": "没能加进歌单"
   },
   "commandPalette": {
     "placeholder": "输入命令或搜索内容...",
@@ -480,8 +508,19 @@ export default {
     "previewQueueSearchEmpty": "输入歌名、歌手、专辑或队列序号",
     "pickerFilterPlaceholder": "输入以筛选，然后点击或按回车",
     "pickerCurrent": "当前：{{mode}}",
-    "librarySuitePicker": { "active": "正在使用", "switch": "把资料库切换到这套界面" },
-    "libraryWallPicker": { "active": "正在使用", "windows": "每块 {{count}} 个窗", "windowsShare": "每块 {{percent}}% 透出可视化", "seamStyle": "信息条：{{style}}", "seamTheme": "跟随主题配色", "seamPrint": "固定的纸与墨，高对比", "seamPattern": "主题色的安静图案" },
+    "librarySuitePicker": {
+      "active": "正在使用",
+      "switch": "把资料库切换到这套界面"
+    },
+    "libraryWallPicker": {
+      "active": "正在使用",
+      "windows": "每块 {{count}} 个窗",
+      "windowsShare": "每块 {{percent}}% 透出可视化",
+      "seamStyle": "信息条：{{style}}",
+      "seamTheme": "跟随主题配色",
+      "seamPrint": "固定的纸与墨，高对比",
+      "seamPattern": "主题色的安静图案"
+    },
     "pickerDescription": {
       "visualizer": {
         "still": "歌词静止在画面中央，不做动画也不渲染背景，最省资源",
@@ -598,288 +637,1154 @@ export default {
       }
     },
     "commands": {
-      "settings-ponder-hints": { "title": "思索教程提示", "description": "设置长按 G 的提示什么时候出现" },
-      "ponder-hints-always": { "title": "思索提示：始终显示", "description": "所有可教学的控件都提示长按 G" },
-      "ponder-hints-unseen": { "title": "思索提示：仅未看过的区域", "description": "某个控件的教程看过之后就不再提示它" },
-      "ponder-hints-off": { "title": "思索提示：关闭", "description": "不再显示长按 G 的提示" },
-      "ponder-touch-button-toggle": { "title": "触屏思索按钮", "description": "显示或隐藏触屏右上角那颗灯泡" },
-      "search-current": { "title": "搜索歌曲", "description": "在当前来源搜索歌曲" },
-      "search-local": { "title": "搜索本地歌曲", "description": "搜索本地音乐库" },
-      "search-navidrome": { "title": "搜索 Navidrome", "description": "搜索 Navidrome 音乐库" },
-      "search-netease": { "title": "搜索网易云", "description": "搜索网易云音乐" },
-      "queue": { "title": "队列", "description": "搜索队列；使用 @ 筛选元数据，使用 -- 批量操作" },
-      "playback-volume": { "title": "音量条", "description": "调整播放音量" },
-      "playback-fm-mode": { "title": "私人 FM 模式", "description": "切换私人 FM 的模式或场景" },
-      "settings-help": { "title": "打开帮助", "description": "打开帮助和快捷键" },
-      "ponder-current-page": { "title": "思索当前页面", "description": "打开当前页面的交互式介绍" },
-      "settings-options": { "title": "打开选项", "description": "打开设置中心" },
-      "settings-now-playing-card-position": { "title": "调整卡片位置", "description": "拖动正在播放卡片到新的位置" },
-      "settings-ai-provider": { "title": "AI 供应商设置", "description": "选择 AI 供应商和模型" },
-      "settings-appearance": { "title": "外观设置", "description": "打开视觉和外观设置" },
-      "settings-general": { "title": "通用设置", "description": "打开全局应用偏好" },
-      "settings-playback": { "title": "播放设置", "description": "打开播放行为设置" },
-      "playback-replaygain-off": { "title": "关闭 ReplayGain", "description": "播放音频时不应用 ReplayGain 调整" },
-      "playback-replaygain-track": { "title": "ReplayGain：单曲模式", "description": "按每首歌曲的 ReplayGain 数据调整响度" },
-      "playback-replaygain-album": { "title": "ReplayGain：专辑模式", "description": "按专辑 ReplayGain 数据调整响度" },
-      "playback-replaygain-auto": { "title": "ReplayGain：智能平衡", "description": "测量每首歌的响度，把偏响的歌调小到一致" },
-      "playback-equalizer": { "title": "音频效果器", "description": "打开均衡器和效果链" },
-      "playback-sound-preset-flat": { "title": "音效：水平", "description": "清空均衡器和所有效果" },
-      "playback-sound-preset-lofi": { "title": "音效：Lo-Fi", "description": "削频、降质、抖晃并加入黑胶噪声" },
-      "playback-sound-preset-radio": { "title": "音效：收音机", "description": "窄频带、接近单声道的广播音色" },
-      "playback-sound-preset-hall": { "title": "音效：大厅", "description": "更宽的立体声与混响空间" },
-      "playback-sound-preset-vocal": { "title": "音效：人声", "description": "抬升人声频段并收紧动态" },
-      "playback-sound-preset-bass": { "title": "音效：低音增强", "description": "更厚的低频和更强的力度" },
-      "playback-sound-preset-custom1": { "title": "音效：自定义 1", "description": "套用第一个自定义音效栏位" },
-      "playback-sound-preset-custom2": { "title": "音效：自定义 2", "description": "套用第二个自定义音效栏位" },
-      "playback-sound-mod-curve-release": { "title": "音效：换回我的音效", "description": "去掉模组施加的均衡器曲线，回到你原来的音效" },
-      "settings-local-lyrics-priority": { "title": "本地歌曲歌词优先级", "description": "选择本地歌曲优先使用本地或在线歌词" },
-      "settings-local-lyric-format-order": { "title": "本地歌词文件格式优先级", "description": "调整同名歌词文件按哪种格式优先选用" },
-      "settings-integration": { "title": "集成设置", "description": "打开 Stage、Now Playing 和 Navidrome 设置" },
-      "automix-toggle": { "title": "智能过渡", "description": "开启或关闭 FOLIA 智能过渡" },
-      "transition-mode-crossfade": { "title": "过渡模式：Folia Crossfade", "description": "使用简单的一淡出一淡入交叉淡化" },
-      "transition-mode-automix": { "title": "过渡模式：Folia Automix", "description": "分析两首曲目并自动混音" },
-      "transition-performance-toggle": { "title": "过渡表现模式", "description": "切换更激进的过渡（需要人声分离模型）" },
-      "settings-discord-presence": { "title": "Discord 播放状态", "description": "打开 Discord Rich Presence 设置" },
-      "lyric-staff-policy-cycle": { "title": "开头制作人员信息", "description": "轮换歌词开头署名块的处理方式" },
-      "lyric-staff-absorb-cycle": { "title": "开头制作人员信息：吸收相邻行", "description": "轮换署名块是否把相邻的短耗行一起并入" },
-      "settings-obs-browser-source": { "title": "OBS 浏览器源", "description": "打开 OBS 浏览器源设置" },
-      "obs-toggle-keep-main-window-animation": { "title": "OBS 连接时保持主窗口动画", "description": "切换 OBS 连接时主窗口是否继续渲染歌词动画" },
-      "desktop-toggle-lyric-api": { "title": "歌词接口", "description": "切换本地免鉴权歌词接口" },
-      "settings-obs-copy-css": { "title": "复制 OBS CSS", "description": "复制 OBS 浏览器源的自定义 CSS，把上传的背景/立绘等资产带到 OBS" },
-      "settings-storage": { "title": "存储设置", "description": "打开缓存和存储设置" },
-      "settings-r2-sync": { "title": "同步服务设置", "description": "打开同步服务设置" },
-      "sync-now": { "title": "立即同步", "description": "同步 AI 主题" },
-      "export-lyric-cache": { "title": "导出歌词缓存", "description": "把本机所有歌词打包成 .fia 和增强型 LRC 的 zip" },
-      "export-current-lyrics-fia": { "title": "导出当前歌词为 .fia", "description": "以 Folia 无损格式保存这首歌的歌词，含你保存的分词" },
-      "export-current-lyrics-lrc": { "title": "导出当前歌词为 LRC", "description": "保存为其他播放器也能读的增强型 LRC" },
-      "settings-local-library-watch": { "title": "本地文件夹监视设置", "description": "打开已导入本地文件夹的自动扫描设置" },
-      "local-library-auto-scan-toggle": { "title": "自动扫描本地文件夹", "description": "开启或关闭已导入本地文件夹的自动重新扫描" },
-      "settings-desktop": { "title": "桌面端设置", "description": "打开桌面应用设置" },
-      "settings-update-channel": { "title": "更新通道", "description": "选择桌面端发布通道" },
-      "desktop-toggle-voice-input-pause": { "title": "语音输入时暂停", "description": "切换语音输入时自动暂停播放" },
-      "desktop-toggle-prevent-display-sleep": { "title": "播放时阻止休眠", "description": "播放音乐时保持显示器唤醒" },
-      "desktop-toggle-background-throttling": { "title": "后台节流", "description": "切换 Folia 最小化或隐藏时节流渲染、停下歌词动画" },
-      "settings-graphics": { "title": "图形设置", "description": "打开静态模式、帧率限制、Linux 发光修复和降低动态效果" },
-      "settings-gpu-preference": { "title": "渲染显卡设置", "description": "跳到选择渲染显卡的设置" },
-      "gpu-preference-auto": { "title": "渲染显卡：自动", "description": "由系统决定用哪张显卡渲染，重启后生效" },
-      "gpu-preference-high-performance": { "title": "渲染显卡：高性能", "description": "用独立显卡渲染，重启后生效" },
-      "gpu-preference-low-power": { "title": "渲染显卡：省电", "description": "用核显渲染，重启后生效" },
-      "settings-mods": { "title": "模组设置", "description": "打开模组系统开关和已安装的模组" },
-      "settings-lab": { "title": "播放页界面", "description": "跳到隐藏或常驻显示播放页部件的开关" },
-      "settings-player-bottom-bar-position": { "title": "调整底部控制条位置", "description": "拖动底部控制条和面板按钮到新的高度（歌曲卡片没单独调过位置时也跟着动）" },
-      "settings-player-control-slots": { "title": "进度条按钮槽位", "description": "选择进度条右侧两个按钮对应的功能" },
-      "video-layer-toggle": { "title": "歌词后方视频层", "description": "显示或隐藏歌词后方的静音视频层" },
-      "video-layer-pick": { "title": "视频层：选择本地视频", "description": "选择在歌词后方播放的本地视频" },
-      "visualizer-toggle-random-per-song": { "title": "每首歌随机歌词动画", "description": "歌曲切换时随机使用一种歌词动画模式" },
-      "visualizer-machi-camera-bar": { "title": "町景：取景", "description": "在播放页显示或收起町景的取景控制条，调视角、对焦、光圈和运镜" },
-      "visualizer-toggle-glow-blur-quantize": { "title": "修复 Linux 歌词动画卡死", "description": "改变部分歌词动画的发光绘制方式，修复 Linux 下长时间播放后偶发的卡死问题" },
-      "settings-visualizer": { "title": "歌词动画样式设置", "description": "打开歌词动画实验台" },
-      "settings-theme-park": { "title": "配色", "description": "打开主题编辑器" },
-      "settings-global-lyric-offset": { "title": "全局时间偏移", "description": "校准蓝牙等设备造成的音画延迟" },
-      "settings-lyric-filter": { "title": "歌词过滤", "description": "打开歌词过滤设置" },
-      "settings-wallpaper-mode": { "title": "壁纸模式设置", "description": "打开壁纸模式设置" },
-      "desktop-toggle-wallpaper-mode": { "title": "切换壁纸模式", "description": "将应用作为桌面歌词壁纸" },
-      "desktop-toggle-wallpaper-dock-autohide": { "title": "壁纸模式下自动隐藏 Dock 栏", "description": "开启后壁纸模式期间自动隐藏 Dock 栏（仅底部 Dock 生效）" },
-      "desktop-toggle-close-to-tray": { "title": "关闭窗口时隐藏到托盘", "description": "关闭主窗口后应用不退出，继续在系统托盘运行" },
-      "desktop-toggle-remote-control-hide-titlebar": { "title": "遥控窗口：隐藏顶部悬浮栏", "description": "切换遥控窗口顶部悬浮窗口控制栏的显示" },
-      "desktop-toggle-remote-control-expand-cover": { "title": "遥控窗口：展开封面", "description": "切换遥控窗口闲置时是否把封面展开成大图" },
-      "desktop-toggle-remote-control-text-shade": { "title": "遥控窗口：文字黑底", "description": "切换遥控窗口透明背景下闲置文字底下的半透明黑底" },
-      "desktop-unlock-remote-control": { "title": "解锁远程控制", "description": "关闭遥控窗口的点击穿透，恢复窗口的操作与拖动" },
-      "sleep-timer": { "title": "睡眠定时", "description": "指定时长后暂停播放，桌面端将关闭应用" },
-      "navigate-home": { "title": "回到首页", "description": "返回首页视图" },
-      "navigate-player": { "title": "回到播放器", "description": "返回播放器视图" },
-      "lattice-focus-current": { "title": "Lattice 定位正在播放的歌", "description": "在拼贴里把正在播放的歌的海报移到中央" },
-      "locate-playing-song": { "title": "定位正在播放的歌", "description": "打开它所在的歌单或专辑，并把它的卡片移到中央" },
-      "bravais-list": { "title": "打开歌曲列表", "description": "把资料库墙面上的缝加宽成这个集合的歌曲列表" },
-      "bravais-directory": { "title": "打开目录", "description": "把资料库首页的缝加宽成本地文件夹目录树，批量选择" },
-      "bravais-seam-full": { "title": "展开信息条", "description": "把资料库墙面上的缝张开成完整的信息条" },
-      "bravais-seam-spine": { "title": "收起信息条", "description": "把资料库墙面上的缝收成书脊" },
-      "bravais-seam-hide": { "title": "折叠信息条", "description": "合上缝，只在屏幕侧边留一个悬浮标签" },
-      "bravais-seam-here": { "title": "在这里裂开缝", "description": "缝滑出屏幕后，在当前视口里裂开一道新缝" },
-      "bravais-locate-playing": { "title": "定位正在播放", "description": "把墙上的焦点移到正在播放的那首歌" },
-      "bravais-wall-look": { "title": "切换墙面透光", "description": "在实色、部分透明、全透明三档之间切换资料库墙面" },
-      "bravais-more-windows": { "title": "多开一个窗", "description": "部分透明时，墙上每块多开一个透光的窗" },
-      "bravais-fewer-windows": { "title": "少开一个窗", "description": "部分透明时，墙上每块少开一个透光的窗" },
-      "navigate-lattice": { "title": "Lattice 打开", "description": "以队列拼贴的形式展示播放队列" },
-      "browser-fullscreen": { "title": "全屏", "description": "切换浏览器全屏" },
-      "home-playlist": { "title": "打开歌单", "description": "打开歌单首页 tab" },
-      "home-local": { "title": "打开本地音乐", "description": "打开本地音乐 tab" },
-      "home-albums": { "title": "打开专辑", "description": "打开专辑 tab" },
-      "home-navidrome": { "title": "打开 Navidrome", "description": "打开 Navidrome tab" },
-      "home-radio": { "title": "打开电台", "description": "打开电台 tab" },
-      "home-explore": { "title": "打开探索", "description": "打开探索 tab" },
-      "grid-sort-file-name": { "title": "按文件名排序", "description": "把本地曲目按文件名排列" },
-      "grid-sort-modified-date": { "title": "按修改时间排序", "description": "把本地曲目按文件最后修改时间排列" },
-      "grid-sort-album-track": { "title": "按音轨号排序", "description": "把本地曲目按碟号和音轨号排列" },
-      "grid-sort-direction": { "title": "反转排序方向", "description": "在正序和倒序之间切换本地曲目列表" },
-      "grid-toggle-info-panel": { "title": "切换合集面板", "description": "显示或隐藏合集信息与操作面板" },
-      "grid-toggle-track-list": { "title": "切换曲目列表", "description": "显示或隐藏网格旁的曲目列表" },
-      "grid-resync-folder": { "title": "重新导入此文件夹", "description": "重新扫描这个本地文件夹并刷新其中的歌曲" },
-      "grid-resync-all-folders": { "title": "重新导入全部文件夹", "description": "重新扫描所有本地文件夹并刷新曲库" },
-      "grid-organize-song-info": { "title": "整理歌曲信息", "description": "整理这个文件夹里歌曲的标题、艺人和专辑" },
-      "grid-export-playlist": { "title": "导出此歌单", "description": "把这个本地歌单保存为 m3u8 文件" },
-      "grid-edit-entity": { "title": "编辑此专辑或艺人", "description": "为这个合集打开本地曲库的实体编辑面板" },
-      "grid-set-cover": { "title": "设置合集封面", "description": "为这个本地文件夹、专辑或歌单选一张固定的封面" },
-      "grid-toggle-edit-mode": { "title": "切换编辑模式", "description": "进入或退出可以从这个合集里移除歌曲的模式" },
-      "grid-reload-online-collection": { "title": "重新加载此合集", "description": "跳过缓存，重新拉取这个在线合集的全部歌曲" },
-      "grid-toggle-subscribe": { "title": "收藏或取消收藏", "description": "把这个在线歌单或专辑加入收藏，已经收藏的就取消" },
-      "directory-play-selection": { "title": "播放选中的卡片", "description": "按卡片顺序播放地图上选中卡片的歌曲" },
-      "directory-enqueue-selection": { "title": "选中的卡片加入队列", "description": "把地图上选中卡片的歌曲加入播放队列" },
-      "directory-create-playlist": { "title": "用选中的卡片新建歌单", "description": "用选中卡片的歌曲新建一个本地歌单" },
-      "directory-remove-selection": { "title": "从曲库删除选中的", "description": "确认后把选中的文件夹及其歌曲从本地曲库删除" },
-      "directory-select-all": { "title": "全选筛选出的卡片", "description": "打开批量面板，选中筛选结果里的每一张卡片" },
-      "directory-clear-selection": { "title": "清空选择", "description": "取消地图上所有卡片的选中" },
-      "directory-manage-hidden": { "title": "管理隐藏的歌单", "description": "在地图上显示隐藏的歌单，以便隐藏或取消隐藏；再次执行退出这个视图" },
-      "directory-toggle-hidden": { "title": "隐藏或取消隐藏焦点歌单", "description": "把焦点所在的歌单从首页目录里隐藏，或让它重新出现" },
-      "directory-rescan-root": { "title": "重新扫描焦点所在的导入目录", "description": "重新扫描焦点所在的导入根目录" },
-      "directory-remove-root": { "title": "移除焦点所在的导入目录", "description": "确认后把焦点所在的导入根目录及其歌曲从本地曲库移除" },
-      "directory-clear-ignore": { "title": "恢复焦点所在的忽略目录", "description": "不再忽略焦点所在的文件夹，并重新扫描它" },
-      "artist-play-top-songs": { "title": "播放热门歌曲", "description": "从第一首起播放这位歌手可播放的热门歌曲" },
-      "artist-enqueue-top-songs": { "title": "热门歌曲加入队列", "description": "把这位歌手的热门歌曲加入播放队列" },
-      "artist-reload": { "title": "重新加载歌手", "description": "从来源重新加载这个歌手页" },
-      "artist-retry-albums": { "title": "继续加载专辑", "description": "重试失败的那一页专辑，并继续加载其余的" },
-      "artist-edit-entity": { "title": "编辑歌手信息", "description": "打开本地曲库里这位歌手的编辑窗口" },
-      "settings-interaction": { "title": "交互设置", "description": "打开键盘、快捷键与网格交互设置" },
-      "settings-global-shortcuts": { "title": "全局快捷键", "description": "直接跳到系统级的快捷键：播放控制与模组命令" },
-      "settings-custom-shortcut": { "title": "自定义快捷键", "description": "直接跳到自定义键盘快捷键的绑定处" },
-      "settings-grid-action-button": { "title": "海报墙操作按钮", "description": "直接跳到海报墙操作按钮的滑动目标设置" },
-      "settings-pinned-commands": { "title": "固定命令槽位", "description": "选择命令面板里固定显示的三条命令" },
-      "settings-home-tabs": { "title": "首页标签显示", "description": "选择首页要显示哪些标签" },
-      "home-card-position-toggle": { "title": "记住主页卡片位置", "description": "开启或关闭各主页入口的卡片位置记忆" },
-      "settings-playback-entry-view": { "title": "播放后进入的视图", "description": "直接跳到「播放后进入的视图」设置" },
-      "playback-entry-view-player": { "title": "播放后进入：可视化", "description": "点击播放后进入播放器与可视化视图" },
-      "playback-entry-view-lattice": { "title": "播放后进入：Lattice", "description": "点击播放后进入队列拼贴视图" },
-      "playback-entry-view-stay": { "title": "播放后：留在原处", "description": "点击播放只开始播放，不跳转到别的视图" },
-      "settings-library-suite": { "title": "资料库界面", "description": "直接跳到「资料库界面」设置" },
-      "library-suite-picker": { "title": "选择资料库界面", "description": "切换浏览资料库所用的界面" },
-      "library-wall-look-picker": { "title": "选择透光档位", "description": "海报墙透出多少下面的可视化" },
-      "library-wall-windows-picker": { "title": "选择每块窗数", "description": "部分透明时每块有几张磁贴是窗" },
-      "settings-bravais": { "title": "Bravais 墙面分组", "description": "直接跳到界面设置里的 Bravais 分组" },
-      "library-wall-stack-edges-toggle": { "title": "集合叠页边", "description": "显示或隐藏专辑、歌单、文件夹磁贴右下的叠页边" },
-      "library-wall-seam-clear-toggle": { "title": "信息条始终透明", "description": "让信息条透出墙后面的可视化" },
-      "library-wall-seam-style-picker": { "title": "选择信息条样式", "description": "选择实色信息条的纸面样式" },
-      "library-wall-backdrop-lyrics-toggle": { "title": "墙后画面显示歌词", "description": "墙后透出的可视化是否绘制歌词文字" },
-      "library-wall-backdrop-blur-toggle": { "title": "墙后画面模糊", "description": "给墙后透出的可视化加模糊" },
-      "library-wall-seam-direction-picker": { "title": "选择信息条方向", "description": "信息条竖着开、从块的横向缝隙横着开，或按屏幕形状自动选" },
-      "settings-theme-presets": { "title": "预设配色", "description": "直接跳到内置和已保存的预设配色" },
-      "settings-liquid-glass": { "title": "流体玻璃", "description": "直接跳到流体玻璃强度、模糊与预设" },
-      "settings-lyric-render-quality": { "title": "歌词画布分辨率与抗锯齿", "description": "直接跳到 canvas / WebGL 歌词样式默认跟随的分辨率和抗锯齿设置" },
-      "settings-lyrics-renderer": { "title": "歌词渲染方式", "description": "直接跳到播放器歌词的绘制方式设置" },
-      "settings-grid-card-style": { "title": "网格卡片样式", "description": "直接跳到首页网格卡片的绘制样式" },
-      "settings-queue-behavior": { "title": "队列行为", "description": "直接跳到播放队列的组建与保留方式" },
-      "settings-netease-scrobble": { "title": "网易云听歌打卡", "description": "直接跳到是否把播放记录上报给网易云音乐" },
-      "netease-scrobble-toggle": { "title": "网易云听歌打卡", "description": "开启或关闭把播放记录上报给网易云音乐" },
-      "settings-audio-output": { "title": "音频输出", "description": "直接跳到音频输出设备与格式设置" },
-      "hifi-toggle": { "title": "mpv 播放引擎", "description": "在 Web Audio 和 mpv 之间切换本地与 Navidrome 歌曲的播放引擎；mpv 直接送到输出设备" },
-      "hifi-settings": { "title": "播放引擎设置", "description": "打开播放引擎设置：Web Audio 或 mpv，以及 mpv 的输出设备、独占模式和 DSD" },
-      "hifi-exclusive-toggle": { "title": "HiFi 独占模式", "description": "开关 HiFi 是否独占输出设备，不让系统混音器插手" },
-      "hifi-navidrome-toggle": { "title": "Navidrome 走 HiFi", "description": "开关 Navidrome 歌曲是否走 HiFi：从服务器取原文件，不转码" },
-      "hifi-software-volume-toggle": { "title": "HiFi 软件音量", "description": "开关是否让 Folia 的音量滑杆调 mpv 的音量；开着时不再是原生直通" },
-      "hifi-redetect-mpv": { "title": "重新检测 mpv", "description": "重新查找 HiFi 用的 mpv，比如装好或更新之后" },
-      "hifi-download-mpv": { "title": "下载或更新 mpv", "description": "下载推荐给 HiFi 用的 mpv，或更新 Folia 下载的那份；进度显示在 播放引擎设置里" },
-      "hifi-signal-path": { "title": "HiFi 信号链路", "description": "查看当前歌曲如何送到 DAC，以及是否保持原生直通" },
-      "settings-transition": { "title": "智能过渡", "description": "直接跳到 FOLIA 智能过渡设置" },
-      "settings-navidrome": { "title": "Navidrome 服务器", "description": "直接跳到 Navidrome 服务器连接设置" },
-      "settings-stage-mode": { "title": "Stage 模式", "description": "直接跳到 Stage 外部播放器设置" },
-      "settings-media-cache": { "title": "媒体缓存", "description": "直接跳到已下载音频的缓存" },
-      "filter-view": { "title": "筛选当前视图", "description": "按名称缩小屏幕上的卡片范围" },
-      "panel-cover": { "title": "面板：封面", "description": "打开封面面板 tab" },
-      "panel-controls": { "title": "面板：控制", "description": "打开控制面板 tab" },
-      "panel-queue": { "title": "面板：队列", "description": "打开队列面板 tab" },
-      "panel-account": { "title": "面板：音质", "description": "打开音质面板 tab（账号、默认音质、同步数据）" },
-      "panel-local": { "title": "面板：本地", "description": "打开本地面板 tab" },
-      "panel-navi": { "title": "面板：Navidrome", "description": "打开 Navidrome 面板 tab" },
-      "panel-onlineLyrics": { "title": "面板：歌词", "description": "打开在线歌词面板 tab" },
-      "lyric-segmentation": { "title": "歌词分词调整", "description": "用 AI 或手动修正这首歌的歌词分词结果" },
-      "mods": { "title": "模组（实验性）", "description": "实验性功能：管理模组并导出透明歌词视频" },
-      "playback-play": { "title": "播放", "description": "暂停时开始播放" },
-      "playback-pause": { "title": "暂停", "description": "暂停当前播放" },
-      "playback-toggle": { "title": "播放/暂停", "description": "正在播放就暂停，暂停中就继续播放" },
-      "playback-next": { "title": "下一首", "description": "播放下一首" },
-      "queue-keep-open": { "title": "队列切歌后保持打开", "description": "切换选择队列歌曲后是否保持命令面板打开" },
-      "playback-prev": { "title": "上一首", "description": "播放上一首" },
-      "playback-loop": { "title": "切换循环", "description": "切换循环模式" },
-      "playback-like": { "title": "收藏当前歌曲", "description": "把当前歌曲加入收藏，或取消收藏" },
-      "playback-add-to-playlist": { "title": "添加到歌单", "description": "把当前歌曲放进你的某个歌单" },
-      "playback-mute": { "title": "静音", "description": "静音，或恢复声音" },
-      "playback-volume-up": { "title": "音量加", "description": "音量调高 5%" },
-      "playback-volume-down": { "title": "音量减", "description": "音量调低 5%" },
-      "playback-shuffle": { "title": "打乱队列", "description": "打乱当前播放队列" },
-      "playback-clear-queue": { "title": "清空队列", "description": "移除当前播放队列中的所有歌曲" },
-      "playback-undo-queue-replace": { "title": "撤销模组替换的队列", "description": "恢复模组替换之前的播放队列" },
-      "theme-generate-current": { "title": "生成 AI 主题", "description": "为当前歌曲生成 AI 主题" },
-      "theme-quick-editor": { "title": "快速主题编辑器", "description": "快速编辑当前歌曲的 AI 主题" },
-      "theme-source-ai": { "title": "主题来源：AI 推断", "description": "由 AI 读取歌词推断歌曲主题配色" },
-      "theme-source-cover": { "title": "主题来源：封面取色", "description": "直接从封面配色生成歌曲主题" },
-      "playback-auto-match-best-lyric": { "title": "匹配最佳歌词", "description": "为当前歌曲运行自动最佳歌词匹配" },
-      "playback-toggle-pure-music": { "title": "标记或取消纯音乐", "description": "把当前本地歌曲标记为纯音乐，不再为它自动匹配歌词；再执行一次取消标记" },
-      "visualizer-picker": { "title": "选择可视化", "description": "浏览歌词动画模式，点击即可切换" },
-      "background-picker": { "title": "选择背景", "description": "浏览背景布局，点击即可切换" },
-      "visualizer-still": { "title": "可视化：静止", "description": "切换到低占用的静态可视化" },
-      "visualizer-classic": { "title": "可视化：流光", "description": "切换到经典可视化" },
-      "visualizer-cadenza": { "title": "可视化：心象", "description": "切换到心象可视化" },
-      "visualizer-partita": { "title": "可视化：云阶", "description": "切换到云阶可视化" },
-      "visualizer-fume": { "title": "可视化：浮名", "description": "切换到浮名可视化" },
-      "visualizer-cappella": { "title": "可视化：群唱", "description": "切换到群唱可视化" },
-      "visualizer-tilt": { "title": "可视化：倾诉", "description": "切换到倾诉可视化" },
-      "visualizer-claddagh": { "title": "可视化：回环", "description": "切换到回环可视化" },
-      "visualizer-monet": { "title": "切换到可视化：莫奈", "description": "切换到莫奈可视化" },
-      "visualizer-diorama": { "title": "切换到可视化：镜台", "description": "切换到镜台可视化" },
-      "visualizer-pendolo": { "title": "切换到可视化：时计", "description": "切换到时计可视化" },
-      "visualizer-sonnet": { "title": "切换到可视化：商籁", "description": "切换到商籁可视化" },
-      "smart-beat-toggle": { "title": "智能动感模式 开 / 关", "description": "开关智能动感模式（商籁、镜台按节拍，时计按鼓点驱动画面）" },
-      "smart-beat-off": { "title": "智能动感模式：关闭", "description": "关闭智能动感模式，所有画面保持原样" },
-      "smart-beat-cached": { "title": "智能动感模式：只用已分析", "description": "只用分析过的歌驱动动感效果，智能动感模式自己不分析新歌、不占用 GPU（自动混音不受影响）" },
-      "smart-beat-on": { "title": "智能动感模式：开启", "description": "开启智能动感模式（商籁、镜台按节拍，时计按鼓点驱动画面），没分析过的歌当场分析" },
-      "visualizer-tempera": { "title": "切换到可视化：凝彩", "description": "切换到凝彩色块 PV 可视化" },
-      "visualizer-lumiere": { "title": "切换到可视化：绘光", "description": "切换到绘光舞台光 PV 可视化" },
-      "visualizer-nebbia": { "title": "切换到可视化：雾笺", "description": "切换到雾笺：在起雾的公交车窗上写歌词" },
-      "visualizer-hanabi": { "title": "切换到可视化：花火", "description": "切换到花火烟花歌词 PV 可视化" },
-      "visualizer-machi": { "title": "切换到可视化：町景", "description": "切换到町景微缩街景可视化" },
-      "desktop-toggle-remote-control": { "title": "切换遥控窗口", "description": "打开或关闭遥控窗口" },
-      "desktop-toggle-main-window-always-on-top": { "title": "切换主窗口置顶", "description": "置顶或取消置顶主窗口" },
-      "background-monet-full-overlay": { "title": "背景切换到 莫奈: 全屏叠色", "description": "切换背景到莫奈全屏叠色" },
-      "background-monet-half-gradient": { "title": "背景切换到 莫奈: 半屏渐变", "description": "切换背景到莫奈半屏渐变" },
-      "background-common": { "title": "背景切换到 通用", "description": "切换背景到通用" },
-      "background-nomand": { "title": "背景切换到漫游", "description": "切换到 Paper 图片效果背景" },
-      "background-latent": { "title": "背景切换到隐现", "description": "切换到封面取色与音频响应的双着色器背景" },
-      "background-latent-dithering": { "title": "背景切换到隐现：像素", "description": "仅显示 隐现 像素层" },
-      "background-latent-mesh": { "title": "背景切换到隐现：流体", "description": "仅显示 隐现 流体层" },
-      "background-latent-both": { "title": "背景切换到隐现：混合", "description": "同时显示 隐现 像素与流体层" },
-      "background-url": { "title": "背景切换到 嵌入背景", "description": "切换背景到嵌入网页模式" },
-      "background-sora": { "title": "背景切换：空", "description": "将背景切换到星空 (Sora)" },
-      "settings-toggle-transparent": { "title": "透明化", "description": "切换播放器背景透明度" },
-      "settings-toggle-daylight": { "title": "切换明暗", "description": "切换主题日夜模式" },
-      "settings-toggle-player-back-button": { "title": "始终显示播放页返回按钮", "description": "切换播放页左上角返回按钮的常驻显示" },
-      "settings-gridview-cards": { "title": "网格卡片外观", "description": "直接调整全画幅封面和网格卡片的远近缩放与淡出" },
-      "settings-toggle-gridview-full-bleed-cover": { "title": "全画幅封面", "description": "开关网格卡片的封面铺满整张卡片" },
-      "settings-toggle-gridview-square-cards": { "title": "正方形网格卡片", "description": "开关全画幅网格卡片使用正方形而非竖版比例" },
-      "settings-toggle-lattice-vignette": { "title": "海报墙边缘暗角", "description": "开关队列拼贴（Lattice）与资料库墙四周的边缘暗角" },
-      "settings-toggle-lattice-auto-focus": { "title": "Lattice 自动聚焦", "description": "切换歌曲时自动将正在播放的海报拉回队列拼贴中央" },
-      "lattice-poster-tint": { "title": "海报墙叠色", "description": "调整队列拼贴（Lattice）与资料库墙上非当前聚焦海报的颜色叠层" },
-      "settings-reduce-motion": { "title": "降低动态效果", "description": "逐个调低各个界面的动画，或选择跟随系统设置" },
-      "settings-toggle-reduce-lattice-motion": { "title": "降低队列拼贴动效", "description": "把队列拼贴的展开、相机飞行与入场波降为瞬时切换" },
-      "settings-toggle-follow-system-reduced-motion": { "title": "跟随系统动画设置", "description": "切换是否允许系统的动画设置降低应用内的动态效果" },
-      "settings-toggle-track-switch-buttons": { "title": "始终显示切歌箭头", "description": "切换进度条标题两侧上一首/下一首箭头的常驻显示" },
-      "settings-toggle-main-window-titlebar": { "title": "始终显示标题栏控制按钮", "description": "切换主窗口标题栏控制按钮的常驻显示" },
-      "settings-toggle-player-header-blur": { "title": "播放页顶栏模糊背景", "description": "切换播放页标题栏后面的磨砂底，让按钮在任何画面上都看得清" },
-      "settings-toggle-fullscreen-titlebar-button": { "title": "切换全屏按钮显示状态", "description": "显示或隐藏桌面窗口控制按钮中的全屏按钮" },
-      "settings-toggle-native-mac-fullscreen-button": { "title": "macOS 原生全屏按钮", "description": "切换 macOS 窗口控制按钮进入原生全屏而非最大化" },
-      "settings-toggle-cursor-auto-hide": { "title": "隐藏控制栏时一并隐藏鼠标", "description": "切换控制栏自动隐藏时鼠标指针是否一起消失" },
-      "settings-toggle-cursor-idle-hide": { "title": "空闲时隐藏鼠标", "description": "切换鼠标静止时是否自动隐藏指针而控制栏保持显示" },
-      "settings-toggle-auto-play-on-launch": { "title": "进入应用后自动播放", "description": "切换打开应用时是否自动续播上次的歌曲" },
-      "settings-toggle-transcode-fallback": { "title": "自动转换不支持的音频", "description": "切换 Electron 对 Chromium 无法解码的本地与 Navidrome 音频的恢复" },
-      "settings-toggle-playback-fade": { "title": "暂停/播放淡入淡出", "description": "切换暂停和恢复播放时的短淡入淡出" },
-      "settings-toggle-auto-skip-unplayable": { "title": "无法播放时自动跳过", "description": "切换歌曲受限或原因不明无法播放时是否倒计时跳到下一首" },
-      "settings-toggle-bottom-subtitle-overlay": { "title": "切换底部字幕层", "description": "显示或隐藏整个底部字幕层" },
-      "settings-cycle-subtitle-content-mode": { "title": "切换翻译字幕状态", "description": "在翻译、罗马音、罗马音加翻译之间切换副字幕内容" },
-      "settings-toggle-subtitle-background": { "title": "切换字幕背景", "description": "显示或隐藏提升字幕可读性的背景" },
-      "settings-language-system": { "title": "跟随系统语言", "description": "使用浏览器或系统语言" },
-      "settings-language-zh-CN": { "title": "切换为简体中文", "description": "界面使用简体中文" },
-      "settings-language-zh-TW": { "title": "切換為繁體中文", "description": "介面使用繁體中文" },
-      "settings-language-en": { "title": "切换为英文", "description": "界面使用 English" },
-      "settings-language-in": { "title": "切换为印尼语", "description": "界面使用 Bahasa Indonesia" },
-      "settings-language-vi": { "title": "切换为越南语", "description": "界面使用 Tiếng Việt" }
+      "settings-ponder-hints": {
+        "title": "思索教程提示",
+        "description": "设置长按 G 的提示什么时候出现"
+      },
+      "ponder-hints-always": {
+        "title": "思索提示：始终显示",
+        "description": "所有可教学的控件都提示长按 G"
+      },
+      "ponder-hints-unseen": {
+        "title": "思索提示：仅未看过的区域",
+        "description": "某个控件的教程看过之后就不再提示它"
+      },
+      "ponder-hints-off": {
+        "title": "思索提示：关闭",
+        "description": "不再显示长按 G 的提示"
+      },
+      "ponder-touch-button-toggle": {
+        "title": "触屏思索按钮",
+        "description": "显示或隐藏触屏右上角那颗灯泡"
+      },
+      "search-current": {
+        "title": "搜索歌曲",
+        "description": "在当前来源搜索歌曲"
+      },
+      "search-local": {
+        "title": "搜索本地歌曲",
+        "description": "搜索本地音乐库"
+      },
+      "search-navidrome": {
+        "title": "搜索 Navidrome",
+        "description": "搜索 Navidrome 音乐库"
+      },
+      "search-netease": {
+        "title": "搜索网易云",
+        "description": "搜索网易云音乐"
+      },
+      "queue": {
+        "title": "队列",
+        "description": "搜索队列；使用 @ 筛选元数据，使用 -- 批量操作"
+      },
+      "playback-volume": {
+        "title": "音量条",
+        "description": "调整播放音量"
+      },
+      "playback-fm-mode": {
+        "title": "私人 FM 模式",
+        "description": "切换私人 FM 的模式或场景"
+      },
+      "settings-help": {
+        "title": "打开帮助",
+        "description": "打开帮助和快捷键"
+      },
+      "ponder-current-page": {
+        "title": "思索当前页面",
+        "description": "打开当前页面的交互式介绍"
+      },
+      "settings-options": {
+        "title": "打开选项",
+        "description": "打开设置中心"
+      },
+      "settings-now-playing-card-position": {
+        "title": "调整卡片位置",
+        "description": "拖动正在播放卡片到新的位置"
+      },
+      "settings-ai-provider": {
+        "title": "AI 供应商设置",
+        "description": "选择 AI 供应商和模型"
+      },
+      "settings-appearance": {
+        "title": "外观设置",
+        "description": "打开视觉和外观设置"
+      },
+      "settings-general": {
+        "title": "通用设置",
+        "description": "打开全局应用偏好"
+      },
+      "settings-playback": {
+        "title": "播放设置",
+        "description": "打开播放行为设置"
+      },
+      "playback-replaygain-off": {
+        "title": "关闭 ReplayGain",
+        "description": "播放音频时不应用 ReplayGain 调整"
+      },
+      "playback-replaygain-track": {
+        "title": "ReplayGain：单曲模式",
+        "description": "按每首歌曲的 ReplayGain 数据调整响度"
+      },
+      "playback-replaygain-album": {
+        "title": "ReplayGain：专辑模式",
+        "description": "按专辑 ReplayGain 数据调整响度"
+      },
+      "playback-replaygain-auto": {
+        "title": "ReplayGain：智能平衡",
+        "description": "测量每首歌的响度，把偏响的歌调小到一致"
+      },
+      "playback-equalizer": {
+        "title": "音频效果器",
+        "description": "打开均衡器和效果链"
+      },
+      "playback-sound-preset-flat": {
+        "title": "音效：水平",
+        "description": "清空均衡器和所有效果"
+      },
+      "playback-sound-preset-lofi": {
+        "title": "音效：Lo-Fi",
+        "description": "削频、降质、抖晃并加入黑胶噪声"
+      },
+      "playback-sound-preset-radio": {
+        "title": "音效：收音机",
+        "description": "窄频带、接近单声道的广播音色"
+      },
+      "playback-sound-preset-hall": {
+        "title": "音效：大厅",
+        "description": "更宽的立体声与混响空间"
+      },
+      "playback-sound-preset-vocal": {
+        "title": "音效：人声",
+        "description": "抬升人声频段并收紧动态"
+      },
+      "playback-sound-preset-bass": {
+        "title": "音效：低音增强",
+        "description": "更厚的低频和更强的力度"
+      },
+      "playback-sound-preset-custom1": {
+        "title": "音效：自定义 1",
+        "description": "套用第一个自定义音效栏位"
+      },
+      "playback-sound-preset-custom2": {
+        "title": "音效：自定义 2",
+        "description": "套用第二个自定义音效栏位"
+      },
+      "playback-sound-mod-curve-release": {
+        "title": "音效：换回我的音效",
+        "description": "去掉模组施加的均衡器曲线，回到你原来的音效"
+      },
+      "settings-local-lyrics-priority": {
+        "title": "本地歌曲歌词优先级",
+        "description": "选择本地歌曲优先使用本地或在线歌词"
+      },
+      "settings-local-lyric-format-order": {
+        "title": "本地歌词文件格式优先级",
+        "description": "调整同名歌词文件按哪种格式优先选用"
+      },
+      "settings-integration": {
+        "title": "集成设置",
+        "description": "打开 Stage、Now Playing 和 Navidrome 设置"
+      },
+      "automix-toggle": {
+        "title": "智能过渡",
+        "description": "开启或关闭 FOLIA 智能过渡"
+      },
+      "transition-mode-crossfade": {
+        "title": "过渡模式：Folia Crossfade",
+        "description": "使用简单的一淡出一淡入交叉淡化"
+      },
+      "transition-mode-automix": {
+        "title": "过渡模式：Folia Automix",
+        "description": "分析两首曲目并自动混音"
+      },
+      "transition-performance-toggle": {
+        "title": "过渡表现模式",
+        "description": "切换更激进的过渡（需要人声分离模型）"
+      },
+      "settings-discord-presence": {
+        "title": "Discord 播放状态",
+        "description": "打开 Discord Rich Presence 设置"
+      },
+      "lyric-staff-policy-cycle": {
+        "title": "开头制作人员信息",
+        "description": "轮换歌词开头署名块的处理方式"
+      },
+      "lyric-staff-absorb-cycle": {
+        "title": "开头制作人员信息：吸收相邻行",
+        "description": "轮换署名块是否把相邻的短耗行一起并入"
+      },
+      "settings-obs-browser-source": {
+        "title": "OBS 浏览器源",
+        "description": "打开 OBS 浏览器源设置"
+      },
+      "obs-toggle-keep-main-window-animation": {
+        "title": "OBS 连接时保持主窗口动画",
+        "description": "切换 OBS 连接时主窗口是否继续渲染歌词动画"
+      },
+      "desktop-toggle-lyric-api": {
+        "title": "歌词接口",
+        "description": "切换本地免鉴权歌词接口"
+      },
+      "settings-obs-copy-css": {
+        "title": "复制 OBS CSS",
+        "description": "复制 OBS 浏览器源的自定义 CSS，把上传的背景/立绘等资产带到 OBS"
+      },
+      "settings-storage": {
+        "title": "存储设置",
+        "description": "打开缓存和存储设置"
+      },
+      "settings-r2-sync": {
+        "title": "同步服务设置",
+        "description": "打开同步服务设置"
+      },
+      "sync-now": {
+        "title": "立即同步",
+        "description": "同步 AI 主题"
+      },
+      "export-lyric-cache": {
+        "title": "导出歌词缓存",
+        "description": "把本机所有歌词打包成 .fia 和增强型 LRC 的 zip"
+      },
+      "export-current-lyrics-fia": {
+        "title": "导出当前歌词为 .fia",
+        "description": "以 Folia 无损格式保存这首歌的歌词，含你保存的分词"
+      },
+      "export-current-lyrics-lrc": {
+        "title": "导出当前歌词为 LRC",
+        "description": "保存为其他播放器也能读的增强型 LRC"
+      },
+      "settings-local-library-watch": {
+        "title": "本地文件夹监视设置",
+        "description": "打开已导入本地文件夹的自动扫描设置"
+      },
+      "local-library-auto-scan-toggle": {
+        "title": "自动扫描本地文件夹",
+        "description": "开启或关闭已导入本地文件夹的自动重新扫描"
+      },
+      "settings-desktop": {
+        "title": "桌面端设置",
+        "description": "打开桌面应用设置"
+      },
+      "settings-update-channel": {
+        "title": "更新通道",
+        "description": "选择桌面端发布通道"
+      },
+      "desktop-toggle-voice-input-pause": {
+        "title": "语音输入时暂停",
+        "description": "切换语音输入时自动暂停播放"
+      },
+      "desktop-toggle-prevent-display-sleep": {
+        "title": "播放时阻止休眠",
+        "description": "播放音乐时保持显示器唤醒"
+      },
+      "desktop-toggle-background-throttling": {
+        "title": "后台节流",
+        "description": "切换 Folia 最小化或隐藏时节流渲染、停下歌词动画"
+      },
+      "settings-graphics": {
+        "title": "图形设置",
+        "description": "打开静态模式、帧率限制、Linux 发光修复和降低动态效果"
+      },
+      "settings-gpu-preference": {
+        "title": "渲染显卡设置",
+        "description": "跳到选择渲染显卡的设置"
+      },
+      "gpu-preference-auto": {
+        "title": "渲染显卡：自动",
+        "description": "由系统决定用哪张显卡渲染，重启后生效"
+      },
+      "gpu-preference-high-performance": {
+        "title": "渲染显卡：高性能",
+        "description": "用独立显卡渲染，重启后生效"
+      },
+      "gpu-preference-low-power": {
+        "title": "渲染显卡：省电",
+        "description": "用核显渲染，重启后生效"
+      },
+      "settings-mods": {
+        "title": "模组设置",
+        "description": "打开模组系统开关和已安装的模组"
+      },
+      "settings-lab": {
+        "title": "播放页界面",
+        "description": "跳到隐藏或常驻显示播放页部件的开关"
+      },
+      "settings-player-bottom-bar-position": {
+        "title": "调整底部控制条位置",
+        "description": "拖动底部控制条和面板按钮到新的高度（歌曲卡片没单独调过位置时也跟着动）"
+      },
+      "settings-player-control-slots": {
+        "title": "进度条按钮槽位",
+        "description": "选择进度条右侧两个按钮对应的功能"
+      },
+      "video-layer-toggle": {
+        "title": "歌词后方视频层",
+        "description": "显示或隐藏歌词后方的静音视频层"
+      },
+      "video-layer-pick": {
+        "title": "视频层：选择本地视频",
+        "description": "选择在歌词后方播放的本地视频"
+      },
+      "visualizer-toggle-random-per-song": {
+        "title": "每首歌随机歌词动画",
+        "description": "歌曲切换时随机使用一种歌词动画模式"
+      },
+      "visualizer-machi-camera-bar": {
+        "title": "町景：取景",
+        "description": "在播放页显示或收起町景的取景控制条，调视角、对焦、光圈和运镜"
+      },
+      "visualizer-toggle-glow-blur-quantize": {
+        "title": "修复 Linux 歌词动画卡死",
+        "description": "改变部分歌词动画的发光绘制方式，修复 Linux 下长时间播放后偶发的卡死问题"
+      },
+      "settings-visualizer": {
+        "title": "歌词动画样式设置",
+        "description": "打开歌词动画实验台"
+      },
+      "settings-theme-park": {
+        "title": "配色",
+        "description": "打开主题编辑器"
+      },
+      "settings-global-lyric-offset": {
+        "title": "全局时间偏移",
+        "description": "校准蓝牙等设备造成的音画延迟"
+      },
+      "settings-lyric-filter": {
+        "title": "歌词过滤",
+        "description": "打开歌词过滤设置"
+      },
+      "settings-wallpaper-mode": {
+        "title": "壁纸模式设置",
+        "description": "打开壁纸模式设置"
+      },
+      "desktop-toggle-wallpaper-mode": {
+        "title": "切换壁纸模式",
+        "description": "将应用作为桌面歌词壁纸"
+      },
+      "desktop-toggle-wallpaper-dock-autohide": {
+        "title": "壁纸模式下自动隐藏 Dock 栏",
+        "description": "开启后壁纸模式期间自动隐藏 Dock 栏（仅底部 Dock 生效）"
+      },
+      "desktop-toggle-close-to-tray": {
+        "title": "关闭窗口时隐藏到托盘",
+        "description": "关闭主窗口后应用不退出，继续在系统托盘运行"
+      },
+      "desktop-toggle-remote-control-hide-titlebar": {
+        "title": "遥控窗口：隐藏顶部悬浮栏",
+        "description": "切换遥控窗口顶部悬浮窗口控制栏的显示"
+      },
+      "desktop-toggle-remote-control-expand-cover": {
+        "title": "遥控窗口：展开封面",
+        "description": "切换遥控窗口闲置时是否把封面展开成大图"
+      },
+      "desktop-toggle-remote-control-text-shade": {
+        "title": "遥控窗口：文字黑底",
+        "description": "切换遥控窗口透明背景下闲置文字底下的半透明黑底"
+      },
+      "desktop-unlock-remote-control": {
+        "title": "解锁远程控制",
+        "description": "关闭遥控窗口的点击穿透，恢复窗口的操作与拖动"
+      },
+      "sleep-timer": {
+        "title": "睡眠定时",
+        "description": "指定时长后暂停播放，桌面端将关闭应用"
+      },
+      "navigate-home": {
+        "title": "回到首页",
+        "description": "返回首页视图"
+      },
+      "navigate-player": {
+        "title": "回到播放器",
+        "description": "返回播放器视图"
+      },
+      "lattice-focus-current": {
+        "title": "Lattice 定位正在播放的歌",
+        "description": "在拼贴里把正在播放的歌的海报移到中央"
+      },
+      "locate-playing-song": {
+        "title": "定位正在播放的歌",
+        "description": "打开它所在的歌单或专辑，并把它的卡片移到中央"
+      },
+      "bravais-list": {
+        "title": "打开歌曲列表",
+        "description": "把资料库墙面上的缝加宽成这个集合的歌曲列表"
+      },
+      "bravais-directory": {
+        "title": "打开目录",
+        "description": "把资料库首页的缝加宽成本地文件夹目录树，批量选择"
+      },
+      "bravais-seam-full": {
+        "title": "展开信息条",
+        "description": "把资料库墙面上的缝张开成完整的信息条"
+      },
+      "bravais-seam-spine": {
+        "title": "收起信息条",
+        "description": "把资料库墙面上的缝收成书脊"
+      },
+      "bravais-seam-hide": {
+        "title": "折叠信息条",
+        "description": "合上缝，只在屏幕侧边留一个悬浮标签"
+      },
+      "bravais-seam-here": {
+        "title": "在这里裂开缝",
+        "description": "缝滑出屏幕后，在当前视口里裂开一道新缝"
+      },
+      "bravais-locate-playing": {
+        "title": "定位正在播放",
+        "description": "把墙上的焦点移到正在播放的那首歌"
+      },
+      "bravais-wall-look": {
+        "title": "切换墙面透光",
+        "description": "在实色、部分透明、全透明三档之间切换资料库墙面"
+      },
+      "bravais-more-windows": {
+        "title": "多开一个窗",
+        "description": "部分透明时，墙上每块多开一个透光的窗"
+      },
+      "bravais-fewer-windows": {
+        "title": "少开一个窗",
+        "description": "部分透明时，墙上每块少开一个透光的窗"
+      },
+      "navigate-lattice": {
+        "title": "Lattice 打开",
+        "description": "以队列拼贴的形式展示播放队列"
+      },
+      "browser-fullscreen": {
+        "title": "全屏",
+        "description": "切换浏览器全屏"
+      },
+      "home-playlist": {
+        "title": "打开歌单",
+        "description": "打开歌单首页 tab"
+      },
+      "home-local": {
+        "title": "打开本地音乐",
+        "description": "打开本地音乐 tab"
+      },
+      "home-albums": {
+        "title": "打开专辑",
+        "description": "打开专辑 tab"
+      },
+      "home-navidrome": {
+        "title": "打开 Navidrome",
+        "description": "打开 Navidrome tab"
+      },
+      "home-radio": {
+        "title": "打开电台",
+        "description": "打开电台 tab"
+      },
+      "home-explore": {
+        "title": "打开探索",
+        "description": "打开探索 tab"
+      },
+      "grid-sort-file-name": {
+        "title": "按文件名排序",
+        "description": "把本地曲目按文件名排列"
+      },
+      "grid-sort-modified-date": {
+        "title": "按修改时间排序",
+        "description": "把本地曲目按文件最后修改时间排列"
+      },
+      "grid-sort-album-track": {
+        "title": "按音轨号排序",
+        "description": "把本地曲目按碟号和音轨号排列"
+      },
+      "grid-sort-direction": {
+        "title": "反转排序方向",
+        "description": "在正序和倒序之间切换本地曲目列表"
+      },
+      "grid-toggle-info-panel": {
+        "title": "切换合集面板",
+        "description": "显示或隐藏合集信息与操作面板"
+      },
+      "grid-toggle-track-list": {
+        "title": "切换曲目列表",
+        "description": "显示或隐藏网格旁的曲目列表"
+      },
+      "grid-resync-folder": {
+        "title": "重新导入此文件夹",
+        "description": "重新扫描这个本地文件夹并刷新其中的歌曲"
+      },
+      "grid-resync-all-folders": {
+        "title": "重新导入全部文件夹",
+        "description": "重新扫描所有本地文件夹并刷新曲库"
+      },
+      "grid-organize-song-info": {
+        "title": "整理歌曲信息",
+        "description": "整理这个文件夹里歌曲的标题、艺人和专辑"
+      },
+      "grid-export-playlist": {
+        "title": "导出此歌单",
+        "description": "把这个本地歌单保存为 m3u8 文件"
+      },
+      "grid-edit-entity": {
+        "title": "编辑此专辑或艺人",
+        "description": "为这个合集打开本地曲库的实体编辑面板"
+      },
+      "grid-set-cover": {
+        "title": "设置合集封面",
+        "description": "为这个本地文件夹、专辑或歌单选一张固定的封面"
+      },
+      "grid-toggle-edit-mode": {
+        "title": "切换编辑模式",
+        "description": "进入或退出可以从这个合集里移除歌曲的模式"
+      },
+      "grid-reload-online-collection": {
+        "title": "重新加载此合集",
+        "description": "跳过缓存，重新拉取这个在线合集的全部歌曲"
+      },
+      "grid-toggle-subscribe": {
+        "title": "收藏或取消收藏",
+        "description": "把这个在线歌单或专辑加入收藏，已经收藏的就取消"
+      },
+      "directory-play-selection": {
+        "title": "播放选中的卡片",
+        "description": "按卡片顺序播放地图上选中卡片的歌曲"
+      },
+      "directory-enqueue-selection": {
+        "title": "选中的卡片加入队列",
+        "description": "把地图上选中卡片的歌曲加入播放队列"
+      },
+      "directory-create-playlist": {
+        "title": "用选中的卡片新建歌单",
+        "description": "用选中卡片的歌曲新建一个本地歌单"
+      },
+      "directory-remove-selection": {
+        "title": "从曲库删除选中的",
+        "description": "确认后把选中的文件夹及其歌曲从本地曲库删除"
+      },
+      "directory-select-all": {
+        "title": "全选筛选出的卡片",
+        "description": "打开批量面板，选中筛选结果里的每一张卡片"
+      },
+      "directory-clear-selection": {
+        "title": "清空选择",
+        "description": "取消地图上所有卡片的选中"
+      },
+      "directory-manage-hidden": {
+        "title": "管理隐藏的歌单",
+        "description": "在地图上显示隐藏的歌单，以便隐藏或取消隐藏；再次执行退出这个视图"
+      },
+      "directory-toggle-hidden": {
+        "title": "隐藏或取消隐藏焦点歌单",
+        "description": "把焦点所在的歌单从首页目录里隐藏，或让它重新出现"
+      },
+      "directory-rescan-root": {
+        "title": "重新扫描焦点所在的导入目录",
+        "description": "重新扫描焦点所在的导入根目录"
+      },
+      "directory-remove-root": {
+        "title": "移除焦点所在的导入目录",
+        "description": "确认后把焦点所在的导入根目录及其歌曲从本地曲库移除"
+      },
+      "directory-clear-ignore": {
+        "title": "恢复焦点所在的忽略目录",
+        "description": "不再忽略焦点所在的文件夹，并重新扫描它"
+      },
+      "artist-play-top-songs": {
+        "title": "播放热门歌曲",
+        "description": "从第一首起播放这位歌手可播放的热门歌曲"
+      },
+      "artist-enqueue-top-songs": {
+        "title": "热门歌曲加入队列",
+        "description": "把这位歌手的热门歌曲加入播放队列"
+      },
+      "artist-reload": {
+        "title": "重新加载歌手",
+        "description": "从来源重新加载这个歌手页"
+      },
+      "artist-retry-albums": {
+        "title": "继续加载专辑",
+        "description": "重试失败的那一页专辑，并继续加载其余的"
+      },
+      "artist-edit-entity": {
+        "title": "编辑歌手信息",
+        "description": "打开本地曲库里这位歌手的编辑窗口"
+      },
+      "settings-interaction": {
+        "title": "交互设置",
+        "description": "打开键盘、快捷键与网格交互设置"
+      },
+      "settings-global-shortcuts": {
+        "title": "全局快捷键",
+        "description": "直接跳到系统级的快捷键：播放控制与模组命令"
+      },
+      "settings-custom-shortcut": {
+        "title": "自定义快捷键",
+        "description": "直接跳到自定义键盘快捷键的绑定处"
+      },
+      "settings-grid-action-button": {
+        "title": "海报墙操作按钮",
+        "description": "直接跳到海报墙操作按钮的滑动目标设置"
+      },
+      "settings-pinned-commands": {
+        "title": "固定命令槽位",
+        "description": "选择命令面板里固定显示的三条命令"
+      },
+      "settings-home-tabs": {
+        "title": "首页标签显示",
+        "description": "选择首页要显示哪些标签"
+      },
+      "home-card-position-toggle": {
+        "title": "记住主页卡片位置",
+        "description": "开启或关闭各主页入口的卡片位置记忆"
+      },
+      "settings-playback-entry-view": {
+        "title": "播放后进入的视图",
+        "description": "直接跳到「播放后进入的视图」设置"
+      },
+      "playback-entry-view-player": {
+        "title": "播放后进入：可视化",
+        "description": "点击播放后进入播放器与可视化视图"
+      },
+      "playback-entry-view-lattice": {
+        "title": "播放后进入：Lattice",
+        "description": "点击播放后进入队列拼贴视图"
+      },
+      "playback-entry-view-stay": {
+        "title": "播放后：留在原处",
+        "description": "点击播放只开始播放，不跳转到别的视图"
+      },
+      "settings-library-suite": {
+        "title": "资料库界面",
+        "description": "直接跳到「资料库界面」设置"
+      },
+      "library-suite-picker": {
+        "title": "选择资料库界面",
+        "description": "切换浏览资料库所用的界面"
+      },
+      "library-wall-look-picker": {
+        "title": "选择透光档位",
+        "description": "海报墙透出多少下面的可视化"
+      },
+      "library-wall-windows-picker": {
+        "title": "选择每块窗数",
+        "description": "部分透明时每块有几张磁贴是窗"
+      },
+      "settings-bravais": {
+        "title": "Bravais 墙面分组",
+        "description": "直接跳到界面设置里的 Bravais 分组"
+      },
+      "library-wall-stack-edges-toggle": {
+        "title": "集合叠页边",
+        "description": "显示或隐藏专辑、歌单、文件夹磁贴右下的叠页边"
+      },
+      "library-wall-seam-clear-toggle": {
+        "title": "信息条始终透明",
+        "description": "让信息条透出墙后面的可视化"
+      },
+      "library-wall-seam-style-picker": {
+        "title": "选择信息条样式",
+        "description": "选择实色信息条的纸面样式"
+      },
+      "library-wall-backdrop-lyrics-toggle": {
+        "title": "墙后画面显示歌词",
+        "description": "墙后透出的可视化是否绘制歌词文字"
+      },
+      "library-wall-backdrop-blur-toggle": {
+        "title": "墙后画面模糊",
+        "description": "给墙后透出的可视化加模糊"
+      },
+      "library-wall-seam-direction-picker": {
+        "title": "选择信息条方向",
+        "description": "信息条竖着开、从块的横向缝隙横着开，或按屏幕形状自动选"
+      },
+      "settings-theme-presets": {
+        "title": "预设配色",
+        "description": "直接跳到内置和已保存的预设配色"
+      },
+      "settings-lyrics-renderer": {
+        "title": "歌词渲染方式",
+        "description": "直接跳到播放器歌词的绘制方式设置"
+      },
+      "settings-grid-card-style": {
+        "title": "网格卡片样式",
+        "description": "直接跳到首页网格卡片的绘制样式"
+      },
+      "settings-queue-behavior": {
+        "title": "队列行为",
+        "description": "直接跳到播放队列的组建与保留方式"
+      },
+      "settings-netease-scrobble": {
+        "title": "网易云听歌打卡",
+        "description": "直接跳到是否把播放记录上报给网易云音乐"
+      },
+      "netease-scrobble-toggle": {
+        "title": "网易云听歌打卡",
+        "description": "开启或关闭把播放记录上报给网易云音乐"
+      },
+      "settings-audio-output": {
+        "title": "音频输出",
+        "description": "直接跳到音频输出设备与格式设置"
+      },
+      "hifi-toggle": {
+        "title": "mpv 播放引擎",
+        "description": "在 Web Audio 和 mpv 之间切换本地与 Navidrome 歌曲的播放引擎；mpv 直接送到输出设备"
+      },
+      "hifi-settings": {
+        "title": "播放引擎设置",
+        "description": "打开播放引擎设置：Web Audio 或 mpv，以及 mpv 的输出设备、独占模式和 DSD"
+      },
+      "hifi-exclusive-toggle": {
+        "title": "HiFi 独占模式",
+        "description": "开关 HiFi 是否独占输出设备，不让系统混音器插手"
+      },
+      "hifi-navidrome-toggle": {
+        "title": "Navidrome 走 HiFi",
+        "description": "开关 Navidrome 歌曲是否走 HiFi：从服务器取原文件，不转码"
+      },
+      "hifi-software-volume-toggle": {
+        "title": "HiFi 软件音量",
+        "description": "开关是否让 Folia 的音量滑杆调 mpv 的音量；开着时不再是原生直通"
+      },
+      "hifi-redetect-mpv": {
+        "title": "重新检测 mpv",
+        "description": "重新查找 HiFi 用的 mpv，比如装好或更新之后"
+      },
+      "hifi-download-mpv": {
+        "title": "下载或更新 mpv",
+        "description": "下载推荐给 HiFi 用的 mpv，或更新 Folia 下载的那份；进度显示在 播放引擎设置里"
+      },
+      "hifi-signal-path": {
+        "title": "HiFi 信号链路",
+        "description": "查看当前歌曲如何送到 DAC，以及是否保持原生直通"
+      },
+      "settings-transition": {
+        "title": "智能过渡",
+        "description": "直接跳到 FOLIA 智能过渡设置"
+      },
+      "settings-navidrome": {
+        "title": "Navidrome 服务器",
+        "description": "直接跳到 Navidrome 服务器连接设置"
+      },
+      "settings-stage-mode": {
+        "title": "Stage 模式",
+        "description": "直接跳到 Stage 外部播放器设置"
+      },
+      "settings-media-cache": {
+        "title": "媒体缓存",
+        "description": "直接跳到已下载音频的缓存"
+      },
+      "filter-view": {
+        "title": "筛选当前视图",
+        "description": "按名称缩小屏幕上的卡片范围"
+      },
+      "panel-cover": {
+        "title": "面板：封面",
+        "description": "打开封面面板 tab"
+      },
+      "panel-controls": {
+        "title": "面板：控制",
+        "description": "打开控制面板 tab"
+      },
+      "panel-queue": {
+        "title": "面板：队列",
+        "description": "打开队列面板 tab"
+      },
+      "panel-account": {
+        "title": "面板：音质",
+        "description": "打开音质面板 tab（账号、默认音质、同步数据）"
+      },
+      "panel-local": {
+        "title": "面板：本地",
+        "description": "打开本地面板 tab"
+      },
+      "panel-navi": {
+        "title": "面板：Navidrome",
+        "description": "打开 Navidrome 面板 tab"
+      },
+      "panel-onlineLyrics": {
+        "title": "面板：歌词",
+        "description": "打开在线歌词面板 tab"
+      },
+      "lyric-segmentation": {
+        "title": "歌词分词调整",
+        "description": "用 AI 或手动修正这首歌的歌词分词结果"
+      },
+      "mods": {
+        "title": "模组（实验性）",
+        "description": "实验性功能：管理模组并导出透明歌词视频"
+      },
+      "playback-play": {
+        "title": "播放",
+        "description": "暂停时开始播放"
+      },
+      "playback-pause": {
+        "title": "暂停",
+        "description": "暂停当前播放"
+      },
+      "playback-toggle": {
+        "title": "播放/暂停",
+        "description": "正在播放就暂停，暂停中就继续播放"
+      },
+      "playback-next": {
+        "title": "下一首",
+        "description": "播放下一首"
+      },
+      "queue-keep-open": {
+        "title": "队列切歌后保持打开",
+        "description": "切换选择队列歌曲后是否保持命令面板打开"
+      },
+      "playback-prev": {
+        "title": "上一首",
+        "description": "播放上一首"
+      },
+      "playback-loop": {
+        "title": "切换循环",
+        "description": "切换循环模式"
+      },
+      "playback-like": {
+        "title": "收藏当前歌曲",
+        "description": "把当前歌曲加入收藏，或取消收藏"
+      },
+      "playback-add-to-playlist": {
+        "title": "添加到歌单",
+        "description": "把当前歌曲放进你的某个歌单"
+      },
+      "playback-mute": {
+        "title": "静音",
+        "description": "静音，或恢复声音"
+      },
+      "playback-volume-up": {
+        "title": "音量加",
+        "description": "音量调高 5%"
+      },
+      "playback-volume-down": {
+        "title": "音量减",
+        "description": "音量调低 5%"
+      },
+      "playback-shuffle": {
+        "title": "打乱队列",
+        "description": "打乱当前播放队列"
+      },
+      "playback-clear-queue": {
+        "title": "清空队列",
+        "description": "移除当前播放队列中的所有歌曲"
+      },
+      "playback-undo-queue-replace": {
+        "title": "撤销模组替换的队列",
+        "description": "恢复模组替换之前的播放队列"
+      },
+      "theme-generate-current": {
+        "title": "生成 AI 主题",
+        "description": "为当前歌曲生成 AI 主题"
+      },
+      "theme-quick-editor": {
+        "title": "快速主题编辑器",
+        "description": "快速编辑当前歌曲的 AI 主题"
+      },
+      "theme-source-ai": {
+        "title": "主题来源：AI 推断",
+        "description": "由 AI 读取歌词推断歌曲主题配色"
+      },
+      "theme-source-cover": {
+        "title": "主题来源：封面取色",
+        "description": "直接从封面配色生成歌曲主题"
+      },
+      "playback-auto-match-best-lyric": {
+        "title": "匹配最佳歌词",
+        "description": "为当前歌曲运行自动最佳歌词匹配"
+      },
+      "playback-toggle-pure-music": {
+        "title": "标记或取消纯音乐",
+        "description": "把当前本地歌曲标记为纯音乐，不再为它自动匹配歌词；再执行一次取消标记"
+      },
+      "visualizer-picker": {
+        "title": "选择可视化",
+        "description": "浏览歌词动画模式，点击即可切换"
+      },
+      "background-picker": {
+        "title": "选择背景",
+        "description": "浏览背景布局，点击即可切换"
+      },
+      "visualizer-still": {
+        "title": "可视化：静止",
+        "description": "切换到低占用的静态可视化"
+      },
+      "visualizer-classic": {
+        "title": "可视化：流光",
+        "description": "切换到经典可视化"
+      },
+      "visualizer-cadenza": {
+        "title": "可视化：心象",
+        "description": "切换到心象可视化"
+      },
+      "visualizer-partita": {
+        "title": "可视化：云阶",
+        "description": "切换到云阶可视化"
+      },
+      "visualizer-fume": {
+        "title": "可视化：浮名",
+        "description": "切换到浮名可视化"
+      },
+      "visualizer-cappella": {
+        "title": "可视化：群唱",
+        "description": "切换到群唱可视化"
+      },
+      "visualizer-tilt": {
+        "title": "可视化：倾诉",
+        "description": "切换到倾诉可视化"
+      },
+      "visualizer-claddagh": {
+        "title": "可视化：回环",
+        "description": "切换到回环可视化"
+      },
+      "visualizer-monet": {
+        "title": "切换到可视化：莫奈",
+        "description": "切换到莫奈可视化"
+      },
+      "visualizer-diorama": {
+        "title": "切换到可视化：镜台",
+        "description": "切换到镜台可视化"
+      },
+      "visualizer-pendolo": {
+        "title": "切换到可视化：时计",
+        "description": "切换到时计可视化"
+      },
+      "visualizer-sonnet": {
+        "title": "切换到可视化：商籁",
+        "description": "切换到商籁可视化"
+      },
+      "smart-beat-toggle": {
+        "title": "智能动感模式 开 / 关",
+        "description": "开关智能动感模式（商籁、镜台按节拍，时计按鼓点驱动画面）"
+      },
+      "smart-beat-off": {
+        "title": "智能动感模式：关闭",
+        "description": "关闭智能动感模式，所有画面保持原样"
+      },
+      "smart-beat-cached": {
+        "title": "智能动感模式：只用已分析",
+        "description": "只用分析过的歌驱动动感效果，智能动感模式自己不分析新歌、不占用 GPU（自动混音不受影响）"
+      },
+      "smart-beat-on": {
+        "title": "智能动感模式：开启",
+        "description": "开启智能动感模式（商籁、镜台按节拍，时计按鼓点驱动画面），没分析过的歌当场分析"
+      },
+      "visualizer-tempera": {
+        "title": "切换到可视化：凝彩",
+        "description": "切换到凝彩色块 PV 可视化"
+      },
+      "visualizer-lumiere": {
+        "title": "切换到可视化：绘光",
+        "description": "切换到绘光舞台光 PV 可视化"
+      },
+      "visualizer-nebbia": {
+        "title": "切换到可视化：雾笺",
+        "description": "切换到雾笺：在起雾的公交车窗上写歌词"
+      },
+      "visualizer-hanabi": {
+        "title": "切换到可视化：花火",
+        "description": "切换到花火烟花歌词 PV 可视化"
+      },
+      "visualizer-machi": {
+        "title": "切换到可视化：町景",
+        "description": "切换到町景微缩街景可视化"
+      },
+      "desktop-toggle-remote-control": {
+        "title": "切换遥控窗口",
+        "description": "打开或关闭遥控窗口"
+      },
+      "desktop-toggle-main-window-always-on-top": {
+        "title": "切换主窗口置顶",
+        "description": "置顶或取消置顶主窗口"
+      },
+      "background-monet-full-overlay": {
+        "title": "背景切换到 莫奈: 全屏叠色",
+        "description": "切换背景到莫奈全屏叠色"
+      },
+      "background-monet-half-gradient": {
+        "title": "背景切换到 莫奈: 半屏渐变",
+        "description": "切换背景到莫奈半屏渐变"
+      },
+      "background-common": {
+        "title": "背景切换到 通用",
+        "description": "切换背景到通用"
+      },
+      "background-nomand": {
+        "title": "背景切换到漫游",
+        "description": "切换到 Paper 图片效果背景"
+      },
+      "background-latent": {
+        "title": "背景切换到隐现",
+        "description": "切换到封面取色与音频响应的双着色器背景"
+      },
+      "background-latent-dithering": {
+        "title": "背景切换到隐现：像素",
+        "description": "仅显示 隐现 像素层"
+      },
+      "background-latent-mesh": {
+        "title": "背景切换到隐现：流体",
+        "description": "仅显示 隐现 流体层"
+      },
+      "background-latent-both": {
+        "title": "背景切换到隐现：混合",
+        "description": "同时显示 隐现 像素与流体层"
+      },
+      "background-url": {
+        "title": "背景切换到 嵌入背景",
+        "description": "切换背景到嵌入网页模式"
+      },
+      "background-sora": {
+        "title": "背景切换：空",
+        "description": "将背景切换到星空 (Sora)"
+      },
+      "settings-toggle-transparent": {
+        "title": "透明化",
+        "description": "切换播放器背景透明度"
+      },
+      "settings-toggle-daylight": {
+        "title": "切换明暗",
+        "description": "切换主题日夜模式"
+      },
+      "settings-toggle-player-back-button": {
+        "title": "始终显示播放页返回按钮",
+        "description": "切换播放页左上角返回按钮的常驻显示"
+      },
+      "settings-gridview-cards": {
+        "title": "网格卡片外观",
+        "description": "直接调整全画幅封面和网格卡片的远近缩放与淡出"
+      },
+      "settings-toggle-gridview-full-bleed-cover": {
+        "title": "全画幅封面",
+        "description": "开关网格卡片的封面铺满整张卡片"
+      },
+      "settings-toggle-gridview-square-cards": {
+        "title": "正方形网格卡片",
+        "description": "开关全画幅网格卡片使用正方形而非竖版比例"
+      },
+      "settings-toggle-lattice-vignette": {
+        "title": "海报墙边缘暗角",
+        "description": "开关队列拼贴（Lattice）与资料库墙四周的边缘暗角"
+      },
+      "settings-toggle-lattice-auto-focus": {
+        "title": "Lattice 自动聚焦",
+        "description": "切换歌曲时自动将正在播放的海报拉回队列拼贴中央"
+      },
+      "lattice-poster-tint": {
+        "title": "海报墙叠色",
+        "description": "调整队列拼贴（Lattice）与资料库墙上非当前聚焦海报的颜色叠层"
+      },
+      "settings-reduce-motion": {
+        "title": "降低动态效果",
+        "description": "逐个调低各个界面的动画，或选择跟随系统设置"
+      },
+      "settings-toggle-reduce-lattice-motion": {
+        "title": "降低队列拼贴动效",
+        "description": "把队列拼贴的展开、相机飞行与入场波降为瞬时切换"
+      },
+      "settings-toggle-follow-system-reduced-motion": {
+        "title": "跟随系统动画设置",
+        "description": "切换是否允许系统的动画设置降低应用内的动态效果"
+      },
+      "settings-toggle-track-switch-buttons": {
+        "title": "始终显示切歌箭头",
+        "description": "切换进度条标题两侧上一首/下一首箭头的常驻显示"
+      },
+      "settings-toggle-main-window-titlebar": {
+        "title": "始终显示标题栏控制按钮",
+        "description": "切换主窗口标题栏控制按钮的常驻显示"
+      },
+      "settings-toggle-player-header-blur": {
+        "title": "播放页顶栏模糊背景",
+        "description": "切换播放页标题栏后面的磨砂底，让按钮在任何画面上都看得清"
+      },
+      "settings-toggle-fullscreen-titlebar-button": {
+        "title": "切换全屏按钮显示状态",
+        "description": "显示或隐藏桌面窗口控制按钮中的全屏按钮"
+      },
+      "settings-toggle-native-mac-fullscreen-button": {
+        "title": "macOS 原生全屏按钮",
+        "description": "切换 macOS 窗口控制按钮进入原生全屏而非最大化"
+      },
+      "settings-toggle-cursor-auto-hide": {
+        "title": "隐藏控制栏时一并隐藏鼠标",
+        "description": "切换控制栏自动隐藏时鼠标指针是否一起消失"
+      },
+      "settings-toggle-cursor-idle-hide": {
+        "title": "空闲时隐藏鼠标",
+        "description": "切换鼠标静止时是否自动隐藏指针而控制栏保持显示"
+      },
+      "settings-toggle-auto-play-on-launch": {
+        "title": "进入应用后自动播放",
+        "description": "切换打开应用时是否自动续播上次的歌曲"
+      },
+      "settings-toggle-transcode-fallback": {
+        "title": "自动转换不支持的音频",
+        "description": "切换 Electron 对 Chromium 无法解码的本地与 Navidrome 音频的恢复"
+      },
+      "settings-toggle-playback-fade": {
+        "title": "暂停/播放淡入淡出",
+        "description": "切换暂停和恢复播放时的短淡入淡出"
+      },
+      "settings-toggle-auto-skip-unplayable": {
+        "title": "无法播放时自动跳过",
+        "description": "切换歌曲受限或原因不明无法播放时是否倒计时跳到下一首"
+      },
+      "settings-toggle-bottom-subtitle-overlay": {
+        "title": "切换底部字幕层",
+        "description": "显示或隐藏整个底部字幕层"
+      },
+      "settings-cycle-subtitle-content-mode": {
+        "title": "切换翻译字幕状态",
+        "description": "在翻译、罗马音、罗马音加翻译之间切换副字幕内容"
+      },
+      "settings-toggle-subtitle-background": {
+        "title": "切换字幕背景",
+        "description": "显示或隐藏提升字幕可读性的背景"
+      },
+      "settings-language-system": {
+        "title": "跟随系统语言",
+        "description": "使用浏览器或系统语言"
+      },
+      "settings-language-zh-CN": {
+        "title": "切换为简体中文",
+        "description": "界面使用简体中文"
+      },
+      "settings-language-zh-TW": {
+        "title": "切換為繁體中文",
+        "description": "介面使用繁體中文"
+      },
+      "settings-language-en": {
+        "title": "切换为英文",
+        "description": "界面使用 English"
+      },
+      "settings-language-in": {
+        "title": "切换为印尼语",
+        "description": "界面使用 Bahasa Indonesia"
+      },
+      "settings-language-vi": {
+        "title": "切换为越南语",
+        "description": "界面使用 Tiếng Việt"
+      },
+      "settings-liquid-glass": {
+        "title": "流体玻璃",
+        "description": "直接跳到流体玻璃强度、模糊与预设"
+      },
+      "settings-lyric-render-quality": {
+        "title": "歌词画布分辨率与抗锯齿",
+        "description": "直接跳到 canvas / WebGL 歌词样式默认跟随的分辨率和抗锯齿设置"
+      },
+      "visualizer-nebbia-behind-cycle": {
+        "title": "雾笺：切换窗外",
+        "description": "在雨夜街景、梦海流萤和背景之间切换雾笺的窗外，前面的玻璃换成那套的默认搭配"
+      },
+      "visualizer-nebbia-glass-cycle": {
+        "title": "雾笺：切换玻璃",
+        "description": "在雨窗和凝露之间切换雾笺前面的玻璃"
+      },
+      "grid-collect-filtered": {
+        "title": "把当前范围加入速记簿",
+        "description": "把这个集合（筛选时只算筛出的歌）收进速记簿，不动播放队列"
+      },
+      "scratchpad-toggle": {
+        "title": "打开 / 收起速记簿",
+        "description": "从左边拉出速记簿：先放着、待会再听或再整理的歌"
+      },
+      "scratchpad-collect-current": {
+        "title": "把当前歌曲记进速记簿",
+        "description": "不动播放队列，先把这首记下来"
+      }
     }
   },
   "ui": {
@@ -1021,8 +1926,6 @@ export default {
     "exitFullscreen": "退出全屏",
     "maximizeWindow": "最大化",
     "restoreWindow": "还原窗口",
-    "pinWindowControls": "固定窗口控制栏",
-    "unpinWindowControls": "取消固定窗口控制栏",
     "remoteControl": "远程控制",
     "seek": "定位",
     "clearActiveCommand": "清除当前命令",
@@ -1030,7 +1933,10 @@ export default {
     "pausePreview": "暂停预览",
     "enterThemeName": "输入主题名称...",
     "viewLyricsTimeline": "查看歌词时间轴",
-    "trashDislike": "删除 / 不喜欢"
+    "trashDislike": "删除 / 不喜欢",
+    "pinWindowControls": "固定窗口控制栏",
+    "unpinWindowControls": "取消固定窗口控制栏",
+    "visualizerPrompt": "提示词"
   },
   "panel": {
     "cover": "封面",
@@ -1132,7 +2038,6 @@ export default {
     "queueReplaceUndoGone": "队列在替换之后又改过了，没有可以撤销的替换",
     "queueReplaceHint": "可以一次换掉整个播放队列，并结束私人 FM；替换后会提示是哪个模组换的，在队列再被改动之前可以撤销。",
     "equalizerControlHint": "会改写你的音效设置：可以切换音效预设，或换上它自己的均衡器曲线。",
-    "renderQualityHint": "会改写歌词画布的渲染质量：可以修改「性能与动效」里的歌词画布分辨率与抗锯齿。",
     "signatureVerified": "官方认证",
     "signatureVerifiedDetail": "带有有效的 Folium 官方签名（{{key}}）：来源与内容经过官方审查，签名后未被修改。它启用后仍以应用的完整权限运行。",
     "signatureBeta": "先行测试",
@@ -1266,7 +2171,8 @@ export default {
     "warnings": {
       "export-alpha-unavailable": "当前平台未保留 Alpha 通道，视频为不透明底。请改用「主题背景色」+ 纯文字动画，或在 Windows 上导出。",
       "export-alpha-not-guaranteed": "当前平台可能不保留 Alpha 通道，请核对导出文件，或在 Windows 上导出以保证透明背景。"
-    }
+    },
+    "renderQualityHint": "会改写歌词画布的渲染质量：可以修改「性能与动效」里的歌词画布分辨率与抗锯齿。"
   },
   "account": {
     "syncData": "同步数据",
@@ -1305,7 +2211,15 @@ export default {
     "syncProgress": "已加载 {{loaded}} / {{total}}",
     "syncInterrupted": "加载中断",
     "syncInterruptedProgress": "加载中断 {{loaded}} / {{total}}",
-    "syncFailedHint": "还有歌曲没加载成功（{{error}}）。点击从中断处继续加载"
+    "syncFailedHint": "还有歌曲没加载成功（{{error}}）。点击从中断处继续加载",
+    "alreadyLiked": "已经喜欢了",
+    "saveToPlaylist": "收藏到歌单",
+    "saving": "正在放进歌单，稍等",
+    "searchPlaylists": "搜索歌单",
+    "noMatchingPlaylists": "没有匹配的歌单",
+    "createAndAdd": "新建并加入",
+    "songsToSave_one": "{{count}} 首歌",
+    "songsToSave_other": "{{count}} 首歌"
   },
   "search": {
     "placeholder": "搜索歌曲...",
@@ -1315,7 +2229,17 @@ export default {
     "playTrack": "播放歌曲",
     "error": "搜索失败，请重试。",
     "retry": "重试",
-    "catalogUnavailable": "无法打开该专辑或歌手：在线平台未返回有效的目录 ID。"
+    "catalogUnavailable": "无法打开该专辑或歌手：在线平台未返回有效的目录 ID。",
+    "placeholderAlbum": "搜索专辑...",
+    "placeholderPlaylist": "搜索歌单...",
+    "sources": "搜索来源",
+    "kinds": "搜索种类",
+    "kindSong": "单曲",
+    "kindAlbum": "专辑",
+    "kindPlaylist": "歌单",
+    "resultCount": "共 {{n}} 条",
+    "trackCount": "{{n}} 首",
+    "playCount": "{{n}} 次播放"
   },
   "personalFmMode": {
     "openPicker": "切换私人 FM 模式",
@@ -1507,6 +2431,8 @@ export default {
     "loginCodeWaiting": "等待在浏览器中确认",
     "loginTitleSpotify": "登录 Spotify",
     "loginNoteSpotify": "在浏览器打开的 Spotify 页面上点“同意”",
+    "loginTitleFnMusic": "登录飞牛音乐",
+    "loginNoteFnMusic": "填入你的飞牛音乐服务器地址与账号，畅听 NAS 私有音乐库",
     "loginCaseSpotifyUnfinished": "10 分钟内未确认",
     "loginCaseSpotifyDenied": "请在 Spotify 页面点“同意”",
     "loginCaseSpotifyPort": "端口 5588 已被占用",
@@ -1654,8 +2580,6 @@ export default {
     "exploreEmpty": "暂时没有推荐内容",
     "exploreFailed": "推荐内容没有读到",
     "exploreRetry": "重试",
-    "exploreScrollbar": "探索页滚动条",
-    "exploreJumpToSection": "跳转到{{section}}",
     "exploreScrollLeft": "向左滚动",
     "exploreScrollRight": "向右滚动",
     "exploreArtist": "歌手",
@@ -1696,7 +2620,9 @@ export default {
     "noMoreDailyRecommendations": "今日暂无更多推荐",
     "dislikeRecommendationFailed": "暂时无法更换这首推荐，请稍后重试",
     "removeTrackFailed": "移除失败",
-    "stage": "舞台"
+    "stage": "舞台",
+    "exploreScrollbar": "探索页滚动条",
+    "exploreJumpToSection": "跳转到{{section}}"
   },
   "animation": {
     "calm": "平静",
@@ -1741,16 +2667,21 @@ export default {
     "servicePackLabel": "{{codename}} Update SP{{servicePack}} · 重大更新",
     "ponder": "思索帮助页",
     "ponderDescription": "了解 Folia 的基本操作与运行逻辑",
-    "version": "版本"
+    "version": "版本",
+    "scratchpad": "速记簿",
+    "openControlPanel": "打开控制面板"
   },
-  "qishui": { "recentPlayed": "汽水最近播放", "recommended": "为你推荐" },
+  "qishui": {
+    "recentPlayed": "汽水最近播放",
+    "recommended": "为你推荐"
+  },
   "lyricProvider": {
     "qishui": "汽水音乐",
     "netease": "网易云音乐",
     "qq": "QQ 音乐",
     "kugou": "酷狗音乐",
     "spotify": "Spotify",
-    "amll": "AMLLDB",
+    "amll": "AMLLDB"
   },
   "globalLyricOffset": {
     "title": "全局时间偏移",
@@ -1763,7 +2694,7 @@ export default {
     "description": "对本设备的所有歌曲生效，且不参与同步。播放面板里的单曲偏移仍会叠加在此之上。",
     "pendingApply": "当前为预览效果，已应用值 {{applied}}ms，点击应用后保存。",
     "noLyrics": "播放一首带歌词的歌曲即可实时预览",
-    "waitingForLine": "等待下一句歌词",
+    "waitingForLine": "等待下一句歌词"
   },
   "lyricFilter": {
     "title": "歌词过滤",
@@ -1789,9 +2720,15 @@ export default {
     "addRule": "添加规则",
     "addByWords": "按文字添加",
     "addWritten": "手写规则（高级）",
-    "preset": {"copyright": "版权声明", "lyricSource": "歌词来源说明"},
+    "preset": {
+      "copyright": "版权声明",
+      "lyricSource": "歌词来源说明"
+    },
     "presetBadge": "常用",
-    "presetDesc": {"copyright": "如「未经许可不得翻唱」「版权所有」", "lyricSource": "如「歌词贡献者」「翻译贡献者」"},
+    "presetDesc": {
+      "copyright": "如「未经许可不得翻唱」「版权所有」",
+      "lyricSource": "如「歌词贡献者」「翻译贡献者」"
+    },
     "shapeStarts": "开头是",
     "shapeContains": "包含",
     "shapeWhole": "整行是",
@@ -1842,7 +2779,7 @@ export default {
     "footerIncomplete": "（未检查完）",
     "footerScanning": "保存后：本首删除 {{song}} 行；正在检查听过的歌…",
     "footerSongOnly": "保存后：本首删除 {{song}} 行",
-    "untitled": "未知歌曲",
+    "untitled": "未知歌曲"
   },
   "lyricStaff": {
     "title": "开头制作人员信息",
@@ -1872,13 +2809,13 @@ export default {
     "verdictRetime": "显示，并摊开到整段前奏",
     "verdictHide": "隐藏",
     "verdictSummary": "{{lines}} 条署名，前奏 {{window}} 秒，完整显示需要 {{required}} 秒",
-    "verdictSummaryAbsorbed": "{{lines}} 条署名 + {{absorbed}} 条吸收行，前奏 {{window}} 秒，完整显示需要 {{required}} 秒",
+    "verdictSummaryAbsorbed": "{{lines}} 条署名 + {{absorbed}} 条吸收行，前奏 {{window}} 秒，完整显示需要 {{required}} 秒"
   },
   "replayGain": {
     "off": "ReplayGain 已关闭",
     "track": "ReplayGain: 单曲模式",
     "album": "ReplayGain: 专辑模式",
-    "auto": "ReplayGain: 智能平衡",
+    "auto": "ReplayGain: 智能平衡"
   },
   "settings": {
     "lyricMatchPriority": "歌词匹配优先级",
@@ -2318,8 +3255,6 @@ export default {
     "playerControlSlotsDesc": "进度条右侧的两个按钮，默认是循环模式和歌词时间轴。",
     "playerControlSlotPrimary": "左侧按钮",
     "playerControlSlotSecondary": "右侧按钮",
-    "playerBarPin": "固定播放条",
-    "playerBarUnpin": "取消固定播放条",
     "playerControlSlotAction_loop": "循环模式",
     "playerControlSlotAction_prev": "上一首",
     "playerControlSlotAction_next": "下一首",
@@ -2451,7 +3386,6 @@ export default {
     "playerCapIgnoreClearHint": "暂停、空闲、关窗时保留歌词，换播放器才刷新。",
     "playerCapWaitingLyrics": "已连接，等待歌词",
     "playerCapConnecting": "正在连接 Nexus PlayerCap…",
-
     "stageAddress": "Stage 地址",
     "stageSession": "当前会话",
     "stageSessionReady": "已就绪",
@@ -2518,8 +3452,6 @@ export default {
     "visualizerBackgroundModeLatent": "隐现",
     "visualizerBackgroundModeUrl": "嵌入",
     "visualizerBackgroundModeSora": "空",
-    "visualizerBackgroundModeTransparent": "透明",
-    "visualizerBackgroundModeTransparentDesc": "以歌曲封面铺满背景层，去掉莫奈的叠色与模糊，不额外叠加其他元素。",
     "urlBackgroundSettings": "嵌入背景",
     "urlBackgroundSettingsDesc": "将网页显示为播放页背景。注意：部分网站禁止被嵌入其他页面中显示，可能无法正常加载。",
     "urlBackgroundNotePlaceholder": "备注（方便查看）",
@@ -2865,22 +3797,7 @@ export default {
     "nebbiaSpotX": "聚光灯位置",
     "nebbiaRainHit": "雨点打在玻璃上",
     "nebbiaRainBig": "吐字时的大雨点",
-    "nebbiaScenery": "窗外显示",
-    "nebbiaSceneryHint": "窗外每样都能单独关掉，全关时只剩天色。光斑是霓虹、路灯和招牌；关掉马路时车灯和光斑也没有倒影。玻璃上的雨点在上面的滑块里调。",
-    "nebbiaScenery_spot": "聚光灯",
-    "nebbiaScenery_buildings": "楼群",
-    "nebbiaScenery_lights": "光斑",
-    "nebbiaScenery_cars": "车灯",
-    "nebbiaScenery_road": "马路",
-    "nebbiaRain": "窗外的雨",
-    "nebbiaRainHint": "窗外的雨只在聚光灯的光柱里、玻璃擦干净的地方看得见；斜着落时随车速倾斜。",
-    "nebbiaRain_slant": "斜着",
-    "nebbiaRain_straight": "竖直",
-    "nebbiaRain_off": "不下",
-    "nebbiaBehind": "窗外",
-    "nebbiaBehindHint": "雨夜街景，或者用共用背景。用背景时雾变成一层半透明的雾（日间主题是白雾、夜间主题是深色的雾），擦开的字透出后面的背景；播放页透明时总是这样，透出的是桌面。",
-    "nebbiaBehind_night": "雨夜街景",
-    "nebbiaBehind_backdrop": "背景",
+    "nebbiaResolution": "渲染分辨率",
     "lumiereUnlitOpacity": "未唱字透明度",
     "lumiereWindowNeighbors": "邻行",
     "lumiereWindowNeighborsPrev": "上一行 + 当前行",
@@ -2971,9 +3888,9 @@ export default {
     "machiQualityBalanced": "平衡",
     "machiQualityLow": "低",
     "machiRenderScale": "分辨率",
-    "machiRenderScaleHint": "按屏幕像素的几成来画：低一些会糊一点，但快很多。高 DPI 屏上最多按 2 倍算。跟随全局时用「性能与动效」里的歌词画布分辨率（现在是 {{value}}，高于 1× 按超采样画）。",
+    "machiRenderScaleHint": "按屏幕像素的几成来画：低一些会糊一点，但快很多。高 DPI 屏上最多按 2 倍算。",
     "machiAntialias": "抗锯齿",
-    "machiAntialiasHint": "FXAA 最省，字会略软；SMAA 边缘干净，墨线和雨丝也平滑，代价稍高；超采样按 2 倍分辨率画再缩回来，最细也最贵。跟随全局时，全局挡位开着（现在是{{value}}）就是 SMAA，关着就是关。",
+    "machiAntialiasHint": "FXAA 最省，字会略软；SMAA 边缘干净，墨线和雨丝也平滑，代价稍高；超采样按 2 倍分辨率画再缩回来，最细也最贵。",
     "machiAntialiasOff": "关",
     "machiAntialiasFxaa": "FXAA",
     "machiAntialiasSmaa": "SMAA",
@@ -2988,8 +3905,7 @@ export default {
     "machiGlow": "辉光与光条",
     "machiGlowHint": "夜里灯和招牌晕开的光，以及横向的镜头光条。",
     "machiAdaptive": "自动降级",
-    "machiAdaptiveHint": "帧率长期偏低时，在这套设置之下逐步降低（先关景深的虚化，再退超采样和几何边缘的 MSAA，然后是倒影、辉光、分辨率、后期抗锯齿，阴影最后），不会高过你选的。改了设置会从新的这套重新开始。",
-    "machiAdaptiveActive": "现在已经降了 {{count}} 档。",
+    "machiAdaptiveHint": "帧率长期偏低时，在这套设置之下逐步降低（先关景深的虚化，再降倒影、阴影、辉光，最后才动抗锯齿和分辨率），不会高过你选的。改了设置会从新的这套重新开始。",
     "hanabiFireworksSection": "烟花",
     "hanabiStageSection": "画面",
     "hanabiTextSection": "文字",
@@ -3129,39 +4045,6 @@ export default {
     "gpuPreferenceCommandLineNotice": "这次启动带了显卡参数，以启动参数为准",
     "gpuPreferenceActive": "当前使用",
     "visualizerFrameRateValue": "限制档位",
-    "liquidGlassSection": "液态玻璃",
-    "liquidGlassSectionDesc": "调整Folia界面组件的材质。",
-    "liquidGlassPreset": "预设",
-    "liquidGlassPresetDesc": "一键套用一组强度、模糊与边缘弯曲距离的常见观感。",
-    "liquidGlassPresetFrosted": "毛玻璃",
-    "liquidGlassPresetClear": "通透液态玻璃",
-    "liquidGlassPresetHazy": "朦胧液态玻璃",
-    "liquidGlassPresetEco": "节能",
-    "liquidGlassStrength": "折射强度",
-    "liquidGlassStrengthDesc": "玻璃边缘折射背后内容的强弱。",
-    "liquidGlassBend": "折射面距离",
-    "liquidGlassBendDesc": "边缘受折射的区域从边框向中心延伸多少像素。数值越大，中间不受折射的平面区越小。",
-    "liquidGlassBlur": "模糊",
-    "liquidGlassBlurDesc": "透明元素模糊值。",
-    "liquidGlassSat": "饱和度",
-    "liquidGlassSatDesc": "透过玻璃看到的背景饱和度。",
-    "liquidGlassLight": "光效",
-    "liquidGlassLightDesc": "指针悬停在玻璃上时跟随的高光，按下时更亮。",
-    "liquidGlassJelly": "果冻效果",
-    "liquidGlassJellyDesc": "拖拽时拉伸、松手回弹。",
-    "liquidGlassGpuBlockedNotice": "渲染显卡选择了「省电」，流体玻璃不可用；切回「自动」或「高性能」并重启 Folia 后恢复。",
-    "liquidGlassValueLabel": "当前值",
-    "lyricRenderScale": "歌词画布分辨率",
-    "lyricRenderScaleDesc": "用 canvas / WebGL 画的歌词样式（町景、花火、绘光、雾笺等）按这个倍数渲染，1× 是各样式原来的清晰度；高于 1× 是超采样，边缘更细，也更吃显卡。各样式默认跟随这里，也能在样式自己的设置里单独指定。",
-    "lyricAntialias": "歌词画布抗锯齿",
-    "lyricAntialiasDesc": "自动是各样式自己的默认；打开时几何边缘（线条、卡片、色块）更平滑，代价是显存和一点帧率。各样式默认跟随这里。",
-    "lyricAntialiasAuto": "自动",
-    "lyricAntialiasOn": "开",
-    "lyricAntialiasOff": "关",
-    "lyricRenderSection": "渲染",
-    "lyricRenderFollowGlobal": "跟随全局",
-    "lyricRenderScaleStyleHint": "这个样式按几倍分辨率画，高于 1× 是超采样。跟随全局时用「性能与动效」里的挡位（现在是 {{value}}）。",
-    "lyricAntialiasStyleHint": "跟随全局时用「性能与动效」里的挡位（现在是{{value}}）。",
     "themePresets": "配色主题预设",
     "themePresetsDefault": "墨染 / 素白",
     "openThemePark": "打开主题乐园",
@@ -3377,7 +4260,6 @@ export default {
     "importGroupSongTheme": "歌曲主题自动化",
     "importGroupTrackCard": "歌曲信息卡片",
     "importGroupLibraryWall": "资料库墙面",
-    "importGroupLiquidGlass": "液态玻璃",
     "importDerivedUnpin": "将同时关闭「固定自定义主题」",
     "importDerivedUploadedFont": "你上传的字体将被替换并删除，需要重新上传",
     "importFontUnavailable": "本机未安装此字体，导入后会回落到内置字体栈",
@@ -3467,6 +4349,90 @@ export default {
     "lyricFilterRegex": "歌词过滤",
     "lyricFilterRegexDesc": "逐行过滤规则，以及开头制作人员信息的处理。",
     "noDescription": "暂无详细介绍",
+    "playerBarPin": "固定播放条",
+    "playerBarUnpin": "取消固定播放条",
+    "visualizerBackgroundModeTransparent": "透明",
+    "visualizerBackgroundModeTransparentDesc": "以歌曲封面铺满背景层，去掉莫奈的叠色与模糊，不额外叠加其他元素。",
+    "nebbiaScenery": "窗外显示",
+    "nebbiaSceneryHint": "窗外每样都能单独关掉，全关时只剩天色。光斑是霓虹、路灯和招牌；关掉马路时车灯和光斑也没有倒影。玻璃上的雨点在上面的滑块里调。",
+    "nebbiaScenery_spot": "聚光灯",
+    "nebbiaScenery_buildings": "楼群",
+    "nebbiaScenery_lights": "光斑",
+    "nebbiaScenery_cars": "车灯",
+    "nebbiaScenery_road": "马路",
+    "nebbiaRain": "窗外的雨",
+    "nebbiaRainHint": "窗外的雨只在聚光灯的光柱里、玻璃擦干净的地方看得见；斜着落时随车速倾斜。",
+    "nebbiaRain_slant": "斜着",
+    "nebbiaRain_straight": "竖直",
+    "nebbiaRain_off": "不下",
+    "nebbiaBehind": "窗外",
+    "nebbiaBehindHint": "雨夜街景，或者用共用背景。用背景时雾变成一层半透明的雾（日间主题是白雾、夜间主题是深色的雾），擦开的字透出后面的背景；播放页透明时总是这样，透出的是桌面。",
+    "nebbiaBehind_night": "雨夜街景",
+    "nebbiaBehind_backdrop": "背景",
+    "machiAdaptiveActive": "现在已经降了 {{count}} 档。",
+    "liquidGlassSection": "液态玻璃",
+    "liquidGlassSectionDesc": "调整Folia界面组件的材质。",
+    "liquidGlassPreset": "预设",
+    "liquidGlassPresetDesc": "一键套用一组强度、模糊与边缘弯曲距离的常见观感。",
+    "liquidGlassPresetFrosted": "毛玻璃",
+    "liquidGlassPresetClear": "通透液态玻璃",
+    "liquidGlassPresetHazy": "朦胧液态玻璃",
+    "liquidGlassPresetEco": "节能",
+    "liquidGlassStrength": "折射强度",
+    "liquidGlassStrengthDesc": "玻璃边缘折射背后内容的强弱。",
+    "liquidGlassBend": "折射面距离",
+    "liquidGlassBendDesc": "边缘受折射的区域从边框向中心延伸多少像素。数值越大，中间不受折射的平面区越小。",
+    "liquidGlassBlur": "模糊",
+    "liquidGlassBlurDesc": "透明元素模糊值。",
+    "liquidGlassSat": "饱和度",
+    "liquidGlassSatDesc": "透过玻璃看到的背景饱和度。",
+    "liquidGlassLight": "光效",
+    "liquidGlassLightDesc": "指针悬停在玻璃上时跟随的高光，按下时更亮。",
+    "liquidGlassJelly": "果冻效果",
+    "liquidGlassJellyDesc": "拖拽时拉伸、松手回弹。",
+    "liquidGlassGpuBlockedNotice": "渲染显卡选择了「省电」，流体玻璃不可用；切回「自动」或「高性能」并重启 Folia 后恢复。",
+    "liquidGlassValueLabel": "当前值",
+    "lyricRenderScale": "歌词画布分辨率",
+    "lyricRenderScaleDesc": "用 canvas / WebGL 画的歌词样式（町景、花火、绘光、雾笺等）按这个倍数渲染，1× 是各样式原来的清晰度；高于 1× 是超采样，边缘更细，也更吃显卡。各样式默认跟随这里，也能在样式自己的设置里单独指定。",
+    "lyricAntialias": "歌词画布抗锯齿",
+    "lyricAntialiasDesc": "自动是各样式自己的默认；打开时几何边缘（线条、卡片、色块）更平滑，代价是显存和一点帧率。各样式默认跟随这里。",
+    "lyricAntialiasAuto": "自动",
+    "lyricAntialiasOn": "开",
+    "lyricAntialiasOff": "关",
+    "lyricRenderSection": "渲染",
+    "lyricRenderFollowGlobal": "跟随全局",
+    "lyricRenderScaleStyleHint": "这个样式按几倍分辨率画，高于 1× 是超采样。跟随全局时用「性能与动效」里的挡位（现在是 {{value}}）。",
+    "lyricAntialiasStyleHint": "跟随全局时用「性能与动效」里的挡位（现在是{{value}}）。",
+    "importGroupLiquidGlass": "液态玻璃",
+    "beatEffect_nebbiaAquaBeat": "舞潮踏拍",
+    "beatEffect_nebbiaAquaBeatDesc": "跟着 beat_this 识别的节拍，窗外是水族箱时：每拍水母伞盖全部收一下、往上窜一点（普通拍收得轻，小节第一拍收得重），水草往一边摇一下再弹回来（左右交替），沙底冒出一排大泡（开着时不再随机冒大泡），聚光灯的光斑放大一下再缩回。四项各一条强度，拍越重动得越大。窗外是街景或背景时不起作用，也不为它分析节拍。",
+    "beatEffectPart_nebbiaJelly": "水母",
+    "beatEffectPart_nebbiaWeed": "水草",
+    "beatEffectPart_nebbiaBubble": "气泡",
+    "beatEffectPart_nebbiaSpot": "聚光灯",
+    "nebbiaBehind_aquarium": "梦海流萤",
+    "nebbiaJellies": "水母数量",
+    "nebbiaJellySize": "水母大小",
+    "nebbiaBubbles": "气泡多少",
+    "nebbiaGlass": "前面的玻璃",
+    "nebbiaGlassStyle": "玻璃上的水",
+    "nebbiaGlass_rain": "雨窗",
+    "nebbiaGlass_dew": "凝露",
+    "nebbiaGlassHint": "雨窗：雾上挂着大大小小的水珠，下雨时雨点打在玻璃上；凝露：一层很密的细小冷凝水珠，一颗颗慢慢渗出来。换窗外时自动换成它的默认搭配（雨夜街景配雨窗，梦海流萤配凝露），之后可以再单独换。",
+    "nebbiaDew": "冷凝水珠多少",
+    "nebbiaDewSize": "冷凝水珠大小",
+    "nebbiaDewGlint": "冷凝水珠高光",
+    "nebbiaAquaScenery_spot": "水面打下来的光",
+    "nebbiaAquaScenery_buildings": "礁石和水草",
+    "nebbiaAquaScenery_lights": "水草上的荧光粒子",
+    "nebbiaAquaScenery_cars": "大气泡",
+    "nebbiaAquaScenery_road": "沙底",
+    "nebbiaAquaSceneryHint": "水族箱里每样都能单独关掉，水和水面照下来的光一直都在。水母和荧光粒子的亮度跟着上面的「霓虹」。",
+    "nebbiaAquaRain": "细气泡",
+    "nebbiaAquaRainHint": "海底几个泉眼一直往上冒细泡；斜着冒时被水流带偏。",
+    "nebbiaAquaRain_slant": "斜着",
+    "nebbiaAquaRain_straight": "竖直",
+    "nebbiaAquaRain_off": "不冒"
   },
   "releaseNotes": {
     "v0_7_0": {
@@ -4037,7 +5003,7 @@ export default {
     "noExportCodec": "当前系统不支持可用的视频导出编码。",
     "windowResizeFailed": "无法将主播放器窗口调整到导出分辨率。",
     "recordingCancelled": "录制已取消。",
-    "recorderUnknownError": "录制器发生未知错误。",
+    "recorderUnknownError": "录制器发生未知错误。"
   },
   "player": {
     "play": "播放",
@@ -4048,7 +5014,7 @@ export default {
     "loopAll": "列表循环",
     "loopOne": "单曲循环",
     "unknownArtist": "未知歌手",
-    "unknownAlbum": "未知专辑",
+    "unknownAlbum": "未知专辑"
   },
   "localMusic": {
     "foldersAndPlaylists": "文件夹",
@@ -4284,6 +5250,18 @@ export default {
     "failed": "封面没有设置成功：{{error}}",
     "notImage": "这个文件不是 Folia 能读取的图片"
   },
+  "fnmusic": {
+    "serverUrl": "服务器地址",
+    "serverUrlPlaceholder": "IP 直连或 FN ID：192.168.1.10:5666 / baixiaokeji",
+    "username": "账号",
+    "usernamePlaceholder": "飞牛音乐账号或 NAS 账号",
+    "password": "密码",
+    "login": "登录",
+    "loginNote": "输入你的飞牛（fnOS）音乐服务器地址与账号密码",
+    "errorBadCredentials": "账号或密码错误",
+    "errorNetwork": "无法连接服务器，请检查地址与网络",
+    "errorBadResponse": "服务器返回了无法识别的响应"
+  },
   "navidrome": {
     "title": "Navi",
     "enable": "连接Navidrome (实验性)",
@@ -4332,7 +5310,7 @@ export default {
     "restoreServerPresetFailed": "无法获取服务器预置，请稍后再试。",
     "cloudDrive": "云盘",
     "cloudDriveDesc": "网易云音乐云盘",
-    "qqCloudDriveDesc": "微云音乐网盘",
+    "qqCloudDriveDesc": "微云音乐网盘"
   },
   "hifi": {
     "settings": {
@@ -4397,7 +5375,7 @@ export default {
       "navidrome": "Navidrome 歌曲也用 mpv",
       "navidromeDesc": "从服务器取原始文件，不转码。关闭时 Navidrome 歌曲用 Web Audio。",
       "softwareVolume": "软件音量",
-      "softwareVolumeDesc": "让 Folia 的音量滑块控制 mpv 的音量。这样信号链路就不再是原生直通。",
+      "softwareVolumeDesc": "让 Folia 的音量滑块控制 mpv 的音量。这样信号链路就不再是原生直通。"
     },
     "player": {
       "badge": "HiFi · {{verdict}}",
@@ -4573,7 +5551,7 @@ export default {
   },
   "unifiedPanel": {
     "nowPlayingStageDescription": "Now Playing 正由外部播放器控制，Folia 只负责展示歌词和视觉效果。",
-    "stageLocalInputDescription": "Stage 现在是本地单项输入模式。外部可以推送一份完整歌词对象或一段媒体，播放与展示仍由 Folia 自己控制。",
+    "stageLocalInputDescription": "Stage 现在是本地单项输入模式。外部可以推送一份完整歌词对象或一段媒体，播放与展示仍由 Folia 自己控制。"
   },
   "libraryBravaisArtist": {
     "playTopSongs": "播放热门",
@@ -4604,7 +5582,7 @@ export default {
     "addTopSongsToQueue": "热门歌曲加入队列",
     "topSongsAddedToQueue_one": "已加入 {{count}} 首热门歌曲到播放队列",
     "topSongsAddedToQueue_other": "已加入 {{count}} 首热门歌曲到播放队列",
-    "noTopSongsToQueue": "没有可加入队列的热门歌曲",
+    "noTopSongsToQueue": "没有可加入队列的热门歌曲"
   },
   "obs": {
     "connecting": "正在连接 Folia",
@@ -4821,7 +5799,7 @@ export default {
     "sizeCustom": "自定",
     "save": "保存",
     "recording": "录制中",
-    "startingSoon": "即将开始",
+    "startingSoon": "即将开始"
   },
   "aiHelp": {
     "openButton": "遇到问题？",
@@ -4903,7 +5881,8 @@ export default {
       "side_panel": "面板分几段、怎么换页。",
       "theme_settings": "预设、自定义配色从哪来，以及配色什么时候自己变。",
       "sign_in": "主页的登录按钮和右下角那一枚开的是同一个窗口。",
-      "lyric_match": "给一首歌手动挑一份歌词：换来源、搜索、先看再保存。"
+      "lyric_match": "给一首歌手动挑一份歌词：换来源、搜索、先看再保存。",
+      "scratchpad": "左缘那本速记簿：怎么收进歌、按来源分组处理、展开成画布整理。"
     },
     "categories": {
       "basics": "上手",
@@ -5306,7 +6285,7 @@ export default {
       },
       "lyricsAnimation": {
         "panel": "设置 · 歌词动画",
-        "entry": "歌词动画样式",
+        "entry": "歌词动画样式"
       },
       "themeSettings": {
         "panel": "设置 · 主题",
@@ -5416,6 +6395,25 @@ export default {
         "save": "保存",
         "switches": "封面、元数据、歌词",
         "noMatch": "不使用在线数据"
+      },
+      "scratchpad": {
+        "page": "资料库",
+        "handle": "速记簿把手",
+        "card": "歌曲卡片",
+        "collect": "加入速记簿",
+        "save": "收藏到歌单",
+        "drawer": "速记簿",
+        "group": "来源分组",
+        "groupActions": "整组操作",
+        "row": "一首歌",
+        "rowActions": "行内按钮",
+        "footer": "对全部的操作",
+        "expand": "展开成画布",
+        "canvas": "画布",
+        "canvasGroup": "画布里的一组",
+        "slot": "吸附的位置",
+        "marquee": "框选",
+        "selection": "对选中的操作"
       }
     },
     "targets": {
@@ -5473,7 +6471,8 @@ export default {
       "gridPaletteHotkey": "网格上的 S 键",
       "settingsPage": "设置页面",
       "signIn": "登录在线音乐平台",
-      "lyricMatch": "匹配歌词窗口"
+      "lyricMatch": "匹配歌词窗口",
+      "scratchpad": "速记簿"
     },
     "scenes": {
       "bravaisSeamLevels": "三档：完整、书脊、折叠",
@@ -5627,7 +6626,10 @@ export default {
       "signInAccount": "登录之后",
       "lyricMatchSearch": "换来源，重新搜",
       "lyricMatchPick": "挑一条，先看歌词",
-      "lyricMatchLocal": "本地歌曲多出来的三个开关"
+      "lyricMatchLocal": "本地歌曲多出来的三个开关",
+      "scratchpadCollect": "收进来",
+      "scratchpadDrawer": "打开与分组",
+      "scratchpadCanvas": "展开成画布"
     },
     "captions": {
       "bravaisSeam": {
@@ -6047,14 +7049,13 @@ export default {
         "settings": "齿轮打开设置。按下去面板会先收起来，再把设置窗口铺上来。",
         "home": "右端的房子回到首页的海报墙，面板会先收起。播放不会中断。",
         "addToPlaylist": "星形那颗把当前这首加进歌单。只有当前来源支持歌单时它才在；加不了的时候它是灰的，指针停上去会写明原因。",
-
         "like": "心形是喜欢这首歌。当前来源做不了这件事时它是灰的，指针停上去会写明原因。",
         "playingFrom": "队列是从某张歌单或专辑开始播的，这里就多一枚写着它名字的按钮：点一下回到那一页，并找到这首歌。队列换成别的歌之后它就不在了。"
       },
       "lyricsAnimation": {
         "where": "设置 · 外观最上面这一行「歌词动画样式」是换歌词样式的入口，右端写着现在用的是哪一个。",
         "playground": "点开是歌词样式窗口。左边那一大块是实时预览，放的就是播放页真正会渲染出来的样子；右边那条窄栏才是设置。",
-        "playgroundSections": "样式在预览下面那一架图里选。右栏分为歌词动画、背景、通用、字幕、全局五页，「歌词动画」页是所选样式的参数。",
+        "playgroundSections": "样式在预览下面那一架图里选。右栏分为歌词动画、背景、通用、字幕、全局五页，「歌词动画」页是所选样式的参数。"
       },
       "themeSettings": {
         "presetDefault": "「配色主题预设」左边一段是内置的「墨染 / 素白」，跟着明暗模式在深色和浅色之间自动换。",
@@ -6094,7 +7095,66 @@ export default {
         "save": "「保存」把选中的这一条用到这首歌上；「取消」什么都不改。",
         "switches": "给本地文件匹配时，封面下面多三个开关：「封面」「元数据」「歌词」。亮着的那一项用选中的这一条，关掉的保持文件自己的。",
         "noMatch": "左下角的「不使用在线数据」让这首歌只用文件自己的信息。"
+      },
+      "scratchpad": {
+        "hover": "指针停在一首歌的卡片上，右上角出现两颗按钮，左边这颗把它加入速记簿。网格的卡片、Bravais 的磁贴和聚焦卡、搜索结果的每一行都有这一对。",
+        "save": "右边那颗是收藏到歌单。能点喜欢的来源，选歌单的窗口第一行是「我喜欢的音乐」；也可以就地新建一个歌单再放进去。",
+        "notQueue": "加入速记簿不会动播放队列，正在放的照常放。指针移到左缘上部，把手展开，上面写着里面有几首；速记簿空着时，把手平时看不见。",
+        "otherWays": "正在播的这首：按 : 进执行模式再按 S，就记下来了。集合页上的「全部加入速记簿」把这一页的歌一次收进来，筛选过就只收筛出来的；网格在信息栏里，Bravais 在信息条的「⋯ 更多」里。",
+        "open": "点把手，或者按 {{mod}} + J，打开速记簿；执行模式里是 J。再按一次就收起来。",
+        "groups": "里面的歌按来源分组：一个在线平台一组，本地一组，Navidrome 一组。从哪个歌单、哪次搜索收来的，写在每一行歌手后面。",
+        "groupActions": "组头右端是「本组全部入队」和「本组加入歌单…」。一个歌单只收一个来源的歌；按来源分了组，整组放进同一个歌单正好。",
+        "rowActions": "指针停在一行上，右端出现插进队列播放、加入队列、加入歌单、移出速记簿。入了队、进了歌单，这一行也还留着，不要了自己移出。",
+        "footer": "最底下这一排：全部入队、用速记簿替换队列播放，以及清空。清空要连点两次。",
+        "expand": "抽屉顶上、关闭左边那颗是「展开成画布」。",
+        "canvas": "展开之后每首歌是一张卡片，仍旧按来源分组；组头多一颗「选中本组」。Esc 先取消选择，没有选择时收回列表。",
+        "drag": "拖动卡片整理顺序。只能在自己那一组里挪，松手时吸附到最近的位置。",
+        "select": "在空白处拖出一个框，框住的卡片就选中了；按住 {{mod}} 点卡片可以逐张加减。最底下换成对选中的入队、加入歌单、移出。选中的来自不同来源时，加入歌单是灰的。"
       }
     }
+  },
+  "scratchpad": {
+    "title": "速记簿",
+    "count_one": "{{count}} 首",
+    "count_other": "{{count}} 首",
+    "hint": "先放着、待会再听或再整理的歌。放进来不会动播放队列。",
+    "empty": "还什么都没有。把指针停在歌曲卡片、曲目列表或搜索结果的一行上，点「加入速记簿」；也可以用命令面板把正在播的这首记下来。",
+    "open": "打开速记簿",
+    "close": "收起速记簿",
+    "play": "插进队列播放",
+    "enqueue": "加入队列",
+    "addToPlaylist": "加入歌单…",
+    "remove": "移出速记簿",
+    "enqueueAll": "全部入队",
+    "replaceQueue": "替换队列播放",
+    "clear": "清空",
+    "confirmClear": "再点一次清空",
+    "sourceLocal": "本地",
+    "collect": "加入速记簿",
+    "collectScope": "全部加入速记簿",
+    "originSearch": "搜索「{{query}}」",
+    "originExploreSection": "探索 · {{section}}",
+    "collectFiltered_one": "把筛出的 {{count}} 首加入速记簿",
+    "collectFiltered_other": "把筛出的 {{count}} 首加入速记簿",
+    "addedOne": "已记进速记簿",
+    "addedMany_one": "已把 {{count}} 首记进速记簿",
+    "addedMany_other": "已把 {{count}} 首记进速记簿",
+    "skippedDuplicates_one": "{{count}} 首已经在里面了",
+    "skippedDuplicates_other": "{{count}} 首已经在里面了",
+    "alreadyInOne": "这首已经在速记簿里了",
+    "alreadyInAll": "这些歌都已经在速记簿里了",
+    "full": "速记簿满了（最多 {{count}} 首），先处理掉一些吧",
+    "saveFailed": "速记簿没能存下来（本机存储满了），重启后这次的改动会丢",
+    "expandCanvas": "展开成画布",
+    "collapseCanvas": "收回列表",
+    "canvasHint": "拖动卡片整理顺序，松手会吸附到位；在空白处拖出框来多选。",
+    "selectGroup": "选中本组",
+    "enqueueGroup": "本组全部入队",
+    "addGroupToPlaylist": "本组加入歌单…",
+    "selectedCount_one": "已选 {{count}} 首",
+    "selectedCount_other": "已选 {{count}} 首",
+    "removeSelected": "移出速记簿",
+    "clearSelection": "取消选择",
+    "mixedSourcesHint": "选中的歌来自不同来源，一个歌单只收一个来源的歌"
   }
-} as const;
+};

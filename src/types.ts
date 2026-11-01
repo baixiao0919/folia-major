@@ -44,9 +44,21 @@ export interface LyricBackgroundVocal {
   alternateTexts?: LyricAlternateText[];
 }
 
-// 'both' stacks romanization above translation; only the shared bottom subtitle overlay renders both rows.
+// 'both' stacks romanization above translation.
 // Modes that lay translation out inside their own lyric layout (Monet, Pendolo, Lattice, Still) fall back to translation only.
+// The shared bottom subtitle overlay does not read this: it has its own rows (SubtitleOverlayLayout).
 export type SubtitleContentMode = 'translation' | 'romanization' | 'both' | 'none';
+
+// One row of the shared bottom subtitle overlay: the line on screen, the line after it, or the line on screen's translation / romanization.
+export type SubtitleOverlayRowSource = 'current' | 'next' | 'translation' | 'romanization';
+export type SubtitleOverlayFollowRow = Exclude<SubtitleOverlayRowSource, 'current'>;
+// The shared bottom subtitle overlay's rows, top to bottom, joined with '+' (stored and carried as this string).
+// One row is the current line, its translation or its romanization; two or three rows open with the current line,
+// and each row after it is the next line, the translation or the romanization.
+export type SubtitleOverlayLayout =
+  | Exclude<SubtitleOverlayRowSource, 'next'>
+  | `current+${SubtitleOverlayFollowRow}`
+  | `current+${SubtitleOverlayFollowRow}+${SubtitleOverlayFollowRow}`;
 
 export interface LyricAgent {
   id: string;
@@ -127,6 +139,24 @@ export type ThemeMode = 'default' | 'ai' | 'custom';
 export type BuiltinVisualizerMode = 'classic' | 'cadenza' | 'partita' | 'fume' | 'monet';
 export type VisualizerMode = BuiltinVisualizerMode | (string & {});
 export type VisualizerFrameRate = 'off' | 120 | 90 | 60;
+
+/**
+ * 用 canvas / WebGL 画的歌词样式的渲染分辨率：相对样式自己默认像素密度（大多是屏幕的 devicePixelRatio，钳到 2）的倍数，
+ * 大于 1 是超采样（utils/lyricRenderQuality.ts）。
+ */
+export type LyricRenderScale = 0.5 | 0.75 | 1 | 1.5 | 2;
+/** 歌词画布的抗锯齿：auto 是各样式自己的默认（有的开 MSAA，有的靠后处理）。 */
+export type LyricAntialias = 'auto' | 'on' | 'off';
+/** 「性能与动效」里的全局挡位：各样式默认跟随它。 */
+export interface LyricRenderQuality {
+  scale: LyricRenderScale;
+  antialias: LyricAntialias;
+}
+/** 一个歌词样式自己的分辨率与抗锯齿（存在样式的 tuning 里）：global 跟随全局挡位。 */
+export interface LyricRenderOverride {
+  scale: 'global' | LyricRenderScale;
+  antialias: 'global' | 'on' | 'off';
+}
 
 export type HomeViewTab = 'playlist' | 'local' | 'albums' | 'navidrome' | 'radio' | 'explore';
 
@@ -592,6 +622,11 @@ export const DEFAULT_SONNET_TUNING: SonnetTuning = {
 export interface BeatEffectSetting {
   on: boolean;
   strength: number;
+  /**
+   * An effect made of parts, each with its own slider (BeatEffectDef `parts`, 雾笺's 疏雨轻车): their
+   * strengths by part key, 0..2, a part never touched at 1. `strength` is then unused.
+   */
+  parts?: Record<string, number>;
 }
 
 /**
@@ -965,7 +1000,7 @@ export type LatentBackgroundDisplayMode = 'dithering' | 'mesh' | 'both';
 export type LatentBackgroundColorSource = 'cover-theme' | 'cover-only';
 export type MonetAudioStyle = 'bar' | 'line';
 export type MonetPortraitSource = 'cover' | 'custom';
-export type BuiltinVisualizerBackgroundMode = 'common' | 'monet' | 'nomand' | 'latent' | 'url' | 'sora' | 'transparent';
+export type BuiltinVisualizerBackgroundMode = 'common' | 'monet' | 'nomand' | 'latent' | 'url' | 'sora';
 export type VisualizerBackgroundMode = BuiltinVisualizerBackgroundMode | (string & {});
 
 export interface UrlBackgroundItem {

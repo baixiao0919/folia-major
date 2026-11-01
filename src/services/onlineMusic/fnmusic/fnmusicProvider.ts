@@ -395,7 +395,10 @@ export const fnmusicProvider: OnlineMusicProvider = {
         // 表单式登录：登录窗口按声明渲染字段，提交后由本 provider 完成登录（主进程保存凭据）。
         getLoginForm: () => ({
             fields: [
-                { key: 'base', type: 'url', labelKey: 'fnmusic.serverUrl', placeholderKey: 'fnmusic.serverUrlPlaceholder', required: true },
+                // type 用 text 而非 url：支持局域网 IP 直连（http://192.168.x.x:5666）与 FN ID 中继
+                // （纯短码 baixiaokeji → https://baixiaokeji.fnos.net），后者不是合法 URL，会被原生
+                // input[type=url] 校验拦截。桥侧 resolveServer 负责识别并切换。
+                { key: 'base', type: 'text', labelKey: 'fnmusic.serverUrl', placeholderKey: 'fnmusic.serverUrlPlaceholder', required: true },
                 { key: 'username', type: 'text', labelKey: 'fnmusic.username', placeholderKey: 'fnmusic.usernamePlaceholder', required: true },
                 { key: 'password', type: 'password', labelKey: 'fnmusic.password', required: true },
             ],

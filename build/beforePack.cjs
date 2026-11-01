@@ -17,7 +17,13 @@ exports.default = async (context) => {
   await prepareBundledFfmpeg({ platform: context.electronPlatformName, arch });
   // The analysis models' runtime (electron/analysis/mnn.cjs), built from the pinned MNN source.
   const { prepareBundledMnn } = await import("./buildMnnRuntime.mjs");
-  await prepareBundledMnn({ platform: context.electronPlatformName, arch });
+  // Cross-build exception: on non-host platforms (e.g. Windows targets built on Linux) the MNN
+  // runtime cannot be compiled; FOLIA_SKIP_MNN=1 lets a prebuilt library staged at
+  // build/mnn/win-x64/folia_mnn.dll (e.g. taken from an official release) be used instead.
+  const skipMnn = process.env.FOLIA_SKIP_MNN === '1' && context.electronPlatformName === 'win32';
+  if (!skipMnn) {
+    await prepareBundledMnn({ platform: context.electronPlatformName, arch });
+  }
   // The two models (Beat This! final0, htdemucs), verified against shared/modelManifest.json; one
   // file each for every platform.
   const { prepareBundledModels } = await import("./fetchModels.mjs");

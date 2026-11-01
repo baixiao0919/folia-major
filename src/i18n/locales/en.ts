@@ -1,5 +1,3 @@
-﻿
-
 export default {
   "libraryBravais": {
     "suiteName": "Bravais wall",
@@ -46,7 +44,14 @@ export default {
     "helpFilter": "Type to filter this page",
     "helpSearch": "Search online platforms (home)",
     "filterPlaceholder": "Filter this page",
-    "kind": {"track": "Song", "playlist": "Playlist", "album": "Album", "artist": "Artist", "folder": "Folder", "feed": "Radio"}
+    "kind": {
+      "track": "Song",
+      "playlist": "Playlist",
+      "album": "Album",
+      "artist": "Artist",
+      "folder": "Folder",
+      "feed": "Radio"
+    }
   },
   "wallTools": {
     "shuffle": "Shuffle the queue",
@@ -77,7 +82,11 @@ export default {
     "openPlayerUnavailable": "Nothing is playing yet",
     "openSettings": "Open settings",
     "goHome": "Go to Home",
-    "wallSection": "Wall"
+    "wallSection": "Wall",
+    "queueSearch": "Search the queue",
+    "queueSearchPlaceholder": "Search the queue ({{count}})",
+    "queueSearchClose": "Close search",
+    "queueNoMatch": "No songs match"
   },
   "libraryBravaisHome": {
     "hide": "Hide",
@@ -112,7 +121,16 @@ export default {
       "localTitle": "No local music imported yet",
       "localBody": "Choose “{{action}}” under “⋯” in the info strip, and your folders, albums and artists will fill this wall."
     },
-    "special": {"liked": "Liked Songs", "cloud": "Cloud Drive", "personal-fm": "Personal FM", "daily": "Daily Picks", "all-songs": "All Songs", "local-favorites": "Favorites", "navidrome-random": "Random", "navidrome-favorites": "Starred"}
+    "special": {
+      "liked": "Liked Songs",
+      "cloud": "Cloud Drive",
+      "personal-fm": "Personal FM",
+      "daily": "Daily Picks",
+      "all-songs": "All Songs",
+      "local-favorites": "Favorites",
+      "navidrome-random": "Random",
+      "navidrome-favorites": "Starred"
+    }
   },
   "libraryTui": {
     "back": "Back",
@@ -149,7 +167,16 @@ export default {
     "columnType": "Type",
     "columnTracks": "Tracks",
     "columnDescription": "Description",
-    "itemType": {"playlist": "playlist", "album": "album", "artist": "artist", "folder": "folder", "cloud": "cloud", "radio": "radio", "daily_recommendations": "daily", "personal_fm": "fm"},
+    "itemType": {
+      "playlist": "playlist",
+      "album": "album",
+      "artist": "artist",
+      "folder": "folder",
+      "cloud": "cloud",
+      "radio": "radio",
+      "daily_recommendations": "daily",
+      "personal_fm": "fm"
+    },
     "homeHints": "↑↓ move · PgUp/PgDn page · Tab section · F6 source · Enter open · Esc clear filter, then close",
     "homeTreeHints": "←→ fold",
     "homeBatchHints": "Ins select · Ctrl+A all · Ctrl+Enter play · Ctrl+Shift+Enter queue",
@@ -311,8 +338,6 @@ export default {
     "panelCloseBtnShown": "Panel close button shown",
     "panelCloseBtnHidden": "Panel close button hidden",
     "playerBackButtonAlwaysShown": "Player back button will remain visible",
-    "playerBarPinned": "The player bar stays expanded",
-    "playerBarUnpinned": "The player bar collapses again when the pointer leaves",
     "trackSwitchButtonsAlwaysShown": "Track switch arrows will remain visible",
     "trackSwitchButtonsAutoHidden": "Track switch arrows will reveal on hover",
     "playerBackButtonAutoHidden": "Player back button will reveal on hover",
@@ -349,6 +374,8 @@ export default {
     "themeSourceCover": "Theme generation now uses cover colors",
     "aiThemeUpdatedCustomPreferred": "AI theme updated, custom theme is still preferred",
     "aiThemeGeneratedCustomPreferred": "AI theme generated, but custom theme is still preferred",
+    "playerBarPinned": "The player bar stays expanded",
+    "playerBarUnpinned": "The player bar collapses again when the pointer leaves"
   },
   "status": {
     "playerChromeAlwaysHidden": "UI will remain hidden",
@@ -454,6 +481,7 @@ export default {
     "disconnected": "Disconnected",
     "randomVisualizerModePerSongOn": "Random lyric animation for every song enabled",
     "randomVisualizerModePerSongOff": "Random lyric animation for every song disabled",
+    "playlistUpdateFailed": "Couldn't add to the playlist"
   },
   "commandPalette": {
     "placeholder": "Type a command or search...",
@@ -480,8 +508,19 @@ export default {
     "previewQueueSearchEmpty": "Type a song name, artist, album, or queue index",
     "pickerFilterPlaceholder": "Type to filter, then click or press Enter",
     "pickerCurrent": "Current: {{mode}}",
-    "librarySuitePicker": { "active": "In use", "switch": "Switch the library to this interface" },
-    "libraryWallPicker": { "active": "In use", "windows": "Windows per block: {{count}}", "windowsShare": "{{percent}}% of each block opens onto the visualizer", "seamStyle": "Info strip: {{style}}", "seamTheme": "Follows your theme colours", "seamPrint": "Fixed paper and ink, high contrast", "seamPattern": "A quiet pattern in your theme colours" },
+    "librarySuitePicker": {
+      "active": "In use",
+      "switch": "Switch the library to this interface"
+    },
+    "libraryWallPicker": {
+      "active": "In use",
+      "windows": "Windows per block: {{count}}",
+      "windowsShare": "{{percent}}% of each block opens onto the visualizer",
+      "seamStyle": "Info strip: {{style}}",
+      "seamTheme": "Follows your theme colours",
+      "seamPrint": "Fixed paper and ink, high contrast",
+      "seamPattern": "A quiet pattern in your theme colours"
+    },
     "pickerDescription": {
       "visualizer": {
         "still": "One line held still — no animation, no background, lowest load",
@@ -598,290 +637,1162 @@ export default {
       }
     },
     "commands": {
-      "settings-ponder-hints": { "title": "Ponder tutorial hints", "description": "Choose when the hold-G tutorial hint appears" },
-      "ponder-hints-always": { "title": "Ponder hints: always show", "description": "Show the hold-G hint on every teachable control" },
-      "ponder-hints-unseen": { "title": "Ponder hints: only where I have not looked", "description": "Stop hinting a control once its tutorial has been watched" },
-      "ponder-hints-off": { "title": "Ponder hints: off", "description": "Never show the hold-G hint" },
-      "ponder-touch-button-toggle": { "title": "Ponder button on touch", "description": "Show or hide the lightbulb in the top-right corner on touch devices" },
-      "search-current": { "title": "Search songs", "description": "Search songs in the current source" },
-      "search-local": { "title": "Search local songs", "description": "Search local library" },
-      "search-navidrome": { "title": "Search Navidrome songs", "description": "Search Navidrome library" },
-      "search-netease": { "title": "Search NetEase songs", "description": "Search NetEase Cloud Music" },
-      "queue": { "title": "Queue", "description": "Search the queue; use @ for metadata and -- for batch actions" },
-      "playback-volume": { "title": "Volume", "description": "Adjust playback volume" },
-      "playback-fm-mode": { "title": "Personal FM mode", "description": "Switch the Personal FM mode or scene" },
-      "settings-help": { "title": "Open Help", "description": "Open help and shortcuts" },
-      "ponder-current-page": { "title": "Ponder this page", "description": "Open the interactive guide for the current page" },
-      "settings-options": { "title": "Open Options", "description": "Open the options center" },
-      "settings-now-playing-card-position": { "title": "Reposition song card", "description": "Drag the now playing card to a new position" },
-      "settings-ai-provider": { "title": "AI provider settings", "description": "Choose an AI provider and model" },
-      "settings-appearance": { "title": "Appearance settings", "description": "Open visual and appearance settings" },
-      "settings-general": { "title": "General settings", "description": "Open general app preferences" },
-      "settings-playback": { "title": "Playback settings", "description": "Open playback behavior settings" },
-      "playback-replaygain-off": { "title": "Disable ReplayGain", "description": "Play audio without ReplayGain adjustment" },
-      "playback-replaygain-track": { "title": "ReplayGain: Track mode", "description": "Apply per-track ReplayGain adjustment" },
-      "playback-replaygain-album": { "title": "ReplayGain: Album mode", "description": "Apply album ReplayGain adjustment" },
-      "playback-replaygain-auto": { "title": "ReplayGain: Smart balance", "description": "Measure each song’s loudness and turn the loud ones down to match" },
-      "playback-equalizer": { "title": "Audio effects", "description": "Open the equalizer and effect chain" },
-      "playback-sound-preset-flat": { "title": "Sound: Level", "description": "Clear the equalizer and every effect" },
-      "playback-sound-preset-lofi": { "title": "Sound: Lo-Fi", "description": "Filtered, crushed and wobbly with vinyl noise" },
-      "playback-sound-preset-radio": { "title": "Sound: Radio", "description": "Narrow band, nearly mono broadcast tone" },
-      "playback-sound-preset-hall": { "title": "Sound: Hall", "description": "Wide stereo image with reverb space" },
-      "playback-sound-preset-vocal": { "title": "Sound: Vocal", "description": "Lift the voice range and tighten dynamics" },
-      "playback-sound-preset-bass": { "title": "Sound: Bass boost", "description": "Heavier low end with extra punch" },
-      "playback-sound-preset-custom1": { "title": "Sound: Custom 1", "description": "Apply the first saved custom sound" },
-      "playback-sound-preset-custom2": { "title": "Sound: Custom 2", "description": "Apply the second saved custom sound" },
-      "playback-sound-mod-curve-release": { "title": "Sound: Back to my own", "description": "Take off the equalizer curve a mod put in place" },
-      "settings-local-lyrics-priority": { "title": "Local song lyrics priority", "description": "Choose whether local songs prefer local or online lyrics" },
-      "settings-local-lyric-format-order": { "title": "Local lyric file format priority", "description": "Choose which format wins when a track has several lyric files" },
-      "settings-integration": { "title": "Integration settings", "description": "Open Stage, Now Playing, and Navidrome settings" },
-      "automix-toggle": { "title": "Smart transition", "description": "Turn FOLIA smart transitions on or off" },
-      "transition-mode-crossfade": { "title": "Transition mode: Folia Crossfade", "description": "Use the simple one-out one-in crossfade" },
-      "transition-mode-automix": { "title": "Transition mode: Folia Automix", "description": "Analyse both tracks and mix them automatically" },
-      "transition-performance-toggle": { "title": "Transition performance mode", "description": "Toggle the more aggressive transition (needs the stem model)" },
-      "settings-discord-presence": { "title": "Discord playback status", "description": "Open Discord Rich Presence settings" },
-      "lyric-staff-policy-cycle": { "title": "Opening credits handling", "description": "Cycle how the credit block at the start of the lyrics is handled" },
-      "lyric-staff-absorb-cycle": { "title": "Opening credits absorb mode", "description": "Cycle whether neighbouring lines are folded into the credit block" },
-      "settings-obs-browser-source": { "title": "OBS browser source", "description": "Open OBS browser source settings" },
-      "obs-toggle-keep-main-window-animation": { "title": "OBS: keep main window animation", "description": "Toggle whether the main window keeps its animation while OBS is connected" },
-      "desktop-toggle-lyric-api": { "title": "Lyrics API", "description": "Toggle the local unauthenticated lyrics endpoint" },
-      "settings-obs-copy-css": { "title": "Copy OBS CSS", "description": "Copy the OBS Browser Source Custom CSS carrying uploaded assets" },
-      "settings-storage": { "title": "Storage settings", "description": "Open cache and storage settings" },
-      "settings-r2-sync": { "title": "Sync server settings", "description": "Open sync server settings" },
-      "sync-now": { "title": "Sync now", "description": "Sync AI themes" },
-      "export-lyric-cache": { "title": "Export cached lyrics", "description": "Save every lyric on this device as .fia and enhanced LRC in one zip" },
-      "export-current-lyrics-fia": { "title": "Export current lyrics as .fia", "description": "Save this song’s lyrics in Folia’s lossless format, saved word segmentation included" },
-      "export-current-lyrics-lrc": { "title": "Export current lyrics as LRC", "description": "Save this song’s lyrics as an enhanced LRC other players can read" },
-      "settings-local-library-watch": { "title": "Local folder watch settings", "description": "Open the auto scan settings for imported local folders" },
-      "local-library-auto-scan-toggle": { "title": "Auto scan local folders", "description": "Turn automatic rescanning of imported local folders on or off" },
-      "settings-desktop": { "title": "Desktop settings", "description": "Open desktop app settings" },
-      "settings-update-channel": { "title": "Update channel", "description": "Choose the desktop app release channel" },
-      "desktop-toggle-voice-input-pause": { "title": "Voice input pause", "description": "Toggle pausing playback during voice input" },
-      "desktop-toggle-prevent-display-sleep": { "title": "Prevent display sleep during playback", "description": "Keep the display awake while music is playing" },
-      "desktop-toggle-background-throttling": { "title": "Background throttling", "description": "Toggle throttling rendering and holding the lyric animation while Folia is minimised or hidden" },
-      "settings-graphics": { "title": "Graphics settings", "description": "Open static mode, frame rate cap, Linux glow fix and reduced motion" },
-      "settings-gpu-preference": { "title": "Render GPU settings", "description": "Jump to the choice of graphics card the app renders on" },
-      "gpu-preference-auto": { "title": "Render GPU: Auto", "description": "Let Windows choose the graphics card; applies after a restart" },
-      "gpu-preference-high-performance": { "title": "Render GPU: High performance", "description": "Render on the discrete GPU; applies after a restart" },
-      "gpu-preference-low-power": { "title": "Render GPU: Power saving", "description": "Render on the integrated GPU; applies after a restart" },
-      "settings-mods": { "title": "Mod settings", "description": "Open the mod system switch and the installed mods" },
-      "settings-lab": { "title": "Player page interface", "description": "Jump to the switches that hide or pin parts of the player page" },
-      "settings-player-bottom-bar-position": { "title": "Reposition bottom bar", "description": "Drag the player bottom bar and panel button to a new height (the song card follows unless it has its own position)" },
-      "settings-player-control-slots": { "title": "Player button slots", "description": "Choose which actions the two buttons beside the progress bar run" },
-      "video-layer-toggle": { "title": "Video layer behind lyrics", "description": "Show or hide the muted video layer behind the lyrics" },
-      "video-layer-pick": { "title": "Video layer: pick a local video", "description": "Choose a local video to play behind the lyrics" },
-      "visualizer-toggle-random-per-song": { "title": "Random visualizer for every song", "description": "Toggle a random lyric animation mode whenever the song changes" },
-      "visualizer-machi-camera-bar": { "title": "Machi: Viewfinder", "description": "Show or hide Machi's viewfinder bar on the player page to set the view, focus, aperture and drift" },
-      "visualizer-toggle-glow-blur-quantize": { "title": "Fix lyric animation freeze on Linux", "description": "Change how some lyric animations draw their glow, fixing occasional freezes after long playback on Linux" },
-      "settings-visualizer": { "title": "Visualizer settings", "description": "Open lyrics animation workbench" },
-      "settings-theme-park": { "title": "Color", "description": "Open theme editor" },
-      "settings-global-lyric-offset": { "title": "Global timing offset", "description": "Calibrate lyric timing against Bluetooth or device audio latency" },
-      "settings-lyric-filter": { "title": "Lyric filter", "description": "Open lyric filter settings" },
-      "settings-wallpaper-mode": { "title": "Wallpaper mode settings", "description": "Open wallpaper mode settings" },
-      "desktop-toggle-wallpaper-mode": { "title": "Toggle wallpaper mode", "description": "Turn the app into a desktop lyrics wallpaper" },
-      "desktop-toggle-wallpaper-dock-autohide": { "title": "Toggle Dock auto-hide in wallpaper mode", "description": "Auto-hide the Dock while Mac wallpaper mode is active (bottom Dock only)" },
-      "desktop-toggle-close-to-tray": { "title": "Close window to tray", "description": "Keep the app running in the tray when the main window is closed" },
-      "desktop-toggle-remote-control-hide-titlebar": { "title": "Remote control: hide top floating bar", "description": "Toggle the remote control window top floating window-control bar" },
-      "desktop-toggle-remote-control-expand-cover": { "title": "Remote control: expand cover", "description": "Toggle whether the remote control window expands the cover into a large image when idle" },
-      "desktop-toggle-remote-control-text-shade": { "title": "Remote control: text shade", "description": "Toggle the soft dark shade under idle text on the transparent background of the remote control window" },
-      "desktop-unlock-remote-control": { "title": "Unlock remote control window", "description": "Turn off remote control click-through so the window can be used and moved again" },
-      "sleep-timer": { "title": "Sleep timer", "description": "Pause playback after a chosen duration, or close the desktop app" },
-      "navigate-home": { "title": "Go home", "description": "Return to home view" },
-      "navigate-player": { "title": "Go player", "description": "Return to player view" },
-      "lattice-focus-current": { "title": "Lattice locate playing song", "description": "Centre the poster of the playing song on the collage" },
-      "locate-playing-song": { "title": "Locate the playing song", "description": "Open the album or playlist it is in and centre its card" },
-      "bravais-list": { "title": "Open the track list", "description": "Widen the seam on the library wall into this collection's track list" },
-      "bravais-directory": { "title": "Open the directory", "description": "Widen the seam on the library home into the local folder tree and select in batches" },
-      "bravais-seam-full": { "title": "Expand the info strip", "description": "Open the seam on the library wall to its full info strip" },
-      "bravais-seam-spine": { "title": "Collapse the info strip", "description": "Narrow the seam on the library wall to a book spine" },
-      "bravais-seam-hide": { "title": "Fold the info strip", "description": "Close the seam and keep only a tab at the screen edge" },
-      "bravais-seam-here": { "title": "Split the wall here", "description": "Open a new seam in the current view after the old one slid off screen" },
-      "bravais-locate-playing": { "title": "Locate the playing song", "description": "Move the wall focus to the song that is playing now" },
-      "bravais-wall-look": { "title": "Cycle wall see-through", "description": "Switch the library wall between solid, partly see-through and see-through" },
-      "bravais-more-windows": { "title": "Open more wall windows", "description": "Add one see-through window to every block of the library wall" },
-      "bravais-fewer-windows": { "title": "Open fewer wall windows", "description": "Close one see-through window in every block of the library wall" },
-      "navigate-lattice": { "title": "Lattice open", "description": "Show the play queue as a queue collage" },
-      "browser-fullscreen": { "title": "Fullscreen", "description": "Toggle browser fullscreen" },
-      "home-playlist": { "title": "Open playlists", "description": "Open playlist home tab" },
-      "home-local": { "title": "Open local music", "description": "Open local music tab" },
-      "home-albums": { "title": "Open albums", "description": "Open albums tab" },
-      "home-navidrome": { "title": "Open Navidrome", "description": "Open Navidrome tab" },
-      "home-radio": { "title": "Open radio", "description": "Open radio tab" },
-      "home-explore": { "title": "Open explore", "description": "Open explore tab" },
-      "grid-sort-file-name": { "title": "Sort by file name", "description": "Order the local tracks by their file name" },
-      "grid-sort-modified-date": { "title": "Sort by modified date", "description": "Order the local tracks by when the file was last changed" },
-      "grid-sort-album-track": { "title": "Sort by album track number", "description": "Order the local tracks by disc and track number" },
-      "grid-sort-direction": { "title": "Reverse sort order", "description": "Switch the local track list between ascending and descending" },
-      "grid-toggle-info-panel": { "title": "Toggle collection panel", "description": "Show or hide the collection info and actions panel" },
-      "grid-toggle-track-list": { "title": "Toggle track list", "description": "Show or hide the track list beside the grid" },
-      "grid-resync-folder": { "title": "Reimport this folder", "description": "Scan this local folder again and refresh its songs" },
-      "grid-resync-all-folders": { "title": "Reimport every folder", "description": "Scan every local folder again and refresh the library" },
-      "grid-organize-song-info": { "title": "Organize song info", "description": "Clean up the titles, artists and albums of this folder" },
-      "grid-export-playlist": { "title": "Export this playlist", "description": "Save this local playlist as an m3u8 file" },
-      "grid-edit-entity": { "title": "Edit this album or artist", "description": "Open the local library entity editor for this collection" },
-      "grid-set-cover": { "title": "Set collection cover", "description": "Choose a fixed cover for this local folder, album or playlist" },
-      "grid-toggle-edit-mode": { "title": "Toggle edit mode", "description": "Enter or leave the mode that lets you remove songs from this collection" },
-      "grid-reload-online-collection": { "title": "Reload this collection", "description": "Skip the cache and load every song of this online collection again" },
-      "grid-toggle-subscribe": { "title": "Subscribe or unsubscribe", "description": "Save this online playlist or album to your library, or remove it if it is already there" },
-      "directory-play-selection": { "title": "Play selected cards", "description": "Play the songs of the cards selected on the map, in card order" },
-      "directory-enqueue-selection": { "title": "Queue selected cards", "description": "Add the songs of the cards selected on the map to the queue" },
-      "directory-create-playlist": { "title": "New playlist from selection", "description": "Create a local playlist with the songs of the selected cards" },
-      "directory-remove-selection": { "title": "Remove selected from library", "description": "Ask to remove the selected folders and their songs from the local library" },
-      "directory-select-all": { "title": "Select all filtered cards", "description": "Open the batch panel and select every card the filter shows" },
-      "directory-clear-selection": { "title": "Clear selection", "description": "Deselect every card on the map" },
-      "directory-manage-hidden": { "title": "Manage hidden playlists", "description": "Show hidden playlists on the map so you can hide or unhide them, or leave that view" },
-      "directory-toggle-hidden": { "title": "Hide or unhide the focused playlist", "description": "Hide the focused playlist from the home directory, or bring it back" },
-      "directory-rescan-root": { "title": "Rescan the focused imported folder", "description": "Scan the focused imported root folder again" },
-      "directory-remove-root": { "title": "Remove the focused imported folder", "description": "Ask to remove the focused imported root folder and its songs from the local library" },
-      "directory-clear-ignore": { "title": "Restore the focused ignored folder", "description": "Stop ignoring the focused folder and scan it again" },
-      "artist-play-top-songs": { "title": "Play top songs", "description": "Play the artist's playable top songs from the first one" },
-      "artist-enqueue-top-songs": { "title": "Queue top songs", "description": "Add the artist's top songs to the play queue" },
-      "artist-reload": { "title": "Reload artist", "description": "Load the artist page again from the source" },
-      "artist-retry-albums": { "title": "Resume loading albums", "description": "Retry the album page that failed and keep loading the rest" },
-      "artist-edit-entity": { "title": "Edit artist info", "description": "Open the local library editor for this artist" },
-      "settings-interaction": { "title": "Interaction settings", "description": "Open keyboard, shortcut and grid interaction settings" },
-      "settings-global-shortcuts": { "title": "Global shortcuts", "description": "Jump to the system-wide shortcuts for playback and mod commands" },
-      "settings-custom-shortcut": { "title": "Custom shortcuts", "description": "Jump to the custom keyboard shortcut bindings" },
-      "settings-grid-action-button": { "title": "Grid action button", "description": "Jump to what the grid action button slides to" },
-      "settings-pinned-commands": { "title": "Pinned command slots", "description": "Choose the three commands pinned in the palette" },
-      "settings-home-tabs": { "title": "Home tab visibility", "description": "Choose which tabs the home screen shows" },
-      "home-card-position-toggle": { "title": "Remember home card position", "description": "Toggle restoring each home section to its last card" },
-      "settings-playback-entry-view": { "title": "Play opens", "description": "Jump to which view pressing play opens" },
-      "playback-entry-view-player": { "title": "Play opens: Visualizer", "description": "Pressing play opens the player and its visualizer" },
-      "playback-entry-view-lattice": { "title": "Play opens: Lattice", "description": "Pressing play opens the queue collage" },
-      "playback-entry-view-stay": { "title": "Play opens: Stay here", "description": "Pressing play only starts the song and leaves you where you are" },
-      "settings-library-suite": { "title": "Library interface", "description": "Jump to which interface the library uses" },
-      "library-suite-picker": { "title": "Pick a library interface", "description": "Switch the interface the library is browsed in" },
-      "library-wall-look-picker": { "title": "Pick wall transparency", "description": "Choose how much of the visualizer shows through the library wall" },
-      "library-wall-windows-picker": { "title": "Pick windows per block", "description": "Choose how many tiles in each wall block are windows" },
-      "settings-bravais": { "title": "Bravais wall settings", "description": "Jump to the settings that only apply to the Bravais wall" },
-      "library-wall-stack-edges-toggle": { "title": "Collection stack edges", "description": "Show or hide the page edges on album, playlist and folder tiles" },
-      "library-wall-seam-clear-toggle": { "title": "See-through info strip", "description": "Let the info strip show the visualizer behind the wall" },
-      "library-wall-seam-style-picker": { "title": "Pick info strip style", "description": "Choose the look of the solid info strip" },
-      "library-wall-backdrop-lyrics-toggle": { "title": "Lyrics behind the wall", "description": "Draw lyrics in the visualizer that shows through the wall" },
-      "library-wall-backdrop-blur-toggle": { "title": "Blur behind the wall", "description": "Blur the visualizer that shows through the wall" },
-      "library-wall-seam-direction-picker": { "title": "Pick info strip direction", "description": "Open the info strip as a column, a row across the wall, or by the screen shape" },
-      "settings-theme-presets": { "title": "Theme presets", "description": "Jump to the built-in and saved theme presets" },
-      "settings-liquid-glass": { "title": "Liquid glass", "description": "Jump to liquid glass strength, blur and presets" },
-      "settings-lyric-render-quality": { "title": "Lyric canvas resolution and anti-aliasing", "description": "Jump to the resolution and anti-aliasing every canvas / WebGL lyric style follows by default" },
-      "settings-lyrics-renderer": { "title": "Lyrics renderer", "description": "Jump to how lyrics are drawn on the player" },
-      "settings-grid-card-style": { "title": "Grid card style", "description": "Jump to how the home grid draws its cards" },
-      "settings-queue-behavior": { "title": "Queue behavior", "description": "Jump to how the play queue is built and kept" },
-      "settings-netease-scrobble": { "title": "NetEase listening report", "description": "Jump to whether finished plays are reported to NetEase Cloud Music" },
-      "netease-scrobble-toggle": { "title": "NetEase listening report", "description": "Turn reporting of finished NetEase plays on or off" },
-      "settings-audio-output": { "title": "Audio output", "description": "Jump to the audio output device and format settings" },
-      "hifi-toggle": { "title": "mpv playback engine", "description": "Switch local and Navidrome songs between Web Audio and mpv, which sends them straight to the output device" },
-      "hifi-settings": { "title": "Playback engine settings", "description": "Open the playback engine settings: Web Audio or mpv, and mpv's output device, exclusive mode and DSD" },
-      "hifi-exclusive-toggle": { "title": "HiFi exclusive mode", "description": "Turn on or off whether HiFi takes the output device for itself, so the system mixer stays out of the way" },
-      "hifi-navidrome-toggle": { "title": "Navidrome through HiFi", "description": "Turn on or off playing Navidrome songs through HiFi, as the original file without transcoding" },
-      "hifi-software-volume-toggle": { "title": "HiFi software volume", "description": "Turn on or off letting Folia's volume slider set mpv's volume; not bit-perfect while on" },
-      "hifi-redetect-mpv": { "title": "Detect mpv again", "description": "Look for mpv again for HiFi, for example after installing or updating it" },
-      "hifi-download-mpv": { "title": "Download or update mpv", "description": "Download the recommended mpv for HiFi, or update the one Folia downloaded; the progress shows in the playback engine settings" },
-      "hifi-signal-path": { "title": "HiFi signal path", "description": "Show how the current song reaches your DAC and whether it stays bit-perfect" },
-      "settings-transition": { "title": "Smart transition", "description": "Jump to the FOLIA transition settings" },
-      "settings-navidrome": { "title": "Navidrome server", "description": "Jump to the Navidrome server connection" },
-      "settings-stage-mode": { "title": "Stage mode", "description": "Jump to the Stage external player settings" },
-      "settings-media-cache": { "title": "Media cache", "description": "Jump to the downloaded audio cache" },
-      "filter-view": { "title": "Filter this view", "description": "Narrow the cards on screen by name" },
-      "panel-cover": { "title": "Panel: cover", "description": "Open the cover panel tab" },
-      "panel-controls": { "title": "Panel: controls", "description": "Open the controls panel tab" },
-      "panel-queue": { "title": "Panel: queue", "description": "Open the queue panel tab" },
-      "panel-account": { "title": "Panel: quality", "description": "Open the quality panel tab (account, default quality, sync)" },
-      "panel-local": { "title": "Panel: local", "description": "Open the local panel tab" },
-      "panel-navi": { "title": "Panel: Navidrome", "description": "Open the Navidrome panel tab" },
-      "panel-onlineLyrics": { "title": "Panel: lyrics", "description": "Open the online lyrics panel tab" },
-      "lyric-segmentation": { "title": "Adjust lyric word segmentation", "description": "Fix how this song\u2019s lyrics are split into words, with AI or by hand" },
-      "mods": { "title": "Mods (Experimental)", "description": "Experimental: manage mods and export transparent lyric videos" },
-      "playback-play": { "title": "Play", "description": "Start playback when paused" },
-      "playback-pause": { "title": "Pause", "description": "Pause current playback" },
-      "playback-toggle": { "title": "Play / Pause", "description": "Pause when playing, play when paused" },
-      "playback-next": { "title": "Next track", "description": "Play the next track" },
-      "queue-keep-open": { "title": "Keep queue palette open", "description": "Toggle keeping the command palette open after choosing a queue song" },
-      "playback-prev": { "title": "Previous track", "description": "Play the previous track" },
-      "playback-loop": { "title": "Toggle loop", "description": "Change loop mode" },
-      "playback-like": { "title": "Like current song", "description": "Add the current song to your favourites, or take it back out" },
-      "playback-add-to-playlist": { "title": "Add to a playlist", "description": "Put the current song in one of your playlists" },
-      "playback-mute": { "title": "Mute", "description": "Silence playback, or bring the sound back" },
-      "playback-volume-up": { "title": "Volume up", "description": "Raise the volume by 5%" },
-      "playback-volume-down": { "title": "Volume down", "description": "Lower the volume by 5%" },
-      "playback-shuffle": { "title": "Shuffle queue", "description": "Shuffle current play queue" },
-      "playback-clear-queue": { "title": "Clear queue", "description": "Remove all songs from the current play queue" },
-      "playback-undo-queue-replace": { "title": "Undo mod queue replacement", "description": "Bring back the play queue from before a mod replaced it" },
-      "theme-generate-current": { "title": "Generate AI theme", "description": "Generate an AI theme for the current song" },
-      "theme-quick-editor": { "title": "Quick theme editor", "description": "Quickly edit AI theme for the current song" },
-      "theme-source-ai": { "title": "Theme source: AI inference", "description": "Generate song themes by having AI read the lyrics" },
-      "theme-source-cover": { "title": "Theme source: cover colors", "description": "Generate song themes from the cover artwork palette" },
-      "playback-auto-match-best-lyric": { "title": "Match best lyrics", "description": "Run automatic best lyric matching for the current song" },
-      "playback-toggle-pure-music": { "title": "Mark or unmark as instrumental", "description": "Mark the current local song as instrumental so its lyrics are no longer matched automatically; run again to unmark" },
-      "visualizer-picker": { "title": "Pick a visualizer", "description": "Browse lyric animation modes and click one to switch" },
-      "background-picker": { "title": "Pick a background", "description": "Browse background layouts and click one to switch" },
-      "visualizer-still": { "title": "Visualizer: Still", "description": "Switch to the static low-resource visualizer" },
-      "visualizer-classic": { "title": "Visualizer: Luminous", "description": "Switch to classic visualizer" },
-      "visualizer-cadenza": { "title": "Visualizer: Mindscape", "description": "Switch to cadenza visualizer" },
-      "visualizer-partita": { "title": "Visualizer: Partita", "description": "Switch to partita visualizer" },
-      "visualizer-fume": { "title": "Visualizer: Fume", "description": "Switch to fume visualizer" },
-      "visualizer-cappella": { "title": "Visualizer: Cappella", "description": "Switch to cappella visualizer" },
-      "visualizer-tilt": { "title": "Visualizer: Tilt", "description": "Switch to tilt visualizer" },
-      "visualizer-claddagh": { "title": "Visualizer: Claddagh", "description": "Switch to Claddagh visualizer" },
-      "visualizer-monet": { "title": "Visualizer: Monet", "description": "Switch to Monet visualizer" },
-      "visualizer-diorama": { "title": "Visualizer: Diorama", "description": "Switch to Diorama visualizer" },
-      "visualizer-pendolo": { "title": "Visualizer: Pendolo", "description": "Switch to Pendolo visualizer" },
-      "visualizer-sonnet": { "title": "Visualizer: Sonnet", "description": "Switch to the Sonnet Japanese lyric PV" },
-      "smart-beat-toggle": { "title": "Smart beat mode on / off", "description": "Turn the beat effects (Sonnet and Diorama on the beats, Pendolo on the drums) on or off" },
-      "smart-beat-off": { "title": "Smart beat mode: Off", "description": "Turn the beat effects off; every picture as it was" },
-      "smart-beat-cached": { "title": "Smart beat mode: Analysed only", "description": "Play the beat effects from tracks already analysed only; smart beat itself analyses nothing new and leaves the GPU alone (automix is not affected)" },
-      "smart-beat-on": { "title": "Smart beat mode: On", "description": "Turn the beat effects on (Sonnet and Diorama on the beats, Pendolo on the drums), analysing a track not analysed yet" },
-      "visualizer-tempera": { "title": "Visualizer: Tempera", "description": "Switch to the Tempera color-block lyric PV" },
-      "visualizer-lumiere": { "title": "Visualizer: Lumiere", "description": "Switch to the Lumiere stage-light lyric PV" },
-      "visualizer-nebbia": { "title": "Visualizer: Nebbia", "description": "Switch to Nebbia, lyrics written on a fogged-up bus window" },
-      "visualizer-hanabi": { "title": "Visualizer: Hanabi", "description": "Switch to the Hanabi fireworks lyric PV" },
-      "visualizer-machi": { "title": "Visualizer: Machi", "description": "Switch to the Machi town dioramas" },
-      "desktop-toggle-remote-control": { "title": "Toggle remote control window", "description": "Open or close the remote control window" },
-      "desktop-toggle-main-window-always-on-top": { "title": "Toggle main window always on top", "description": "Pin or unpin the main window above other windows" },
-      "background-monet-full-overlay": { "title": "Background: Monet Full Screen Overlay", "description": "Switch background to Monet full screen overlay layout" },
-      "background-monet-half-gradient": { "title": "Background: Monet Half Screen Gradient", "description": "Switch background to Monet half screen gradient layout" },
-      "background-common": { "title": "Background: Common", "description": "Switch background to general layout" },
-      "background-nomand": { "title": "Background: Nomand", "description": "Switch background to Paper image effects" },
-      "background-latent": { "title": "Background: Latent", "description": "Switch background to cover-colored audio-reactive shaders" },
-      "background-latent-dithering": { "title": "Latent: Pixel", "description": "Show only the Dithering layer" },
-      "background-latent-mesh": { "title": "Latent: Fluid", "description": "Show only the MeshGradient layer" },
-      "background-latent-both": { "title": "Latent: Mixed", "description": "Show both shader layers" },
-      "background-url": { "title": "Background: Embedded Background", "description": "Switch background to embedded webpage mode" },
-      "background-sora": { "title": "Background: Sora", "description": "Switch background to Sora starfield" },
-      "background-transparent": { "title": "Background: Transparent", "description": "Switch background to a fully transparent layout" },
-      "settings-toggle-transparent": { "title": "Toggle transparency", "description": "Toggle transparent player background" },
-      "settings-toggle-daylight": { "title": "Toggle light/dark", "description": "Toggle theme daylight/midnight mode" },
-      "settings-toggle-player-back-button": { "title": "Always show player back button", "description": "Toggle whether the player page back button stays visible" },
-      "settings-toggle-player-bar-pinned": { "title": "Pin the player bar", "description": "Keep the bottom player bar expanded instead of collapsing it" },
-      "settings-gridview-cards": { "title": "Grid card look", "description": "Adjust full-bleed covers and how far grid cards shrink and fade with distance" },
-      "settings-toggle-gridview-full-bleed-cover": { "title": "Full-bleed grid covers", "description": "Toggle whether grid card artwork fills the whole card" },
-      "settings-toggle-gridview-square-cards": { "title": "Square grid cards", "description": "Toggle whether full-bleed grid cards are square instead of poster-shaped" },
-      "settings-toggle-lattice-vignette": { "title": "Poster wall vignette", "description": "Turn the edge vignette on the queue collage (Lattice) and the library wall on or off" },
-      "settings-toggle-lattice-auto-focus": { "title": "Lattice auto-focus", "description": "Toggle whether the queue collage follows the playing song when tracks change" },
-      "lattice-poster-tint": { "title": "Poster wall tint", "description": "Adjust the overlay that quiets posters outside the focus on the queue collage (Lattice) and the library wall" },
-      "settings-reduce-motion": { "title": "Reduce motion", "description": "Turn down the animation on each surface that has one, or follow the system setting" },
-      "settings-toggle-reduce-lattice-motion": { "title": "Reduce queue collage motion", "description": "Turn the queue collage expansion, camera flight and entrance wave down to instant" },
-      "settings-toggle-follow-system-reduced-motion": { "title": "Follow system reduced motion", "description": "Toggle whether the system animation setting is allowed to reduce motion in the app" },
-      "settings-toggle-track-switch-buttons": { "title": "Always show track switch arrows", "description": "Toggle whether the progress bar track switch arrows stay visible beside the title" },
-      "settings-toggle-main-window-titlebar": { "title": "Always show window control buttons", "description": "Toggle whether the main window control buttons stay visible" },
-      "settings-toggle-player-header-blur": { "title": "Blurred player header", "description": "Toggle a frosted bar behind the window titlebar on the player page so its buttons stay readable" },
-      "settings-toggle-fullscreen-titlebar-button": { "title": "Toggle fullscreen button visibility", "description": "Show or hide the fullscreen button in the desktop window controls" },
-      "settings-toggle-native-mac-fullscreen-button": { "title": "Native macOS fullscreen button", "description": "Toggle whether the macOS window control enters native fullscreen instead of maximizing" },
-      "settings-toggle-cursor-auto-hide": { "title": "Hide cursor with player controls", "description": "Toggle whether the mouse pointer disappears together with the auto-hidden player controls" },
-      "settings-toggle-cursor-idle-hide": { "title": "Hide cursor when idle", "description": "Toggle whether the mouse pointer hides on its own after a pause while the controls stay visible" },
-      "settings-toggle-auto-play-on-launch": { "title": "Auto-play on launch", "description": "Toggle whether opening the app resumes the last session by itself" },
-      "settings-toggle-transcode-fallback": { "title": "Transcode unsupported audio", "description": "Toggle Electron recovery for local and Navidrome audio Chromium cannot decode" },
-      "settings-toggle-playback-fade": { "title": "Fade on pause and resume", "description": "Toggle the short fade when pausing and resuming playback" },
-      "settings-toggle-auto-skip-unplayable": { "title": "Skip unplayable songs", "description": "Toggle counting down to a skip when a song is restricted or fails for an unknown reason" },
-      "settings-toggle-bottom-subtitle-overlay": { "title": "Toggle bottom subtitle overlay", "description": "Show or hide the whole bottom subtitle overlay" },
-      "settings-cycle-subtitle-content-mode": { "title": "Cycle subtitle content mode", "description": "Cycle subtitle content between translation, romanization, and romanization plus translation" },
-      "settings-toggle-subtitle-background": { "title": "Toggle subtitle background", "description": "Show or hide the readability background behind visualizer subtitles" },
-      "settings-language-system": { "title": "Follow system language", "description": "Use the browser or system language" },
-      "settings-language-zh-CN": { "title": "Switch language to Simplified Chinese", "description": "Use Simplified Chinese in the interface" },
-      "settings-language-zh-TW": { "title": "Switch language to Traditional Chinese", "description": "Use Traditional Chinese in the interface" },
-      "settings-language-en": { "title": "Switch language to English", "description": "Use English in the interface" },
-      "settings-language-in": { "title": "Switch language to Indonesian", "description": "Use Bahasa Indonesia in the interface" },
-      "settings-language-vi": { "title": "Switch language to Vietnamese", "description": "Use Vietnamese in the interface" }
+      "settings-ponder-hints": {
+        "title": "Ponder tutorial hints",
+        "description": "Choose when the hold-G tutorial hint appears"
+      },
+      "ponder-hints-always": {
+        "title": "Ponder hints: always show",
+        "description": "Show the hold-G hint on every teachable control"
+      },
+      "ponder-hints-unseen": {
+        "title": "Ponder hints: only where I have not looked",
+        "description": "Stop hinting a control once its tutorial has been watched"
+      },
+      "ponder-hints-off": {
+        "title": "Ponder hints: off",
+        "description": "Never show the hold-G hint"
+      },
+      "ponder-touch-button-toggle": {
+        "title": "Ponder button on touch",
+        "description": "Show or hide the lightbulb in the top-right corner on touch devices"
+      },
+      "search-current": {
+        "title": "Search songs",
+        "description": "Search songs in the current source"
+      },
+      "search-local": {
+        "title": "Search local songs",
+        "description": "Search local library"
+      },
+      "search-navidrome": {
+        "title": "Search Navidrome songs",
+        "description": "Search Navidrome library"
+      },
+      "search-netease": {
+        "title": "Search NetEase songs",
+        "description": "Search NetEase Cloud Music"
+      },
+      "queue": {
+        "title": "Queue",
+        "description": "Search the queue; use @ for metadata and -- for batch actions"
+      },
+      "playback-volume": {
+        "title": "Volume",
+        "description": "Adjust playback volume"
+      },
+      "playback-fm-mode": {
+        "title": "Personal FM mode",
+        "description": "Switch the Personal FM mode or scene"
+      },
+      "settings-help": {
+        "title": "Open Help",
+        "description": "Open help and shortcuts"
+      },
+      "ponder-current-page": {
+        "title": "Ponder this page",
+        "description": "Open the interactive guide for the current page"
+      },
+      "settings-options": {
+        "title": "Open Options",
+        "description": "Open the options center"
+      },
+      "settings-now-playing-card-position": {
+        "title": "Reposition song card",
+        "description": "Drag the now playing card to a new position"
+      },
+      "settings-ai-provider": {
+        "title": "AI provider settings",
+        "description": "Choose an AI provider and model"
+      },
+      "settings-appearance": {
+        "title": "Appearance settings",
+        "description": "Open visual and appearance settings"
+      },
+      "settings-general": {
+        "title": "General settings",
+        "description": "Open general app preferences"
+      },
+      "settings-playback": {
+        "title": "Playback settings",
+        "description": "Open playback behavior settings"
+      },
+      "playback-replaygain-off": {
+        "title": "Disable ReplayGain",
+        "description": "Play audio without ReplayGain adjustment"
+      },
+      "playback-replaygain-track": {
+        "title": "ReplayGain: Track mode",
+        "description": "Apply per-track ReplayGain adjustment"
+      },
+      "playback-replaygain-album": {
+        "title": "ReplayGain: Album mode",
+        "description": "Apply album ReplayGain adjustment"
+      },
+      "playback-replaygain-auto": {
+        "title": "ReplayGain: Smart balance",
+        "description": "Measure each song’s loudness and turn the loud ones down to match"
+      },
+      "playback-equalizer": {
+        "title": "Audio effects",
+        "description": "Open the equalizer and effect chain"
+      },
+      "playback-sound-preset-flat": {
+        "title": "Sound: Level",
+        "description": "Clear the equalizer and every effect"
+      },
+      "playback-sound-preset-lofi": {
+        "title": "Sound: Lo-Fi",
+        "description": "Filtered, crushed and wobbly with vinyl noise"
+      },
+      "playback-sound-preset-radio": {
+        "title": "Sound: Radio",
+        "description": "Narrow band, nearly mono broadcast tone"
+      },
+      "playback-sound-preset-hall": {
+        "title": "Sound: Hall",
+        "description": "Wide stereo image with reverb space"
+      },
+      "playback-sound-preset-vocal": {
+        "title": "Sound: Vocal",
+        "description": "Lift the voice range and tighten dynamics"
+      },
+      "playback-sound-preset-bass": {
+        "title": "Sound: Bass boost",
+        "description": "Heavier low end with extra punch"
+      },
+      "playback-sound-preset-custom1": {
+        "title": "Sound: Custom 1",
+        "description": "Apply the first saved custom sound"
+      },
+      "playback-sound-preset-custom2": {
+        "title": "Sound: Custom 2",
+        "description": "Apply the second saved custom sound"
+      },
+      "playback-sound-mod-curve-release": {
+        "title": "Sound: Back to my own",
+        "description": "Take off the equalizer curve a mod put in place"
+      },
+      "settings-local-lyrics-priority": {
+        "title": "Local song lyrics priority",
+        "description": "Choose whether local songs prefer local or online lyrics"
+      },
+      "settings-local-lyric-format-order": {
+        "title": "Local lyric file format priority",
+        "description": "Choose which format wins when a track has several lyric files"
+      },
+      "settings-integration": {
+        "title": "Integration settings",
+        "description": "Open Stage, Now Playing, and Navidrome settings"
+      },
+      "automix-toggle": {
+        "title": "Smart transition",
+        "description": "Turn FOLIA smart transitions on or off"
+      },
+      "transition-mode-crossfade": {
+        "title": "Transition mode: Folia Crossfade",
+        "description": "Use the simple one-out one-in crossfade"
+      },
+      "transition-mode-automix": {
+        "title": "Transition mode: Folia Automix",
+        "description": "Analyse both tracks and mix them automatically"
+      },
+      "transition-performance-toggle": {
+        "title": "Transition performance mode",
+        "description": "Toggle the more aggressive transition (needs the stem model)"
+      },
+      "settings-discord-presence": {
+        "title": "Discord playback status",
+        "description": "Open Discord Rich Presence settings"
+      },
+      "lyric-staff-policy-cycle": {
+        "title": "Opening credits handling",
+        "description": "Cycle how the credit block at the start of the lyrics is handled"
+      },
+      "lyric-staff-absorb-cycle": {
+        "title": "Opening credits absorb mode",
+        "description": "Cycle whether neighbouring lines are folded into the credit block"
+      },
+      "settings-obs-browser-source": {
+        "title": "OBS browser source",
+        "description": "Open OBS browser source settings"
+      },
+      "obs-toggle-keep-main-window-animation": {
+        "title": "OBS: keep main window animation",
+        "description": "Toggle whether the main window keeps its animation while OBS is connected"
+      },
+      "desktop-toggle-lyric-api": {
+        "title": "Lyrics API",
+        "description": "Toggle the local unauthenticated lyrics endpoint"
+      },
+      "settings-obs-copy-css": {
+        "title": "Copy OBS CSS",
+        "description": "Copy the OBS Browser Source Custom CSS carrying uploaded assets"
+      },
+      "settings-storage": {
+        "title": "Storage settings",
+        "description": "Open cache and storage settings"
+      },
+      "settings-r2-sync": {
+        "title": "Sync server settings",
+        "description": "Open sync server settings"
+      },
+      "sync-now": {
+        "title": "Sync now",
+        "description": "Sync AI themes"
+      },
+      "export-lyric-cache": {
+        "title": "Export cached lyrics",
+        "description": "Save every lyric on this device as .fia and enhanced LRC in one zip"
+      },
+      "export-current-lyrics-fia": {
+        "title": "Export current lyrics as .fia",
+        "description": "Save this song’s lyrics in Folia’s lossless format, saved word segmentation included"
+      },
+      "export-current-lyrics-lrc": {
+        "title": "Export current lyrics as LRC",
+        "description": "Save this song’s lyrics as an enhanced LRC other players can read"
+      },
+      "settings-local-library-watch": {
+        "title": "Local folder watch settings",
+        "description": "Open the auto scan settings for imported local folders"
+      },
+      "local-library-auto-scan-toggle": {
+        "title": "Auto scan local folders",
+        "description": "Turn automatic rescanning of imported local folders on or off"
+      },
+      "settings-desktop": {
+        "title": "Desktop settings",
+        "description": "Open desktop app settings"
+      },
+      "settings-update-channel": {
+        "title": "Update channel",
+        "description": "Choose the desktop app release channel"
+      },
+      "desktop-toggle-voice-input-pause": {
+        "title": "Voice input pause",
+        "description": "Toggle pausing playback during voice input"
+      },
+      "desktop-toggle-prevent-display-sleep": {
+        "title": "Prevent display sleep during playback",
+        "description": "Keep the display awake while music is playing"
+      },
+      "desktop-toggle-background-throttling": {
+        "title": "Background throttling",
+        "description": "Toggle throttling rendering and holding the lyric animation while Folia is minimised or hidden"
+      },
+      "settings-graphics": {
+        "title": "Graphics settings",
+        "description": "Open static mode, frame rate cap, Linux glow fix and reduced motion"
+      },
+      "settings-gpu-preference": {
+        "title": "Render GPU settings",
+        "description": "Jump to the choice of graphics card the app renders on"
+      },
+      "gpu-preference-auto": {
+        "title": "Render GPU: Auto",
+        "description": "Let Windows choose the graphics card; applies after a restart"
+      },
+      "gpu-preference-high-performance": {
+        "title": "Render GPU: High performance",
+        "description": "Render on the discrete GPU; applies after a restart"
+      },
+      "gpu-preference-low-power": {
+        "title": "Render GPU: Power saving",
+        "description": "Render on the integrated GPU; applies after a restart"
+      },
+      "settings-mods": {
+        "title": "Mod settings",
+        "description": "Open the mod system switch and the installed mods"
+      },
+      "settings-lab": {
+        "title": "Player page interface",
+        "description": "Jump to the switches that hide or pin parts of the player page"
+      },
+      "settings-player-bottom-bar-position": {
+        "title": "Reposition bottom bar",
+        "description": "Drag the player bottom bar and panel button to a new height (the song card follows unless it has its own position)"
+      },
+      "settings-player-control-slots": {
+        "title": "Player button slots",
+        "description": "Choose which actions the two buttons beside the progress bar run"
+      },
+      "video-layer-toggle": {
+        "title": "Video layer behind lyrics",
+        "description": "Show or hide the muted video layer behind the lyrics"
+      },
+      "video-layer-pick": {
+        "title": "Video layer: pick a local video",
+        "description": "Choose a local video to play behind the lyrics"
+      },
+      "visualizer-toggle-random-per-song": {
+        "title": "Random visualizer for every song",
+        "description": "Toggle a random lyric animation mode whenever the song changes"
+      },
+      "visualizer-machi-camera-bar": {
+        "title": "Machi: Viewfinder",
+        "description": "Show or hide Machi's viewfinder bar on the player page to set the view, focus, aperture and drift"
+      },
+      "visualizer-toggle-glow-blur-quantize": {
+        "title": "Fix lyric animation freeze on Linux",
+        "description": "Change how some lyric animations draw their glow, fixing occasional freezes after long playback on Linux"
+      },
+      "settings-visualizer": {
+        "title": "Visualizer settings",
+        "description": "Open lyrics animation workbench"
+      },
+      "settings-theme-park": {
+        "title": "Color",
+        "description": "Open theme editor"
+      },
+      "settings-global-lyric-offset": {
+        "title": "Global timing offset",
+        "description": "Calibrate lyric timing against Bluetooth or device audio latency"
+      },
+      "settings-lyric-filter": {
+        "title": "Lyric filter",
+        "description": "Open lyric filter settings"
+      },
+      "settings-wallpaper-mode": {
+        "title": "Wallpaper mode settings",
+        "description": "Open wallpaper mode settings"
+      },
+      "desktop-toggle-wallpaper-mode": {
+        "title": "Toggle wallpaper mode",
+        "description": "Turn the app into a desktop lyrics wallpaper"
+      },
+      "desktop-toggle-wallpaper-dock-autohide": {
+        "title": "Toggle Dock auto-hide in wallpaper mode",
+        "description": "Auto-hide the Dock while Mac wallpaper mode is active (bottom Dock only)"
+      },
+      "desktop-toggle-close-to-tray": {
+        "title": "Close window to tray",
+        "description": "Keep the app running in the tray when the main window is closed"
+      },
+      "desktop-toggle-remote-control-hide-titlebar": {
+        "title": "Remote control: hide top floating bar",
+        "description": "Toggle the remote control window top floating window-control bar"
+      },
+      "desktop-toggle-remote-control-expand-cover": {
+        "title": "Remote control: expand cover",
+        "description": "Toggle whether the remote control window expands the cover into a large image when idle"
+      },
+      "desktop-toggle-remote-control-text-shade": {
+        "title": "Remote control: text shade",
+        "description": "Toggle the soft dark shade under idle text on the transparent background of the remote control window"
+      },
+      "desktop-unlock-remote-control": {
+        "title": "Unlock remote control window",
+        "description": "Turn off remote control click-through so the window can be used and moved again"
+      },
+      "sleep-timer": {
+        "title": "Sleep timer",
+        "description": "Pause playback after a chosen duration, or close the desktop app"
+      },
+      "navigate-home": {
+        "title": "Go home",
+        "description": "Return to home view"
+      },
+      "navigate-player": {
+        "title": "Go player",
+        "description": "Return to player view"
+      },
+      "lattice-focus-current": {
+        "title": "Lattice locate playing song",
+        "description": "Centre the poster of the playing song on the collage"
+      },
+      "locate-playing-song": {
+        "title": "Locate the playing song",
+        "description": "Open the album or playlist it is in and centre its card"
+      },
+      "bravais-list": {
+        "title": "Open the track list",
+        "description": "Widen the seam on the library wall into this collection's track list"
+      },
+      "bravais-directory": {
+        "title": "Open the directory",
+        "description": "Widen the seam on the library home into the local folder tree and select in batches"
+      },
+      "bravais-seam-full": {
+        "title": "Expand the info strip",
+        "description": "Open the seam on the library wall to its full info strip"
+      },
+      "bravais-seam-spine": {
+        "title": "Collapse the info strip",
+        "description": "Narrow the seam on the library wall to a book spine"
+      },
+      "bravais-seam-hide": {
+        "title": "Fold the info strip",
+        "description": "Close the seam and keep only a tab at the screen edge"
+      },
+      "bravais-seam-here": {
+        "title": "Split the wall here",
+        "description": "Open a new seam in the current view after the old one slid off screen"
+      },
+      "bravais-locate-playing": {
+        "title": "Locate the playing song",
+        "description": "Move the wall focus to the song that is playing now"
+      },
+      "bravais-wall-look": {
+        "title": "Cycle wall see-through",
+        "description": "Switch the library wall between solid, partly see-through and see-through"
+      },
+      "bravais-more-windows": {
+        "title": "Open more wall windows",
+        "description": "Add one see-through window to every block of the library wall"
+      },
+      "bravais-fewer-windows": {
+        "title": "Open fewer wall windows",
+        "description": "Close one see-through window in every block of the library wall"
+      },
+      "navigate-lattice": {
+        "title": "Lattice open",
+        "description": "Show the play queue as a queue collage"
+      },
+      "browser-fullscreen": {
+        "title": "Fullscreen",
+        "description": "Toggle browser fullscreen"
+      },
+      "home-playlist": {
+        "title": "Open playlists",
+        "description": "Open playlist home tab"
+      },
+      "home-local": {
+        "title": "Open local music",
+        "description": "Open local music tab"
+      },
+      "home-albums": {
+        "title": "Open albums",
+        "description": "Open albums tab"
+      },
+      "home-navidrome": {
+        "title": "Open Navidrome",
+        "description": "Open Navidrome tab"
+      },
+      "home-radio": {
+        "title": "Open radio",
+        "description": "Open radio tab"
+      },
+      "home-explore": {
+        "title": "Open explore",
+        "description": "Open explore tab"
+      },
+      "grid-sort-file-name": {
+        "title": "Sort by file name",
+        "description": "Order the local tracks by their file name"
+      },
+      "grid-sort-modified-date": {
+        "title": "Sort by modified date",
+        "description": "Order the local tracks by when the file was last changed"
+      },
+      "grid-sort-album-track": {
+        "title": "Sort by album track number",
+        "description": "Order the local tracks by disc and track number"
+      },
+      "grid-sort-direction": {
+        "title": "Reverse sort order",
+        "description": "Switch the local track list between ascending and descending"
+      },
+      "grid-toggle-info-panel": {
+        "title": "Toggle collection panel",
+        "description": "Show or hide the collection info and actions panel"
+      },
+      "grid-toggle-track-list": {
+        "title": "Toggle track list",
+        "description": "Show or hide the track list beside the grid"
+      },
+      "grid-resync-folder": {
+        "title": "Reimport this folder",
+        "description": "Scan this local folder again and refresh its songs"
+      },
+      "grid-resync-all-folders": {
+        "title": "Reimport every folder",
+        "description": "Scan every local folder again and refresh the library"
+      },
+      "grid-organize-song-info": {
+        "title": "Organize song info",
+        "description": "Clean up the titles, artists and albums of this folder"
+      },
+      "grid-export-playlist": {
+        "title": "Export this playlist",
+        "description": "Save this local playlist as an m3u8 file"
+      },
+      "grid-edit-entity": {
+        "title": "Edit this album or artist",
+        "description": "Open the local library entity editor for this collection"
+      },
+      "grid-set-cover": {
+        "title": "Set collection cover",
+        "description": "Choose a fixed cover for this local folder, album or playlist"
+      },
+      "grid-toggle-edit-mode": {
+        "title": "Toggle edit mode",
+        "description": "Enter or leave the mode that lets you remove songs from this collection"
+      },
+      "grid-reload-online-collection": {
+        "title": "Reload this collection",
+        "description": "Skip the cache and load every song of this online collection again"
+      },
+      "grid-toggle-subscribe": {
+        "title": "Subscribe or unsubscribe",
+        "description": "Save this online playlist or album to your library, or remove it if it is already there"
+      },
+      "directory-play-selection": {
+        "title": "Play selected cards",
+        "description": "Play the songs of the cards selected on the map, in card order"
+      },
+      "directory-enqueue-selection": {
+        "title": "Queue selected cards",
+        "description": "Add the songs of the cards selected on the map to the queue"
+      },
+      "directory-create-playlist": {
+        "title": "New playlist from selection",
+        "description": "Create a local playlist with the songs of the selected cards"
+      },
+      "directory-remove-selection": {
+        "title": "Remove selected from library",
+        "description": "Ask to remove the selected folders and their songs from the local library"
+      },
+      "directory-select-all": {
+        "title": "Select all filtered cards",
+        "description": "Open the batch panel and select every card the filter shows"
+      },
+      "directory-clear-selection": {
+        "title": "Clear selection",
+        "description": "Deselect every card on the map"
+      },
+      "directory-manage-hidden": {
+        "title": "Manage hidden playlists",
+        "description": "Show hidden playlists on the map so you can hide or unhide them, or leave that view"
+      },
+      "directory-toggle-hidden": {
+        "title": "Hide or unhide the focused playlist",
+        "description": "Hide the focused playlist from the home directory, or bring it back"
+      },
+      "directory-rescan-root": {
+        "title": "Rescan the focused imported folder",
+        "description": "Scan the focused imported root folder again"
+      },
+      "directory-remove-root": {
+        "title": "Remove the focused imported folder",
+        "description": "Ask to remove the focused imported root folder and its songs from the local library"
+      },
+      "directory-clear-ignore": {
+        "title": "Restore the focused ignored folder",
+        "description": "Stop ignoring the focused folder and scan it again"
+      },
+      "artist-play-top-songs": {
+        "title": "Play top songs",
+        "description": "Play the artist's playable top songs from the first one"
+      },
+      "artist-enqueue-top-songs": {
+        "title": "Queue top songs",
+        "description": "Add the artist's top songs to the play queue"
+      },
+      "artist-reload": {
+        "title": "Reload artist",
+        "description": "Load the artist page again from the source"
+      },
+      "artist-retry-albums": {
+        "title": "Resume loading albums",
+        "description": "Retry the album page that failed and keep loading the rest"
+      },
+      "artist-edit-entity": {
+        "title": "Edit artist info",
+        "description": "Open the local library editor for this artist"
+      },
+      "settings-interaction": {
+        "title": "Interaction settings",
+        "description": "Open keyboard, shortcut and grid interaction settings"
+      },
+      "settings-global-shortcuts": {
+        "title": "Global shortcuts",
+        "description": "Jump to the system-wide shortcuts for playback and mod commands"
+      },
+      "settings-custom-shortcut": {
+        "title": "Custom shortcuts",
+        "description": "Jump to the custom keyboard shortcut bindings"
+      },
+      "settings-grid-action-button": {
+        "title": "Grid action button",
+        "description": "Jump to what the grid action button slides to"
+      },
+      "settings-pinned-commands": {
+        "title": "Pinned command slots",
+        "description": "Choose the three commands pinned in the palette"
+      },
+      "settings-home-tabs": {
+        "title": "Home tab visibility",
+        "description": "Choose which tabs the home screen shows"
+      },
+      "home-card-position-toggle": {
+        "title": "Remember home card position",
+        "description": "Toggle restoring each home section to its last card"
+      },
+      "settings-playback-entry-view": {
+        "title": "Play opens",
+        "description": "Jump to which view pressing play opens"
+      },
+      "playback-entry-view-player": {
+        "title": "Play opens: Visualizer",
+        "description": "Pressing play opens the player and its visualizer"
+      },
+      "playback-entry-view-lattice": {
+        "title": "Play opens: Lattice",
+        "description": "Pressing play opens the queue collage"
+      },
+      "playback-entry-view-stay": {
+        "title": "Play opens: Stay here",
+        "description": "Pressing play only starts the song and leaves you where you are"
+      },
+      "settings-library-suite": {
+        "title": "Library interface",
+        "description": "Jump to which interface the library uses"
+      },
+      "library-suite-picker": {
+        "title": "Pick a library interface",
+        "description": "Switch the interface the library is browsed in"
+      },
+      "library-wall-look-picker": {
+        "title": "Pick wall transparency",
+        "description": "Choose how much of the visualizer shows through the library wall"
+      },
+      "library-wall-windows-picker": {
+        "title": "Pick windows per block",
+        "description": "Choose how many tiles in each wall block are windows"
+      },
+      "settings-bravais": {
+        "title": "Bravais wall settings",
+        "description": "Jump to the settings that only apply to the Bravais wall"
+      },
+      "library-wall-stack-edges-toggle": {
+        "title": "Collection stack edges",
+        "description": "Show or hide the page edges on album, playlist and folder tiles"
+      },
+      "library-wall-seam-clear-toggle": {
+        "title": "See-through info strip",
+        "description": "Let the info strip show the visualizer behind the wall"
+      },
+      "library-wall-seam-style-picker": {
+        "title": "Pick info strip style",
+        "description": "Choose the look of the solid info strip"
+      },
+      "library-wall-backdrop-lyrics-toggle": {
+        "title": "Lyrics behind the wall",
+        "description": "Draw lyrics in the visualizer that shows through the wall"
+      },
+      "library-wall-backdrop-blur-toggle": {
+        "title": "Blur behind the wall",
+        "description": "Blur the visualizer that shows through the wall"
+      },
+      "library-wall-seam-direction-picker": {
+        "title": "Pick info strip direction",
+        "description": "Open the info strip as a column, a row across the wall, or by the screen shape"
+      },
+      "settings-theme-presets": {
+        "title": "Theme presets",
+        "description": "Jump to the built-in and saved theme presets"
+      },
+      "settings-lyrics-renderer": {
+        "title": "Lyrics renderer",
+        "description": "Jump to how lyrics are drawn on the player"
+      },
+      "settings-grid-card-style": {
+        "title": "Grid card style",
+        "description": "Jump to how the home grid draws its cards"
+      },
+      "settings-queue-behavior": {
+        "title": "Queue behavior",
+        "description": "Jump to how the play queue is built and kept"
+      },
+      "settings-netease-scrobble": {
+        "title": "NetEase listening report",
+        "description": "Jump to whether finished plays are reported to NetEase Cloud Music"
+      },
+      "netease-scrobble-toggle": {
+        "title": "NetEase listening report",
+        "description": "Turn reporting of finished NetEase plays on or off"
+      },
+      "settings-audio-output": {
+        "title": "Audio output",
+        "description": "Jump to the audio output device and format settings"
+      },
+      "hifi-toggle": {
+        "title": "mpv playback engine",
+        "description": "Switch local and Navidrome songs between Web Audio and mpv, which sends them straight to the output device"
+      },
+      "hifi-settings": {
+        "title": "Playback engine settings",
+        "description": "Open the playback engine settings: Web Audio or mpv, and mpv's output device, exclusive mode and DSD"
+      },
+      "hifi-exclusive-toggle": {
+        "title": "HiFi exclusive mode",
+        "description": "Turn on or off whether HiFi takes the output device for itself, so the system mixer stays out of the way"
+      },
+      "hifi-navidrome-toggle": {
+        "title": "Navidrome through HiFi",
+        "description": "Turn on or off playing Navidrome songs through HiFi, as the original file without transcoding"
+      },
+      "hifi-software-volume-toggle": {
+        "title": "HiFi software volume",
+        "description": "Turn on or off letting Folia's volume slider set mpv's volume; not bit-perfect while on"
+      },
+      "hifi-redetect-mpv": {
+        "title": "Detect mpv again",
+        "description": "Look for mpv again for HiFi, for example after installing or updating it"
+      },
+      "hifi-download-mpv": {
+        "title": "Download or update mpv",
+        "description": "Download the recommended mpv for HiFi, or update the one Folia downloaded; the progress shows in the playback engine settings"
+      },
+      "hifi-signal-path": {
+        "title": "HiFi signal path",
+        "description": "Show how the current song reaches your DAC and whether it stays bit-perfect"
+      },
+      "settings-transition": {
+        "title": "Smart transition",
+        "description": "Jump to the FOLIA transition settings"
+      },
+      "settings-navidrome": {
+        "title": "Navidrome server",
+        "description": "Jump to the Navidrome server connection"
+      },
+      "settings-stage-mode": {
+        "title": "Stage mode",
+        "description": "Jump to the Stage external player settings"
+      },
+      "settings-media-cache": {
+        "title": "Media cache",
+        "description": "Jump to the downloaded audio cache"
+      },
+      "filter-view": {
+        "title": "Filter this view",
+        "description": "Narrow the cards on screen by name"
+      },
+      "panel-cover": {
+        "title": "Panel: cover",
+        "description": "Open the cover panel tab"
+      },
+      "panel-controls": {
+        "title": "Panel: controls",
+        "description": "Open the controls panel tab"
+      },
+      "panel-queue": {
+        "title": "Panel: queue",
+        "description": "Open the queue panel tab"
+      },
+      "panel-account": {
+        "title": "Panel: quality",
+        "description": "Open the quality panel tab (account, default quality, sync)"
+      },
+      "panel-local": {
+        "title": "Panel: local",
+        "description": "Open the local panel tab"
+      },
+      "panel-navi": {
+        "title": "Panel: Navidrome",
+        "description": "Open the Navidrome panel tab"
+      },
+      "panel-onlineLyrics": {
+        "title": "Panel: lyrics",
+        "description": "Open the online lyrics panel tab"
+      },
+      "lyric-segmentation": {
+        "title": "Adjust lyric word segmentation",
+        "description": "Fix how this song’s lyrics are split into words, with AI or by hand"
+      },
+      "mods": {
+        "title": "Mods (Experimental)",
+        "description": "Experimental: manage mods and export transparent lyric videos"
+      },
+      "playback-play": {
+        "title": "Play",
+        "description": "Start playback when paused"
+      },
+      "playback-pause": {
+        "title": "Pause",
+        "description": "Pause current playback"
+      },
+      "playback-toggle": {
+        "title": "Play / Pause",
+        "description": "Pause when playing, play when paused"
+      },
+      "playback-next": {
+        "title": "Next track",
+        "description": "Play the next track"
+      },
+      "queue-keep-open": {
+        "title": "Keep queue palette open",
+        "description": "Toggle keeping the command palette open after choosing a queue song"
+      },
+      "playback-prev": {
+        "title": "Previous track",
+        "description": "Play the previous track"
+      },
+      "playback-loop": {
+        "title": "Toggle loop",
+        "description": "Change loop mode"
+      },
+      "playback-like": {
+        "title": "Like current song",
+        "description": "Add the current song to your favourites, or take it back out"
+      },
+      "playback-add-to-playlist": {
+        "title": "Add to a playlist",
+        "description": "Put the current song in one of your playlists"
+      },
+      "playback-mute": {
+        "title": "Mute",
+        "description": "Silence playback, or bring the sound back"
+      },
+      "playback-volume-up": {
+        "title": "Volume up",
+        "description": "Raise the volume by 5%"
+      },
+      "playback-volume-down": {
+        "title": "Volume down",
+        "description": "Lower the volume by 5%"
+      },
+      "playback-shuffle": {
+        "title": "Shuffle queue",
+        "description": "Shuffle current play queue"
+      },
+      "playback-clear-queue": {
+        "title": "Clear queue",
+        "description": "Remove all songs from the current play queue"
+      },
+      "playback-undo-queue-replace": {
+        "title": "Undo mod queue replacement",
+        "description": "Bring back the play queue from before a mod replaced it"
+      },
+      "theme-generate-current": {
+        "title": "Generate AI theme",
+        "description": "Generate an AI theme for the current song"
+      },
+      "theme-quick-editor": {
+        "title": "Quick theme editor",
+        "description": "Quickly edit AI theme for the current song"
+      },
+      "theme-source-ai": {
+        "title": "Theme source: AI inference",
+        "description": "Generate song themes by having AI read the lyrics"
+      },
+      "theme-source-cover": {
+        "title": "Theme source: cover colors",
+        "description": "Generate song themes from the cover artwork palette"
+      },
+      "playback-auto-match-best-lyric": {
+        "title": "Match best lyrics",
+        "description": "Run automatic best lyric matching for the current song"
+      },
+      "playback-toggle-pure-music": {
+        "title": "Mark or unmark as instrumental",
+        "description": "Mark the current local song as instrumental so its lyrics are no longer matched automatically; run again to unmark"
+      },
+      "visualizer-picker": {
+        "title": "Pick a visualizer",
+        "description": "Browse lyric animation modes and click one to switch"
+      },
+      "background-picker": {
+        "title": "Pick a background",
+        "description": "Browse background layouts and click one to switch"
+      },
+      "visualizer-still": {
+        "title": "Visualizer: Still",
+        "description": "Switch to the static low-resource visualizer"
+      },
+      "visualizer-classic": {
+        "title": "Visualizer: Luminous",
+        "description": "Switch to classic visualizer"
+      },
+      "visualizer-cadenza": {
+        "title": "Visualizer: Mindscape",
+        "description": "Switch to cadenza visualizer"
+      },
+      "visualizer-partita": {
+        "title": "Visualizer: Partita",
+        "description": "Switch to partita visualizer"
+      },
+      "visualizer-fume": {
+        "title": "Visualizer: Fume",
+        "description": "Switch to fume visualizer"
+      },
+      "visualizer-cappella": {
+        "title": "Visualizer: Cappella",
+        "description": "Switch to cappella visualizer"
+      },
+      "visualizer-tilt": {
+        "title": "Visualizer: Tilt",
+        "description": "Switch to tilt visualizer"
+      },
+      "visualizer-claddagh": {
+        "title": "Visualizer: Claddagh",
+        "description": "Switch to Claddagh visualizer"
+      },
+      "visualizer-monet": {
+        "title": "Visualizer: Monet",
+        "description": "Switch to Monet visualizer"
+      },
+      "visualizer-diorama": {
+        "title": "Visualizer: Diorama",
+        "description": "Switch to Diorama visualizer"
+      },
+      "visualizer-pendolo": {
+        "title": "Visualizer: Pendolo",
+        "description": "Switch to Pendolo visualizer"
+      },
+      "visualizer-sonnet": {
+        "title": "Visualizer: Sonnet",
+        "description": "Switch to the Sonnet Japanese lyric PV"
+      },
+      "smart-beat-toggle": {
+        "title": "Smart beat mode on / off",
+        "description": "Turn the beat effects (Sonnet and Diorama on the beats, Pendolo on the drums) on or off"
+      },
+      "smart-beat-off": {
+        "title": "Smart beat mode: Off",
+        "description": "Turn the beat effects off; every picture as it was"
+      },
+      "smart-beat-cached": {
+        "title": "Smart beat mode: Analysed only",
+        "description": "Play the beat effects from tracks already analysed only; smart beat itself analyses nothing new and leaves the GPU alone (automix is not affected)"
+      },
+      "smart-beat-on": {
+        "title": "Smart beat mode: On",
+        "description": "Turn the beat effects on (Sonnet and Diorama on the beats, Pendolo on the drums), analysing a track not analysed yet"
+      },
+      "visualizer-tempera": {
+        "title": "Visualizer: Tempera",
+        "description": "Switch to the Tempera color-block lyric PV"
+      },
+      "visualizer-lumiere": {
+        "title": "Visualizer: Lumiere",
+        "description": "Switch to the Lumiere stage-light lyric PV"
+      },
+      "visualizer-nebbia": {
+        "title": "Visualizer: Nebbia",
+        "description": "Switch to Nebbia, lyrics written on a fogged-up bus window"
+      },
+      "visualizer-hanabi": {
+        "title": "Visualizer: Hanabi",
+        "description": "Switch to the Hanabi fireworks lyric PV"
+      },
+      "visualizer-machi": {
+        "title": "Visualizer: Machi",
+        "description": "Switch to the Machi town dioramas"
+      },
+      "desktop-toggle-remote-control": {
+        "title": "Toggle remote control window",
+        "description": "Open or close the remote control window"
+      },
+      "desktop-toggle-main-window-always-on-top": {
+        "title": "Toggle main window always on top",
+        "description": "Pin or unpin the main window above other windows"
+      },
+      "background-monet-full-overlay": {
+        "title": "Background: Monet Full Screen Overlay",
+        "description": "Switch background to Monet full screen overlay layout"
+      },
+      "background-monet-half-gradient": {
+        "title": "Background: Monet Half Screen Gradient",
+        "description": "Switch background to Monet half screen gradient layout"
+      },
+      "background-common": {
+        "title": "Background: Common",
+        "description": "Switch background to general layout"
+      },
+      "background-nomand": {
+        "title": "Background: Nomand",
+        "description": "Switch background to Paper image effects"
+      },
+      "background-latent": {
+        "title": "Background: Latent",
+        "description": "Switch background to cover-colored audio-reactive shaders"
+      },
+      "background-latent-dithering": {
+        "title": "Latent: Pixel",
+        "description": "Show only the Dithering layer"
+      },
+      "background-latent-mesh": {
+        "title": "Latent: Fluid",
+        "description": "Show only the MeshGradient layer"
+      },
+      "background-latent-both": {
+        "title": "Latent: Mixed",
+        "description": "Show both shader layers"
+      },
+      "background-url": {
+        "title": "Background: Embedded Background",
+        "description": "Switch background to embedded webpage mode"
+      },
+      "background-sora": {
+        "title": "Background: Sora",
+        "description": "Switch background to Sora starfield"
+      },
+      "settings-toggle-transparent": {
+        "title": "Toggle transparency",
+        "description": "Toggle transparent player background"
+      },
+      "settings-toggle-daylight": {
+        "title": "Toggle light/dark",
+        "description": "Toggle theme daylight/midnight mode"
+      },
+      "settings-toggle-player-back-button": {
+        "title": "Always show player back button",
+        "description": "Toggle whether the player page back button stays visible"
+      },
+      "settings-gridview-cards": {
+        "title": "Grid card look",
+        "description": "Adjust full-bleed covers and how far grid cards shrink and fade with distance"
+      },
+      "settings-toggle-gridview-full-bleed-cover": {
+        "title": "Full-bleed grid covers",
+        "description": "Toggle whether grid card artwork fills the whole card"
+      },
+      "settings-toggle-gridview-square-cards": {
+        "title": "Square grid cards",
+        "description": "Toggle whether full-bleed grid cards are square instead of poster-shaped"
+      },
+      "settings-toggle-lattice-vignette": {
+        "title": "Poster wall vignette",
+        "description": "Turn the edge vignette on the queue collage (Lattice) and the library wall on or off"
+      },
+      "settings-toggle-lattice-auto-focus": {
+        "title": "Lattice auto-focus",
+        "description": "Toggle whether the queue collage follows the playing song when tracks change"
+      },
+      "lattice-poster-tint": {
+        "title": "Poster wall tint",
+        "description": "Adjust the overlay that quiets posters outside the focus on the queue collage (Lattice) and the library wall"
+      },
+      "settings-reduce-motion": {
+        "title": "Reduce motion",
+        "description": "Turn down the animation on each surface that has one, or follow the system setting"
+      },
+      "settings-toggle-reduce-lattice-motion": {
+        "title": "Reduce queue collage motion",
+        "description": "Turn the queue collage expansion, camera flight and entrance wave down to instant"
+      },
+      "settings-toggle-follow-system-reduced-motion": {
+        "title": "Follow system reduced motion",
+        "description": "Toggle whether the system animation setting is allowed to reduce motion in the app"
+      },
+      "settings-toggle-track-switch-buttons": {
+        "title": "Always show track switch arrows",
+        "description": "Toggle whether the progress bar track switch arrows stay visible beside the title"
+      },
+      "settings-toggle-main-window-titlebar": {
+        "title": "Always show window control buttons",
+        "description": "Toggle whether the main window control buttons stay visible"
+      },
+      "settings-toggle-player-header-blur": {
+        "title": "Blurred player header",
+        "description": "Toggle a frosted bar behind the window titlebar on the player page so its buttons stay readable"
+      },
+      "settings-toggle-fullscreen-titlebar-button": {
+        "title": "Toggle fullscreen button visibility",
+        "description": "Show or hide the fullscreen button in the desktop window controls"
+      },
+      "settings-toggle-native-mac-fullscreen-button": {
+        "title": "Native macOS fullscreen button",
+        "description": "Toggle whether the macOS window control enters native fullscreen instead of maximizing"
+      },
+      "settings-toggle-cursor-auto-hide": {
+        "title": "Hide cursor with player controls",
+        "description": "Toggle whether the mouse pointer disappears together with the auto-hidden player controls"
+      },
+      "settings-toggle-cursor-idle-hide": {
+        "title": "Hide cursor when idle",
+        "description": "Toggle whether the mouse pointer hides on its own after a pause while the controls stay visible"
+      },
+      "settings-toggle-auto-play-on-launch": {
+        "title": "Auto-play on launch",
+        "description": "Toggle whether opening the app resumes the last session by itself"
+      },
+      "settings-toggle-transcode-fallback": {
+        "title": "Transcode unsupported audio",
+        "description": "Toggle Electron recovery for local and Navidrome audio Chromium cannot decode"
+      },
+      "settings-toggle-playback-fade": {
+        "title": "Fade on pause and resume",
+        "description": "Toggle the short fade when pausing and resuming playback"
+      },
+      "settings-toggle-auto-skip-unplayable": {
+        "title": "Skip unplayable songs",
+        "description": "Toggle counting down to a skip when a song is restricted or fails for an unknown reason"
+      },
+      "settings-toggle-bottom-subtitle-overlay": {
+        "title": "Toggle bottom subtitle overlay",
+        "description": "Show or hide the whole bottom subtitle overlay"
+      },
+      "settings-cycle-subtitle-content-mode": {
+        "title": "Cycle subtitle content mode",
+        "description": "Cycle subtitle content between translation, romanization, and romanization plus translation"
+      },
+      "settings-toggle-subtitle-background": {
+        "title": "Toggle subtitle background",
+        "description": "Show or hide the readability background behind visualizer subtitles"
+      },
+      "settings-language-system": {
+        "title": "Follow system language",
+        "description": "Use the browser or system language"
+      },
+      "settings-language-zh-CN": {
+        "title": "Switch language to Simplified Chinese",
+        "description": "Use Simplified Chinese in the interface"
+      },
+      "settings-language-zh-TW": {
+        "title": "Switch language to Traditional Chinese",
+        "description": "Use Traditional Chinese in the interface"
+      },
+      "settings-language-en": {
+        "title": "Switch language to English",
+        "description": "Use English in the interface"
+      },
+      "settings-language-in": {
+        "title": "Switch language to Indonesian",
+        "description": "Use Bahasa Indonesia in the interface"
+      },
+      "settings-language-vi": {
+        "title": "Switch language to Vietnamese",
+        "description": "Use Vietnamese in the interface"
+      },
+      "settings-liquid-glass": {
+        "title": "Liquid glass",
+        "description": "Jump to liquid glass strength, blur and presets"
+      },
+      "settings-lyric-render-quality": {
+        "title": "Lyric canvas resolution and anti-aliasing",
+        "description": "Jump to the resolution and anti-aliasing every canvas / WebGL lyric style follows by default"
+      },
+      "background-transparent": {
+        "title": "Background: Transparent",
+        "description": "Switch background to a fully transparent layout"
+      },
+      "settings-toggle-player-bar-pinned": {
+        "title": "Pin the player bar",
+        "description": "Keep the bottom player bar expanded instead of collapsing it"
+      },
+      "visualizer-nebbia-behind-cycle": {
+        "title": "Nebbia: Switch window scene",
+        "description": "Switch what is outside Nebbia's window: night street, Dream Sea Glow or the background; the front glass changes to the scene's usual pair"
+      },
+      "visualizer-nebbia-glass-cycle": {
+        "title": "Nebbia: Switch front glass",
+        "description": "Switch the glass in front of Nebbia's window between rain and dew"
+      },
+      "grid-collect-filtered": {
+        "title": "Add these songs to the scratchpad",
+        "description": "Put this collection (only the filtered songs while filtering) in the scratchpad without touching the queue"
+      },
+      "scratchpad-toggle": {
+        "title": "Open or close the scratchpad",
+        "description": "Slide out the scratchpad: songs to hear or sort out later"
+      },
+      "scratchpad-collect-current": {
+        "title": "Jot the current song into the scratchpad",
+        "description": "Keep this song for later without touching the queue"
+      }
     }
   },
   "ui": {
@@ -1030,7 +1941,8 @@ export default {
     "pausePreview": "Pause preview",
     "enterThemeName": "Enter theme name...",
     "viewLyricsTimeline": "View Lyrics Timeline",
-    "trashDislike": "Trash / Dislike"
+    "trashDislike": "Trash / Dislike",
+    "visualizerPrompt": "Prompt"
   },
   "panel": {
     "cover": "Cover",
@@ -1132,7 +2044,6 @@ export default {
     "queueReplaceUndoGone": "The queue has changed since it was replaced, so there is nothing to undo",
     "queueReplaceHint": "Can replace the whole play queue at once and end Personal FM; Folia then says which mod did it, and you can undo it until the queue changes again.",
     "equalizerControlHint": "Changes your sound settings: can switch your sound preset, or put its own equalizer curve in place.",
-    "renderQualityHint": "Changes the lyric canvas render quality: can change the lyric canvas resolution and anti-aliasing in Performance & motion.",
     "signatureVerified": "Verified",
     "signatureVerifiedDetail": "Carries a valid official Folium signature ({{key}}): its source and content were reviewed by Folium and have not changed since signing. Once enabled it still runs with the app's full privileges.",
     "signatureBeta": "Preview",
@@ -1266,7 +2177,8 @@ export default {
     "warnings": {
       "export-alpha-unavailable": "This platform did not preserve the alpha channel; the video has an opaque background. Use a text-only mode with Theme background, or run the export on Windows.",
       "export-alpha-not-guaranteed": "Alpha channel may not be preserved on this platform; verify the exported file or use Windows for a guaranteed transparent background."
-    }
+    },
+    "renderQualityHint": "Changes the lyric canvas render quality: can change the lyric canvas resolution and anti-aliasing in Performance & motion."
   },
   "account": {
     "syncData": "Sync Data",
@@ -1305,7 +2217,15 @@ export default {
     "syncProgress": "Loaded {{loaded}} / {{total}}",
     "syncInterrupted": "Loading interrupted",
     "syncInterruptedProgress": "Interrupted at {{loaded}} / {{total}}",
-    "syncFailedHint": "Some songs failed to load ({{error}}). Click to continue from where it stopped"
+    "syncFailedHint": "Some songs failed to load ({{error}}). Click to continue from where it stopped",
+    "alreadyLiked": "Already liked",
+    "saveToPlaylist": "Save to a playlist",
+    "saving": "Adding to the playlist, one moment",
+    "searchPlaylists": "Search playlists",
+    "noMatchingPlaylists": "No matching playlists",
+    "createAndAdd": "Create and add",
+    "songsToSave_one": "{{count}} song",
+    "songsToSave_other": "{{count}} songs"
   },
   "search": {
     "placeholder": "Search songs...",
@@ -1315,7 +2235,17 @@ export default {
     "playTrack": "Play track",
     "error": "Search failed. Please try again.",
     "retry": "Retry",
-    "catalogUnavailable": "This album or artist cannot be opened because the provider did not return a valid catalog ID."
+    "catalogUnavailable": "This album or artist cannot be opened because the provider did not return a valid catalog ID.",
+    "placeholderAlbum": "Search albums...",
+    "placeholderPlaylist": "Search playlists...",
+    "sources": "Search source",
+    "kinds": "What to search",
+    "kindSong": "Songs",
+    "kindAlbum": "Albums",
+    "kindPlaylist": "Playlists",
+    "resultCount": "{{n}} found",
+    "trackCount": "{{n}} tracks",
+    "playCount": "{{n}} plays"
   },
   "personalFmMode": {
     "openPicker": "Switch the Personal FM mode",
@@ -1507,6 +2437,8 @@ export default {
     "loginCodeWaiting": "Waiting for confirmation in your browser",
     "loginTitleSpotify": "Sign in to Spotify",
     "loginNoteSpotify": "Choose Agree on the Spotify page that opens in your browser",
+    "loginTitleFnMusic": "Sign in to fnOS Music",
+    "loginNoteFnMusic": "Enter your fnOS Music server address and account to play your NAS music library",
     "loginCaseSpotifyUnfinished": "Not confirmed within 10 minutes",
     "loginCaseSpotifyDenied": "Choose Agree on the Spotify page",
     "loginCaseSpotifyPort": "Port 5588 is already in use",
@@ -1654,8 +2586,6 @@ export default {
     "exploreEmpty": "Nothing to recommend yet",
     "exploreFailed": "The recommendations could not be read",
     "exploreRetry": "Retry",
-    "exploreScrollbar": "Explore scrollbar",
-    "exploreJumpToSection": "Jump to {{section}}",
     "exploreScrollLeft": "Scroll left",
     "exploreScrollRight": "Scroll right",
     "exploreArtist": "Artist",
@@ -1696,7 +2626,9 @@ export default {
     "noMoreDailyRecommendations": "No more recommendations are available today",
     "dislikeRecommendationFailed": "This recommendation could not be replaced. Please try again later.",
     "removeTrackFailed": "Could not remove the song",
-    "stage": "Stage"
+    "stage": "Stage",
+    "exploreScrollbar": "Explore scrollbar",
+    "exploreJumpToSection": "Jump to {{section}}"
   },
   "animation": {
     "calm": "calm",
@@ -1741,16 +2673,21 @@ export default {
     "servicePackLabel": "{{codename}} Update SP{{servicePack}} · Major update",
     "ponder": "Ponder Help",
     "ponderDescription": "Learn Folia's basic controls and operating model",
-    "version": "Version"
+    "version": "Version",
+    "scratchpad": "Scratchpad",
+    "openControlPanel": "Open control panel"
   },
-  "qishui": { "recentPlayed": "Recently played on Qishui", "recommended": "Recommended for you" },
+  "qishui": {
+    "recentPlayed": "Recently played on Qishui",
+    "recommended": "Recommended for you"
+  },
   "lyricProvider": {
     "qishui": "Qishui Music",
     "netease": "NetEase Cloud Music",
     "qq": "QQ Music",
     "kugou": "Kugou Music",
     "spotify": "Spotify",
-    "amll": "AMLLDB",
+    "amll": "AMLLDB"
   },
   "globalLyricOffset": {
     "title": "Global Timing Offset",
@@ -1763,7 +2700,7 @@ export default {
     "description": "Applies to every song on this device and is not synced. Per-song offsets in the player panel still stack on top.",
     "pendingApply": "Preview only. Currently applied: {{applied}}ms - press Apply to save.",
     "noLyrics": "Play a song with lyrics to preview the offset",
-    "waitingForLine": "Waiting for the next line",
+    "waitingForLine": "Waiting for the next line"
   },
   "lyricFilter": {
     "title": "Lyric Filtering",
@@ -1789,9 +2726,15 @@ export default {
     "addRule": "Add rule",
     "addByWords": "By words",
     "addWritten": "Written rule (advanced)",
-    "preset": {"copyright": "Copyright notices", "lyricSource": "Lyric source notes"},
+    "preset": {
+      "copyright": "Copyright notices",
+      "lyricSource": "Lyric source notes"
+    },
     "presetBadge": "Common",
-    "presetDesc": {"copyright": "Notes like “All rights reserved” or “no covers without permission”", "lyricSource": "Notes like “Lyrics contributed by” or “Translation by”"},
+    "presetDesc": {
+      "copyright": "Notes like “All rights reserved” or “no covers without permission”",
+      "lyricSource": "Notes like “Lyrics contributed by” or “Translation by”"
+    },
     "shapeStarts": "Starts with",
     "shapeContains": "Contains",
     "shapeWhole": "Is exactly",
@@ -1842,7 +2785,7 @@ export default {
     "footerIncomplete": " (not all checked)",
     "footerScanning": "After saving: {{song}} lines removed here; checking songs heard…",
     "footerSongOnly": "After saving: {{song}} lines removed here",
-    "untitled": "Unknown song",
+    "untitled": "Unknown song"
   },
   "lyricStaff": {
     "title": "Opening credits",
@@ -1872,13 +2815,13 @@ export default {
     "verdictRetime": "Shown, spread across the intro",
     "verdictHide": "Hidden",
     "verdictSummary": "{{lines}} credit line(s), {{window}}s of intro, {{required}}s needed to show them all",
-    "verdictSummaryAbsorbed": "{{lines}} credit line(s) + {{absorbed}} absorbed, {{window}}s of intro, {{required}}s needed to show them all",
+    "verdictSummaryAbsorbed": "{{lines}} credit line(s) + {{absorbed}} absorbed, {{window}}s of intro, {{required}}s needed to show them all"
   },
   "replayGain": {
     "off": "ReplayGain Off",
     "track": "ReplayGain: Track Mode",
     "album": "ReplayGain: Album Mode",
-    "auto": "ReplayGain: Smart Balance",
+    "auto": "ReplayGain: Smart Balance"
   },
   "settings": {
     "lyricMatchPriority": "Lyric match priority",
@@ -2005,7 +2948,7 @@ export default {
     "customShortcutCommand": "Runs",
     "customShortcutNoCommand": "None selected",
     "customShortcutTaken": "That key is already taken by another shortcut",
-    "customShortcutLettersOnly": "Letters A\u2013Z only",
+    "customShortcutLettersOnly": "Letters A–Z only",
     "globalShortcuts": "Global shortcuts",
     "globalShortcutsDesc": "Keys that work while Folia is in the background: playback controls, and commands that mods provide.",
     "globalShortcutsNote": "The modifiers are fixed at Ctrl+Alt+Shift (Control+Option+Shift on macOS); you pick the last key. A combination another program already uses is marked on its row.",
@@ -2318,8 +3261,6 @@ export default {
     "playerControlSlotsDesc": "The two buttons to the right of the progress bar. Defaults are loop mode and lyrics timeline.",
     "playerControlSlotPrimary": "Left button",
     "playerControlSlotSecondary": "Right button",
-    "playerBarPin": "Pin the player bar",
-    "playerBarUnpin": "Unpin the player bar",
     "playerControlSlotAction_loop": "Loop mode",
     "playerControlSlotAction_prev": "Previous track",
     "playerControlSlotAction_next": "Next track",
@@ -2451,7 +3392,6 @@ export default {
     "playerCapIgnoreClearHint": "Keeps lyrics on pause, idle or window close; refreshes on a player switch.",
     "playerCapWaitingLyrics": "Connected, waiting for lyrics",
     "playerCapConnecting": "Connecting to Nexus PlayerCap…",
-
     "stageAddress": "Stage Address",
     "stageSession": "Current Session",
     "stageSessionReady": "Session ready",
@@ -2518,8 +3458,6 @@ export default {
     "visualizerBackgroundModeLatent": "Latent",
     "visualizerBackgroundModeUrl": "Embed",
     "visualizerBackgroundModeSora": "Sora",
-    "visualizerBackgroundModeTransparent": "Transparent",
-    "visualizerBackgroundModeTransparentDesc": "Fills the background layer with the song cover, with Monet's color wash and blur removed and nothing layered on top.",
     "urlBackgroundSettings": "Embedded Background",
     "urlBackgroundSettingsDesc": "Display a webpage as the player background. Note: some websites block being embedded in an iframe and may not display.",
     "urlBackgroundNotePlaceholder": "Note (for easy identification)",
@@ -2865,22 +3803,7 @@ export default {
     "nebbiaSpotX": "Spotlight position",
     "nebbiaRainHit": "Raindrops on the glass",
     "nebbiaRainBig": "Drops on each word",
-    "nebbiaScenery": "Scenery",
-    "nebbiaSceneryHint": "Each part of the view can be turned off on its own; with all off only the sky remains. Bokeh lights are the neon, street lamps and signs; with the road off, car lights and bokeh have no reflections. Raindrops on the glass are set with the sliders above.",
-    "nebbiaScenery_spot": "Spotlights",
-    "nebbiaScenery_buildings": "Buildings",
-    "nebbiaScenery_lights": "Bokeh lights",
-    "nebbiaScenery_cars": "Car lights",
-    "nebbiaScenery_road": "Road",
-    "nebbiaRain": "Rain outside",
-    "nebbiaRainHint": "The rain outside shows only inside the spotlight beams, where the glass is wiped clear; slanted rain leans with the bus speed.",
-    "nebbiaRain_slant": "Slanted",
-    "nebbiaRain_straight": "Straight",
-    "nebbiaRain_off": "Off",
-    "nebbiaBehind": "Outside the window",
-    "nebbiaBehindHint": "The street at night, or the shared background behind the fog. With the background the fog turns into a translucent mist (white with a daylight theme, dark with a night theme) and the wiped strokes show what is behind; a transparent player page always works this way and shows the desktop.",
-    "nebbiaBehind_night": "Night street",
-    "nebbiaBehind_backdrop": "Background",
+    "nebbiaResolution": "Render resolution",
     "lumiereUnlitOpacity": "Unsung text opacity",
     "lumiereWindowNeighbors": "Neighbouring lines",
     "lumiereWindowNeighborsPrev": "Previous + current",
@@ -2971,9 +3894,9 @@ export default {
     "machiQualityBalanced": "Balanced",
     "machiQualityLow": "Low",
     "machiRenderScale": "Resolution",
-    "machiRenderScaleHint": "Draws at a share of the screen's pixels: lower is a little softer but much faster. On high-DPI screens it counts at most 2× the layout size. Follow global uses the lyric canvas resolution in Performance & motion (now {{value}}; above 1× supersamples).",
+    "machiRenderScaleHint": "Draws at a share of the screen's pixels: lower is a little softer but much faster. On high-DPI screens it counts at most 2× the layout size.",
     "machiAntialias": "Anti-aliasing",
-    "machiAntialiasHint": "FXAA is the cheapest but softens text slightly; SMAA gives clean edges and also smooths the ink lines and rain, at a little more cost; Supersampling draws at twice the resolution and scales down, the finest and the most expensive. Follow global is SMAA while the global setting is on (now {{value}}) and off while it is off.",
+    "machiAntialiasHint": "FXAA is the cheapest but softens text slightly; SMAA gives clean edges and also smooths the ink lines and rain, at a little more cost; Supersampling draws at twice the resolution and scales down, the finest and the most expensive.",
     "machiAntialiasOff": "Off",
     "machiAntialiasFxaa": "FXAA",
     "machiAntialiasSmaa": "SMAA",
@@ -2988,8 +3911,7 @@ export default {
     "machiGlow": "Glow and streaks",
     "machiGlowHint": "The halo around lights and signs at night, and the horizontal lens streaks.",
     "machiAdaptive": "Auto-degrade",
-    "machiAdaptiveHint": "When the frame rate stays low, steps down below these settings (depth-of-field blur first, then supersampling and edge MSAA, then reflections, glow, resolution and post anti-aliasing, shadows last), never above what you chose. Changing a setting starts over from the new one.",
-    "machiAdaptiveActive": "Currently {{count}} step(s) down.",
+    "machiAdaptiveHint": "When the frame rate stays low, steps down below these settings (depth-of-field blur first, then reflections, shadows and glow, and only then anti-aliasing and resolution), never above what you chose. Changing a setting starts over from the new one.",
     "hanabiFireworksSection": "Fireworks",
     "hanabiStageSection": "Stage",
     "hanabiTextSection": "Text",
@@ -3129,39 +4051,6 @@ export default {
     "gpuPreferenceCommandLineNotice": "This launch passed a GPU switch on the command line, which takes precedence",
     "gpuPreferenceActive": "In use",
     "visualizerFrameRateValue": "Limit",
-    "liquidGlassSection": "Liquid Glass",
-    "liquidGlassSectionDesc": "Adjust the material of Folia's interface components.",
-    "liquidGlassPreset": "Presets",
-    "liquidGlassPresetDesc": "Quick looks that set strength, blur and edge bend distance together.",
-    "liquidGlassPresetFrosted": "Frosted glass",
-    "liquidGlassPresetClear": "Clear liquid glass",
-    "liquidGlassPresetHazy": "Hazy liquid glass",
-    "liquidGlassPresetEco": "Power saving",
-    "liquidGlassStrength": "Refraction Strength",
-    "liquidGlassStrengthDesc": "How strongly the glass edges refract what sits behind them.",
-    "liquidGlassBend": "Refraction Distance",
-    "liquidGlassBendDesc": "How far, in pixels, the refracted edge reaches from the border toward the centre. The larger it is, the smaller the flat area in the middle becomes.",
-    "liquidGlassBlur": "Blur",
-    "liquidGlassBlurDesc": "Blur amount of transparent elements.",
-    "liquidGlassSat": "Saturation",
-    "liquidGlassSatDesc": "Saturation of the backdrop seen through the glass.",
-    "liquidGlassLight": "Light Effect",
-    "liquidGlassLightDesc": "A glow that follows the pointer over the glass, brighter while pressed.",
-    "liquidGlassJelly": "Jelly Effect",
-    "liquidGlassJellyDesc": "Stretches when dragged and springs back on release.",
-    "liquidGlassGpuBlockedNotice": "Liquid glass is unavailable while the render GPU is set to Power saving; switch back to Auto or High performance and restart Folia to re-enable it.",
-    "liquidGlassValueLabel": "Value",
-    "lyricRenderScale": "Lyric canvas resolution",
-    "lyricRenderScaleDesc": "Lyric styles drawn with canvas or WebGL (Machi, Hanabi, Lumiere, Nebbia and others) render at this multiple; 1× is each style's usual sharpness, above 1× supersamples for finer edges at more GPU cost. Every style follows this unless its own settings pick a value.",
-    "lyricAntialias": "Lyric canvas anti-aliasing",
-    "lyricAntialiasDesc": "Auto keeps each style's own default; On smooths geometric edges (lines, cards, blocks of color) at the cost of video memory and a little frame rate. Every style follows this by default.",
-    "lyricAntialiasAuto": "Auto",
-    "lyricAntialiasOn": "On",
-    "lyricAntialiasOff": "Off",
-    "lyricRenderSection": "Rendering",
-    "lyricRenderFollowGlobal": "Follow global",
-    "lyricRenderScaleStyleHint": "How many times the resolution this style draws at; above 1× supersamples. Follow global uses the setting in Performance & motion (now {{value}}).",
-    "lyricAntialiasStyleHint": "Follow global uses the setting in Performance & motion (now {{value}}).",
     "themePresets": "Theme Presets",
     "themePresetsDefault": "Default",
     "openThemePark": "Open Theme Park",
@@ -3376,7 +4265,6 @@ export default {
     "importGroupSongTheme": "Song theme automation",
     "importGroupTrackCard": "Track card",
     "importGroupLibraryWall": "Library wall",
-    "importGroupLiquidGlass": "Liquid glass",
     "importDerivedUnpin": "This will also turn off \"prefer custom theme\"",
     "importDerivedUploadedFont": "Your uploaded font will be replaced and deleted — you would need to upload it again",
     "importFontUnavailable": "This font is not installed here, so it will fall back to the builtin stack",
@@ -3467,6 +4355,90 @@ export default {
     "lyricFilterRegexDesc": "Line-by-line filter rules, and what happens to the credits at the start.",
     "visualizerMode": "Mode",
     "noDescription": "No description available",
+    "playerBarPin": "Pin the player bar",
+    "playerBarUnpin": "Unpin the player bar",
+    "visualizerBackgroundModeTransparent": "Transparent",
+    "visualizerBackgroundModeTransparentDesc": "Fills the background layer with the song cover, with Monet's color wash and blur removed and nothing layered on top.",
+    "nebbiaScenery": "Scenery",
+    "nebbiaSceneryHint": "Each part of the view can be turned off on its own; with all off only the sky remains. Bokeh lights are the neon, street lamps and signs; with the road off, car lights and bokeh have no reflections. Raindrops on the glass are set with the sliders above.",
+    "nebbiaScenery_spot": "Spotlights",
+    "nebbiaScenery_buildings": "Buildings",
+    "nebbiaScenery_lights": "Bokeh lights",
+    "nebbiaScenery_cars": "Car lights",
+    "nebbiaScenery_road": "Road",
+    "nebbiaRain": "Rain outside",
+    "nebbiaRainHint": "The rain outside shows only inside the spotlight beams, where the glass is wiped clear; slanted rain leans with the bus speed.",
+    "nebbiaRain_slant": "Slanted",
+    "nebbiaRain_straight": "Straight",
+    "nebbiaRain_off": "Off",
+    "nebbiaBehind": "Outside the window",
+    "nebbiaBehindHint": "The street at night, or the shared background behind the fog. With the background the fog turns into a translucent mist (white with a daylight theme, dark with a night theme) and the wiped strokes show what is behind; a transparent player page always works this way and shows the desktop.",
+    "nebbiaBehind_night": "Night street",
+    "nebbiaBehind_backdrop": "Background",
+    "machiAdaptiveActive": "Currently {{count}} step(s) down.",
+    "liquidGlassSection": "Liquid Glass",
+    "liquidGlassSectionDesc": "Adjust the material of Folia's interface components.",
+    "liquidGlassPreset": "Presets",
+    "liquidGlassPresetDesc": "Quick looks that set strength, blur and edge bend distance together.",
+    "liquidGlassPresetFrosted": "Frosted glass",
+    "liquidGlassPresetClear": "Clear liquid glass",
+    "liquidGlassPresetHazy": "Hazy liquid glass",
+    "liquidGlassPresetEco": "Power saving",
+    "liquidGlassStrength": "Refraction Strength",
+    "liquidGlassStrengthDesc": "How strongly the glass edges refract what sits behind them.",
+    "liquidGlassBend": "Refraction Distance",
+    "liquidGlassBendDesc": "How far, in pixels, the refracted edge reaches from the border toward the centre. The larger it is, the smaller the flat area in the middle becomes.",
+    "liquidGlassBlur": "Blur",
+    "liquidGlassBlurDesc": "Blur amount of transparent elements.",
+    "liquidGlassSat": "Saturation",
+    "liquidGlassSatDesc": "Saturation of the backdrop seen through the glass.",
+    "liquidGlassLight": "Light Effect",
+    "liquidGlassLightDesc": "A glow that follows the pointer over the glass, brighter while pressed.",
+    "liquidGlassJelly": "Jelly Effect",
+    "liquidGlassJellyDesc": "Stretches when dragged and springs back on release.",
+    "liquidGlassGpuBlockedNotice": "Liquid glass is unavailable while the render GPU is set to Power saving; switch back to Auto or High performance and restart Folia to re-enable it.",
+    "liquidGlassValueLabel": "Value",
+    "lyricRenderScale": "Lyric canvas resolution",
+    "lyricRenderScaleDesc": "Lyric styles drawn with canvas or WebGL (Machi, Hanabi, Lumiere, Nebbia and others) render at this multiple; 1× is each style's usual sharpness, above 1× supersamples for finer edges at more GPU cost. Every style follows this unless its own settings pick a value.",
+    "lyricAntialias": "Lyric canvas anti-aliasing",
+    "lyricAntialiasDesc": "Auto keeps each style's own default; On smooths geometric edges (lines, cards, blocks of color) at the cost of video memory and a little frame rate. Every style follows this by default.",
+    "lyricAntialiasAuto": "Auto",
+    "lyricAntialiasOn": "On",
+    "lyricAntialiasOff": "Off",
+    "lyricRenderSection": "Rendering",
+    "lyricRenderFollowGlobal": "Follow global",
+    "lyricRenderScaleStyleHint": "How many times the resolution this style draws at; above 1× supersamples. Follow global uses the setting in Performance & motion (now {{value}}).",
+    "lyricAntialiasStyleHint": "Follow global uses the setting in Performance & motion (now {{value}}).",
+    "importGroupLiquidGlass": "Liquid glass",
+    "beatEffect_nebbiaAquaBeat": "Dancing Tide",
+    "beatEffect_nebbiaAquaBeatDesc": "On the beats beat_this finds, with the aquarium outside: every jellyfish squeezes and darts up on each beat (lightly on a plain beat, hard on the downbeat), the seaweed sways to one side and springs back (alternating sides), a row of big bubbles rises from the sand (while it is on there are no random big bubbles), and the spotlight's pool swells and shrinks back. One strength for each; harder beats move them more. Does nothing with the street or the background outside, and no beats are analysed for it then.",
+    "beatEffectPart_nebbiaJelly": "Jellyfish",
+    "beatEffectPart_nebbiaWeed": "Seaweed",
+    "beatEffectPart_nebbiaBubble": "Bubbles",
+    "beatEffectPart_nebbiaSpot": "Spotlight",
+    "nebbiaBehind_aquarium": "Dream Sea Glow",
+    "nebbiaJellies": "Jellyfish",
+    "nebbiaJellySize": "Jellyfish size",
+    "nebbiaBubbles": "Bubbles",
+    "nebbiaGlass": "Front glass",
+    "nebbiaGlassStyle": "Water on the glass",
+    "nebbiaGlass_rain": "Rain",
+    "nebbiaGlass_dew": "Dew",
+    "nebbiaGlassHint": "Rain: drops of all sizes on the fog, with raindrops hitting the glass. Dew: a dense layer of tiny condensation beads that slowly seep out. Switching the view outside picks its default (Night street with rain, Dream Sea Glow with dew); you can change it afterwards.",
+    "nebbiaDew": "Dew amount",
+    "nebbiaDewSize": "Dew size",
+    "nebbiaDewGlint": "Dew glint",
+    "nebbiaAquaScenery_spot": "Light from above",
+    "nebbiaAquaScenery_buildings": "Rocks and weeds",
+    "nebbiaAquaScenery_lights": "Glow on the weeds",
+    "nebbiaAquaScenery_cars": "Big bubbles",
+    "nebbiaAquaScenery_road": "Sand",
+    "nebbiaAquaSceneryHint": "Each part of the aquarium can be turned off on its own; the water and the light from its surface always stay. The jellyfish and the glowing beads shine as bright as the Neon slider above.",
+    "nebbiaAquaRain": "Fine bubbles",
+    "nebbiaAquaRainHint": "A few vents on the floor keep sending up streams of fine bubbles; slanted streams drift with the current.",
+    "nebbiaAquaRain_slant": "Slanted",
+    "nebbiaAquaRain_straight": "Straight",
+    "nebbiaAquaRain_off": "Off"
   },
   "releaseNotes": {
     "v0_7_0": {
@@ -4037,7 +5009,7 @@ export default {
     "noExportCodec": "No available video export codec on this system.",
     "windowResizeFailed": "Failed to resize the player window to export resolution.",
     "recordingCancelled": "Recording cancelled.",
-    "recorderUnknownError": "Recorder encountered an unknown error.",
+    "recorderUnknownError": "Recorder encountered an unknown error."
   },
   "player": {
     "play": "Play",
@@ -4048,7 +5020,7 @@ export default {
     "loopAll": "Loop all",
     "loopOne": "Loop one",
     "unknownArtist": "Unknown Artist",
-    "unknownAlbum": "Unknown Album",
+    "unknownAlbum": "Unknown Album"
   },
   "localMusic": {
     "foldersAndPlaylists": "Folders",
@@ -4254,7 +5226,7 @@ export default {
     "localInfoSkippedCount": "{{count}} using local info skipped",
     "useLocalInfoForSelected": "Use local info ({{count}})",
     "coverCacheFailed": "Metadata was saved, but the cover could not be cached. The online URL will still be used when available.",
-    "lyricsNotAppliedOtherSaved": "Lyrics were not applied; the other selections were saved.",
+    "lyricsNotAppliedOtherSaved": "Lyrics were not applied; the other selections were saved."
   },
   "localCollectionCover": {
     "menuLabel": "Set cover",
@@ -4283,6 +5255,18 @@ export default {
     "restored": "Restored the automatic cover",
     "failed": "The cover was not set: {{error}}",
     "notImage": "That file is not an image Folia can read"
+  },
+  "fnmusic": {
+    "serverUrl": "Server address",
+    "serverUrlPlaceholder": "IP or FN ID: 192.168.1.10:5666 / baixiaokeji",
+    "username": "Account",
+    "usernamePlaceholder": "fnOS Music account or NAS account",
+    "password": "Password",
+    "login": "Log in",
+    "loginNote": "Enter your fnOS Music server address, account and password",
+    "errorBadCredentials": "Account or password is wrong",
+    "errorNetwork": "Cannot reach the server. Check the address and your connection.",
+    "errorBadResponse": "The server returned an unexpected response"
   },
   "navidrome": {
     "title": "Navi",
@@ -4332,7 +5316,7 @@ export default {
     "restoreServerPresetFailed": "Could not reach the server preset. Try again later.",
     "cloudDrive": "Cloud Drive",
     "cloudDriveDesc": "NetEase Cloud Music Drive",
-    "qqCloudDriveDesc": "Weiyun Music Drive",
+    "qqCloudDriveDesc": "Weiyun Music Drive"
   },
   "hifi": {
     "settings": {
@@ -4397,7 +5381,7 @@ export default {
       "navidrome": "Navidrome songs use mpv too",
       "navidromeDesc": "Fetches the original file from the server, without transcoding. When off, Navidrome songs use Web Audio.",
       "softwareVolume": "Software volume",
-      "softwareVolumeDesc": "Let the volume slider in Folia set mpv's volume. The signal path is then no longer bit-perfect.",
+      "softwareVolumeDesc": "Let the volume slider in Folia set mpv's volume. The signal path is then no longer bit-perfect."
     },
     "player": {
       "badge": "HiFi · {{verdict}}",
@@ -4573,7 +5557,7 @@ export default {
   },
   "unifiedPanel": {
     "nowPlayingStageDescription": "Now Playing is being controlled by an external player. Folia is only responsible for displaying lyrics and visual effects.",
-    "stageLocalInputDescription": "Stage is in local single-input mode. External devices can push lyrics or media, but playback and display are controlled by Folia itself.",
+    "stageLocalInputDescription": "Stage is in local single-input mode. External devices can push lyrics or media, but playback and display are controlled by Folia itself."
   },
   "libraryBravaisArtist": {
     "playTopSongs": "Play top songs",
@@ -4604,7 +5588,7 @@ export default {
     "addTopSongsToQueue": "Queue top songs",
     "topSongsAddedToQueue_one": "Added {{count}} top song to the play queue",
     "topSongsAddedToQueue_other": "Added {{count}} top songs to the play queue",
-    "noTopSongsToQueue": "No top songs available to queue",
+    "noTopSongsToQueue": "No top songs available to queue"
   },
   "obs": {
     "connecting": "Connecting to Folia",
@@ -4670,7 +5654,7 @@ export default {
   "playbackEntryView": {
     "title": "Where should Play take you?",
     "description": "Both views play and show lyrics; they just put the emphasis in different places. Pick the one Play should open by default, or stay where you pressed it.",
-    "settingsHint": "You can change this any time under Options \u2192 Player page \u2192 View opened by Play.",
+    "settingsHint": "You can change this any time under Options → Player page → View opened by Play.",
     "confirm": "Use this",
     "next": "Next",
     "back": "Back",
@@ -4691,7 +5675,7 @@ export default {
   "librarySuiteOnboarding": {
     "title": "How should your library look?",
     "description": "The home screen, playlists, albums and artist pages are all browsed in the interface you pick here. Both do the same things; they just browse differently.",
-    "settingsHint": "You can change this any time under Options \u2192 Interface \u2192 Library interface.",
+    "settingsHint": "You can change this any time under Options → Interface → Library interface.",
     "grid": {
       "title": "Grid",
       "tag": "Classic",
@@ -4821,7 +5805,7 @@ export default {
     "sizeCustom": "Custom",
     "save": "Save",
     "recording": "Recording",
-    "startingSoon": "Starting",
+    "startingSoon": "Starting"
   },
   "aiHelp": {
     "openButton": "Need help?",
@@ -4841,7 +5825,7 @@ export default {
     "openPage": "Ponder this page",
     "componentsOnPage": "Components with their own Ponder",
     "navigation": {
-      "title": "Ponder \u00b7 All tutorials",
+      "title": "Ponder · All tutorials",
       "all": "All tutorials",
       "unseen": "Not watched",
       "search": "Search tutorials",
@@ -4851,14 +5835,14 @@ export default {
     "summaries": {
       "bravais_seam": "The gap down the middle of the wall: its three widths, the home tabs and tools, and filtering vs. searching.",
       "queue_shuffle": "Folia has no shuffle mode; it shuffles the queue instead. Here are the four ways to do it.",
-      "audio_equalizer": "Ten bands and an effect chain \u2014 and one drag rewrites a custom slot.",
+      "audio_equalizer": "Ten bands and an effect chain — and one drag rewrites a custom slot.",
       "vis_playground": "Three invisible click regions sit on the preview.",
       "lyric_style": "Each style's own settings, hiding Monet's extras, pairing backgrounds, and the shared subtitle.",
       "theme_park": "The colour editor: which theme, which side, and why save is greyed out.",
-      "custom_shortcut_settings": "Alt plus one letter, and why its command list is shorter than the palette\u2019s.",
-      "pinned_commands": "Three fixed slots under the command window \u2014 not the same thing as \u201crecent first\u201d.",
+      "custom_shortcut_settings": "Alt plus one letter, and why its command list is shorter than the palette’s.",
+      "pinned_commands": "Three fixed slots under the command window — not the same thing as “recent first”.",
       "replay_gain_settings": "The same value as the three-way on the source tab.",
-      "import_export_settings": "It carries the look, not your library \u2014 and import asks first.",
+      "import_export_settings": "It carries the look, not your library — and import asks first.",
       "command_palette": "Search it out, pass an argument, colon for execute mode.",
       "folia_desktop": "Wallpaper mode, system tray and the remote window — none of them inside the app.",
       "folia_shortcuts": "Where K, P, B and G each take you.",
@@ -4903,7 +5887,8 @@ export default {
       "side_panel": "How the panel is built and how to switch tabs.",
       "theme_settings": "Presets, where a custom palette comes from, and when it changes by itself.",
       "sign_in": "The home page’s Login button and the pill at the bottom right open the same window.",
-      "lyric_match": "Pick lyrics for a song by hand: change the source, search, look, then save."
+      "lyric_match": "Pick lyrics for a song by hand: change the source, search, look, then save.",
+      "scratchpad": "The scratchpad on the left edge: collecting songs, sorting them out by source, and the canvas."
     },
     "categories": {
       "basics": "Getting started",
@@ -5033,7 +6018,7 @@ export default {
       },
       "visPlayground": {
         "sectionReset": "Default",
-        "rows": "This page\u2019s controls",
+        "rows": "This page’s controls",
         "rowOne": "First row",
         "rowTwo": "Second row",
         "rowThree": "Third row",
@@ -5070,7 +6055,7 @@ export default {
         "recommended": "Suggested colours"
       },
       "customShortcut": {
-        "panel": "Settings \u00b7 Your own shortcut",
+        "panel": "Settings · Your own shortcut",
         "capAlt": "Alt (fixed)",
         "capKey": "The letter you press",
         "clear": "Clear",
@@ -5079,7 +6064,7 @@ export default {
         "rejection": "Why it was refused"
       },
       "pinnedCommands": {
-        "panel": "Settings \u00b7 Pinned commands",
+        "panel": "Settings · Pinned commands",
         "slotFirst": "Slot 1",
         "slotSecond": "Slot 2",
         "slotThird": "Slot 3",
@@ -5092,12 +6077,12 @@ export default {
         "modeOff": "Off",
         "modeTrack": "Per track",
         "modeAlbum": "Per album",
-        "panelTab": "Panel \u00b7 Source tab",
-        "panelSummary": "This song\u2019s gain tags",
+        "panelTab": "Panel · Source tab",
+        "panelSummary": "This song’s gain tags",
         "panelModes": "The same three modes"
       },
       "importExport": {
-        "panel": "Settings \u00b7 Backup and import",
+        "panel": "Settings · Backup and import",
         "copy": "What this section does",
         "themeChips": "Which theme to include",
         "textarea": "The config text",
@@ -5166,7 +6151,7 @@ export default {
         "toolsLook": "See-through"
       },
       "transition": {
-        "panel": "Settings \u00b7 Transitions",
+        "panel": "Settings · Transitions",
         "enable": "Transition switch",
         "crossfade": "Folia Crossfade",
         "automix": "Folia Automix",
@@ -5175,7 +6160,7 @@ export default {
         "notice": "Unmet-requirement notice"
       },
       "libraryWatch": {
-        "panel": "Settings \u00b7 Local folder watch",
+        "panel": "Settings · Local folder watch",
         "enable": "Auto scan",
         "roots": "Watched folders",
         "recheck": "Re-check folders"
@@ -5186,7 +6171,7 @@ export default {
         "next": "Play next"
       },
       "lyricsSource": {
-        "panel": "Settings \u00b7 Lyrics",
+        "panel": "Settings · Lyrics",
         "autoBest": "Auto Use Best Lyric",
         "priorityLocal": "Local first",
         "priorityOnline": "Online first",
@@ -5289,7 +6274,7 @@ export default {
         "card": "Polaroid Card"
       },
       "gridViewCard": {
-        "panel": "Settings \u00b7 Grid cards",
+        "panel": "Settings · Grid cards",
         "fullBleed": "Full-bleed cover",
         "square": "Square cards",
         "minScale": "Minimum card size",
@@ -5305,8 +6290,8 @@ export default {
         "intensity": "Overlay intensity"
       },
       "lyricsAnimation": {
-        "panel": "Settings \u00b7 Lyric animation",
-        "entry": "Lyric animation style",
+        "panel": "Settings · Lyric animation",
+        "entry": "Lyric animation style"
       },
       "themeSettings": {
         "panel": "Settings · Theme",
@@ -5416,6 +6401,25 @@ export default {
         "save": "Save",
         "switches": "Cover, Metadata, Lyrics",
         "noMatch": "Don't use online metadata"
+      },
+      "scratchpad": {
+        "page": "Library",
+        "handle": "Scratchpad handle",
+        "card": "Song card",
+        "collect": "Add to scratchpad",
+        "save": "Save to playlist",
+        "drawer": "Scratchpad",
+        "group": "Source group",
+        "groupActions": "Group actions",
+        "row": "A song",
+        "rowActions": "Row buttons",
+        "footer": "Actions on everything",
+        "expand": "Expand to canvas",
+        "canvas": "Canvas",
+        "canvasGroup": "A group on the canvas",
+        "slot": "Where it snaps",
+        "marquee": "Box selection",
+        "selection": "Actions on the selection"
       }
     },
     "targets": {
@@ -5452,12 +6456,12 @@ export default {
       "gridViewCardSettings": "Grid card settings",
       "latticeStyleSettings": "Tile wall appearance",
       "panelCoverActions": "The row of buttons under the cover",
-      "panelCoverTab": "Panel \u00b7 Artwork tab",
-      "panelSourceTab": "Panel \u00b7 Source tab",
+      "panelCoverTab": "Panel · Artwork tab",
+      "panelSourceTab": "Panel · Source tab",
       "lyricExport": "Lyric export",
-      "panelControlsTab": "Panel \u00b7 Controls tab",
+      "panelControlsTab": "Panel · Controls tab",
       "panelQueueTab": "Panel · Playlist tab",
-      "panelAccountTab": "Panel \u00b7 Quality tab",
+      "panelAccountTab": "Panel · Quality tab",
       "latticePage": "Lattice page",
       "bravaisWall": "Bravais wall",
       "helpPage": "Getting to know Folia",
@@ -5473,7 +6477,8 @@ export default {
       "gridPaletteHotkey": "S on the grids",
       "settingsPage": "Options page",
       "signIn": "Signing in to a music platform",
-      "lyricMatch": "The Match Data window"
+      "lyricMatch": "The Match Data window",
+      "scratchpad": "Scratchpad"
     },
     "scenes": {
       "bravaisSeamLevels": "Three widths: full, spine, folded",
@@ -5508,7 +6513,7 @@ export default {
       "customShortcutKey": "Alt is fixed; you pick the letter",
       "customShortcutCommand": "Why this list is shorter",
       "pinnedCommandsSlots": "Three slots",
-      "pinnedCommandsVsRecent": "Pinned is not \u201crecently used\u201d",
+      "pinnedCommandsVsRecent": "Pinned is not “recently used”",
       "replayGainModes": "The three modes",
       "replayGainMirrored": "One value, two places",
       "importExportScope": "What it actually carries",
@@ -5627,7 +6632,10 @@ export default {
       "signInAccount": "Once signed in",
       "lyricMatchSearch": "Change the source, search again",
       "lyricMatchPick": "Pick one and look at its lyrics first",
-      "lyricMatchLocal": "Three extra switches for a local song"
+      "lyricMatchLocal": "Three extra switches for a local song",
+      "scratchpadCollect": "Collecting songs",
+      "scratchpadDrawer": "Opening it, and the groups",
+      "scratchpadCanvas": "The canvas"
     },
     "captions": {
       "bravaisSeam": {
@@ -5670,7 +6678,7 @@ export default {
         "slots": "The two that follow in the same row are yours: Custom 1 and Custom 2, each holding one curve and one chain.",
         "bands": "“Band gain” is ten vertical faders, 31 Hz on the left to 16 kHz on the right, ±12 dB each; a curve joins the ten knobs.",
         "silent": "Built-in presets cannot be edited: dragging a fader moves you to a custom slot and writes the value there — the custom slot you have selected, otherwise Custom 1. No prompt, no confirmation. If you keep a setup in Custom 1, switch to Custom 2 before you start nudging a built-in preset.",
-        "reset": "The round button at the end clears the custom slot that is active, back to flat with a neutral chain. It only ever touches that one slot, and it is greyed out on a built-in preset \u2014 there is nothing to undo on one you cannot edit.",
+        "reset": "The round button at the end clears the custom slot that is active, back to flat with a neutral chain. It only ever touches that one slot, and it is greyed out on a built-in preset — there is nothing to undo on one you cannot edit.",
         "effects": "The “Effect chain” is applied after the bands and has nine items: Low cut, High cut, Saturation, Bit crush, Wow & flutter, Vinyl noise, Stereo width, Space and Punch. They are written into the same custom slot as the faders.",
         "noise": "The two items with a “noise” tag beside the name (Bit crush, Vinyl noise) add noise of their own; the tag does not mean the effect is on."
       },
@@ -5694,7 +6702,7 @@ export default {
       "visPlayground": {
         "preview": "The Lyrics Style window: a live preview on the left, the settings column on the right. The preview runs the real renderers, so every change shows at once.",
         "pause": "The button at the top-right of the preview freezes it on the current frame; click it again to go on. Useful when you are tuning something that only lasts a moment, and it stops the preview from eating cycles while you read.",
-        "invisible": "There is something on this preview that most people never find: three click regions lying over it. They have no border, no background, no label \u2014 nothing marks them at all.",
+        "invisible": "There is something on this preview that most people never find: three click regions lying over it. They have no border, no background, no label — nothing marks them at all.",
         "three": "Move the pointer across and they show themselves: a strip along the top for the background, a large area in the middle for the lyrics, a strip along the bottom for the subtitles.",
         "jumps": "Click one and the settings column jumps to that page. It is the fastest way around this screen — point at the part of the picture you want to change instead of reading the tab names.",
         "four": "The column has five pages: Lyrics, Background, Font, Subtitle, Global. Three of them are the ones the regions point at, so the tabs and the picture are two ways into one list.",
@@ -5712,42 +6720,42 @@ export default {
       "themePark": {
         "which": "The pair next to the title decides which theme this session is editing: the current song’s AI theme, or the custom theme you saved. Both drafts stay alive while the editor is open, so switching back and forth loses nothing — but the save button only ever writes the one selected here, and its label changes with it.",
         "reset": "Reset throws away what you changed in this session and puts the draft back to where it started. It does not touch the theme already saved.",
-        "twoSides": "Light and dark are two separate palettes, not one palette with a preview switch. This pair decides which of the two you are editing right now, and everything below it \u2014 the four colours, the picker, the HEX box \u2014 follows that choice.",
+        "twoSides": "Light and dark are two separate palettes, not one palette with a preview switch. This pair decides which of the two you are editing right now, and everything below it — the four colours, the picker, the HEX box — follows that choice.",
         "fourColors": "Four colours per side: Background, Primary Text, Accent and Secondary. Click one to bring it into the picker below; the line at the top of the picker says where that colour lands in the app.",
         "recommended": "Under “Recommended colors” at the bottom is a row of round swatches: a few are worked out from the current cover art, the rest are the theme’s own colours. Clicking one drops it straight into whichever colour is selected.",
         "blocked": "Save can be greyed out, and the screen does not say why on the page you are looking at. The reason is that a theme needs a name, on both sides, before it can be saved.",
         "nameLivesHere": "And the name box is not on this page. It lives on the “Details” page, along with the description, and a small dot beside that tab marks a missing name. If save is dead, go there first.",
-        "applies": "One more thing about save: saving to the custom theme also switches the app over to it. It is not a quiet write to a slot you can go and pick later \u2014 the colours you just built are what you will be looking at."
+        "applies": "One more thing about save: saving to the custom theme also switches the app over to it. It is not a quiet write to a slot you can go and pick later — the colours you just built are what you will be looking at."
       },
       "customShortcut": {
         "alt": "The left half of this row is two key caps, and only the second one is yours. Alt is drawn already pressed because it cannot be changed: this shortcut is always Alt plus one letter, so there is no way to record Ctrl+Shift+X or any other chord here.",
         "capture": "Click the second cap and it starts listening; the next key you press becomes the letter. Modifiers held on the way there are ignored, and Esc backs out without recording anything.",
-        "taken": "A letter that already opens something is refused on the spot, with the reason in red under the caps. S and Ctrl+K belong to the command window itself, and every hotkey in the registry reserves its own \u2014 so the list of taken letters grows on its own as Folia gains shortcuts.",
-        "clear": "Once a letter is recorded, a small \u2715 appears beside the caps. It clears the binding, and the shortcut then runs nothing until you record another one.",
-        "filtered": "The select on the right does not list every command. A shortcut fires from anywhere, so only commands that work anywhere may be bound to one \u2014 anything that needs a particular page or panel is left out. That is why a command you can find in the command window may simply not be here, and nothing on screen explains the gap.",
-        "goesQuiet": "The same check runs when the key is pressed, not only when you pick. If a command later grows a requirement, or the registry claims your letter, the binding goes quiet rather than doing something else \u2014 so a shortcut that stopped working is worth re-picking here."
+        "taken": "A letter that already opens something is refused on the spot, with the reason in red under the caps. S and Ctrl+K belong to the command window itself, and every hotkey in the registry reserves its own — so the list of taken letters grows on its own as Folia gains shortcuts.",
+        "clear": "Once a letter is recorded, a small ✕ appears beside the caps. It clears the binding, and the shortcut then runs nothing until you record another one.",
+        "filtered": "The select on the right does not list every command. A shortcut fires from anywhere, so only commands that work anywhere may be bound to one — anything that needs a particular page or panel is left out. That is why a command you can find in the command window may simply not be here, and nothing on screen explains the gap.",
+        "goesQuiet": "The same check runs when the key is pressed, not only when you pick. If a command later grows a requirement, or the registry claims your letter, the binding goes quiet rather than doing something else — so a shortcut that stopped working is worth re-picking here."
       },
       "pinnedCommands": {
-        "slots": "Three slots, each one select. Whatever you put in them shows up as a button under the command window, in this order \u2014 slot 1 on the left. Out of the box they hold previous track, next track and the queue panel.",
+        "slots": "Three slots, each one select. Whatever you put in them shows up as a button under the command window, in this order — slot 1 on the left. Out of the box they hold previous track, next track and the queue panel.",
         "unique": "A command can only hold one slot: once it is picked, the other two selects stop offering it. Leave a slot on “No pinned command” and its place stays empty; leave all three empty and the whole row disappears from the window.",
         "where": "This is what those three selects actually produce: a row of three fixed buttons under the command window, always in the same place. One click runs the command, with no typing and no searching.",
-        "recent": "The list above them is the other mechanism, and it is a separate one. It reorders itself: commands you ran recently float to the top, and often-used ones get a small nudge on top of that. The pinned row takes no part in it \u2014 it is stored separately and never moves. \u201cI pinned it and it still moves\u201d is these two being read as one thing.",
+        "recent": "The list above them is the other mechanism, and it is a separate one. It reorders itself: commands you ran recently float to the top, and often-used ones get a small nudge on top of that. The pinned row takes no part in it — it is stored separately and never moves. “I pinned it and it still moves” is these two being read as one thing.",
         "empty": "So the two are worth using for different things: the list handles whatever you happen to need, the three buttons handle what you want in the same place every time."
       },
       "replayGain": {
-        "off": "ReplayGain is a loudness tag written into the file itself. With this off, Folia ignores it and plays every song at whatever level it was mastered at \u2014 which is why one album can be far louder than the next.",
+        "off": "ReplayGain is a loudness tag written into the file itself. With this off, Folia ignores it and plays every song at whatever level it was mastered at — which is why one album can be far louder than the next.",
         "trackAlbum": "“Track” levels every song against every other song, so a shuffled queue stays even. “Album” applies one figure to the whole album, keeping the quiet track quiet and the loud one loud the way the record was mixed. Neither re-encodes anything — it is playback volume only.",
-        "sameValue": "The control panel\u2019s source tab carries the same buttons, and they are not a second setting: both read and write one value, so changing it in either place changes it everywhere. Neither place says so.",
+        "sameValue": "The control panel’s source tab carries the same buttons, and they are not a second setting: both read and write one value, so changing it in either place changes it everywhere. Neither place says so.",
         "summary": "The source tab also shows the track and album gain the song carries; without tags it says “No ReplayGain detected”."
       },
       "importExport": {
-        "scope": "This section carries the way Folia looks: the colour theme, the lyric animation and every renderer\u2019s tuning, subtitles and fonts, the background, and the track card. That is the whole list.",
-        "notBackup": "So despite the name, it is not a backup of Folia. Playlists, the local library, playback settings, shortcuts and accounts are all outside it \u2014 restoring from one of these and expecting your music back is the mistake the name invites.",
+        "scope": "This section carries the way Folia looks: the colour theme, the lyric animation and every renderer’s tuning, subtitles and fonts, the background, and the track card. That is the whole list.",
+        "notBackup": "So despite the name, it is not a backup of Folia. Playlists, the local library, playback settings, shortcuts and accounts are all outside it — restoring from one of these and expecting your music back is the mistake the name invites.",
         "themeChoice": "Before exporting, pick which theme rides along: the AI one, the one you built yourself, or none at all. “No Theme” still carries the visual settings and leaves your colours out, which is what you want when sharing a lyric animation setup rather than a palette.",
-        "clipboard": "The buttons copy rather than save a file: one gives a short code, the other the same thing as readable JSON. Paste it anywhere \u2014 a message, a note \u2014 and that is the whole config.",
-        "paste": "Importing goes the other way through the same box: paste someone\u2019s code here and the import button on the right lights up.",
-        "plan": "Import does not take it all on faith. It first works out what would change and shows you, grouped, with your current value beside the incoming one \u2014 and each row has its own checkbox, so taking a background without taking the fonts is a normal thing to do.",
-        "derived": "The rows at the bottom are why this dialog exists: changes the config never asked for, but that follow from the ones you did take. Accepting someone\u2019s colours switches the app to the custom theme; accepting a system font deletes the font file you uploaded. They cannot be unchecked on their own \u2014 decline what causes them instead."
+        "clipboard": "The buttons copy rather than save a file: one gives a short code, the other the same thing as readable JSON. Paste it anywhere — a message, a note — and that is the whole config.",
+        "paste": "Importing goes the other way through the same box: paste someone’s code here and the import button on the right lights up.",
+        "plan": "Import does not take it all on faith. It first works out what would change and shows you, grouped, with your current value beside the incoming one — and each row has its own checkbox, so taking a background without taking the fonts is a normal thing to do.",
+        "derived": "The rows at the bottom are why this dialog exists: changes the config never asked for, but that follow from the ones you did take. Accepting someone’s colours switches the app to the custom theme; accepting a system font deletes the font file you uploaded. They cannot be unchecked on their own — decline what causes them instead."
       },
       "onboarding": {
         "overviewCtrlG": "Step 1: On any page, press Ctrl + G to open Ponder for that page.",
@@ -5760,19 +6768,19 @@ export default {
         "overviewExampleQueue": "Or bring up queue search.",
         "overviewExampleFilter": "Or search within the current playlist again and send the results to the playback queue.",
         "overviewDocs": "For more features and explanations, visit the official documentation site.",
-        "here": "You have a Ponder tutorial open \u2014 this screen. It is not a video: drag the progress bar below, jump between keyframes with the arrow keys, Space pauses, Escape leaves at any time.",
-        "hover": "Rest the pointer on one of the less obvious buttons or components and a small badge appears beside it, naming the tutorial it would open. Hold G until the wipe fills and that component\u2019s tutorial starts.",
-        "hold": "Keep holding and the wipe fills the capsule from left to right; when it reaches the end you are inside that component\u2019s tutorial \u2014 a full screen like this one. Let go too early and it cancels with nothing happening.",
-        "wholePage": "You do not have to find a component: hold Ctrl + G anywhere and you get the whole page \u2014 what is on it, where each thing sits, what you can do with it.",
-        "touchBulb": "A touch screen has no hover, so that whole route is unavailable. In its place is this lightbulb in the top-right corner, and it only appears on touch devices \u2014 not finding it with a mouse is expected. It shows itself for a few seconds when you land or change pages and then folds away so it is not in the way; tap the top-right corner to call it back.",
-        "mediaKeys": "Playback goes through the system media session \u2014 SMTC on Windows, MPRIS on Linux. That means the play / previous / next keys on your keyboard work directly, so you never have to switch back to Folia while you are working in another window. The system media popup shows the current track too.",
-        "inAppTransport": "Inside the app: Space plays and pauses, {{mod}} + \u2190 / \u2192 move between tracks. On the player page the bare arrow keys seek five seconds. Everything else lives in the command window, or a colon away in execute mode.",
-        "shortcutK": "{{mod}} + K opens the command window. Folia keeps the whole of \u201cfinding a feature\u201d in here \u2014 commands and settings are both searchable by name, so you never have to remember which level something is filed under.",
-        "shortcutP": "{{mod}} + P opens the play queue. It is a command window too: the input line is the queue\u2019s search box, and things like @artist: narrow it down before a bulk action.",
+        "here": "You have a Ponder tutorial open — this screen. It is not a video: drag the progress bar below, jump between keyframes with the arrow keys, Space pauses, Escape leaves at any time.",
+        "hover": "Rest the pointer on one of the less obvious buttons or components and a small badge appears beside it, naming the tutorial it would open. Hold G until the wipe fills and that component’s tutorial starts.",
+        "hold": "Keep holding and the wipe fills the capsule from left to right; when it reaches the end you are inside that component’s tutorial — a full screen like this one. Let go too early and it cancels with nothing happening.",
+        "wholePage": "You do not have to find a component: hold Ctrl + G anywhere and you get the whole page — what is on it, where each thing sits, what you can do with it.",
+        "touchBulb": "A touch screen has no hover, so that whole route is unavailable. In its place is this lightbulb in the top-right corner, and it only appears on touch devices — not finding it with a mouse is expected. It shows itself for a few seconds when you land or change pages and then folds away so it is not in the way; tap the top-right corner to call it back.",
+        "mediaKeys": "Playback goes through the system media session — SMTC on Windows, MPRIS on Linux. That means the play / previous / next keys on your keyboard work directly, so you never have to switch back to Folia while you are working in another window. The system media popup shows the current track too.",
+        "inAppTransport": "Inside the app: Space plays and pauses, {{mod}} + ← / → move between tracks. On the player page the bare arrow keys seek five seconds. Everything else lives in the command window, or a colon away in execute mode.",
+        "shortcutK": "{{mod}} + K opens the command window. Folia keeps the whole of “finding a feature” in here — commands and settings are both searchable by name, so you never have to remember which level something is filed under.",
+        "shortcutP": "{{mod}} + P opens the play queue. It is a command window too: the input line is the queue’s search box, and things like @artist: narrow it down before a bulk action.",
         "shortcutB": "{{mod}} + B goes to Lattice, which lays the whole play queue out as a poster wall. Press it inside Lattice and it goes back.",
         "shortcutG": "Ctrl + G is what you just did: it opens the tutorial for the current page. Whenever you are lost, press it first.",
-        "hintSettings": "Know your way around Folia already? You can turn the Ponder hints off in settings, or keep them only where you have not looked yet \u2014 the switch is under Settings \u00b7 General, \u201cPonder tutorial hints\u201d, with three positions: always show, only where you have not looked yet, and off. The button below takes you straight there.",
-        "docs": "These four chapters are only the opening. Commands, shortcuts, online sources, the local library, visualizers and themes all have fuller write-ups on the docs site \u2014 the button below opens it."
+        "hintSettings": "Know your way around Folia already? You can turn the Ponder hints off in settings, or keep them only where you have not looked yet — the switch is under Settings · General, “Ponder tutorial hints”, with three positions: always show, only where you have not looked yet, and off. The button below takes you straight there.",
+        "docs": "These four chapters are only the opening. Commands, shortcuts, online sources, the local library, visualizers and themes all have fuller write-ups on the docs site — the button below opens it."
       },
       "pages": {
         "grid": "This is the browsing grid: search and collection navigation live above the cards, while selecting a card opens its songs.",
@@ -5798,9 +6806,9 @@ export default {
         "gridViewFocus": "Arrow keys find the nearest card in that spatial direction and bring it into focus. Focus is remembered so returning does not jump to the start.",
         "gridViewInfo": "Press the title for artwork, creator, and description, followed by Play All, Add to Queue, and source-specific edit, rescan, or export actions.",
         "gridViewFilter": "{{mod}} + F or typing opens this collection's filter. Add --play to play matches or --add to enqueue them; Escape clears and closes it.",
-        "gridViewActivate": "Clicking the card itself does not play \u2014 it brings the card to the centre of the viewport. Playing is the separate play button on the card, with add-to-queue next to it. Artist and album text are each their own link. In edit mode those two buttons disappear and a remove cross takes their place.",
+        "gridViewActivate": "Clicking the card itself does not play — it brings the card to the centre of the viewport. Playing is the separate play button on the card, with add-to-queue next to it. Artist and album text are each their own link. In edit mode those two buttons disappear and a remove cross takes their place.",
         "gridViewKeys": "Enter activates the focused card. Escape closes inner state, then clears focus, then returns one level.",
-        "playerLayout": "The player page is full screen: lyrics and the visualizer fill the background, and only three things are pressable \u2014 the control bar at the bottom centre, the handle on the right edge, and the panel that handle opens.",
+        "playerLayout": "The player page is full screen: lyrics and the visualizer fill the background, and only three things are pressable — the control bar at the bottom centre, the handle on the right edge, and the panel that handle opens.",
         "playerLyrics": "The middle is lyrics and the visualizer. It is not a control: clicking it is clicking the background, which only shows or hides the control bar. It does not pause.",
         "playerBarWhere": "The control bar floats at the bottom centre, not flush with the edge. Play/pause is at its left end, the title and progress bar in the middle, and the two places on the right hold whatever you choose.",
         "playerToggleWhere": "The side handle sits against the right edge of the screen, its bottom aligned with the control bar. It is a round button; press it and the side control panel opens.",
@@ -5808,16 +6816,16 @@ export default {
         "playerPaletteSlide": "There is also a track hidden behind the handle. Hold the handle, drag it left past the trigger line and let go: that opens the command window, not the panel.",
         "playerPaletteOpened": "The command window drops in from the top, horizontally centred. Everything to do with finding a feature lives in here.",
         "playerPaletteOtherWays": "You do not have to drag: {{mod}} + K opens the same window from anywhere, and on the player page a bare S does the same whenever focus is not in a text box. On a touch screen, a tap near the right edge brings the handle out first.",
-        "playerCommandFilter": "With the window open, just type. It filters on names, aliases and keywords together. \u2191\u2193 to move, Enter to run \u2014 you never have to work out which category a command belongs to.",
+        "playerCommandFilter": "With the window open, just type. It filters on names, aliases and keywords together. ↑↓ to move, Enter to run — you never have to work out which category a command belongs to.",
         "playerCommandArgument": "A command that needs an argument does not run immediately. Type its name, press space, and it folds into a pill in the input line with the cursor waiting behind it. Fill in the argument, then Enter.",
         "playerExecuteCloseFirst": "Execute mode is entered with the command window closed. Press Esc to close it first: with the window open, a colon only lands in the input line.",
         "playerExecuteMode": "Back on the player page, with focus outside any text box, press the colon key: the command window opens straight into execute mode. Inside, one key runs one command: r shuffles the queue, v volume, o settings, h help.",
-        "playerShuffleNoSwitch": "Folia has no shuffle switch. You cannot find one on the control bar because shuffle is not a mode that stays on \u2014 it is a single action: deal the current queue again, in place.",
-        "playerShuffleHow": "The quickest route is to open nothing at all: press the colon key on the player page \u2014 the window opens in execute mode \u2014 then press r. The new order then stands; run it again for another one.",
-        "playerShuffleSlot": "If you use it often, put \u201cShuffle queue\u201d in one of the two places on the right of the control bar and it becomes one press.",
+        "playerShuffleNoSwitch": "Folia has no shuffle switch. You cannot find one on the control bar because shuffle is not a mode that stays on — it is a single action: deal the current queue again, in place.",
+        "playerShuffleHow": "The quickest route is to open nothing at all: press the colon key on the player page — the window opens in execute mode — then press r. The new order then stands; run it again for another one.",
+        "playerShuffleSlot": "If you use it often, put “Shuffle queue” in one of the two places on the right of the control bar and it becomes one press.",
         "lattice": "Lattice lays the play queue out as one poster field. Move through the field to inspect the queue, and select a poster to act on that song. Opened from the Explore tab, it lays out that tab's albums, playlists, artists and songs instead.",
         "latticeWall": "Lattice repeats the play queue across an irregular poster wall so it can pan continuously. The current song carries its queue number and a now-playing mark.",
-        "latticeBack": "The top-left button returns. {{mod}} + B also closes Lattice; Escape unwinds one layer at a time \u2014 it collapses an expanded poster or clears keyboard focus first, and only the next press actually goes back.",
+        "latticeBack": "The top-left button returns. {{mod}} + B also closes Lattice; Escape unwinds one layer at a time — it collapses an expanded poster or clears keyboard focus first, and only the next press actually goes back.",
         "latticePan": "Drag the field or use the wheel to pan the camera. Posters enter as the viewport moves, and momentum never changes queue order.",
         "latticeFocusKeys": "Arrow keys first adopt the nearest poster to the viewport center, then move spatially and pan the camera to keep the next target visible.",
         "latticePosterOpen": "Click or press Enter to expand a poster. The current song shows synchronized lyrics; another song shows its title and play entry without reordering the queue.",
@@ -5833,7 +6841,7 @@ export default {
         "settingsDirectNavigation": "You rarely need to browse every category: search the setting name in the command palette and Folia opens the exact section and anchor."
       },
       "playerBar": {
-        "basicsAutoExpand": "It is not only hover that opens it. Whenever playback is paused and you are somewhere other than the home screen, the capsule stays expanded on its own \u2014 the moment you are most likely to want the controls is the moment it stops hiding them. Start playing again, or go back home, and it slims down.",
+        "basicsAutoExpand": "It is not only hover that opens it. Whenever playback is paused and you are somewhere other than the home screen, the capsule stays expanded on its own — the moment you are most likely to want the controls is the moment it stops hiding them. Start playing again, or go back home, and it slims down.",
         "basicsIntro": "Folia's playback controls are this one capsule. The permanent row other players put along the bottom — previous, next, shuffle, repeat, volume — has no fixed place here at all.",
         "basicsPlay": "The only button that is always present is play / pause. On a wide window it sits at the far left; when the row is too narrow for one line it moves to the middle of a second row, with the two slots on either side.",
         "basicsTitle": "Changing tracks goes through the title, not a button. Hover it and arrows appear on both sides, previewing the previous and next track names — you pick where to go by reading it, not by pressing blind.",
@@ -5852,19 +6860,19 @@ export default {
       },
       "commandPalette": {
         "type": "Commands are searched for, not browsed to. Type as soon as the window opens and it filters on names, aliases and keywords together; half a name is usually enough.",
-        "run": "\u2191\u2193 moves through the results, Enter runs the current one. Recently used commands sort to the top, so the handful you actually use keeps rising.",
-        "pill": "Some commands take an argument. Type the name, press space, and it folds into a pill in the input line while the window stays put waiting for the rest \u2014 you are never thrown into another screen.",
+        "run": "↑↓ moves through the results, Enter runs the current one. Recently used commands sort to the top, so the handful you actually use keeps rising.",
+        "pill": "Some commands take an argument. Type the name, press space, and it folds into a pill in the input line while the window stays put waiting for the rest — you are never thrown into another screen.",
         "flags": "A command with flags lists its own options the moment you type --. You do not have to remember which flags exist; two dashes is how you ask.",
-        "executeEnter": "Execute mode has exactly one entrance: with the window closed and focus outside any text box, press the colon key. There is no button and no other shortcut \u2014 and pressing it while the window is already open simply types a colon into the query.",
+        "executeEnter": "Execute mode has exactly one entrance: with the window closed and focus outside any text box, press the colon key. There is no button and no other shortcut — and pressing it while the window is already open simply types a colon into the query.",
         "executeKeys": "Inside, one key is one command: r shuffles the queue, v volume, o settings, h help. No key is a prefix of another, so a press runs straight away."
       },
       "latticeChrome": {
         "intro": "Expand a poster on the wall and a playback bar grows along its bottom. It belongs to that expanded card alone; collapse the card and it is gone.",
         "playAndSeek": "Play/pause is at the far left: when the card is not the current song, pressing it starts from this one. The bar underneath seeks by dragging.",
         "openPlayer": "The diagonal arrow on the right returns to the player page. Everywhere else on the poster selects and expands; only this leaves Lattice.",
-        "ends": "Of the four middle buttons, the outer two are always previous and next \u2014 those positions are not configurable.",
+        "ends": "Of the four middle buttons, the outer two are always previous and next — those positions are not configurable.",
         "sharedSlots": "The inner two are not a second set of buttons. They are the same two slots as on the right of the bottom control bar: same action, same icon, same availability.",
-        "swap": "So swapping a bottom-bar slot in settings changes this too \u2014 there is no second place to configure, and no need for one.",
+        "swap": "So swapping a bottom-bar slot in settings changes this too — there is no second place to configure, and no need for one.",
         "onlyWhenVisible": "This bar exists only on an expanded poster. With nothing expanded, or the expanded one scrolled out of view, it is not on screen.",
         "barShows": "That is when the bottom control bar steps in: the moment the playing song's poster leaves the viewport it appears, and it folds away again once that poster is back in view. Playback control never actually disappears."
       },
@@ -5899,14 +6907,14 @@ export default {
         "controlsSteppers": "These two rows pick the lyric style and the background type. The arrows at the ends only step to the neighbour — with a dozen styles in line, that is a lot of stepping.",
         "controlsModeList": "Click the middle of the row and a grid of pictures opens: click the one you want.",
         "controlsModeListFooter": "The strip under the pictures is not one more picture — “More settings” opens the full settings for this row, which is where the tuning lives.",
-        "queueRadio": "With Personal FM playing, this cell is not the queue. The same tab turns into the radio panel \u2014 the icon changes, the name changes, and the list of what is coming up is gone, because a radio does not have one.",
+        "queueRadio": "With Personal FM playing, this cell is not the queue. The same tab turns into the radio panel — the icon changes, the name changes, and the list of what is coming up is gone, because a radio does not have one.",
         "queueRadioMode": "The button at the top names the radio mode you are in; clicking it opens the mode picker in the command window, the same one the palette offers.",
         "queueRadioActions": "The two ends of this line are discard and like. A discarded song will not be played by the service again, and the radio moves on to the next one.",
         "cover": "The panel opens on the Cover tab: the song’s large cover, under it the title, artists and album, and under those a row of actions for this song.",
         "tabs": "The row at the bottom is the tabs: Cover, Controls, Playlist, Quality; when the song has source information, a source tab appears right after Cover — the second cell here. A mod that brings a page adds its tab at the end.",
         "body": "On any other tab the song folds into one line at the top, and clicking it goes back to Cover; the middle is that tab’s content. The panel is as tall as the content needs, and the row of tabs stays at the bottom edge.",
         "cycle": "You do not have to click that row of little cells. With the panel open, Tab moves one tab forward.",
-        "cycleReverse": "Shift + Tab moves one back. The cycle only visits the tabs that actually exist right now \u2014 different sources bring different ones.",
+        "cycleReverse": "Shift + Tab moves one back. The cycle only visits the tabs that actually exist right now — different sources bring different ones.",
         "sourceTab": "Only songs from a local folder, Navidrome or an online source have this tab, and it is labelled Folder, Navidrome or Lyrics accordingly; without source information there are just four tabs.",
         "sourceInfo": "At the bottom is where the song comes from: the file name, size and bitrate for a local song, the Song ID for Navidrome; an online song has no such block.",
         "sourceGain": "Audio Gain is ReplayGain: off, track or album. The small line under the name shows the track and album gain the song carries; without tags it says “No ReplayGain detected”.",
@@ -5916,7 +6924,7 @@ export default {
         "sourceExportFormats": "The top of the window imports: lrc, vtt, ttml, qrc, yrc, krc, txt and the .fia files Folia exports. Navidrome songs cannot import, so their window only exports. The two tiles below save this song: .fia keeps word timing, translations, background vocals and your saved segmentation and imports straight back; .lrc is enhanced LRC that other players read, but those Folia-only details are dropped.",
         "sourceExportBatch": "The bottom row is the batch export: it opens the export page in the command palette and saves every lyric cached on this device at once. The Lyrics row under Cache Details in Settings · Storage & backup has the same entry.",
         "coverTab": "The Cover tab is the song itself: the large cover, the title, artists and album under it, then a row of actions. There is nothing else on this tab.",
-        "coverTabDetail": "Artist and album are both links into their collections. Clicking the title copies \u201ctitle - artist - album\u201d together with the source page link; Ctrl-click opens this song's page on its source platform instead.",
+        "coverTabDetail": "Artist and album are both links into their collections. Clicking the title copies “title - artist - album” together with the source page link; Ctrl-click opens this song's page on its source platform instead.",
         "controlsTab": "The Controls tab starts with the volume row; the three tiles under it are loop, Smart transition and Audio effects: the first two switch on a click, the third opens a window.",
         "controlsTabDetail": "Below are the Lyrics Style and Background Type rows and the “Transparent player background” switch; the last two rows are the theme: its source, the current theme, light or dark, and generating an AI theme. Audio gain and the lyric offset are on the source tab.",
         "queueTab": "The Playlist tab is the whole of the current play queue; the line at the top says how many songs are in it.",
@@ -5931,9 +6939,9 @@ export default {
         "notice": "Automix needs song caching; “Turn song caching on” at the right end of the notice switches it on right there."
       },
       "libraryWatch": {
-        "enable": "With this on, Folia keeps an eye on the local folders you imported and runs an incremental scan whenever their files change \u2014 no going back to re-scan by hand every time you add music.",
+        "enable": "With this on, Folia keeps an eye on the local folders you imported and runs an incremental scan whenever their files change — no going back to re-scan by hand every time you add music.",
         "roots": "The list only unfolds below the switch, one row per watched root folder, with its real path in the small line underneath.",
-        "warning": "Look at the icon on the left of each row: an eye means it is watching; an amber triangle means the watch on that folder has stopped working \u2014 a path that went away, permissions that changed. After that the scans simply stop happening, and this icon is the only sign.",
+        "warning": "Look at the icon on the left of each row: an eye means it is watching; an amber triangle means the watch on that folder has stopped working — a path that went away, permissions that changed. After that the scans simply stop happening, and this icon is the only sign.",
         "recheck": "When you see a triangle, press “Re-check folders” on the right: it attaches every imported folder again. The small line beside it is the time of the last automatic scan."
       },
       "queueSettings": {
@@ -5947,49 +6955,49 @@ export default {
         "offsetSum": "The source tab has an offset of its own, “Timeline Offset”, and it is not the same thing: that one is for the current song only and is gone when you change tracks, this one is global and lasting. The two add up, so when one song is badly out, check both."
       },
       "gridHotkey": {
-        "off": "On the poster wall and collection pages, any letter you press filters the page \u2014 no clicking into a search box first. By default that includes S, so pressing S on a grid page opens the filter, not the command window.",
-        "on": "Turn this on and S goes to the command window instead, while every other character still goes into the filter. Both are reasonable depending on which you do more often on a grid page \u2014 and nothing on screen says which is which, so this is the only place to choose."
+        "off": "On the poster wall and collection pages, any letter you press filters the page — no clicking into a search box first. By default that includes S, so pressing S on a grid page opens the filter, not the command window.",
+        "on": "Turn this on and S goes to the command window instead, while every other character still goes into the filter. Both are reasonable depending on which you do more often on a grid page — and nothing on screen says which is which, so this is the only place to choose."
       },
       "lyricExport": {
         "whatItIs": "This page packs the lyrics already on this device into one zip. It does not download new lyrics.",
-        "effective": "The online cache covers online songs you have played, exported as playback shows them, so lyrics you imported or matched by hand win. The local library exports only lyrics matched online: each file is named after its audio file and placed in the zip\u2019s local folder in the library\u2019s own folder tree, so extracting it into the folder that holds your library puts every file beside its song. Instrumentals and songs without lyrics are skipped and listed in manifest.json.",
+        "effective": "The online cache covers online songs you have played, exported as playback shows them, so lyrics you imported or matched by hand win. The local library exports only lyrics matched online: each file is named after its audio file and placed in the zip’s local folder in the library’s own folder tree, so extracting it into the folder that holds your library puts every file beside its song. Instrumentals and songs without lyrics are skipped and listed in manifest.json.",
         "formats": ".fia is lossless and imports straight back into Folia; LRC works anywhere but drops background vocals and segmentation. Tick both and the zip holds two folders.",
         "names": "The online lyric cache carries no song titles of its own. Songs you play record their titles as they play, and that comes first; after that, names come from playlists and queues cached on this device, and only then from the music service online, with the answer remembered for next time. With the lookup off, songs without a known title are named by ID.",
         "running": "Once started, progress shows here and the button turns into Cancel. Closing the palette cancels too: the export does not keep running in the background."
       },
       "queueCommand": {
-        "whatItIs": "The window {{mod}} + P opens looks like the command window but does something else: its input line is the queue\u2019s search box. Type to filter, \u2191\u2193 to move, Enter to start playing from that song.",
-        "atSign": "Type an @ and it lists the artists and albums that are in the queue, each with how many songs it accounts for \u2014 an @ on its own lists the artist and album of the song playing right now.",
-        "narrowed": "Pick one and it folds into a chip in the input line, leaving only that entry\u2019s songs. This is the only place in the app that can say \u201cjust this artist\u2019s songs\u201d \u2014 no button replaces it.",
+        "whatItIs": "The window {{mod}} + P opens looks like the command window but does something else: its input line is the queue’s search box. Type to filter, ↑↓ to move, Enter to start playing from that song.",
+        "atSign": "Type an @ and it lists the artists and albums that are in the queue, each with how many songs it accounts for — an @ on its own lists the artist and album of the song playing right now.",
+        "narrowed": "Pick one and it folds into a chip in the input line, leaving only that entry’s songs. This is the only place in the app that can say “just this artist’s songs” — no button replaces it.",
         "flags": "With the range set, type two dashes and it lists the bulk actions it has: --remove takes them out of the queue, --next moves them to play next, --end moves them to the end. You do not have to remember them; typing -- is how you ask.",
-        "scope": "One thing to be clear about: it does not act on the highlighted row, it acts on everything that matched. That is why the strip below says how many songs will be affected \u2014 read that number before pressing.",
+        "scope": "One thing to be clear about: it does not act on the highlighted row, it acts on everything that matched. That is why the strip below says how many songs will be affected — read that number before pressing.",
         "guards": "Two guards: with no search text and no @ filter it refuses to run at all, so you cannot empty the whole queue in one keystroke; and the song playing right now is left out, which the preview says too."
       },
       "desktop": {
         "windowNormal": "The biggest difference between the desktop build and the browser is these three, and none of them live inside the app: one changes where the window sits on the desktop, one lives in the system tray, and one is a second window. Start from this ordinary main window.",
-        "wallpaper": "Wallpaper mode sinks it to the very bottom of the desktop: border and title bar gone, lyrics laid straight onto the desktop, with icons and other windows stacking over them as usual. The cost is the line in settings \u2014 the keyboard no longer reaches it in this mode.",
-        "wallpaperExit": "Which means you cannot leave wallpaper mode by clicking the window. Use \u201cWallpaper Mode\u201d in the tray menu, or search the same command in the command window.",
-        "trayIcon": "This one in the corner of the taskbar is Folia\u2019s tray icon. Settings \u00b7 Desktop can make minimising go straight to the tray \u2014 the main window leaves the taskbar, but playback does not stop and the system media keys keep working.",
-        "trayMenu": "Clicking the tray icon opens this column: everything you can do without opening the main window \u2014 show/hide window, open the remote window, transparent background, click-through, always on top, hide the taskbar icon, desktop lyrics, wallpaper mode, reset window, quit. In wallpaper mode it is the only way out.",
+        "wallpaper": "Wallpaper mode sinks it to the very bottom of the desktop: border and title bar gone, lyrics laid straight onto the desktop, with icons and other windows stacking over them as usual. The cost is the line in settings — the keyboard no longer reaches it in this mode.",
+        "wallpaperExit": "Which means you cannot leave wallpaper mode by clicking the window. Use “Wallpaper Mode” in the tray menu, or search the same command in the command window.",
+        "trayIcon": "This one in the corner of the taskbar is Folia’s tray icon. Settings · Desktop can make minimising go straight to the tray — the main window leaves the taskbar, but playback does not stop and the system media keys keep working.",
+        "trayMenu": "Clicking the tray icon opens this column: everything you can do without opening the main window — show/hide window, open the remote window, transparent background, click-through, always on top, hide the taskbar icon, desktop lyrics, wallpaper mode, reset window, quit. In wallpaper mode it is the only way out.",
         "remote": "The remote window is a second small window; run “Toggle remote control window” in the command window to open it, or use “Remote Window” in the tray menu. It stays on top even while the main window is minimised, or sunk into the wallpaper.",
         "remoteChrome": "It carries its own set of window switches: always on top, transparent background, click-through (the mouse passes straight through to whatever is underneath), hide the taskbar icon, and auto-hiding UI. Being a separate window rather than a corner of the main one is exactly what lets those switches be independent."
       },
       "gridActionButton": {
-        "tap": "Both the collection page and the poster wall have this button in the bottom-right corner. Tap it and the track list slides in from the right \u2014 that is its first action.",
+        "tap": "Both the collection page and the poster wall have this button in the bottom-right corner. Tap it and the track list slides in from the right — that is its first action.",
         "list": "One row per song; click a row to play from it. Inside a local folder the list also carries two sort controls in its header.",
-        "track": "There is also a hidden track running left from it \u2014 the same gesture as the handle at the right edge of the player page. Hold the button and drag it left.",
+        "track": "There is also a hidden track running left from it — the same gesture as the handle at the right edge of the player page. Hold the button and drag it left.",
         "slideTarget": "Letting go opens this page’s filter: it narrows the songs in place without navigating away. Where the slide lands is configurable — Settings · Shortcuts, “Slide left to open”, lets you point it at the command window instead, and the icon at the end of the track follows."
       },
       "gridViewEdit": {
-        "normalCard": "At rest a card carries two buttons at its foot: the round one plays, the other adds the song to the queue. Clicking the card itself does not play \u2014 it only brings the card to the centre.",
-        "editCard": "In edit mode those two disappear and a red cross takes the top-right corner. Pressing it removes the song from the playlist immediately, with no confirmation \u2014 the one irreversible action in edit mode.",
-        "rename": "Local and Navidrome playlists get a second thing: the title in the info panel turns into an input. The new name is only committed when you leave edit mode \u2014 press Escape or close the page halfway and the change is gone.",
+        "normalCard": "At rest a card carries two buttons at its foot: the round one plays, the other adds the song to the queue. Clicking the card itself does not play — it only brings the card to the centre.",
+        "editCard": "In edit mode those two disappear and a red cross takes the top-right corner. Pressing it removes the song from the playlist immediately, with no confirmation — the one irreversible action in edit mode.",
+        "rename": "Local and Navidrome playlists get a second thing: the title in the info panel turns into an input. The new name is only committed when you leave edit mode — press Escape or close the page halfway and the change is gone.",
         "onlinePlaylist": "An online playlist you own takes the other path: it edits in place, each change counting as it happens, with no commit-on-exit step. One button, two behaviours depending on the source."
       },
       "localFolderActions": {
         "conditional": "This column at the foot of the info panel follows the local collection type: a folder gets re-import and organize song info, a playlist gets export, and an album or artist gets edit entity.",
         "playAll": "The top two are on every collection: play all and add to queue. With a filter active on the page they act on the filtered songs, and the button text says how many.",
-        "reimport": "\u201cRe-import\u201d does not add the files again. It runs an incremental re-scan of this one folder: new files come in, changed ones update, missing ones are flagged. Existing library records are not wiped and rebuilt.",
+        "reimport": "“Re-import” does not add the files again. It runs an incremental re-scan of this one folder: new files come in, changed ones update, missing ones are flagged. Existing library records are not wiped and rebuilt.",
         "organize": "“Organize Song Info” opens the bulk tag editor for this folder — the whole folder at once, not song by song.",
         "remove": "The red one at the bottom removes this folder from the library. It does not delete the files on disk, but the library records for these songs, and their places in playlists, go with it.",
         "confirm": "So it asks first, and it asks in two different ways: removing a root folder and removing a subfolder under it do not reach the same distance, and the confirmation spells out which one you are about to do. Worth a read before you press."
@@ -6020,22 +7028,22 @@ export default {
         "rootActions": "Imported roots also carry maintenance actions: rescan that root, clear an ignored folder when present, or remove the root from the library. Removing library records does not delete audio files on disk."
       },
       "localMetadata": {
-        "conditions": "When a local song\u2019s metadata is wrong you can match it by hand. The way in is a pencil, but three things have to be true at once for it to be on screen: the card is the focused one, the song is local, and the pointer is resting on the title block.",
+        "conditions": "When a local song’s metadata is wrong you can match it by hand. The way in is a pencil, but three things have to be true at once for it to be on screen: the card is the focused one, the song is local, and the pointer is resting on the title block.",
         "pencil": "With all three it floats at the right end of the title at 65% opacity. It opens the manual match panel, where you pick the correct title, artist and album for this song."
       },
       "localTrackSorting": {
-        "whereOnly": "These two sort controls at the top of the track list appear for local folders only. Online playlists, albums and Navidrome lists do not have them \u2014 they are not hidden, those sources decide their own order.",
+        "whereOnly": "These two sort controls at the top of the track list appear for local folders only. Online playlists, albums and Navidrome lists do not have them — they are not hidden, those sources decide their own order.",
         "fields": "Three fields to sort by: file name, file modification time, and track number within the album. The choice is stored locally, so the next folder you open is still sorted this way.",
         "direction": "The button on the left flips ascending and descending, independently of the field."
       },
       "gridStyle": {
         "grid3dImage": "“Cover Image Only” makes the whole card one piece of artwork, with the collection name sitting in the gradient at its foot.",
         "grid3dCard": "“Polaroid Card” is the default: it pulls the artwork into the top half and leaves a strip below it for the name. Nothing is cropped; the cost is that fewer cards fit across the same screen.",
-        "fullBleed": "\u201cFull-bleed cover\u201d governs the honeycomb grid inside a collection: turn it on and the artwork fills the whole card, with title and artist moving into a gradient scrim laid over it, the way the queue collage does it.",
-        "squareCard": "\u201cSquare cards\u201d only appears once full-bleed is on \u2014 with it off, the row is not on screen at all. Turning it on makes cards as tall as they are wide, so square artwork stops being cropped top and bottom. The card area stays the same, so what it loses in height it gains in width, and the grid spacing follows.",
+        "fullBleed": "“Full-bleed cover” governs the honeycomb grid inside a collection: turn it on and the artwork fills the whole card, with title and artist moving into a gradient scrim laid over it, the way the queue collage does it.",
+        "squareCard": "“Square cards” only appears once full-bleed is on — with it off, the row is not on screen at all. Turning it on makes cards as tall as they are wide, so square artwork stops being cropped top and bottom. The card area stays the same, so what it loses in height it gains in width, and the grid spacing follows.",
         "minScale": "This slider does not set the card size. It sets the floor of the falloff: cards further from the centre of the viewport get smaller, and this is how small they are allowed to get. Higher makes the edges easier to read, lower makes the depth stronger.",
         "minOpacity": "Likewise, this one is how faint they are allowed to get. Together the two decide whether the grid reads as flat or as having depth.",
-        "falloffReset": "Press this to put the falloff back to default. It only resets those two sliders \u2014 the two cover-shape switches are left alone.",
+        "falloffReset": "Press this to put the falloff back to default. It only resets those two sliders — the two cover-shape switches are left alone.",
         "latticeVignette": "The edge vignette lays a faint darkening around the queue collage page, drawing the eye to the posters in the middle. It is only a visual effect and does not touch the queue.",
         "latticeTint": "The poster focus tint makes the playing, focused and hovered posters stand out. Turn it off and the rows for its intensity and its custom colour are hidden as well.",
         "latticeIntensity": "“Overlay intensity” only exists once the tint is on. It is a percentage: at 0 there is no tint; higher makes ordinary posters darker and the playing one stand out more.",
@@ -6047,14 +7055,13 @@ export default {
         "settings": "The gear opens the settings. The panel closes first, then the settings window comes up.",
         "home": "The house at the right end goes back to the poster wall on the home page; the panel closes first. Playback does not stop.",
         "addToPlaylist": "The star adds this song to a playlist. It is only there when the current source has playlists; when the song cannot be added it is greyed out, and hovering it says why.",
-
         "like": "The heart likes this song. When the current source cannot do that it is greyed out, and hovering it says why.",
         "playingFrom": "When the queue was started from a playlist or an album, a button with its name appears here: click it to go back to that page and find this song there. Once the queue holds other songs it is gone."
       },
       "lyricsAnimation": {
         "where": "The first row of Settings · Appearance, “Lyrics Animation Adjust”, is where the lyric style is changed; its right end shows the one in use.",
         "playground": "It opens the Lyrics Style window. The large block on the left is a live preview of exactly what the player page will render; the narrow column on the right is the settings.",
-        "playgroundSections": "The style is picked on the shelf under the preview. The right column has five pages: Lyrics, Background, Common, Subtitle, Global; the Lyrics page holds the settings of the style you picked.",
+        "playgroundSections": "The style is picked on the shelf under the preview. The right column has five pages: Lyrics, Background, Common, Subtitle, Global; the Lyrics page holds the settings of the style you picked."
       },
       "themeSettings": {
         "presetDefault": "The left segment of “Theme Presets” is the built-in pair, which follows the light or dark mode on its own.",
@@ -6069,7 +7076,7 @@ export default {
       "panelSlide": {
         "grabbed": "Press and hold the button. The track behind it lights up.",
         "intro": "This button hides a track. Press and hold it, and the track appears.",
-        "threshold": "Drag left. 36 pixels is enough \u2014 the button stops following at 44.",
+        "threshold": "Drag left. 36 pixels is enough — the button stops following at 44.",
         "outcome": "Let go past that point and the command palette opens.",
         "hotspotIntro": "On a touch screen there is nothing to hover, so the edge itself is the affordance.",
         "hotspotRevealed": "Tap near the right edge and the handle comes out on its own.",
@@ -6094,7 +7101,66 @@ export default {
         "save": "“Save” applies the chosen row to this song; “Cancel” changes nothing.",
         "switches": "For a local file there are three switches under the cover: “Cover”, “Metadata” and “Lyrics”. A lit one takes that part from the chosen row; an unlit one keeps what the file has.",
         "noMatch": "“Don't use online metadata” at the bottom left makes the song use only what the file has."
+      },
+      "scratchpad": {
+        "hover": "Hover a song card and two buttons appear at its top right; the left one adds the song to the scratchpad. Grid cards, Bravais tiles and focus cards, and every search result row have this pair.",
+        "save": "The right one saves it to a playlist. For sources that take likes, the first row of the playlist picker is Liked Songs; you can also create a playlist right there and put the song in it.",
+        "notQueue": "Adding to the scratchpad leaves the play queue alone; what is playing keeps playing. Move the pointer to the upper left edge and the handle opens up, showing how many songs are inside; while the scratchpad is empty, the handle is hidden.",
+        "otherWays": "For the song that is playing, press : for execute mode and then S. On a collection page, “Add all to scratchpad” takes the songs of that page at once, only the filtered ones when a filter is on: in Grid it is in the info panel, in Bravais under “⋯ More” in the info strip.",
+        "open": "Click the handle, or press {{mod}} + J, to open the scratchpad; in execute mode it is J. Press it again to close it.",
+        "groups": "Songs are grouped by source: one group per online platform, one for local files, one for Navidrome. Where each came from (which playlist, which search) is written after its artist.",
+        "groupActions": "At the right of a group header: “Queue this group” and “Add this group to a playlist…”. A playlist takes songs from one source only; grouped by source, a whole group fits one playlist.",
+        "rowActions": "Hover a row for: play it in the queue, add to queue, add to playlist, and take out of the scratchpad. A song stays after you queue it or save it to a playlist; take it out yourself when you are done with it.",
+        "footer": "The bottom row: add all to queue, replace the queue with the scratchpad, and clear. Clearing takes two clicks.",
+        "expand": "At the top of the drawer, left of the close button: “Expand into a canvas”.",
+        "canvas": "Expanded, every song is a card, still grouped by source, and each group header gains “Select this group”. Esc first clears the selection, then goes back to the list.",
+        "drag": "Drag cards to reorder them. A card moves only within its own group, and snaps to the nearest place when you let go.",
+        "select": "Drag a box on an empty spot to select the cards inside it; {{mod}}-click a card to add or remove it. The bottom row then acts on the selection: add to queue, add to playlist, take out. When the selection mixes sources, add to playlist is greyed out."
       }
     }
+  },
+  "scratchpad": {
+    "title": "Scratchpad",
+    "count_one": "{{count}} song",
+    "count_other": "{{count}} songs",
+    "hint": "Songs to hear or sort out later. Putting them here leaves the queue alone.",
+    "empty": "Nothing here yet. Hover a song card, a track list row or a search result and choose \"Add to scratchpad\", or jot down the playing song from the command palette.",
+    "open": "Open the scratchpad",
+    "close": "Close the scratchpad",
+    "play": "Play it in the queue",
+    "enqueue": "Add to queue",
+    "addToPlaylist": "Add to a playlist…",
+    "remove": "Take out of the scratchpad",
+    "enqueueAll": "Queue all",
+    "replaceQueue": "Play, replacing the queue",
+    "clear": "Clear",
+    "confirmClear": "Click again to clear",
+    "sourceLocal": "Local",
+    "collect": "Add to scratchpad",
+    "collectScope": "Add all to scratchpad",
+    "originSearch": "Search \"{{query}}\"",
+    "originExploreSection": "Explore · {{section}}",
+    "collectFiltered_one": "Add the {{count}} filtered song to scratchpad",
+    "collectFiltered_other": "Add the {{count}} filtered songs to scratchpad",
+    "addedOne": "Jotted into the scratchpad",
+    "addedMany_one": "Jotted {{count}} song into the scratchpad",
+    "addedMany_other": "Jotted {{count}} songs into the scratchpad",
+    "skippedDuplicates_one": "{{count}} was already there",
+    "skippedDuplicates_other": "{{count}} were already there",
+    "alreadyInOne": "This song is already in the scratchpad",
+    "alreadyInAll": "These songs are all in the scratchpad already",
+    "full": "The scratchpad is full ({{count}} songs at most). Clear some out first.",
+    "saveFailed": "The scratchpad couldn't be saved (local storage is full); this change will be lost on restart",
+    "expandCanvas": "Expand into a canvas",
+    "collapseCanvas": "Back to the list",
+    "canvasHint": "Drag cards to reorder; they snap into place when let go. Drag a box over empty space to select several.",
+    "selectGroup": "Select this group",
+    "enqueueGroup": "Queue this group",
+    "addGroupToPlaylist": "Add this group to a playlist…",
+    "selectedCount_one": "{{count}} selected",
+    "selectedCount_other": "{{count}} selected",
+    "removeSelected": "Take out",
+    "clearSelection": "Clear selection",
+    "mixedSourcesHint": "The selection comes from more than one source; a playlist takes songs from one source only"
   }
-} as const;
+};

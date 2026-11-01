@@ -343,6 +343,9 @@ export interface ProviderSearchContext {
     session?: string;
 }
 
+/** What a search looks for: songs, albums or playlists (`omni.getProviderSearchKinds`). */
+export type ProviderSearchKind = 'song' | 'album' | 'playlist';
+
 export interface OnlineSearchProvider {
     /**
      * A provider that keeps what it read of a search between its pages keeps it apart for each
@@ -924,6 +927,7 @@ export type OmniExploreItem = ProviderExploreItem;
 export type OmniExploreSection = ProviderExploreSection;
 export type OmniExplorePage = ProviderExplorePage;
 export type OmniExploreItemsPage = ProviderExploreItemsPage;
+export type OmniSearchKind = ProviderSearchKind;
 export { OnlineProviderError as OmniError };
 
 /**

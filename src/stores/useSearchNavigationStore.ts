@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { getNavidromeConfig, navidromeApi } from '../services/navidromeService';
 import type { HomeViewTab, LocalSong, SongResult, UnifiedSong } from '../types';
 import { DEFAULT_ONLINE_PROVIDER_ID } from '../types/onlineMusic';
-import type { OnlineProviderId } from '../types/onlineMusic';
+import type { OmniCollection, OmniSearchKind, OnlineProviderId } from '../types/onlineMusic';
 import {
     applyLocalLibraryEntityDisplay,
     buildUnifiedLocalSong,
@@ -15,6 +15,8 @@ const LAST_HOME_VIEW_TAB_KEY = 'last_home_view_tab';
 const DEFAULT_SEARCH_LIMIT = 30;
 export type SearchSource = OnlineProviderId | 'local' | 'navidrome';
 export type SearchReturnView = 'home' | 'player';
+/** 搜什么：单曲、专辑或歌单。专辑和歌单只有在线平台搜得到（omni.getProviderSearchKinds），本地与 Navidrome 只搜单曲。 */
+export type SearchKind = OmniSearchKind;
 
 type SearchExecutorDeps = {
     localSongs: LocalSong[];

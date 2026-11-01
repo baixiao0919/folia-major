@@ -46,6 +46,46 @@ const MD5 = value => crypto.createHash('md5').update(String(value), 'utf8').dige
 const SHA256 = value => crypto.createHash('sha256').update(String(value), 'utf8').digest('hex');
 const CONFIG_STORE_KEY = 'fnmusic-config';
 
+// —— FN Connect 中继（外网登录）支持：登录框填纯 FN ID → 自动走 https://<fnid>.fnos.net ——
+// 参考 fnmusic-desktop-api 私有协议观察仓库：
+//  - FN Connect 网关要求登录请求带 Cookie: mode=relay，否则 302 到 HTML 登录页
+//  - 中继地址（*.fnos.net）的后续 API/媒体请求同样需要 mode=relay 才能放行
+const RELAY_DOMAIN = 'fnos.net';
+const RELAY_COOKIE = 'mode=relay';
+
+/** 智能识别服务器地址：纯 FN ID（不含 . : / 的短码）→ https://<fnid>.fnos.net（FN Connect 中继）；其余原样返回（局域网直连）。 */
+const resolveServer = (input) => {
+  const s = String(input ?? '').trim();
+  const host = s.replace(/^https?:\/\//i, '').split('/')[0] ?? '';
+  if (host && !host.includes('.') && !host.includes(':')) {
+    return `https://${host}.${RELAY_DOMAIN}`;
+  }
+  return s;
+};
+
+/** 地址规范化：缺协议补 http://，缺端口补 :5666；https 保持端口不变（中继 https 默认 443）。 */
+const normalizeServer = (input) => {
+  let t = /^https?:\/\//i.test(input) ? input : `http://${input}`;
+  if (/^https:\/\//i.test(t) || /^http:\/\/[^/?#]+:\d+/i.test(t)) return t;
+  return t.replace(/^(http:\/\/[^/?#]+)/i, (m) => `${m}:5666`);
+};
+
+/** 输入清理：去空白、全角冒号，去 /music/api/v1 与 /music 后缀、去尾部斜杠。 */
+const cleanInput = (input) => String(input ?? '')
+  .replace(/\s+/g, '')
+  .replace(/[：︓]/g, ':')
+  .replace(/\/music\/api\/v1\/*$/i, '')
+  .replace(/\/music\/*$/i, '')
+  .replace(/\/+$/, '');
+
+/** 构造请求 Cookie 头：token + 中继标志（登录请求无 token 时只带 mode=relay）。 */
+const buildAuthCookie = ({ token, relay }) => {
+  const parts = [];
+  if (token) parts.push(`music-token=${encodeURIComponent(token)}`);
+  if (relay) parts.push(RELAY_COOKIE);
+  return parts.length ? parts.join('; ') : null;
+};
+
 /** 是否为私网地址（局域网 NAS 常见自签名证书，仅此类放行证书校验；公网中继必须严格校验）。 */
 const isPrivateHost = (hostname) => {
   const host = String(hostname || '').toLowerCase().replace(/^\[|\]$/g, '');
@@ -127,13 +167,14 @@ const parseJsonEnvelope = (raw) => {
  * @returns {{ok:true,data:any,status:number} | {ok:false,error:{code?,msg?,status?},status:number}}
  */
 const performRequest = async ({
-  base, method, path, params, body, token,
+  base, method, path, params, body, token, relay = false,
 }) => {
   const pathname = path.startsWith('/') ? path : `/${path}`;
   const query = encodeQuery(params);
   const url = `${base.replace(/\/+$/, '')}${pathname}${query ? `?${query}` : ''}`;
   const headers = { Accept: 'application/json' };
-  if (token) headers.Cookie = `music-token=${encodeURIComponent(token)}`;
+  const authCookie = buildAuthCookie({ token, relay });
+  if (authCookie) headers.Cookie = authCookie;
   if (body !== undefined && body !== null) headers['Content-Type'] = 'application/json';
   const payload = body === undefined || body === null ? undefined : JSON.stringify(body);
 
@@ -217,7 +258,8 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       if (value != null) targetUrl.searchParams.set(key, String(value));
     }
     const headers = { Accept: '*/*' };
-    if (config.token) headers.Cookie = `music-token=${encodeURIComponent(config.token)}`;
+    const authCookie = buildAuthCookie({ token: config.token, relay: Boolean(config.relay) });
+    if (authCookie) headers.Cookie = authCookie;
     if (range) headers.Range = range;
     const transport = targetUrl.protocol === 'https:' ? https : http;
     const upstream = transport.request(targetUrl, {
@@ -296,19 +338,28 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       };
     },
 
-    /** 登录：POST /music/api/v1/user/password-login，密码 SHA-256，成功后加密保存配置。 */
+    /** 登录：POST /music/api/v1/user/password-login，密码 SHA-256，成功后加密保存配置。
+     *  服务器地址支持：局域网直连（IP[:端口]）与 FN ID 中继（纯 FN ID → https://<fnid>.fnos.net）。 */
     async login({ base, username, password, deviceId }) {
       if (!base || !username || !password) {
         return { ok: false, status: 0, error: { code: 'invalid-params', message: '登录缺少服务器地址 / 账号 / 密码' } };
       }
+      const server = normalizeServer(cleanInput(resolveServer(base)));
+      if (!server) {
+        return { ok: false, status: 0, error: { code: 'invalid-address', message: '服务器地址无法解析' } };
+      }
+      const relay = server.includes(RELAY_DOMAIN) ? 1 : 0;
       // 持久复用 deviceId：同一台机器登录同一 NAS 不产生新设备（与飞牛网页端一致）。
       const existing = readConfig();
       const effectiveDeviceId = deviceId || existing?.deviceId || crypto.randomBytes(16).toString('hex');
       const result = await performRequest({
-        base,
+        base: server,
         method: 'POST',
         path: '/music/api/v1/user/password-login',
         body: { username, password: SHA256(password), deviceId: effectiveDeviceId },
+        // FN Connect 网关放行 API 的必要条件：登录请求恒带 mode=relay cookie
+        // （局域网直连时 NAS 忽略该 cookie，无害）。
+        relay: true,
         // 登录接口实测不校验 authx 签名（2026-10-28 服务端实测：无 authx 同样 code 0 登录成功），
         // 全接口也不做签名（见文件头注释），排除电脑系统时钟偏差导致签名校验失败的变量。
       });
@@ -320,7 +371,7 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
           error: { code: 'invalid-response', message: '登录响应缺少 userToken 或 user' },
         };
       }
-      writeConfig({ base: base.replace(/\/+$/, ''), username, token: result.data.userToken, deviceId: effectiveDeviceId });
+      writeConfig({ base: server, username, token: result.data.userToken, deviceId: effectiveDeviceId, relay });
       return { ok: true, status: result.status, data: { user: result.data.user } };
     },
 
@@ -328,7 +379,7 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     async logout() {
       const config = readConfig();
       if (config?.base && config.token) {
-        await performRequest({ base: config.base, method: 'POST', path: '/music/api/v1/user/logout', token: config.token });
+        await performRequest({ base: config.base, method: 'POST', path: '/music/api/v1/user/logout', token: config.token, relay: Boolean(config.relay) });
       }
       writeConfig(null);
       return { ok: true, status: 200, data: null };
@@ -340,7 +391,7 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       if (!config?.base) {
         return { ok: false, status: 0, error: { code: 'unconfigured', message: '飞牛尚未配置服务器' } };
       }
-      return performRequest({ base: config.base, method: method || 'GET', path, params, body, token: config.token });
+      return performRequest({ base: config.base, method: method || 'GET', path, params, body, token: config.token, relay: Boolean(config.relay) });
     },
 
     /** 播放地址：返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。 */

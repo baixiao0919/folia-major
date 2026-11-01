@@ -18,9 +18,11 @@ export const BUILTIN_VISUALIZER_MODES = [
     'claddagh',
     'classic',
     'diorama',
+    'nebbia',
     'fume',
     'hanabi',
     'lumiere',
+    'machi',
     'monet',
     'partita',
     'pendolo',
@@ -28,6 +30,7 @@ export const BUILTIN_VISUALIZER_MODES = [
     'still',
     'tempera',
     'tilt',
+    'prompt',
 ] as const;
 
 export const BUILTIN_VISUALIZER_BACKGROUND_MODES = [
