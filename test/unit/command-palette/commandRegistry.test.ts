@@ -128,6 +128,7 @@ const createContext = (overrides: CommandPaletteContextOverrides = {}): CommandP
             startPlayerBottomBarPositioning: vi.fn(),
             canStartPlayerBottomBarPositioning: true,
             toggleAlwaysShowPlayerBackButton: vi.fn(),
+            togglePlayerBarPinned: vi.fn(),
             toggleGridViewFullBleedCover: vi.fn(),
             toggleGridViewSquareCards: vi.fn(),
             canUseGridViewSquareCards: vi.fn(() => true),
