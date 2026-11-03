@@ -212,6 +212,13 @@ describe('satisfiesHostRange', () => {
         expect(satisfiesHostRange(null, '>=0.7.0')).toBe(false);
         expect(satisfiesHostRange('0.7.8', 'latest')).toBe(false);
     });
+
+    it('matches the semver part of a suffixed host version', () => {
+        expect(satisfiesHostRange('0.7.25-fnmusic-liquidglass', '>0.7.22')).toBe(true);
+        expect(satisfiesHostRange('0.7.22-fnmusic-liquidglass', '>0.7.22')).toBe(false);
+        expect(satisfiesHostRange('0.7.25-fnmusic-liquidglass', '^0.7.0')).toBe(true);
+        expect(satisfiesHostRange('0.7.25-fnmusic-liquidglass', '>=0.7.0 <0.8.0')).toBe(true);
+    });
 });
 
 describe('resolveLoadOrder', () => {
