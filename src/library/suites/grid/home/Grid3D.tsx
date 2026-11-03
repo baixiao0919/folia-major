@@ -323,12 +323,25 @@ export const Grid3D: React.FC<Grid3DProps> = (props) => {
     const { thumbLeft, thumbWidth, thumbDragging, thumbScale, thumbHandlers } =
         useHomeTabThumb({
             trackRef: pillTrackRef,
-            items: homeTabs.map(tab => ({
-                key: tab.key,
-                disabled: Boolean(tab.disabledReason),
-            })),
+            // 摇杆吸附目标 = 原生页签 + 模组扩展页签（听歌档案等）：否则摇杆拖到扩展页签位置
+            // 松手会吸附回最近的原生页签，光标到不了模组页面。
+            items: [
+                ...homeTabs.map(tab => ({
+                    key: tab.key,
+                    disabled: Boolean(tab.disabledReason),
+                })),
+                ...(props.extraTabs ?? []).map(tab => ({ key: tab.id, disabled: false })),
+            ],
             activeKey: homeViewTab,
-            onActivate: setHomeViewTab,
+            onActivate: (key) => {
+                const nativeTab = homeTabs.find(tab => tab.key === key);
+                if (nativeTab) {
+                    setHomeViewTab(nativeTab.key);
+                    focusActiveSlider();
+                } else {
+                    props.extraTabs?.find(tab => tab.id === key)?.select();
+                }
+            },
             onTapActive: focusActiveSlider,
         });
 
@@ -751,7 +764,7 @@ export const Grid3D: React.FC<Grid3DProps> = (props) => {
                                     );
                                 })}
                                 {props.extraTabs?.map(tab => (
-                                    <button key={tab.id} type="button" onClick={tab.select}
+                                    <button key={tab.id} data-home-tab type="button" onClick={tab.select}
                                         className={`relative inline-flex items-center justify-center px-4 py-1.5 rounded-full text-xs md:text-sm font-medium whitespace-nowrap ${navPillInactiveText}`}>
                                         {tab.label}
                                     </button>
