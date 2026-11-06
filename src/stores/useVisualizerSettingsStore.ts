@@ -87,7 +87,7 @@ const tuningFields = (
             hold(storage.merge(held(), patch));
         },
         [settingsResetterKey]: () => {
-            hold(defaults);
+            hold(storage.reset ? storage.reset(held(), defaults) : defaults);
             if (storage.resetNotice) {
                 setStatusMessage({ type: 'info', text: i18n.t(storage.resetNotice) });
             }

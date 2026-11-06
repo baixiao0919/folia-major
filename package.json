@@ -8,7 +8,7 @@
     "email": "chthollyphile@users.noreply.github.com"
   },
   "private": true,
-  "version": "0.7.25-fnmusic-liquidglass",
+  "version": "0.7.26-liquidglass",
   "license": "AGPL-3.0",
   "type": "module",
   "main": "electron/main.cjs",
@@ -167,6 +167,10 @@
         {
           "from": "build/mac-helper/darwin-${arch}",
           "to": "."
+        },
+        {
+          "from": "build/apple-music-native/darwin-${arch}/FoliaAppleMusicCompanion.app",
+          "to": "apple-music/FoliaAppleMusicCompanion.app"
         }
       ],
       "target": [
@@ -200,6 +204,17 @@
           "to": ".",
           "filter": [
             "folia-wallpaper-helper.exe"
+          ]
+        },
+        {
+          "from": "build/apple-music-native/windows",
+          "to": "apple-music/windows",
+          "filter": [
+            "FoliaAppleMusicCompanion.exe",
+            "FoliaAppleMusicCompanion.exe.config",
+            "Microsoft.Web.WebView2.Core.dll",
+            "Microsoft.Web.WebView2.WinForms.dll",
+            "WebView2Loader.dll"
           ]
         }
       ]
@@ -250,7 +265,7 @@
     "@google/genai": "^2.24.0",
     "@neteasecloudmusicapienhanced/api": "4.41.1",
     "@xhayper/discord-rpc": "^1.5.1",
-    "@yakult-green-tea/qq-music-api": "3.3.3",
+    "@yakult-green-tea/qq-music-api": "3.3.6",
     "axios": "^1.20.0",
     "bgutils-js": "4.0.3",
     "bodian-music-api": "0.1.2",

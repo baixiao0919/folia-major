@@ -6,7 +6,6 @@ import { loginDoneLanding } from '../../src/components/login/done/loginDoneFrame
 import { setLoginLanding } from '../../src/components/login/loginWindowStore';
 import { orderRows } from '../../src/components/login/platformRows';
 import SwitcherPill from '../../src/components/login/SwitcherPill';
-import { GlassFilterDefs, useGlass } from '../../src/shinoinject/useGlass';
 import { useMotionSettingsStore } from '../../src/stores/useMotionSettingsStore';
 import type { RowLead } from '../../src/components/login/window/loginView';
 import { loginCaseOf, loginFailureFacts } from '../../src/services/onlineMusic/login/loginFailureCase';
@@ -24,7 +23,7 @@ import { probeAccountController } from './probeAccountController';
  *
  * Opened by hand: ?probe=loginWindow&state=<state>&theme=dark|light&count=6…12&lang=zh|en
  * state: none, preparing, code, scanned, reading, expired, methods, methods-code, browser-ready,
- * browser-opening, browser, account, account-other, account-nameless (signed in, no profile),
+ * browser-opening, browser, account (syncing=1: its data is syncing; syncing=other: another platform's is), account-other, account-nameless (signed in, no profile),
  * account-gone (the sign-in ran out while the account was shown), accountless, off, or fail-<case id>.
  * count=7–12 fills the column up to that many platforms with stand-ins (the search field shows from 12 up).
  * A test passes the same as props.
@@ -35,7 +34,7 @@ import { probeAccountController } from './probeAccountController';
  * is the same for a sign-in in the browser (no "scanned" step). motion=off turns the app's
  * reduce-motion setting on: no animation, the window closes when the account is read.
  */
-type ProbeProps = { state?: string; theme?: 'dark' | 'light'; count?: number; lang?: 'zh' | 'en'; motion?: 'on' | 'off'; glass?: 'on' | 'off' };
+type ProbeProps = { state?: string; theme?: 'dark' | 'light'; count?: number; lang?: 'zh' | 'en'; motion?: 'on' | 'off' };
 
 /** When the played sign-in is scanned, confirmed and read: ms after the probe mounts. */
 const PLAY = { scanned: 300, confirmed: 300 + 1300, read: 300 + 2100 };
@@ -66,13 +65,11 @@ const row = (providerId: string, shortName: string, extra: Partial<ProviderAccou
 });
 const PLATFORMS: ProviderAccountSummary[] = [
     row('netease', '网易云'),
-    row('qq', 'QQ音乐'),
+    row('qq', 'QQ音乐', { status: 'authenticated', user: { id: '1840027715', nickname: '晚风' } }),
     row('kugou', '酷狗', { error: 'auth-required' }),
     row('bodian', '波点', { availability: { configured: false, reason: 'not-configured' } }),
     row('spotify', 'Spotify'),
     row('ytm', 'YouTube Music'),
-    row('qishui', '汽水', { status: 'authenticated', user: { id: '1840027715', nickname: '递伞的陌生人' } }),
-    row('flymusic', '飞牛'),
 ];
 // Stand-ins, registered nowhere: each gets a mark from its own name.
 const STAND_INS = ['咪咕音乐', '汽水音乐', 'Apple Music', 'TIDAL', 'Deezer', 'A source with a very long name indeed'].map((name, index) => (
@@ -183,11 +180,6 @@ function LoginWindowProbe(props: ProbeProps) {
     const count = props.count ?? Number(query.get('count') ?? 6);
     const lang = props.lang ?? (query.get('lang') === 'en' ? 'en' : 'zh');
     const { i18n } = useTranslation();
-    // 液态玻璃宿主开关：glass=on 时挂 GlassFilterDefs + useGlass（模拟真机完整 App 的玻璃机制），
-    // 官方 #913 测试环境（无玻璃）用 glass=off 保持原状。useGlass 的 useLayoutEffect 无依赖数组，
-    // 每次 commit 后全文档扫描 [data-glass] 元素 makeGlass；selector 不匹配时为空扫描，零副作用。
-    const glassOn = (props.glass ?? query.get('glass')) === 'on';
-    useGlass(glassOn ? '[data-glass]' : '[data-glass-never-matches]');
     const [isOpen, setIsOpen] = useState(true);
     const [said, setSaid] = useState('');
     const [shown, setShown] = useState(() => shownFor(state));
@@ -251,17 +243,6 @@ function LoginWindowProbe(props: ProbeProps) {
 
     return (
         <SettingsKitThemeContext.Provider value={{ isDaylight }}>
-            {glassOn && <GlassFilterDefs />}
-            {/* glass=on 时模拟真机 SwitcherPill 的 data-glass 三连：useGlass 每次 commit 全文档扫描处理它，
-                挂 SVG filter + backdrop-filter + ResizeObserver；installGlassJelly/Light 的 window 监听以它为靶。 */}
-            {glassOn && (
-                <div
-                    data-glass
-                    data-glass-jelly
-                    data-glass-light
-                    className="pointer-events-none fixed bottom-4 right-4 h-11 w-44 rounded-[26px] bg-black/40"
-                />
-            )}
             <div
                 className={`relative flex min-h-screen flex-col gap-2 p-4 text-sm ${isDaylight ? 'bg-zinc-200' : 'bg-zinc-950'}`}
                 style={{ '--text-primary': isDaylight ? '#18181b' : '#f4f4f5', color: 'var(--text-primary)' } as React.CSSProperties}
@@ -304,9 +285,12 @@ function LoginWindowProbe(props: ProbeProps) {
                     }}
                     onReopenBrowser={() => setSaid('reopen the browser')}
                     onRestartService={() => setSaid('restart the local service')}
+                    onSubmitForm={async (submitProviderId) => { setSaid('form submitted'); return { sessionId: 0, providerId: submitProviderId, outcome: 'completed' as const }; }}
                     onSwitch={() => setSaid('switch')}
                     onSignOut={() => setSaid('sign out')}
-                    onFormLoggedIn={() => { setSaid('form logged in'); setDone(false); setIsOpen(false); }}
+                    onSync={() => setSaid('sync')}
+                    // syncing=1: the shown account's data is being synced (the button spins); syncing=other: another platform's is.
+                    syncingProviderId={query.get('syncing') === '1' ? view.chosen?.providerId ?? null : query.get('syncing') === 'other' ? 'probe-other' : null}
                     // origin=pill: as if the window was opened from the switcher pill at the bottom right.
                     origin={query.get('origin') === 'pill' && view.chosen
                         ? { x: window.innerWidth - 44, y: window.innerHeight - 44, size: 40, providerId: view.chosen.providerId }

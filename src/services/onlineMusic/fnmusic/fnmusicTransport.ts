@@ -5,10 +5,10 @@ import { OnlineProviderError } from '../../../types/onlineMusic';
 //
 // 协议说明：见 docs/fnmusic-protocol.md：
 //  - 基础路径 {origin}/music/api/v1{path}
-//  - 请求头 authx 签名（nonce/timestamp/sign=md5(...)）
-//  - 登录 POST /music/api/v1/user/password-login {username, password: sha256(password), deviceId}
-//    → 响应 {userToken, user}；认证通过 Cookie: music-token={userToken} 携带
-//  - 响应信封 {code, msg, data}，code ∈ {0, 200} 为成功
+//  - 登录 POST /music/api/v1/user/password-login {username, password: sha256(password)}
+//    → 响应 {userToken, user}；认证通过 Cookie: music-token={userToken} 携带（不再使用 authx 签名头）
+//  - 响应信封 {code, msg, data}，code ∈ {0, 200} 为成功；code 120001 = 账号或密码错误
+//  - deviceId 由主进程桥复用已存设备或生成，渲染层不再生成（避免每次登录注册新设备）
 //
 // 安全约定：服务器地址与凭据（token / 密码）全部由主进程 safeStorage 加密保存，
 // 渲染进程只发操作（login/request/stream/coverUrl），不读写 localStorage，也不在
@@ -16,9 +16,9 @@ import { OnlineProviderError } from '../../../types/onlineMusic';
 // CORS 使直连不可行），由 provider 的 getAvailability 返回 runtime-unavailable。
 
 export type FnMusicBridgeParams =
-    | { base: string; username: string; password: string; deviceId: string }   // login
+    | { base: string; username: string; password: string }              // login（deviceId 由主进程复用已存值）
     | { path: string; method: 'GET' | 'POST'; params?: Record<string, string | number | boolean | undefined>; body?: Record<string, unknown> } // request
-    | { trackId: string; quality?: string }                                    // stream
+    | { trackId: string }                                                      // stream
     | { coverId: string; size?: number }                                       // coverUrl
     | {};                                                                      // logout / getStatus
 
@@ -32,17 +32,22 @@ export interface FnMusicBridgeStatus {
     authenticated: boolean;
     base: string | null;
     username: string | null;
+    /** 登录答复里 user 的 guid 和昵称（登录时存下）。 */
+    userId: string | null;
+    nickname: string | null;
 }
 
 const text = (value: unknown): string => (value == null ? '' : String(value));
 
 const hasElectronBridge = (): boolean => typeof window !== 'undefined' && Boolean((window as any).electron?.fnmusicRequest);
 
-/** 同步查询桥状态（base/username 供登录表单回填）。 */
-export const fnMusicBridgeStatus = (): FnMusicBridgeStatus | null => {
-    if (typeof window === 'undefined' || !(window as any).electron?.fnmusicStatusSync) return null;
+/** 异步查询桥状态（base/username 供登录表单回填）。走异步 IPC（getStatus），不阻塞渲染主线程。 */
+export const fnMusicBridgeStatus = async (): Promise<FnMusicBridgeStatus | null> => {
+    if (!hasElectronBridge()) return null;
     try {
-        return (window as any).electron.fnmusicStatusSync() as FnMusicBridgeStatus;
+        const result = await (window as any).electron.fnmusicRequest('getStatus', {} as FnMusicBridgeParams) as FnMusicBridgeResult;
+        if (!result.ok || !result.data) return null;
+        return result.data as FnMusicBridgeStatus;
     } catch {
         return null;
     }
@@ -57,10 +62,15 @@ const bridgeError = (result: FnMusicBridgeResult & { ok: false }, operation: str
         return new OnlineProviderError('auth-required', `飞牛音乐登录已失效（HTTP ${result.status}），请重新登录`, 'fnmusic');
     }
     // 飞牛音乐接口业务码：120001 = 账号或密码错误（NAS 账号与音乐独立账号是两套体系，提示用户核对）。
+    // 映射为 auth-required：provider 的 errorKeys 与登录表单据此显示「账号或密码错误」类提示。
     if (code === '120001') {
-        return new OnlineProviderError('invalid-response', `账号或密码错误（HTTP ${result.status}）。飞牛支持 NAS 账号与音乐独立账号两种，确认用对了账号类型`, 'fnmusic');
+        return new OnlineProviderError('auth-required', `账号或密码错误（HTTP ${result.status}）。飞牛支持 NAS 账号与音乐独立账号两种，确认用对了账号类型`, 'fnmusic');
     }
     if (code === 'network') return new OnlineProviderError('network', msg, 'fnmusic');
+    // 填的服务器地址不成形（主进程规范化之后仍不是 http/https 地址）：登录表单据此提示改地址。
+    if (code === 'invalid-base') return new OnlineProviderError('unavailable', msg, 'fnmusic');
+    // 主进程没有保存的服务器与 token：没有登录（或系统加密不可用、重启后丢了），要重新登录。
+    if (code === 'unconfigured') return new OnlineProviderError('auth-required', msg, 'fnmusic');
     if (code && !Number.isNaN(Number(code))) {
         return new OnlineProviderError('invalid-response', `飞牛音乐 ${operation} 业务错误(code=${code}, HTTP ${result.status}): ${msg}`, 'fnmusic');
     }
@@ -86,12 +96,12 @@ export async function fnmusicRequest<T = unknown>(
     return result.data as T;
 }
 
-/** 播放地址：主进程返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。 */
-export async function fnMusicStreamSource(trackId: string, quality = 'original'): Promise<string> {
+/** 播放地址：主进程返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。回的是原始文件，不分音质。 */
+export async function fnMusicStreamSource(trackId: string): Promise<string> {
     if (!hasElectronBridge()) {
         throw new OnlineProviderError('unavailable', '飞牛音乐仅支持桌面端（需主进程桥）', 'fnmusic');
     }
-    const result = await (window as any).electron.fnmusicRequest('stream', { trackId, quality } as FnMusicBridgeParams) as FnMusicBridgeResult;
+    const result = await (window as any).electron.fnmusicRequest('stream', { trackId } as FnMusicBridgeParams) as FnMusicBridgeResult;
     if (!result.ok) throw bridgeError(result, 'track/stream');
     const data = result.data as { url?: string } | null;
     const url = text(data?.url);
@@ -109,21 +119,12 @@ export function fnMusicCoverUrl(coverId: string, size = 600): string {
     return `folia-fnmusic://cover?${q.toString()}`;
 }
 
-/** 生成 32 位十六进制 deviceId（随机，不补位凑数）。 */
-export const makeFnMusicDeviceId = (): string => {
-    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
-        const bytes = new Uint8Array(16);
-        crypto.getRandomValues(bytes);
-        return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-    return Array.from({ length: 32 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
-};
-
 /**
  * 登录：POST /music/api/v1/user/password-login（密码 SHA-256 由主进程完成）。
  * 成功后凭据由主进程加密保存，本函数只返回用户信息（不含 token）。
+ * deviceId 不在渲染层生成：主进程桥复用已存设备或生成（避免每次登录注册新设备）。
  */
-export async function fnMusicLogin(config: { base: string; username: string; password: string; deviceId: string }): Promise<{ user: unknown }> {
+export async function fnMusicLogin(config: { base: string; username: string; password: string }): Promise<{ user: unknown }> {
     if (!hasElectronBridge()) {
         throw new OnlineProviderError('unavailable', '飞牛音乐仅支持桌面端（需主进程桥）', 'fnmusic');
     }

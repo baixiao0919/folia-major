@@ -1,4 +1,4 @@
-import { DEFAULT_SMART_BEAT_SETTINGS, type SmartBeatSettings, type VisualizerBackgroundMode, type VisualizerFrameRate, type VisualizerMode, type LyricRenderQuality } from '../types';
+import { DEFAULT_SMART_BEAT_SETTINGS, type LyricRenderQuality, type SmartBeatSettings, type VisualizerBackgroundMode, type VisualizerFrameRate, type VisualizerMode } from '../types';
 // 只做字符串校验，走 types/visualizerModes 而不是 registry：后者的 eager glob 会把 13 个
 // renderer（含 three.js）拉进来，而这里读的只是一个 localStorage 字符串。
 // mod 模式在启动时本来就看不到——bootstrap.tsx 的 restoreStoredModVisualizer 在 mods 注册完
@@ -12,10 +12,10 @@ import {
 import type { StoredTuning } from '../components/visualizer/tuningDefinition';
 import { resolveSmartBeatSettings, type SmartBeatPatch } from '../services/beatFx/smartBeatSettings';
 import { parseVisualizerFrameRate, VISUALIZER_FRAME_RATE_STORAGE_KEY } from '../utils/frameRateLimiter';
+import { DEFAULT_LYRIC_RENDER_QUALITY, LYRIC_RENDER_QUALITY_STORAGE_KEY, normalizeLyricRenderQuality } from '../utils/lyricRenderQuality';
 
 import { getStoredString } from './storagePrimitives';
 import { normalizeRandomVisualizerModes } from '../utils/randomVisualizerModes';
-import { DEFAULT_LYRIC_RENDER_QUALITY, LYRIC_RENDER_QUALITY_STORAGE_KEY, normalizeLyricRenderQuality } from '../utils/lyricRenderQuality';
 
 export const RANDOM_VISUALIZER_MODES_STORAGE_KEY = 'random_visualizer_modes';
 
@@ -123,7 +123,8 @@ export const readStoredVisualizerBackgroundMode = (): VisualizerBackgroundMode |
         return null;
     }
 
-    const saved = localStorage.getItem('visualizer_background_mode');    return isBuiltinVisualizerBackgroundMode(saved) ? saved : null;
+    const saved = localStorage.getItem('visualizer_background_mode');
+    return isBuiltinVisualizerBackgroundMode(saved) ? saved : null;
 };
 
 export const resolveVisualizerBackgroundMode = (

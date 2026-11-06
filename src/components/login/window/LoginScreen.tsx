@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { LibraryLoginSessionSnapshot } from '../../../library/core/account/account.contract';
+import type { LibraryLoginCompletion, LibraryLoginSessionSnapshot } from '../../../library/core/account/account.contract';
 import { resolveLoginSessionReportRoute, translateLoginSelfCheck } from '../../../library/core/account/useLibraryAccount';
 import { LOGIN_REPORT_ELSEWHERE_COPY, retryOpensAt } from '../../../library/core/account/accountRules';
+import { providerDisplayName } from '../../../i18n/providerName';
 import type { LoginFailure } from '../../../types/loginFailure';
 import type { OnlineProviderId, ProviderAccountSummary } from '../../../types/onlineMusic';
 import { useKitReducedMotion } from '../../modal/settings/kit/motion';
@@ -15,6 +16,7 @@ import { rowStatus } from '../platformRows';
 import { LOGIN_CASE_TEXTS } from './loginCaseTexts';
 import LoginMessage, { LoginDetails, type MessageAction } from './LoginMessage';
 import LoginTile from './LoginTile';
+import { shortAccountId } from '../../../utils/accountIdDisplay';
 import { accountView, failureNoteKey, failureQuote, loginScene, sceneHeadline, stepMarks, type RowLead } from './loginView';
 import FormLogin from './FormLogin';
 import LoginWindow from './LoginWindow';
@@ -39,8 +41,8 @@ export type LoginScreenProps = {
     onChoose: (providerId: OnlineProviderId) => void;
     /** 开始（浏览器登录的那一下），或者重来，保留选过的登录方式。 */
     onStart: () => void;
-    /** 表单式登录提交成功：登录已完成，直接刷新状态并关闭窗口。 */
-    onFormLoggedIn: () => void;
+    /** 表单式登录提交（走账户 controller 的完整链路：提交 → 读账号 → 报完成）；返回登录完成结局。 */
+    onSubmitForm: (providerId: OnlineProviderId, values: Record<string, string>) => Promise<LibraryLoginCompletion>;
     /** 用这种登录方式开始（任何时候都可以换）。 */
     onSelectMethod: (methodId: string) => void;
     onReopenBrowser: () => void;
@@ -48,6 +50,10 @@ export type LoginScreenProps = {
     onRestartService: () => void;
     onSwitch: () => void;
     onSignOut: () => void;
+    /** 账号那一幅的「同步数据」：重新读选中的这个平台的账号、歌单与红心。 */
+    onSync: () => void;
+    /** 正在同步数据的平台（同一时间一个）：是选中的这个就转圈，是别的就只是不可按。 */
+    syncingProviderId?: OnlineProviderId | null;
     /** 这一次登录的诊断报告（生成不了是空串）。 */
     buildReport: () => Promise<string>;
     /** 按下去打开窗口的那个东西在哪：窗口从那一边出来。 */
@@ -76,14 +82,14 @@ const useReached = (at: number): boolean => {
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({
-    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onFormLoggedIn, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
-    buildReport, origin, done = false, onDoneLeave = nothing, onDoneEnd = nothing,
+    isOpen, onClose, rows, activeProviderId, chosen, login, onChoose, onStart, onSubmitForm, onSelectMethod, onReopenBrowser, onRestartService, onSwitch, onSignOut,
+    onSync, syncingProviderId = null, buildReport, origin, done = false, onDoneLeave = nothing, onDoneEnd = nothing,
 }) => {
     const { t } = useTranslation();
     const still = useKitReducedMotion();
     const providerId = chosen?.providerId ?? null;
     const summary = rows.find(row => row.providerId === providerId) ?? null;
-    const label = summary?.shortName || summary?.displayName || providerId || '';
+    const label = summary ? providerDisplayName(t, summary, providerId ?? '') : providerId ?? '';
     const inBrowser = login?.inBrowser ?? false;
     const service = login?.localService ?? null;
     const failure: LoginFailure | null = providerId ? login?.failure ?? null : null;
@@ -141,8 +147,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             if (summary && rowStatus(summary) === 'ran-out') note = t('status.loginExpired');
             if (summary) actions = [{ label: t('home.loginBrowserRetry'), primary: true, onClick: () => onChoose(providerId) }];
         } else {
-            if (summary?.user) note = `${label} · ID: ${String(summary.user.id)}`;
-            actions = [...switchAction, { label: t('account.logout'), onClick: onSignOut }];
+            if (summary?.user) note = `${label} · ID: ${shortAccountId(String(summary.user.id))}`;
+            const syncing = syncingProviderId === providerId;
+            const syncAction: MessageAction = {
+                label: t(syncing ? 'account.syncing' : 'account.syncData'),
+                onClick: onSync,
+                busy: syncing,
+                disabled: syncingProviderId !== null,
+            };
+            actions = [...switchAction, syncAction, { label: t('account.logout'), onClick: onSignOut }];
         }
     } else if (scene === 'accountless') {
         headline = label;
@@ -232,7 +245,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 />
             )}
             message={scene === 'form' && providerId
-                ? <FormLogin providerId={providerId} onLoggedIn={onFormLoggedIn} />
+                ? <FormLogin providerId={providerId} onSubmitForm={values => onSubmitForm(providerId, values)} />
                 : (
                     <LoginMessage
                         sceneKey={sceneKey}

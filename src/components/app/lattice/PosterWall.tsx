@@ -51,6 +51,8 @@ type PosterWallProps = {
     /** The wall's day/night mode: the chrome below the field (the section finder) follows it. */
     isDaylight: boolean;
     onPlay: (tile: LatticeTile) => void;
+    /** A double click on a poster (#834). */
+    onPlayFromWall: (tile: LatticeTile) => void;
     onTogglePlayback: () => void;
     onSeek: (time: number) => void;
     onOpenPlayer: () => void;
@@ -92,6 +94,7 @@ export default function PosterWall({
     currentSong,
     isDaylight,
     onPlay,
+    onPlayFromWall,
     onTogglePlayback,
     onSeek,
     onOpenPlayer,
@@ -481,6 +484,7 @@ export default function PosterWall({
                             didDragRef={didDragRef}
                             onExpand={expandPoster}
                             onPlay={onPlay}
+                            onPlayFromWall={onPlayFromWall}
                             onTogglePlayback={onTogglePlayback}
                             onSeek={onSeek}
                             onOpenPlayer={onOpenPlayer}

@@ -1,4 +1,172 @@
 export default {
+  "scratchpad": {
+    "title": "Buku catatan",
+    "count_one": "{{count}} lagu",
+    "count_other": "{{count}} lagu",
+    "hint": "Lagu untuk didengar atau dirapikan nanti. Antrean tidak berubah.",
+    "history": "Riwayat putar",
+    "historyTab": "Riwayat",
+    "historyEmpty": "Belum ada yang diputar dalam 7 hari terakhir.",
+    "today": "Hari ini",
+    "yesterday": "Kemarin",
+    "originHistory": "Riwayat putar",
+    "empty": "Masih kosong. Pilih \"Tambahkan ke buku catatan\" pada kartu lagu, baris daftar lagu, atau hasil pencarian, atau catat lagu yang sedang diputar dari palet perintah.",
+    "open": "Buka buku catatan",
+    "close": "Tutup buku catatan",
+    "openQueueCanvas": "Buka antrean di buku catatan",
+    "play": "Putar di antrean",
+    "enqueue": "Tambahkan ke antrean",
+    "addToPlaylist": "Tambahkan ke daftar putar…",
+    "remove": "Keluarkan dari buku catatan",
+    "enqueueAll": "Antrekan semua",
+    "replaceQueue": "Putar, ganti antrean",
+    "clear": "Kosongkan",
+    "confirmClear": "Klik lagi untuk mengosongkan",
+    "sourceLocal": "Lokal",
+    "collect": "Tambahkan ke buku catatan",
+    "collectScope": "Tambahkan semua ke buku catatan",
+    "originSearch": "Pencarian \"{{query}}\"",
+    "originExploreSection": "Jelajahi · {{section}}",
+    "collectFiltered_one": "Tambahkan {{count}} lagu tersaring ke buku catatan",
+    "collectFiltered_other": "Tambahkan {{count}} lagu tersaring ke buku catatan",
+    "addedOne": "Ditambahkan ke buku catatan",
+    "addedMany_one": "{{count}} lagu ditambahkan ke buku catatan",
+    "addedMany_other": "{{count}} lagu ditambahkan ke buku catatan",
+    "skippedDuplicates_one": "{{count}} sudah ada",
+    "skippedDuplicates_other": "{{count}} sudah ada",
+    "alreadyInOne": "Sudah ada di buku catatan",
+    "alreadyInAll": "Semuanya sudah ada di buku catatan",
+    "full": "Buku catatan penuh (maks. {{count}} lagu). Kosongkan sebagian dulu.",
+    "saveFailed": "Buku catatan gagal disimpan (penyimpanan lokal penuh); perubahan ini hilang saat dimulai ulang",
+    "expandCanvas": "Bentangkan jadi kanvas",
+    "collapseCanvas": "Kembali ke daftar",
+    "canvasHint": "Seret kartu untuk mengurutkan. Seret kotak atau {{mod}}+klik untuk memilih beberapa, Shift+klik untuk satu rentang. Di layar sentuh, tekan lama kartu untuk menyeret; setelah satu terpilih, ketuk kartu lain untuk menambahkannya.",
+    "selectGroup": "Pilih grup ini",
+    "enqueueGroup": "Antrekan grup ini",
+    "addGroupToPlaylist": "Tambahkan grup ini ke daftar putar…",
+    "selectedCount_one": "{{count}} dipilih",
+    "selectedCount_other": "{{count}} dipilih",
+    "removeSelected": "Keluarkan",
+    "clearSelection": "Batalkan pilihan",
+    "mixedSourcesHint": "Lagu terpilih berasal dari sumber berbeda; daftar putar hanya menerima satu sumber",
+    "queue": "Antrean",
+    "queueHint": "Antrean yang sedang diputar. Klik lagu untuk memutarnya; bentangkan untuk memilih beberapa dan menyeret untuk mengurutkan.",
+    "queueEmpty": "Antrean kosong.",
+    "playFromQueue": "Putar lagu ini",
+    "playNext": "Putar berikutnya",
+    "moveToEnd": "Pindah ke akhir",
+    "removeFromQueue": "Hapus dari antrean",
+    "cannotRemoveCurrent": "Lagu yang sedang diputar tidak bisa dihapus",
+    "originQueue": "Antrean",
+    "queueCanvasHint": "Lagu diputar sesuai urutan panah. Klik ganda untuk memutar, seret untuk mengubah urutan; seret kotak atau {{mod}}/Shift+klik untuk memilih beberapa.",
+    "queueCanvasHintReadOnly": "Lagu diputar sesuai urutan panah. Klik ganda untuk memutar; seret kotak atau {{mod}}/Shift+klik untuk memilih beberapa. Antrean ini tidak bisa diubah sekarang.",
+    "historyCanvasHint": "Garis waktu melintasi setiap hari, terbaru di depan. Seret kotak atau {{mod}}+klik untuk memilih beberapa, Shift+klik untuk satu rentang, klik ganda untuk memutar; tekan Delete untuk menghapus pilihan dari riwayat.",
+    "deleteFromHistory": "Hapus dari riwayat",
+    "historyDeleted_one": "{{count}} lagu dihapus dari riwayat putar",
+    "historyDeleted_other": "{{count}} lagu dihapus dari riwayat putar",
+    "greeting": {
+      "lateNight": {
+        "v1": "Masih terjaga? Musiknya masih menyala.",
+        "v2": "Sudah larut. Satu lagu lagi, lalu tidur.",
+        "v3": "Malam sunyi, setiap nada terdengar jelas.",
+        "v4": "Yang begadang selalu punya playlist sendiri.",
+        "v5": "Bulan masih bertugas. Kamu juga.",
+        "v6": "Radio tengah malam, mengudara hanya untukmu."
+      },
+      "dawn": {
+        "v1": "Selamat pagi. Hari baru saja dimulai.",
+        "v2": "Bangun pagi sekali. Burung-burung masih pemanasan.",
+        "v3": "Langit mulai terang. Yang lembut dulu?",
+        "v4": "Udara pagi yang segar, lagu yang segar.",
+        "v5": "Yang bangun pagi, dengar duluan.",
+        "v6": "Matahari baru bangun, kamu sudah mendengarkan musik."
+      },
+      "morning": {
+        "v1": "Selamat pagi. Mau mulai hari ini dengan lagu apa?",
+        "v2": "Selamat pagi. Tentukan nada hari ini.",
+        "v3": "Satu lagu, satu kopi, ayo mulai.",
+        "v4": "Biar irama yang membawa pagi ini.",
+        "v5": "Pagi! Hari yang baik lagi untuk musik.",
+        "v6": "Hari baru. Coba sesuatu yang berbeda?"
+      },
+      "noon": {
+        "v1": "Selamat siang. Istirahat sebentar.",
+        "v2": "Sudah makan siang? Makan sambil dengar.",
+        "v3": "Istirahat siang: pejamkan mata untuk satu lagu.",
+        "v4": "Siang yang cerah, musik yang cerah.",
+        "v5": "Setengah hari berlalu. Putar lagu favoritmu.",
+        "v6": "Satu lagu setelah makan siang supaya tidak mengantuk."
+      },
+      "afternoon": {
+        "v1": "Selamat sore. Teh dan sebuah lagu?",
+        "v2": "Mengantuk sore ini? Coba yang lebih segar.",
+        "v3": "Selamat sore. Hari mulai mendekati akhir.",
+        "v4": "Cahaya miring, lagu yang lebih pelan.",
+        "v5": "Waktunya minum teh. Lagu apa hari ini?",
+        "v6": "Bertahanlah. Beberapa lagu lagi sampai petang."
+      },
+      "evening": {
+        "v1": "Selamat malam. Hari yang panjang?",
+        "v2": "Selamat malam. Headphone-nya untukmu sekarang.",
+        "v3": "Hari sudah selesai. Putar yang kamu suka.",
+        "v4": "Waktu setelah makan malam milik musik.",
+        "v5": "Selamat malam. Bagaimana hari ini?",
+        "v6": "Lampu sudah menyala. Saatnya lagu baru."
+      },
+      "night": {
+        "v1": "Bersiap istirahat? Mungkin yang lebih pelan.",
+        "v2": "Mau tidur? Yang tenang saja.",
+        "v3": "Malam yang pas untuk memutar satu lagu berulang.",
+        "v4": "Cukup untuk hari ini, setelah lagu ini.",
+        "v5": "Satu lagi sebelum lampu dimatikan.",
+        "v6": "Sebelum selamat tidur, simpan satu untuk besok."
+      }
+    },
+    "greetingShort": {
+      "lateNight": {
+        "v1": "Masih terjaga?",
+        "v2": "Larut malam",
+        "v3": "Hai, begadang",
+        "v4": "Belum tidur?"
+      },
+      "dawn": {
+        "v1": "Selamat pagi",
+        "v2": "Bangun pagi",
+        "v3": "Fajar tiba",
+        "v4": "Pagi cerah"
+      },
+      "morning": {
+        "v1": "Selamat pagi",
+        "v2": "Pagi!",
+        "v3": "Hari baru",
+        "v4": "Ayo mulai"
+      },
+      "noon": {
+        "v1": "Selamat siang",
+        "v2": "Makan siang",
+        "v3": "Istirahat dulu",
+        "v4": "Siang hari"
+      },
+      "afternoon": {
+        "v1": "Selamat sore",
+        "v2": "Waktu teh",
+        "v3": "Sore hari",
+        "v4": "Bertahanlah"
+      },
+      "evening": {
+        "v1": "Selamat malam",
+        "v2": "Hari panjang?",
+        "v3": "Hari selesai",
+        "v4": "Malam hari"
+      },
+      "night": {
+        "v1": "Malam",
+        "v2": "Mau tidur?",
+        "v3": "Bersantai",
+        "v4": "Jam tenang"
+      }
+    }
+  },
   "libraryBravais": {
     "suiteName": "Dinding Bravais",
     "homeTitle": "Pustaka",
@@ -78,15 +246,15 @@ export default {
     "queueSaveFailed": "Playlist tidak bisa disimpan",
     "queueDragHandle": "Seret untuk mengurutkan",
     "queueMoved": "Dipindah ke posisi {{position}}",
+    "queueSearch": "Cari di antrean",
+    "queueSearchPlaceholder": "Cari di {{count}} lagu",
+    "queueSearchClose": "Tutup pencarian",
+    "queueNoMatch": "Tidak ada lagu yang cocok",
     "openPlayer": "Buka pemutar",
     "openPlayerUnavailable": "Belum ada lagu yang diputar",
     "openSettings": "Buka pengaturan",
     "goHome": "Ke Beranda",
-    "wallSection": "Dinding",
-    "queueSearch": "Cari di antrean",
-    "queueSearchPlaceholder": "Cari di {{count}} lagu",
-    "queueSearchClose": "Tutup pencarian",
-    "queueNoMatch": "Tidak ada lagu yang cocok"
+    "wallSection": "Dinding"
   },
   "libraryBravaisHome": {
     "hide": "Sembunyikan",
@@ -125,6 +293,7 @@ export default {
       "liked": "Lagu Disukai",
       "cloud": "Cloud Drive",
       "personal-fm": "FM Pribadi",
+      "fm-station": "Radio",
       "daily": "Harian",
       "all-songs": "Semua Lagu",
       "local-favorites": "Favorit",
@@ -251,6 +420,8 @@ export default {
     "homeBgEnabled": "Latar belakang dinamis beranda diaktifkan",
     "autoBestLyricOn": "Fitur lirik terbaik otomatis diaktifkan",
     "autoBestLyricOff": "Fitur lirik terbaik otomatis dimatikan",
+    "autoAiLyricSegmentationOn": "Segmentasi AI otomatis aktif",
+    "autoAiLyricSegmentationOff": "Segmentasi AI otomatis nonaktif",
     "lyricSourceChanged": "Sumber lirik utama diganti ke {{source}}",
     "progressBarHidden": "Bilah kontrol bawah pemutar disembunyikan",
     "progressBarShown": "Bilah kontrol bawah pemutar ditampilkan",
@@ -401,6 +572,7 @@ export default {
     "aiFallbackThemeUsed": "AI belum dikonfigurasi, menggunakan tema bawaan",
     "playbackError": "Kesalahan Pemutaran",
     "loadingSong": "Memuat URL lagu...",
+    "preparingExternalPlayback": "Menyiapkan pemutaran...",
     "dataSynced": "Data berhasil disinkronkan",
     "syncFailed": "Sinkronisasi gagal",
     "loginExpired": "Login kedaluwarsa. Silakan login lagi",
@@ -425,12 +597,14 @@ export default {
     "playingSongNoSource": "Antrean saat ini bukan dari satu album atau playlist",
     "unliked": "Dihapus dari Disukai",
     "playlistUpdated": "Playlist diperbarui",
+    "playlistUpdateFailed": "Gagal menambahkan ke daftar putar",
     "providerLikeUnavailable": "{{provider}} tidak mendukung fitur menyukai lagu.",
     "providerPlaylistMutationUnavailable": "{{provider}} tidak mendukung penambahan lagu ke playlist.",
     "providerRecommendationsUnavailable": "{{provider}} tidak menyediakan rekomendasi konten.",
     "providerUserAlbumsUnavailable": "{{provider}} tidak menyediakan koleksi album pengguna.",
     "providerLibraryUnavailable": "{{provider}} tidak menyediakan perpustakaan playlist.",
     "songUnavailable": "Lagu telah dihapus",
+    "externalPlayerMovedOn": "Pemutar berpindah ke lagu lain; pemutaran dijeda",
     "songUnavailableAlternativeTitle": "Versi alternatif tersedia",
     "songUnavailableAlternativeDescription": "\"{{song}}\" tidak tersedia. {{typeDesc}}. Mainkan versi alternatif?",
     "songUnavailableAlternativeDefaultType": "Versi lain bisa diputar",
@@ -480,8 +654,7 @@ export default {
     "connecting": "Menghubungkan",
     "disconnected": "Terputus",
     "randomVisualizerModePerSongOn": "Animasi lirik acak untuk setiap lagu diaktifkan",
-    "randomVisualizerModePerSongOff": "Animasi lirik acak untuk setiap lagu dinonaktifkan",
-    "playlistUpdateFailed": "Gagal menambahkan ke daftar putar"
+    "randomVisualizerModePerSongOff": "Animasi lirik acak untuk setiap lagu dinonaktifkan"
   },
   "commandPalette": {
     "placeholder": "Ketik perintah atau cari...",
@@ -577,8 +750,10 @@ export default {
     "volumeInvalid": "Masukkan angka dari 0 sampai 100",
     "volumeSetPreview": "Atur volume ke {{value}}%",
     "volumeControlTitle": "Volume pemutaran",
-    "volumeControlHint": "Geser penggeser atau masukkan angka di atas",
-    "volumeMutedHint": "Dibisukan; perubahan berlaku setelah suara diaktifkan",
+    "volumeControlHint": "Geser penggeser atau masukkan angka di atas; klik ikon untuk membisukan",
+    "volumeMutedHint": "Dibisukan; klik ikon untuk membunyikan. Perubahan berlaku setelah suara diaktifkan",
+    "volumeMute": "Bisukan",
+    "volumeUnmute": "Bunyikan",
     "sleepTimerTitle": "Timer Tidur",
     "sleepTimerEnabledHint": "Timer akan berakhir setelah {{hours}} jam {{minutes}} menit",
     "sleepTimerZeroHint": "Pilih durasi yang lebih besar dari nol",
@@ -589,6 +764,8 @@ export default {
     "sleepTimerMinutesLabel": "Menit",
     "sleepTimerInputPlaceholder": "Masukkan menit, --on, atau --off",
     "latticePosterTintPlaceholder": "Sesuaikan kontrol di bawah",
+    "subtitleSettingsPlaceholder": "Atur subtitel di bawah",
+    "subtitleSettingsMore": "Opsi lainnya",
     "gridViewCardsPlaceholder": "Sesuaikan kontrol di bawah",
     "reduceMotionPlaceholder": "Sesuaikan kontrol di bawah",
     "lyricExportPlaceholder": "Pilih yang ingin diekspor di bawah",
@@ -601,8 +778,10 @@ export default {
     "sleepTimerUnexpectedMinutes": "--off tidak menerima durasi",
     "sleepTimerDurationRequired": "Masukkan menit sebelum menyalakan timer",
     "fmModeTitle": "Mode FM Pribadi",
+    "fmModeTitleOf": "Mode {{name}}",
     "fmModeHint": "Pilih suasana untuk langsung masuk ke mode suasana",
     "fmModeFilterPlaceholder": "Ketik untuk menyaring mode dan suasana",
+    "recommendationPreferencesPlaceholder": "Atur preferensi di bawah",
     "sourceCurrent": "sumber saat ini",
     "sourceLocal": "perpustakaan lokal",
     "sourceNavidrome": "Navidrome",
@@ -684,6 +863,14 @@ export default {
       "playback-fm-mode": {
         "title": "Mode FM Pribadi",
         "description": "Ganti mode atau suasana FM Pribadi"
+      },
+      "playback-station-mode": {
+        "title": "Mode radio",
+        "description": "Ganti mode atau suasana radio yang sedang diputar"
+      },
+      "playback-recommendation-preferences": {
+        "title": "Preferensi",
+        "description": "Atur preferensi di akun Anda yang memengaruhi rekomendasi"
       },
       "settings-help": {
         "title": "Buka Bantuan",
@@ -821,6 +1008,10 @@ export default {
         "title": "OBS: pertahankan animasi jendela utama",
         "description": "Aktifkan atau nonaktifkan animasi jendela utama saat OBS terhubung"
       },
+      "obs-toggle-track-card": {
+        "title": "OBS: tampilkan kartu lagu yang diputar",
+        "description": "Aktifkan atau nonaktifkan kartu lagu yang diputar di sumber browser OBS"
+      },
       "desktop-toggle-lyric-api": {
         "title": "API Lirik",
         "description": "Alihkan endpoint lirik lokal tanpa autentikasi"
@@ -932,6 +1123,14 @@ export default {
       "visualizer-machi-camera-bar": {
         "title": "Machi: Jendela bidik",
         "description": "Tampilkan atau sembunyikan bilah jendela bidik Machi di halaman pemutar untuk mengatur tampilan, fokus, bukaan, dan gerakan kamera"
+      },
+      "visualizer-nebbia-behind-cycle": {
+        "title": "Nebbia: Ganti pemandangan jendela",
+        "description": "Ganti apa yang ada di luar jendela Nebbia: jalan malam, Laut Mimpi Berpendar, atau latar; kaca depan tetap seperti semula"
+      },
+      "visualizer-nebbia-glass-cycle": {
+        "title": "Nebbia: Ganti kaca depan",
+        "description": "Ganti kaca di depan jendela Nebbia antara hujan, embun, dan salju"
       },
       "visualizer-toggle-glow-blur-quantize": {
         "title": "Perbaiki animasi lirik macet di Linux",
@@ -1137,6 +1336,10 @@ export default {
         "title": "Berlangganan atau berhenti berlangganan",
         "description": "Simpan playlist atau album online ini ke koleksimu, atau hapus jika sudah tersimpan"
       },
+      "grid-collect-filtered": {
+        "title": "Tambahkan lagu-lagu ini ke buku catatan",
+        "description": "Simpan koleksi ini (hanya lagu yang tersaring saat menyaring) ke buku catatan tanpa mengubah antrean"
+      },
       "directory-play-selection": {
         "title": "Putar kartu terpilih",
         "description": "Putar lagu dari kartu yang dipilih di peta, sesuai urutan kartu"
@@ -1200,6 +1403,10 @@ export default {
       "artist-edit-entity": {
         "title": "Edit info artis",
         "description": "Buka editor pustaka lokal untuk artis ini"
+      },
+      "artist-open-all-songs": {
+        "title": "Buka semua lagu",
+        "description": "Tampilkan semua lagu artis ini dalam satu halaman, termasuk single di luar album"
       },
       "settings-interaction": {
         "title": "Pengaturan interaksi",
@@ -1293,6 +1500,18 @@ export default {
         "title": "Prasetel tema",
         "description": "Langsung ke prasetel tema bawaan dan tersimpan"
       },
+      "settings-lyric-render-quality": {
+        "title": "Resolusi dan anti-aliasing kanvas lirik",
+        "description": "Langsung ke resolusi dan anti-aliasing yang diikuti semua gaya lirik canvas / WebGL secara bawaan"
+      },
+      "background-transparent": {
+        "title": "Latar: Transparan",
+        "description": "Alihkan latar ke tata letak sepenuhnya transparan"
+      },
+      "settings-toggle-player-bar-pinned": {
+        "title": "Sematkan bilah pemutar",
+        "description": "Jaga bilah pemutar bawah tetap terbuka alih-alih menyusut sendiri"
+      },
       "settings-lyrics-renderer": {
         "title": "Perender lirik",
         "description": "Langsung ke pengaturan cara lirik digambar di pemutar"
@@ -1312,6 +1531,10 @@ export default {
       "netease-scrobble-toggle": {
         "title": "Laporan dengar NetEase",
         "description": "Aktifkan atau matikan pelaporan pemutaran ke NetEase Cloud Music"
+      },
+      "auto-ai-lyric-segmentation-toggle": {
+        "title": "Segmentasi lirik AI otomatis",
+        "description": "Aktifkan atau matikan segmentasi otomatis lirik lagu baru menjadi kata dengan AI"
       },
       "settings-audio-output": {
         "title": "Keluaran audio",
@@ -1440,6 +1663,22 @@ export default {
       "playback-add-to-playlist": {
         "title": "Tambahkan ke daftar putar",
         "description": "Masukkan lagu ini ke salah satu daftar putar Anda"
+      },
+      "scratchpad-toggle": {
+        "title": "Buka atau tutup buku catatan",
+        "description": "Tarik keluar buku catatan: lagu untuk didengar atau dirapikan nanti"
+      },
+      "scratchpad-collect-current": {
+        "title": "Catat lagu ini ke buku catatan",
+        "description": "Simpan lagu ini untuk nanti tanpa mengubah antrean"
+      },
+      "scratchpad-handle-toggle": {
+        "title": "Tampilkan atau sembunyikan tab samping buku catatan",
+        "description": "Tab di tepi kiri yang membuka buku catatan"
+      },
+      "settings-scratchpad": {
+        "title": "Pengaturan buku catatan",
+        "description": "Apakah tab samping tampil, dan setinggi apa letaknya"
       },
       "playback-mute": {
         "title": "Bisukan",
@@ -1657,6 +1896,10 @@ export default {
         "title": "Vignette dinding poster",
         "description": "Aktifkan atau matikan vignette tepi pada kolase antrean (Lattice) dan dinding pustaka"
       },
+      "settings-toggle-lattice-badge-current-only": {
+        "title": "Hanya beri nomor lagu yang diputar",
+        "description": "Sembunyikan nomor sudut pada kartu lagu di kolase antrean (Lattice) dan dinding Bravais kecuali yang sedang diputar"
+      },
       "settings-toggle-lattice-auto-focus": {
         "title": "Lattice fokus otomatis",
         "description": "Alihkan apakah kolase antrean mengikuti lagu yang diputar saat lagu berganti"
@@ -1729,6 +1972,10 @@ export default {
         "title": "Putar mode konten subtitle",
         "description": "Putar konten subtitle antara terjemahan, romanisasi, dan romanisasi plus terjemahan"
       },
+      "settings-subtitles": {
+        "title": "Subtitel",
+        "description": "Jumlah baris subtitel bawah dan isi tiap baris, latarnya, serta subtitel sekunder"
+      },
       "settings-toggle-subtitle-background": {
         "title": "Alihkan latar subtitle",
         "description": "Tampilkan atau sembunyikan latar belakang subtitle untuk keterbacaan"
@@ -1760,38 +2007,6 @@ export default {
       "settings-liquid-glass": {
         "title": "Kaca cair",
         "description": "Langsung ke kekuatan, blur, dan prasetel kaca cair"
-      },
-      "settings-lyric-render-quality": {
-        "title": "Resolusi dan anti-aliasing kanvas lirik",
-        "description": "Langsung ke resolusi dan anti-aliasing yang diikuti semua gaya lirik canvas / WebGL secara bawaan"
-      },
-      "background-transparent": {
-        "title": "Latar: Transparan",
-        "description": "Alihkan latar ke tata letak sepenuhnya transparan"
-      },
-      "settings-toggle-player-bar-pinned": {
-        "title": "Sematkan bilah pemutar",
-        "description": "Jaga bilah pemutar bawah tetap terbuka alih-alih menyusut sendiri"
-      },
-      "visualizer-nebbia-behind-cycle": {
-        "title": "Nebbia: Ganti pemandangan jendela",
-        "description": "Ganti apa yang ada di luar jendela Nebbia: jalan malam, Laut Mimpi Berpendar, atau latar; kaca depan ikut berganti ke pasangan bawaannya"
-      },
-      "visualizer-nebbia-glass-cycle": {
-        "title": "Nebbia: Ganti kaca depan",
-        "description": "Ganti kaca di depan jendela Nebbia antara hujan dan embun"
-      },
-      "grid-collect-filtered": {
-        "title": "Tambahkan lagu-lagu ini ke buku catatan",
-        "description": "Simpan koleksi ini (hanya lagu yang tersaring saat menyaring) ke buku catatan tanpa mengubah antrean"
-      },
-      "scratchpad-toggle": {
-        "title": "Buka atau tutup buku catatan",
-        "description": "Tarik keluar buku catatan: lagu untuk didengar atau dirapikan nanti"
-      },
-      "scratchpad-collect-current": {
-        "title": "Catat lagu ini ke buku catatan",
-        "description": "Simpan lagu ini untuk nanti tanpa mengubah antrean"
       }
     }
   },
@@ -2014,6 +2229,8 @@ export default {
     "noLyrics": "Tidak ada lirik untuk disegmentasi",
     "saved": "Segmentasi kata tersimpan",
     "restored": "Segmentasi kata bawaan dipulihkan",
+    "autoSaved": "Lirik disegmentasi otomatis dengan AI",
+    "autoFailed": "Segmentasi AI otomatis gagal; periksa pengaturan model AI",
     "promptCopied": "Prompt dan lirik disalin",
     "currentCopied": "Segmentasi saat ini disalin",
     "partialFailure": "{{count}} batch gagal; baris tersebut tetap memakai pembagian bawaan",
@@ -2046,6 +2263,10 @@ export default {
     "queueReplaceUndoGone": "Antrean sudah berubah setelah diganti, jadi tidak ada yang bisa diurungkan",
     "queueReplaceHint": "Dapat mengganti seluruh antrean putar sekaligus dan mengakhiri FM Pribadi; Folia lalu memberi tahu mod mana yang melakukannya, dan Anda dapat mengurungkannya selama antrean belum diubah lagi.",
     "equalizerControlHint": "Mengubah pengaturan suara Anda: dapat mengganti preset suara, atau memasang kurva equalizer miliknya sendiri.",
+    "renderQualityHint": "Mengubah kualitas render kanvas lirik: dapat mengubah resolusi dan anti-aliasing kanvas lirik di Performa & gerakan.",
+    "visualizerModeHint": "Mengganti gaya animasi lirik Anda, seperti yang Anda lakukan di panel pemutar.",
+    "visualizerTuningHint": "Mengubah opsi gaya lirik bawaan (kecuali pengaturan kualitas).",
+    "visualizerBeatEffectsHint": "Menyalakan atau mematikan efek ketukan mode ketukan pintar dan mengubah kekuatannya; mode ketukan pintar itu sendiri tetap Anda yang memilih, tetapi saat Aktif efek yang dinyalakan membuat GPU menganalisis lagu baru.",
     "signatureVerified": "Terverifikasi",
     "signatureVerifiedDetail": "Memiliki tanda tangan resmi Folium yang valid ({{key}}): sumber dan isinya telah ditinjau Folium dan tidak berubah sejak ditandatangani. Setelah diaktifkan, mod tetap berjalan dengan hak penuh aplikasi.",
     "signatureBeta": "Pratinjau",
@@ -2179,8 +2400,7 @@ export default {
     "warnings": {
       "export-alpha-unavailable": "Platform ini tidak mempertahankan saluran alpha; video memiliki latar pekat. Gunakan mode latar tema dengan animasi teks, atau ekspor di Windows.",
       "export-alpha-not-guaranteed": "Saluran alpha mungkin tidak dipertahankan di platform ini; periksa file hasil, atau gunakan Windows untuk latar transparan."
-    },
-    "renderQualityHint": "Mengubah kualitas render kanvas lirik: dapat mengubah resolusi dan anti-aliasing kanvas lirik di Performa & gerakan."
+    }
   },
   "account": {
     "syncData": "Sinkronkan Data",
@@ -2188,6 +2408,7 @@ export default {
     "logout": "Logout",
     "logoutConfirmTitle": "Logout dari {{provider}}?",
     "logoutClearsQueue": "Antrean akan dikosongkan.",
+    "logoutRemovesSongs": "Lagu dari platform ini dikeluarkan dari antrean; lagu lainnya tetap.",
     "guestMode": "Mode Tamu",
     "loginOnHome": "Login di Beranda",
     "audioQuality": "Kualitas Default",
@@ -2204,6 +2425,14 @@ export default {
     "locatePlaying": "Temukan lagu yang diputar di halaman ini",
     "viewCollections": "Lihat koleksi",
     "tracks": "Trek",
+    "alreadyLiked": "Sudah disukai",
+    "saveToPlaylist": "Simpan ke daftar putar",
+    "saving": "Sedang menambahkan ke daftar putar, sebentar",
+    "searchPlaylists": "Cari daftar putar",
+    "noMatchingPlaylists": "Tidak ada daftar putar yang cocok",
+    "createAndAdd": "Buat dan tambahkan",
+    "songsToSave_one": "{{count}} lagu",
+    "songsToSave_other": "{{count}} lagu",
     "plays": "Putar",
     "playAll": "Putar Semua",
     "playFilteredTracks": "Putar {{count}} lagu",
@@ -2219,15 +2448,7 @@ export default {
     "syncProgress": "Dimuat {{loaded}} / {{total}}",
     "syncInterrupted": "Pemuatan terputus",
     "syncInterruptedProgress": "Terputus di {{loaded}} / {{total}}",
-    "syncFailedHint": "Beberapa lagu gagal dimuat ({{error}}). Klik untuk melanjutkan dari titik terakhir",
-    "alreadyLiked": "Sudah disukai",
-    "saveToPlaylist": "Simpan ke daftar putar",
-    "saving": "Sedang menambahkan ke daftar putar, sebentar",
-    "searchPlaylists": "Cari daftar putar",
-    "noMatchingPlaylists": "Tidak ada daftar putar yang cocok",
-    "createAndAdd": "Buat dan tambahkan",
-    "songsToSave_one": "{{count}} lagu",
-    "songsToSave_other": "{{count}} lagu"
+    "syncFailedHint": "Beberapa lagu gagal dimuat ({{error}}). Klik untuk melanjutkan dari titik terakhir"
   },
   "search": {
     "placeholder": "Cari lagu...",
@@ -2251,6 +2472,7 @@ export default {
   },
   "personalFmMode": {
     "openPicker": "Ganti mode FM Pribadi",
+    "openPickerOf": "Ganti mode {{name}}",
     "category": {
       "mode": "Mode",
       "mood": "Suasana Hati",
@@ -2312,7 +2534,27 @@ export default {
     "statusPending": "Mode FM Pribadi",
     "statusApplied": "FM Pribadi beralih ke",
     "statusEmpty": "Mode FM Pribadi ini tidak mengembalikan lagu",
-    "statusFailed": "Gagal mengganti mode FM Pribadi"
+    "statusFailed": "Gagal mengganti mode FM Pribadi",
+    "statusAppliedOf": "{{name}} beralih ke",
+    "statusEmptyOf": "Mode {{name}} ini tidak mengembalikan lagu",
+    "statusFailedOf": "Gagal mengganti mode {{name}}"
+  },
+  "recommendationPreferences": {
+    "open": "Preferensi",
+    "noteDefault": "Disimpan di akun Anda",
+    "less": "Kurangi rekomendasi",
+    "default": "Default",
+    "more": "Tambah rekomendasi",
+    "reset": "Atur ulang",
+    "save": "Simpan",
+    "saving": "Menyimpan…",
+    "loading": "Membaca preferensi…",
+    "loadFailed": "Preferensi tidak terbaca",
+    "retry": "Coba lagi",
+    "empty": "Tidak ada yang bisa diatur",
+    "saved": "Tersimpan",
+    "unconfirmed": "Terkirim, tetapi belum terkonfirmasi. Buka lagi nanti untuk memeriksa.",
+    "saveFailed": "Gagal menyimpan. Pilihan Anda masih ada, jadi bisa dicoba lagi."
   },
   "login": {
     "title": "Masuk",
@@ -2370,7 +2612,11 @@ export default {
     "noteDeviceLimit": "Keluar dari perangkat yang tidak dipakai di ponsel, lalu coba lagi",
     "noteWrongScanApp": "Pindai dengan aplikasi untuk metode masuk ini, atau pilih metode lain",
     "noteCloseBrowser": "Tutup browser itu, lalu coba lagi",
-    "noteUnknown": "Kesalahan tidak diketahui"
+    "noteUnknown": "Kesalahan tidak diketahui",
+    "submit": "Kirim",
+    "submitting": "Mengirim…",
+    "formErrorUnknown": "Gagal masuk. Periksa isian Anda dan coba lagi.",
+    "formLoggedInRefreshFailed": "Berhasil masuk, tetapi akun tidak dapat dimuat. Coba lagi atau buka ulang jendela masuk."
   },
   "failure": {
     "unreachable": "Tidak dapat terhubung ke {{provider}}",
@@ -2432,15 +2678,18 @@ export default {
     "loginNoteQishui": "Pindai dengan aplikasi Douyin dan konfirmasi otorisasi",
     "loginTitleBodian": "Pindai dengan Bodian Music",
     "loginNoteBodian": "Pindai kode ini dengan aplikasi Bodian Music dan konfirmasi masuk",
+    "loginTitleFnMusic": "Masuk ke fnOS Music",
+    "loginNoteFnMusic": "Masukkan alamat server dan akun fnOS Music untuk memutar musik NAS Anda",
     "loginTitleYtm": "Masuk ke YouTube Music",
+    "loginTitleAppleMusic": "Masuk ke Apple Music",
+    "loginNoteAppleMusic": "Masuk melalui jendela Apple. Kata sandi Anda hanya diberikan kepada Apple.",
+    "appleMusicLinuxUnsupported": "Linux belum didukung",
     "loginNoteYtmBrowser": "Jendela browser terpisah akan terbuka. Masuk ke Google di sana, lalu tutup jendela itu setelah YouTube Music menampilkan akun Anda.",
     "loginNoteYtmBrowserMac": "Jendela browser terpisah akan terbuka. Masuk ke Google di sana, lalu keluar dari browser itu (⌘Q) setelah YouTube Music menampilkan akun Anda.",
     "loginNoBrowserYtm": "Masuk ke YouTube Music memerlukan Chrome (Beta, Dev, atau Canary juga bisa), Edge, Chromium, Brave, atau Helium yang terpasang.",
     "loginCodeWaiting": "Menunggu konfirmasi di browser",
     "loginTitleSpotify": "Masuk ke Spotify",
     "loginNoteSpotify": "Pilih Setuju di halaman Spotify yang terbuka di browser",
-    "loginTitleFnMusic": "Masuk ke fnOS Music",
-    "loginNoteFnMusic": "Masukkan alamat server dan akun fnOS Music untuk memutar musik NAS Anda",
     "loginCaseSpotifyUnfinished": "Tidak dikonfirmasi dalam 10 menit",
     "loginCaseSpotifyDenied": "Pilih Setuju di halaman Spotify",
     "loginCaseSpotifyPort": "Port 5588 sudah digunakan",
@@ -2467,7 +2716,7 @@ export default {
     "qqLoginMethodWechat": "Pindai WeChat",
     "qqLoginMethodQqMusic": "Pindai aplikasi QQ Music",
     "switchOnlineProvider": "Ganti penyedia musik online",
-    "confirmOnlineProviderSwitch": "Ganti ke {{provider}}? Pemutaran online dan antrean saat ini akan dihapus.",
+    "confirmOnlineProviderSwitch": "Ganti ke {{provider}}?",
     "onlineProvider": "Penyedia musik online",
     "providerNotConfigured": "API tidak dikonfigurasi untuk Web",
     "providerNoAccount": "Tanpa login",
@@ -2582,6 +2831,7 @@ export default {
     "allAlbums": "Semua",
     "popular": "Populer",
     "radio": "Radio",
+    "radioTab": "Radio",
     "explore": "Jelajahi",
     "exploreRefresh": "Muat ulang",
     "exploreMore": "Lainnya",
@@ -2610,6 +2860,12 @@ export default {
     "qqNewSongs": "Lagu baru",
     "qqNewAlbums": "Album baru",
     "qqCharts": "Tangga lagu",
+    "qqFeedForYou": "Untukmu",
+    "qqRecommendedPlaylists": "Playlist rekomendasi",
+    "qqGuessYouLike": "Mungkin Kamu Suka",
+    "qqGuessYouLikeDescription": "Radio Mungkin Kamu Suka dari QQ Music; ganti mode dengar saat diputar",
+    "qqGuessYouLikeSuggested": "Saran",
+    "qqGuessYouLikeOther": "Lainnya",
     "personalFm": "FM Pribadi",
     "dailyRecommendations": "Rekomendasi Harian",
     "dailyRecommendationsDescription": "Campuran harian yang dibuat khusus untuk Anda",
@@ -2626,6 +2882,16 @@ export default {
     "todayRecommendations": "Hari Ini",
     "refreshRecommendations": "Segarkan rekomendasi hari ini",
     "noMoreDailyRecommendations": "Tidak ada rekomendasi lagi hari ini",
+    "dailyRecommendationMode": "Jenis rekomendasi",
+    "dailyDefaultRecommendations": "Bawaan",
+    "dailyStyleRecommendations": "Per gaya",
+    "dailyStylePick": "Pilih gaya",
+    "dailyStylePickerTitle": "Gaya rekomendasi",
+    "dailyStylePickerDescription": "Pilih satu atau beberapa gaya dari grup yang sama. Pilihan disimpan di akun Anda.",
+    "dailyStyleLoading": "Memuat gaya…",
+    "dailyStyleGroupsFailed": "Daftar gaya gagal dimuat.",
+    "dailyStyleLoadFailed": "Rekomendasi per gaya gagal dimuat. Coba lagi nanti",
+    "dailyStyleSaveFailed": "Gagal beralih ke gaya ini. Coba lagi nanti",
     "dislikeRecommendationFailed": "Rekomendasi ini tidak dapat diganti. Silakan coba lagi nanti.",
     "removeTrackFailed": "Lagu tidak dapat dihapus",
     "stage": "Stage",
@@ -2648,6 +2914,7 @@ export default {
     "quickActions": "Aksi cepat",
     "queueCollage": "Kolase antrean",
     "playQueue": "Antrean pemutaran",
+    "scratchpad": "Buku catatan",
     "navigatePlaylists": "Navigasi Playlist",
     "playPause": "Putar / Jeda",
     "playerControls": "Kontrol Halaman Pemutar",
@@ -2657,6 +2924,7 @@ export default {
     "seekBackward": "Mundur 5d",
     "hidePlayerChrome": "Sembunyikan bilah progres dan tombol kanan bawah",
     "toggleRightPanel": "Alihkan panel kanan",
+    "openControlPanel": "Buka panel kontrol",
     "cycleRightPanelTabs": "Gilir tab panel kanan yang terbuka",
     "openCommandPalette": "Buka palette perintah",
     "openCommandPaletteQueue": "Buka antrean di palette perintah",
@@ -2675,13 +2943,40 @@ export default {
     "servicePackLabel": "{{codename}} Update SP{{servicePack}} · Pembaruan besar",
     "ponder": "Ponder Bantuan",
     "ponderDescription": "Pelajari kontrol dasar dan cara kerja Folia",
-    "version": "Versi",
-    "scratchpad": "Buku catatan",
-    "openControlPanel": "Buka panel kontrol"
+    "version": "Versi"
   },
   "qishui": {
     "recentPlayed": "Terakhir diputar di Qishui",
     "recommended": "Rekomendasi untuk Anda"
+  },
+  "listeningRank": {
+    "qqWeek": "Peringkat dengar · Minggu ini",
+    "qqYear": "Peringkat dengar · Tahunan",
+    "qqWeekDescription": "Peringkat QQ Music minggu ini, dihitung dari hari Senin; minggu yang belum selesai dihitung sampai hari ini",
+    "qqYearDescription": "Peringkat tahunan QQ Music, dihitung selama tahun lalu (1 Januari sampai 31 Desember)",
+    "week": "Peringkat dengar · Minggu terakhir",
+    "all": "Peringkat dengar · Sepanjang waktu",
+    "description": "Lagu yang diurutkan menurut riwayat dengar akun ini di platform",
+    "listenCount_one": "Diputar {{count}} kali",
+    "listenCount_other": "Diputar {{count}} kali"
+  },
+  "qqPreferences": {
+    "note": "Disimpan di akun; memengaruhi semua lagu yang direkomendasikan",
+    "familiarity": "Keakraban lagu",
+    "familiarityExplore": "Lebih banyak yang baru",
+    "keep": "Tetap seperti sekarang",
+    "familiarityFamiliar": "Lebih akrab",
+    "mood": "Suasana musik",
+    "moodSad": "Lebih sedih",
+    "moodHappy": "Lebih ceria",
+    "coverLive": "Cover & live",
+    "instrumental": "Instrumental",
+    "mandarin": "Mandarin",
+    "english": "Inggris",
+    "japanese": "Jepang",
+    "korean": "Korea",
+    "cantonese": "Kanton",
+    "ai": "Lagu AI"
   },
   "lyricProvider": {
     "qishui": "Qishui Music",
@@ -2689,7 +2984,19 @@ export default {
     "qq": "QQ Music",
     "kugou": "Kugou Music",
     "spotify": "Spotify",
+    "appleMusic": "Apple Music",
     "amll": "AMLLDB"
+  },
+  "onlineProviderName": {
+    "appleMusic": "Apple Music",
+    "netease": "NetEase",
+    "kugou": "Kugou",
+    "qq": "QQ Music",
+    "bodian": "Bodian",
+    "ytm": "YT Music",
+    "spotify": "Spotify",
+    "qishui": "Qishui",
+    "fnmusic": "fnOS"
   },
   "globalLyricOffset": {
     "title": "Offset Waktu Global",
@@ -2864,6 +3171,7 @@ export default {
     "aiEndpoint_hongkong": "Hong Kong",
     "aiTemperatureRangeDesc": "Rentang: {{min}}–{{max}}. Default ke 0.7 bila dibiarkan kosong.",
     "aiTemperaturePerModelDesc": "Rentang: {{min}}–{{max}}; beberapa model mengabaikannya. Default ke 0.7 bila dibiarkan kosong.",
+    "aiTemperatureNote": "Temperatur mengatur seberapa acak hasilnya: makin rendah makin stabil, makin tinggi makin beragam. Sebaiknya biarkan default, atau sesuaikan sesuai rekomendasi dokumentasi penyedia Anda.",
     "randomVisualizerModes": "Gaya untuk diacak",
     "randomVisualizerSelectAll": "Pilih semua",
     "randomVisualizerCurrentStyle": "Gaya saat ini",
@@ -2897,7 +3205,7 @@ export default {
     "settingsPageIntegration": "Koneksi & integrasi",
     "settingsPageStorage": "Penyimpanan & cadangan",
     "settingsPageDesktop": "Desktop",
-    "settingsPageGraphics": "Performa & gerakan",
+    "settingsPageGraphics": "Gerakan & performa",
     "settingsPageMods": "Mod",
     "settingsPageDeveloper": "Pengembang",
     "settingsHeadingTheme": "Tema",
@@ -2953,7 +3261,7 @@ export default {
     "customShortcutLettersOnly": "Hanya huruf A–Z",
     "globalShortcuts": "Pintasan global",
     "globalShortcutsDesc": "Tombol yang berfungsi saat Folia di latar belakang: kontrol pemutaran, dan perintah yang disediakan mod.",
-    "globalShortcutsNote": "Tombol pengubahnya tetap Ctrl+Alt+Shift (Control+Option+Shift di macOS); kamu memilih tombol terakhirnya. Kombinasi yang sudah dipakai program lain ditandai di barisnya.",
+    "globalShortcutsNote": "Tekan sendiri kombinasinya: tombol pengubah (Ctrl, Alt, Shift, Win/Cmd) ditambah satu huruf, angka, tombol fungsi, Spasi, tombol panah, atau tombol seperti Backspace atau Delete. Kombinasi umum seperti salin, tempel, ganti jendela, atau memilih teks, serta yang mengetik karakter, ditolak, jadi biasanya Anda perlu menahan dua tombol pengubah atau lebih, tiga bila memakai Win/Cmd. Ctrl+Alt+Shift bawaan (Control+Option+Shift di macOS) dengan huruf atau angka paling kecil kemungkinannya bentrok dengan program lain. Kombinasi yang sudah dipakai program lain ditandai di barisnya.",
     "globalShortcutsPortalDesc": "Di Wayland, desktop yang menentukan tombolnya.",
     "globalShortcutsPortalNote": "Setelah didaftarkan, ikat tombol untuk tiap entri sesuai dokumentasi desktopmu. Tombol yang disarankan tiap entri:",
     "globalShortcutPortalRegister": "Daftarkan ke desktop",
@@ -2963,9 +3271,18 @@ export default {
     "globalShortcutCommand": "Perintah untuk pintasan {{index}}",
     "globalShortcutNoCommand": "Belum dipilih",
     "globalShortcutLettersAndDigits": "Hanya huruf A–Z dan angka 0–9",
-    "globalShortcutReserved": "GNOME merekam layar dengan Ctrl+Alt+Shift+R; pilih tombol lain",
-    "globalShortcutDuplicate": "Pintasan global lain sudah memakai tombol itu",
+    "globalShortcutNeedsModifier": "Sertakan minimal satu tombol pengubah",
+    "globalShortcutShiftOnly": "Shift saja dipakai untuk mengetik dan memilih teks; tambahkan tombol pengubah lain",
+    "globalShortcutSingleModifier": "Satu tombol pengubah biasanya pintasan milik program atau sistem; tambahkan satu lagi (tombol fungsi boleh dengan satu)",
+    "globalShortcutTypesCharacter": "Tombol pengubah ini mengetik karakter di macOS (Option), jadi ditolak di semua sistem; pilih kombinasi lain",
+    "globalShortcutEditsText": "Kombinasi ini untuk memilih atau menghapus teks; pilih yang lain",
+    "globalShortcutMetaNeedsMore": "Kombinasi dengan Win/Cmd kebanyakan milik sistem atau program; tahan minimal tiga tombol pengubah",
+    "globalShortcutUnsupportedKey": "Tombol ini tidak bisa dipakai untuk pintasan global",
+    "globalShortcutReserved": "Sistem, desktop, atau program umum sudah memakai kombinasi ini; pilih yang lain",
+    "globalShortcutDuplicate": "Pintasan global lain sudah memakai kombinasi itu",
     "globalShortcutTakenBySystem": "Kombinasi ini sudah dipakai program lain",
+    "globalShortcutCustomCombination": "Pintasan internal program lain tidak bisa diperiksa dari sini. Setelah didaftarkan, kombinasi ini diambil Folia di semua program",
+    "globalShortcutAltGrCombination": "Pada tata letak dengan AltGr (Jerman, Polandia, dan lainnya), Ctrl+Alt dengan tombol ini mengetik karakter seperti @ atau €, yang tidak bisa diketik lagi setelah didaftarkan. Pintasan internal program lain juga tidak bisa diperiksa dari sini",
     "globalShortcutModCommand": "{{command}} · {{mod}}",
     "globalShortcutModInactive": "Mod belum diaktifkan. Tombol ini kembali berfungsi setelah mod diaktifkan",
     "globalShortcutModCommandMissing": "Mod saat ini tidak menyediakan perintah ini",
@@ -3074,6 +3391,11 @@ export default {
     "rememberHomeCardPosition": "Ingat posisi kartu beranda",
     "rememberHomeCardPositionDesc": "Kembali ke kartu terakhir di setiap bagian saat berpindah tab atau keluar dari pemutar. Posisi disimpan hingga aplikasi ditutup atau dimuat ulang.",
     "homeTabsVisibilityDesc": "Sesuaikan entri capsule yang ditampilkan di bagian atas halaman beranda",
+    "scratchpadSettings": "Buku catatan",
+    "scratchpadShowHandle": "Tampilkan tab samping",
+    "scratchpadShowHandleDesc": "Tab di tepi kiri jendela. Saat disembunyikan, Ctrl / ⌘ + J atau palet perintah tetap membuka buku catatan.",
+    "scratchpadHandlePosition": "Tinggi tab samping",
+    "scratchpadHandlePositionDesc": "Letak tab di tepi kiri: 0% di atas, 100% dekat bagian bawah jendela. Di sekitar tengah, tab ini menumpuk dengan tab seam Bravais yang dilipat.",
     "showHomeTabPlaylist": "Tampilkan Playlist",
     "showHomeTabRadio": "Tampilkan Radio",
     "showHomeTabExplore": "Tampilkan Jelajahi",
@@ -3299,6 +3621,8 @@ export default {
     "stageTrackPillMode_never": "Jangan tampilkan",
     "stageTrackPillOnHome": "Tampilkan juga di halaman utama",
     "stageTrackPillOnHomeDesc": "Saat nonaktif, kartu tetap tampil di pemutar dan antrean putar. Aktifkan untuk menampilkannya juga di halaman utama.",
+    "stageTrackPillInObs": "Tampilkan di sumber browser",
+    "stageTrackPillInObsDesc": "Aktifkan untuk menampilkan kartu juga di sumber browser OBS, dengan mode tampilan, durasi, dan posisi di atas. Di versi web, salin ulang tautan OBS agar berlaku.",
     "stageTrackPillTimeout": "Durasi tampil",
     "disableVisualizerVignette": "Nonaktifkan vignette",
     "visualizerVignette": "Vignette",
@@ -3312,6 +3636,8 @@ export default {
     "latticePosterTintCustomColorDesc": "Ganti gradien dari tema dengan satu warna lapisan tetap.",
     "latticePosterTintColor": "Warna lapisan",
     "latticePosterTintIntensity": "Intensitas lapisan",
+    "latticeBadgeCurrentOnly": "Hanya beri nomor lagu yang diputar",
+    "latticeBadgeCurrentOnlyDesc": "Pertahankan label nomor di sudut hanya pada lagu yang sedang diputar dan sembunyikan nomor pada kartu lagu lain. Berlaku untuk kolase antrean (Lattice) maupun dinding Bravais; label jenis pada kartu daftar putar dan folder tetap ada.",
     "gridViewCardSettings": "Kartu grid",
     "gridViewFullBleedCover": "Sampul penuh",
     "gridViewFullBleedCoverHint": "Sampul memenuhi seluruh kartu; judul dan artis di atas sampul",
@@ -3523,6 +3849,8 @@ export default {
     "partitaSemanticLayout": "Tata Letak Semantik CJK",
     "partitaStaggerMin": "Stagger Min",
     "partitaStaggerMax": "Stagger Max",
+    "avoidOverlap": "Cegah Tumpang Tindih",
+    "avoidOverlapHint": "Beri jarak kata sesuai ukurannya saat diperbesar dan diputar",
     "fumeSettings": "Penyetelan Fume",
     "fumeHidePrintSymbols": "Sembunyikan Cap Cetak",
     "fumeGeometricBackground": "Bentuk Geometris",
@@ -3761,6 +4089,50 @@ export default {
     "nebbiaRainHit": "Tetes hujan di kaca",
     "nebbiaRainBig": "Tetes besar tiap kata",
     "nebbiaResolution": "Resolusi render",
+    "nebbiaScenery": "Pemandangan",
+    "nebbiaSceneryHint": "Setiap bagian pemandangan bisa dimatikan sendiri; jika semua mati hanya langit yang tersisa. Bokeh adalah neon, lampu jalan, dan papan nama; jika jalan dimatikan, lampu mobil dan bokeh tidak punya pantulan. Tetesan hujan di kaca diatur dengan penggeser di atas.",
+    "nebbiaScenery_spot": "Lampu sorot",
+    "nebbiaScenery_buildings": "Gedung",
+    "nebbiaScenery_lights": "Bokeh",
+    "nebbiaScenery_cars": "Lampu mobil",
+    "nebbiaScenery_road": "Jalan",
+    "nebbiaRain": "Hujan di luar",
+    "nebbiaRainHint": "Hujan di luar hanya terlihat di dalam sorotan lampu sorot, di bagian kaca yang sudah diusap bersih; hujan miring condong mengikuti kecepatan bus. Dengan kaca salju, di luar tidak hujan, jadi pilihan ini tidak berpengaruh.",
+    "nebbiaRain_slant": "Miring",
+    "nebbiaRain_straight": "Tegak",
+    "nebbiaRain_off": "Mati",
+    "nebbiaBehind": "Di luar jendela",
+    "nebbiaBehindHint": "Jalanan malam berhujan, Laut Mimpi Berpendar (akuarium), atau latar bersama. Dengan latar, kabut menjadi lapisan tembus pandang (putih dengan tema siang, gelap dengan tema malam) dan goresan yang diusap memperlihatkan latar di belakangnya; halaman pemutar transparan selalu begini dan memperlihatkan desktop.",
+    "nebbiaBehindTransparentHint": "Saat halaman pemutar transparan, di luar jendela selalu memperlihatkan yang di belakang; pilihan ini hanya menentukan apa yang dibiaskan tetesan (latar bersama membiaskan jalanan), dan digambar seperti biasa setelah transparan dimatikan.",
+    "nebbiaBehind_night": "Jalanan malam",
+    "nebbiaBehind_backdrop": "Latar",
+    "nebbiaBehind_aquarium": "Laut Mimpi Berpendar",
+    "nebbiaJellies": "Jumlah ubur-ubur",
+    "nebbiaJellySize": "Ukuran ubur-ubur",
+    "nebbiaBubbles": "Banyak gelembung",
+    "nebbiaGlass": "Kaca depan",
+    "nebbiaGlassStyle": "Air di kaca",
+    "nebbiaGlass_rain": "Hujan",
+    "nebbiaGlass_dew": "Embun",
+    "nebbiaGlass_snow": "Salju",
+    "nebbiaGlassHint": "Hujan: titik air besar kecil di kabut, dengan tetes hujan menghantam kaca. Embun: lapisan rapat butir embun kecil yang perlahan merembes keluar. Salju: kepingan salju menempel di kaca lalu perlahan mencair menjadi titik air yang menempel di kaca dan baru meluncur setelah menyatu jadi besar; jari yang menulis menyapu salju, dan di luar tidak hujan. Kaca dipilih terpisah dari pemandangan luar; mengganti pemandangan tidak mengganti kaca.",
+    "nebbiaDew": "Banyak embun",
+    "nebbiaDewSize": "Ukuran embun",
+    "nebbiaDewGlint": "Kilau embun",
+    "nebbiaSnow": "Banyak salju",
+    "nebbiaSnowSize": "Ukuran kepingan salju",
+    "nebbiaSnowMelt": "Kecepatan mencair",
+    "nebbiaAquaScenery_spot": "Cahaya dari atas",
+    "nebbiaAquaScenery_buildings": "Karang dan rumput laut",
+    "nebbiaAquaScenery_lights": "Cahaya di rumput laut",
+    "nebbiaAquaScenery_cars": "Gelembung besar",
+    "nebbiaAquaScenery_road": "Dasar pasir",
+    "nebbiaAquaSceneryHint": "Setiap bagian akuarium bisa dimatikan sendiri; air dan cahaya dari permukaannya selalu ada. Ubur-ubur dan butiran cahaya bersinar seterang penggeser Neon di atas.",
+    "nebbiaAquaRain": "Gelembung halus",
+    "nebbiaAquaRainHint": "Beberapa celah di dasar terus mengeluarkan aliran gelembung halus; aliran miring terbawa arus.",
+    "nebbiaAquaRain_slant": "Miring",
+    "nebbiaAquaRain_straight": "Tegak",
+    "nebbiaAquaRain_off": "Mati",
     "lumiereUnlitOpacity": "Opasitas teks yang belum dinyanyikan",
     "lumiereWindowNeighbors": "Baris sekitar",
     "lumiereWindowNeighborsPrev": "Sebelumnya + saat ini",
@@ -3802,6 +4174,12 @@ export default {
     "beatEffect_nebbiaDrizzleRideDesc": "Hujan dan bus Nebbia mengikuti lagu yang dipisahkan HTDemucs. Hujan mengikuti vokal: makin keras nyanyiannya, makin banyak tetes kecil yang mengenai kaca, dan satu tetes besar jatuh di setiap suku kata, menjauhi baris yang sedang dinyanyikan. Bus terguncang mengikuti kick drum, bukan acak. Hujan dan guncangan masing-masing punya kekuatan sendiri; di 0 tidak ada hujan atau guncangan. Sebelum lagu selesai dianalisis, hujan mengikuti rentang vokal dari campuran dan bus terguncang acak.",
     "beatEffectPart_nebbiaRain": "Kekuatan hujan",
     "beatEffectPart_nebbiaBump": "Kekuatan guncangan",
+    "beatEffect_nebbiaAquaBeat": "Gelombang Menari",
+    "beatEffect_nebbiaAquaBeatDesc": "Mengikuti ketukan yang dikenali beat_this, saat di luar jendela adalah akuarium: tiap ketukan semua ubur-ubur mengerut dan melesat naik (ringan pada ketukan biasa, kuat pada ketukan pertama birama), rumput laut condong ke satu sisi lalu memantul kembali (bergantian sisi), sederet gelembung besar naik dari pasir (selama aktif tidak ada gelembung besar acak), dan lingkaran cahaya lampu sorot membesar lalu mengecil lagi. Masing-masing punya kekuatan sendiri; ketukan yang lebih keras menggerakkannya lebih besar. Tidak berpengaruh saat di luar jendela adalah jalan atau latar, dan ketukan tidak dianalisis untuknya.",
+    "beatEffectPart_nebbiaJelly": "Ubur-ubur",
+    "beatEffectPart_nebbiaWeed": "Rumput laut",
+    "beatEffectPart_nebbiaBubble": "Gelembung",
+    "beatEffectPart_nebbiaSpot": "Lampu sorot",
     "beatEffect_pendoloGearBeats": "Gigi Berdetak",
     "beatEffect_pendoloGearBeatsDesc": "Roda gigi melangkah mengikuti ketukan yang dideteksi beat_this. (Dihentikan)",
     "beatEffect_latentPulse": "Denyut Pasang",
@@ -3838,6 +4216,9 @@ export default {
     "machiSceneKonbini": "Konbini",
     "machiSceneStation": "Pom bensin",
     "machiSceneKowloon": "Bar Kota Bertembok",
+    "machiLightsSection": "Lampu",
+    "machiSimulatedBeat": "Ketukan simulasi",
+    "machiSimulatedBeatHint": "Saat mode ketukan pintar diatur ke Nonaktif, ketukan simulasi yang tetap menggerakkan Denyut Neon dan Kilat Layar: kelompok neon menyala bergantian dan layar lirik menyala di satu titik setiap dua ketukan. Saat diatur ke Aktif atau Hanya yang sudah dianalisis, ketukan dan pukulan drum yang sebenarnya yang menggerakkannya, dan sakelar ini tidak berpengaruh.",
     "machiSkySection": "Waktu dan cuaca",
     "machiTimeOfDay": "Waktu",
     "machiTimeOfDayHint": "Otomatis mengikuti jam lokal: siang, senja, atau malam.",
@@ -3896,9 +4277,9 @@ export default {
     "machiQualityBalanced": "Seimbang",
     "machiQualityLow": "Rendah",
     "machiRenderScale": "Resolusi",
-    "machiRenderScaleHint": "Menggambar dengan sebagian piksel layar: lebih rendah sedikit lebih lembut tetapi jauh lebih cepat. Di layar DPI tinggi paling banyak dihitung 2× ukuran tata letak.",
+    "machiRenderScaleHint": "Menggambar dengan sebagian piksel layar: lebih rendah sedikit lebih lembut tetapi jauh lebih cepat. Di layar DPI tinggi paling banyak dihitung 2× ukuran tata letak. Ikuti global memakai resolusi kanvas lirik di Performa & gerakan (sekarang {{value}}; di atas 1× melakukan supersampling).",
     "machiAntialias": "Anti-aliasing",
-    "machiAntialiasHint": "FXAA paling hemat tetapi sedikit melunakkan teks; SMAA memberi tepi yang bersih dan juga menghaluskan garis tinta serta hujan, dengan biaya sedikit lebih besar; Supersampling menggambar dengan resolusi dua kali lalu diperkecil, paling halus dan paling mahal.",
+    "machiAntialiasHint": "FXAA paling hemat tetapi sedikit melunakkan teks; SMAA memberi tepi yang bersih dan juga menghaluskan garis tinta serta hujan, dengan biaya sedikit lebih besar; Supersampling menggambar dengan resolusi dua kali lalu diperkecil, paling halus dan paling mahal. Ikuti global berarti SMAA selama pengaturan global aktif (sekarang {{value}}) dan mati saat global mati.",
     "machiAntialiasOff": "Mati",
     "machiAntialiasFxaa": "FXAA",
     "machiAntialiasSmaa": "SMAA",
@@ -3913,7 +4294,30 @@ export default {
     "machiGlow": "Pendar dan kilau lensa",
     "machiGlowHint": "Pendar di sekitar lampu dan papan nama pada malam hari, serta kilau lensa mendatar.",
     "machiAdaptive": "Turunkan otomatis",
-    "machiAdaptiveHint": "Jika frame rate terus rendah, kualitas diturunkan bertahap di bawah pengaturan ini (blur kedalaman bidang dulu, lalu pantulan, bayangan, dan pendar, baru kemudian anti-aliasing dan resolusi), tidak pernah melebihi pilihanmu. Mengubah pengaturan memulai lagi dari yang baru.",
+    "machiAdaptiveHint": "Jika frame rate terus rendah, kualitas diturunkan bertahap di bawah pengaturan ini (supersampling dan MSAA tepi dulu, kemudian pendar, pantulan, blur kedalaman bidang, resolusi, dan anti-aliasing akhir, bayangan paling akhir), tidak pernah melebihi pilihanmu. Mengubah pengaturan memulai lagi dari yang baru.",
+    "machiAdaptiveActive": "Saat ini turun {{count}} tingkat.",
+    "liquidGlassSection": "Kaca cair",
+    "liquidGlassSectionDesc": "Sesuaikan material komponen antarmuka Folia.",
+    "liquidGlassPreset": "Preset",
+    "liquidGlassPresetDesc": "Tampilan siap pakai yang menyetel kekuatan, blur, dan jarak lengkung tepi sekaligus.",
+    "liquidGlassPresetFrosted": "Kaca buram",
+    "liquidGlassPresetClear": "Cairan jernih",
+    "liquidGlassPresetHazy": "Cairan kabur",
+    "liquidGlassPresetEco": "Hemat daya",
+    "liquidGlassStrength": "Kekuatan Bias",
+    "liquidGlassStrengthDesc": "Seberapa kuat tepi kaca membiaskan isi di belakangnya.",
+    "liquidGlassBend": "Jarak Bidang Bias",
+    "liquidGlassBendDesc": "Seberapa jauh tepi yang dibiaskan menjangkau dari tepi ke pusat, dalam piksel. Makin besar nilainya, makin kecil area datar di tengah.",
+    "liquidGlassBlur": "Blur",
+    "liquidGlassBlurDesc": "Nilai blur elemen transparan.",
+    "liquidGlassSat": "Saturasi",
+    "liquidGlassSatDesc": "Saturasi latar yang terlihat lewat kaca.",
+    "liquidGlassLight": "Efek Cahaya",
+    "liquidGlassLightDesc": "Cahaya yang mengikuti kursor di atas kaca, makin terang saat ditekan.",
+    "liquidGlassJelly": "Efek Jeli",
+    "liquidGlassJellyDesc": "Memanjang saat diseret lalu memantul kembali.",
+    "liquidGlassGpuBlockedNotice": "Kaca cair tidak tersedia selama GPU render disetel ke Hemat daya; kembali ke Otomatis atau Performa tinggi lalu mulai ulang Folia untuk mengaktifkannya kembali.",
+    "liquidGlassValueLabel": "Nilai",
     "hanabiFireworksSection": "Kembang api",
     "hanabiStageSection": "Panggung",
     "hanabiTextSection": "Teks",
@@ -4053,6 +4457,18 @@ export default {
     "gpuPreferenceCommandLineNotice": "Peluncuran ini memakai parameter GPU di baris perintah, yang lebih diutamakan",
     "gpuPreferenceActive": "Sedang dipakai",
     "visualizerFrameRateValue": "Batas",
+    "lyricRenderScale": "Resolusi kanvas lirik",
+    "lyricRenderScaleDesc": "Gaya lirik yang digambar dengan canvas atau WebGL (Machi, Hanabi, Lumiere, Nebbia, dan lainnya) dirender pada kelipatan ini; 1× adalah ketajaman bawaan tiap gaya, di atas 1× melakukan supersampling untuk tepi lebih halus dengan beban GPU lebih besar. Setiap gaya mengikuti ini kecuali pengaturannya sendiri memilih nilai lain.",
+    "lyricAntialias": "Anti-aliasing kanvas lirik",
+    "lyricAntialiasDesc": "Otomatis memakai bawaan tiap gaya; Aktif menghaluskan tepi geometris (garis, kartu, blok warna) dengan biaya memori video dan sedikit laju bingkai. Setiap gaya mengikuti ini secara bawaan.",
+    "lyricAntialiasAuto": "Otomatis",
+    "lyricAntialiasOn": "Aktif",
+    "lyricAntialiasOff": "Mati",
+    "lyricRenderSection": "Rendering",
+    "lyricRenderFollowGlobal": "Ikuti global",
+    "lyricRenderScaleStyleHint": "Berapa kali resolusi gaya ini digambar; di atas 1× melakukan supersampling. Ikuti global memakai pengaturan di Performa & gerakan (sekarang {{value}}).",
+    "lyricAntialiasStyleHint": "Ikuti global memakai pengaturan di Performa & gerakan (sekarang {{value}}).",
+    "importGroupLiquidGlass": "Kaca cair",
     "themePresets": "Preset Tema",
     "themePresetsDefault": "Bawaan",
     "openThemePark": "Buka Taman Tema",
@@ -4195,6 +4611,8 @@ export default {
     "latentMeshSwirl": "Pusaran Fluid",
     "nomandBackgroundUploadSuccess": "Gambar latar belakang diunggah",
     "nomandBackgroundUploadFailed": "Gagal mengunggah gambar latar belakang",
+    "monetPortraitPositionHint": "Klik untuk mengatur posisi sampul, geser, lalu klik lagi untuk menyimpan.",
+    "monetPortraitPositionEditing": "Geser untuk mengatur posisi sampul; klik lagi untuk menyimpan. Tombol panah juga dapat digunakan.",
     "monetKeywordColoring": "Pewarnaan Kata Kunci",
     "monetBackgroundLayout": "Mode Tata Letak",
     "monetLayoutFullOverlay": "Overlay Penuh",
@@ -4355,92 +4773,15 @@ export default {
     "globalLyricTimelineOffsetDesc": "Menggeser waktu semua lirik untuk mengimbangi jeda Bluetooth atau output lain.",
     "lyricFilterRegex": "Filter Lirik",
     "lyricFilterRegexDesc": "Aturan filter per baris, dan penanganan kredit di awal lirik.",
+    "settingsHeadingLyricSegmentation": "Segmentasi kata",
+    "autoAiLyricSegmentation": "Segmentasi AI otomatis",
+    "autoAiLyricSegmentationDesc": "Saat lagu dengan lirik Tionghoa atau Jepang diputar dan belum punya segmentasi tersimpan, pisahkan liriknya menjadi kata dengan AI secara otomatis. Hanya berlaku untuk gaya lirik yang menata teks per kata. Berjalan sekali per lagu dan memakai permintaan AI.",
     "visualizerMode": "Mode",
     "noDescription": "Tidak ada deskripsi tersedia",
     "playerBarPin": "Sematkan bilah pemutar",
     "playerBarUnpin": "Lepaskan bilah pemutar",
     "visualizerBackgroundModeTransparent": "Transparan",
-    "visualizerBackgroundModeTransparentDesc": "Mengisi lapisan latar dengan sampul lagu, tanpa lapisan warna dan blur Monet serta tanpa elemen tambahan.",
-    "nebbiaScenery": "Pemandangan",
-    "nebbiaSceneryHint": "Setiap bagian pemandangan bisa dimatikan sendiri; jika semua mati hanya langit yang tersisa. Bokeh adalah neon, lampu jalan, dan papan nama; jika jalan dimatikan, lampu mobil dan bokeh tidak punya pantulan. Tetesan hujan di kaca diatur dengan penggeser di atas.",
-    "nebbiaScenery_spot": "Lampu sorot",
-    "nebbiaScenery_buildings": "Gedung",
-    "nebbiaScenery_lights": "Bokeh",
-    "nebbiaScenery_cars": "Lampu mobil",
-    "nebbiaScenery_road": "Jalan",
-    "nebbiaRain": "Hujan di luar",
-    "nebbiaRainHint": "Hujan di luar hanya terlihat di dalam sorotan lampu sorot, di bagian kaca yang sudah diusap bersih; hujan miring condong mengikuti kecepatan bus.",
-    "nebbiaRain_slant": "Miring",
-    "nebbiaRain_straight": "Tegak",
-    "nebbiaRain_off": "Mati",
-    "nebbiaBehind": "Di luar jendela",
-    "nebbiaBehindHint": "Jalanan malam berhujan, atau latar bersama. Dengan latar, kabut menjadi lapisan tembus pandang (putih dengan tema siang, gelap dengan tema malam) dan goresan yang diusap memperlihatkan latar di belakangnya; halaman pemutar transparan selalu begini dan memperlihatkan desktop.",
-    "nebbiaBehind_night": "Jalanan malam",
-    "nebbiaBehind_backdrop": "Latar",
-    "machiAdaptiveActive": "Saat ini turun {{count}} tingkat.",
-    "liquidGlassSection": "Kaca cair",
-    "liquidGlassSectionDesc": "Sesuaikan material komponen antarmuka Folia.",
-    "liquidGlassPreset": "Preset",
-    "liquidGlassPresetDesc": "Tampilan siap pakai yang menyetel kekuatan, blur, dan jarak lengkung tepi sekaligus.",
-    "liquidGlassPresetFrosted": "Kaca buram",
-    "liquidGlassPresetClear": "Cairan jernih",
-    "liquidGlassPresetHazy": "Cairan kabur",
-    "liquidGlassPresetEco": "Hemat daya",
-    "liquidGlassStrength": "Kekuatan Bias",
-    "liquidGlassStrengthDesc": "Seberapa kuat tepi kaca membiaskan isi di belakangnya.",
-    "liquidGlassBend": "Jarak Bidang Bias",
-    "liquidGlassBendDesc": "Seberapa jauh tepi yang dibiaskan menjangkau dari tepi ke pusat, dalam piksel. Makin besar nilainya, makin kecil area datar di tengah.",
-    "liquidGlassBlur": "Blur",
-    "liquidGlassBlurDesc": "Nilai blur elemen transparan.",
-    "liquidGlassSat": "Saturasi",
-    "liquidGlassSatDesc": "Saturasi latar yang terlihat lewat kaca.",
-    "liquidGlassLight": "Efek Cahaya",
-    "liquidGlassLightDesc": "Cahaya yang mengikuti kursor di atas kaca, makin terang saat ditekan.",
-    "liquidGlassJelly": "Efek Jeli",
-    "liquidGlassJellyDesc": "Memanjang saat diseret lalu memantul kembali.",
-    "liquidGlassGpuBlockedNotice": "Kaca cair tidak tersedia selama GPU render disetel ke Hemat daya; kembali ke Otomatis atau Performa tinggi lalu mulai ulang Folia untuk mengaktifkannya kembali.",
-    "liquidGlassValueLabel": "Nilai",
-    "lyricRenderScale": "Resolusi kanvas lirik",
-    "lyricRenderScaleDesc": "Gaya lirik yang digambar dengan canvas atau WebGL (Machi, Hanabi, Lumiere, Nebbia, dan lainnya) dirender pada kelipatan ini; 1× adalah ketajaman bawaan tiap gaya, di atas 1× melakukan supersampling untuk tepi lebih halus dengan beban GPU lebih besar. Setiap gaya mengikuti ini kecuali pengaturannya sendiri memilih nilai lain.",
-    "lyricAntialias": "Anti-aliasing kanvas lirik",
-    "lyricAntialiasDesc": "Otomatis memakai bawaan tiap gaya; Aktif menghaluskan tepi geometris (garis, kartu, blok warna) dengan biaya memori video dan sedikit laju bingkai. Setiap gaya mengikuti ini secara bawaan.",
-    "lyricAntialiasAuto": "Otomatis",
-    "lyricAntialiasOn": "Aktif",
-    "lyricAntialiasOff": "Mati",
-    "lyricRenderSection": "Rendering",
-    "lyricRenderFollowGlobal": "Ikuti global",
-    "lyricRenderScaleStyleHint": "Berapa kali resolusi gaya ini digambar; di atas 1× melakukan supersampling. Ikuti global memakai pengaturan di Performa & gerakan (sekarang {{value}}).",
-    "lyricAntialiasStyleHint": "Ikuti global memakai pengaturan di Performa & gerakan (sekarang {{value}}).",
-    "importGroupLiquidGlass": "Kaca cair",
-    "nebbiaBehind_aquarium": "Laut Mimpi Berpendar",
-    "nebbiaJellies": "Jumlah ubur-ubur",
-    "nebbiaJellySize": "Ukuran ubur-ubur",
-    "nebbiaBubbles": "Banyak gelembung",
-    "nebbiaGlass": "Kaca depan",
-    "nebbiaGlassStyle": "Air di kaca",
-    "nebbiaGlass_rain": "Hujan",
-    "nebbiaGlass_dew": "Embun",
-    "nebbiaGlassHint": "Hujan: titik air besar kecil di kabut, dengan tetes hujan menghantam kaca. Embun: lapisan rapat butir embun kecil yang perlahan merembes keluar. Saat mengganti pemandangan luar, otomatis memilih pasangan bawaannya (Jalanan malam dengan hujan, Laut Mimpi Berpendar dengan embun); setelahnya bisa diganti sendiri.",
-    "nebbiaDew": "Banyak embun",
-    "nebbiaDewSize": "Ukuran embun",
-    "nebbiaDewGlint": "Kilau embun",
-    "nebbiaAquaScenery_spot": "Cahaya dari atas",
-    "nebbiaAquaScenery_buildings": "Karang dan rumput laut",
-    "nebbiaAquaScenery_lights": "Cahaya di rumput laut",
-    "nebbiaAquaScenery_cars": "Gelembung besar",
-    "nebbiaAquaScenery_road": "Dasar pasir",
-    "nebbiaAquaSceneryHint": "Setiap bagian akuarium bisa dimatikan sendiri; air dan cahaya dari permukaannya selalu ada. Ubur-ubur dan butiran cahaya bersinar seterang penggeser Neon di atas.",
-    "nebbiaAquaRain": "Gelembung halus",
-    "nebbiaAquaRainHint": "Beberapa celah di dasar terus mengeluarkan aliran gelembung halus; aliran miring terbawa arus.",
-    "nebbiaAquaRain_slant": "Miring",
-    "nebbiaAquaRain_straight": "Tegak",
-    "nebbiaAquaRain_off": "Mati",
-    "beatEffect_nebbiaAquaBeat": "Gelombang Menari",
-    "beatEffect_nebbiaAquaBeatDesc": "Mengikuti ketukan yang dikenali beat_this, saat di luar jendela adalah akuarium: tiap ketukan semua ubur-ubur mengerut dan melesat naik (ringan pada ketukan biasa, kuat pada ketukan pertama birama), rumput laut condong ke satu sisi lalu memantul kembali (bergantian sisi), sederet gelembung besar naik dari pasir (selama aktif tidak ada gelembung besar acak), dan lingkaran cahaya lampu sorot membesar lalu mengecil lagi. Masing-masing punya kekuatan sendiri; ketukan yang lebih keras menggerakkannya lebih besar. Tidak berpengaruh saat di luar jendela adalah jalan atau latar, dan ketukan tidak dianalisis untuknya.",
-    "beatEffectPart_nebbiaJelly": "Ubur-ubur",
-    "beatEffectPart_nebbiaWeed": "Rumput laut",
-    "beatEffectPart_nebbiaBubble": "Gelembung",
-    "beatEffectPart_nebbiaSpot": "Lampu sorot"
+    "visualizerBackgroundModeTransparentDesc": "Mengisi lapisan latar dengan sampul lagu, tanpa lapisan warna dan blur Monet serta tanpa elemen tambahan."
   },
   "releaseNotes": {
     "v0_7_0": {
@@ -4629,6 +4970,37 @@ export default {
       "qqPrivatePlaylists": {
         "title": "Playlist Pribadi QQ Music",
         "description": "Setelah masuk, playlist pribadi buatan Anda kini dapat memuat lagu dengan paging sungguhan. Backend yang di-host sendiri harus memakai qq-music-api 3.1.2 atau lebih baru; backend lama beralih otomatis, dan playlist yang tidak dapat dibaca kini menjelaskan bahwa playlist itu tidak publik, alih-alih tampil kosong tanpa keterangan."
+      }
+    },
+    "v0_7_26": {
+      "intro": "Selamat datang di 0.7.26, Fawkes Update—sebuah pembaruan besar. Versi ini menghadirkan Buku catatan, laci yang bergeser dari kiri untuk menampung lagu dengan cepat; Nebbia mendapat pemandangan dan kaca baru, dengan akuarium, embun, dan salju; Apple Music dan fnOS Music hadir sebagai platform baru; lagu dari platform berbeda bisa berada di satu antrean, dan pencarian kini juga menemukan album dan playlist; kapsul progres menampilkan perintah yang sering dipakai, dan tombol di kanannya bisa diganti di tempat; serta rekomendasi makin beragam, dengan rekomendasi gaya di NetEase Harian dan radio Mungkin Kamu Suka serta preferensi musik untuk QQ Music.",
+      "scratchpad": {
+        "title": "Buku catatan",
+        "description": "Buku catatan yang baru adalah laci lagu yang bergeser dari kiri; tekan Ctrl+J untuk membukanya. Arahkan kursor ke kartu lagu, hasil pencarian, halaman Jelajah, atau dinding sampul Lattice untuk menambahkan lagu ke Buku catatan atau menyimpannya ke playlist. Lagu dikelompokkan menurut sumbernya, dan satu kelompok bisa dibuka menjadi kanvas untuk menata dan memilih kartu sekaligus, lalu menambahkan seluruh kelompok ke playlist—menyeret juga bisa di layar sentuh. Laci ini juga punya halaman Riwayat dan Antrean: Riwayat mencantumkan lagu yang diputar dari file lokal, Navidrome, dan semua platform, dan antrean bisa dibuka menjadi kanvas kartu. Tampilan dan tinggi tab samping diatur di Pengaturan."
+      },
+      "nebbiaScenes": {
+        "title": "Nebbia: pemandangan dan kaca baru",
+        "description": "Nebbia kini memisahkan pilihan pemandangan di luar dan kaca di depan. Selain jalan malam hujan, pemandangan bisa diganti latar belakang bersama atau akuarium “Laut Mimpi Berpendar”, dan hujan di jalan bisa turun miring, tegak, atau tidak turun. Kaca menambah Embun—butiran air kecil dengan kunang-kunang yang beterbangan—dan Salju, tempat salju melayang ke kaca dari kejauhan, berpendar seperti es saat terkena cahaya dari belakang, dan butiran yang lama diam perlahan membeku. Saat halaman pemutar transparan, warna kabut mengikuti siang-malam tema dan butiran air membiaskan pemandangan di belakangnya. Palet perintah menambah Ganti pemandangan jendela dan Ganti kaca depan."
+      },
+      "newPlatforms": {
+        "title": "Apple Music dan fnOS Music",
+        "description": "Dua platform baru. Apple Music bisa dipakai di macOS 14 atau lebih baru dan di Windows (memerlukan runtime WebView2, sudah ada di Windows 11), dengan langganan Apple Music: masuk melalui halaman resmi Apple, lalu cari dan putar lagu utuh, jelajahi playlist dan album di pustaka serta halaman katalog artis dan album, dengarkan radio pribadi dan radio siaran langsung, dan dapatkan lirik. Di Linux belum didukung. fnOS Music terhubung ke pustaka musik di perangkat fnOS—masukkan alamat dan akun di jendela masuk untuk menjelajah dan memutar."
+      },
+      "crossPlatform": {
+        "title": "Antrean lintas platform dan pencarian baru",
+        "description": "Lagu dari platform berbeda kini bisa berada di satu antrean putar: berganti platform tidak lagi mengosongkan pemutar dan antrean, dan keluar dari sebuah platform hanya menghapus lagu dari platform itu. Halaman pencarian punya komposisi datar baru dan bisa menemukan album dan playlist selain lagu (NetEase, Kugou, QQ Music, dan YouTube Music; Qishui hanya playlist). Kamu bisa mencari di platform saat ini, platform yang sudah masuk, file lokal, atau Navidrome, dan berganti platform tidak menghapus hasil pencarian."
+      },
+      "playerCapsule": {
+        "title": "Perintah di kapsul progres",
+        "description": "Diamkan kursor di kapsul progres dan sederet perintah umum muncul di atasnya: acak, suka, tambah ke playlist, volume, gaya animasi lirik, dan pengaturan subtitle; di ponsel deret ini muncul saat kapsul diketuk atau pemutaran dijeda. Palet perintah kini tumbuh dari kapsul. Klik kanan atau tekan lama tombol di sisi kanan kapsul untuk menggantinya dengan aksi lain, dan perintah yang sering dipakai akan disarankan untuk tempat itu. Panel Subtitel yang baru mengatur subtitle sekunder, opasitas, skala, dan buram baris berikutnya, dan mengetuk ikon panel volume akan membisukan suara."
+      },
+      "recommendations": {
+        "title": "Lebih banyak cara menemukan lagu",
+        "description": "NetEase Harian menambah rekomendasi Per gaya—30 lagu lain yang dipilih menurut genre, suasana, dan situasi pilihanmu—yang bisa dialihkan di dinding harian. QQ Music menambah radio Mungkin Kamu Suka dengan mode Jelajah, Familiar, dan berbagai situasi, preferensi musik akun, hari-hari sebelumnya dari Harian 30, dan “Tidak tertarik” untuk lagu; backend yang di-host sendiri memerlukan qq-music-api 3.3.6 atau lebih baru. Playlist akun di NetEase, Kugou, dan QQ Music kini memuat Peringkat dengar, berisi lagu yang paling sering kamu putar dalam rentang waktu tertentu."
+      },
+      "moreDetails": {
+        "title": "Peningkatan lainnya",
+        "description": "Machi mendukung halaman pemutar transparan, tidak lagi tersendat saat berganti, dan otomatis menurunkan kualitas menurut refresh rate agar tetap mulus; tanpa gerak cerdas, neon dan layar besarnya berkedip mengikuti ketukan tetap, yang bisa dimatikan lewat Ketukan simulasi. Kanvas lirik punya pengaturan resolusi dan antialiasing. Pintasan global kini bisa memakai tombol pengubah dan tombol pilihanmu sendiri. Saat klik tembus di desktop, tombol sebelumnya, putar/jeda, dan berikutnya ada di samping gembok. Halaman artis menambah Semua Lagu, dan artis album bisa dibuka dari halaman album. Lirik yang ditulis dari kanan ke kiri kini disusun ke arah yang benar. Ada opsi baru Segmentasi AI otomatis. Permintaan NetEase yang terputus di sebagian jaringan IPv6 sudah diperbaiki."
       }
     },
     "v0_7_25": {
@@ -5022,7 +5394,17 @@ export default {
     "loopAll": "Ulangi Semua",
     "loopOne": "Ulangi Satu",
     "unknownArtist": "Artis Tidak Dikenal",
-    "unknownAlbum": "Album Tidak Dikenal"
+    "unknownAlbum": "Album Tidak Dikenal",
+    "slotCustomizeHint": "Klik kanan atau tekan lama untuk mengganti",
+    "slotPickerMoreSettings": "Pengaturan lainnya…",
+    "slotPickerInOtherSlot": "Sisi lain",
+    "slotPickerSwapHint": "{{action}} (bertukar dengan tombol lainnya)",
+    "slotSuggestion": "Sering pakai {{action}}? Taruh di bilah kontrol",
+    "slotSuggestionReplace": "Ganti",
+    "slotSuggestionReplacePrimary": "Ganti tombol kiri ({{action}})",
+    "slotSuggestionReplaceSecondary": "Ganti tombol kanan ({{action}})",
+    "capsuleQuickActions": "Aksi cepat",
+    "capsuleOpensPalette": "Klik untuk membuka palet perintah"
   },
   "localMusic": {
     "foldersAndPlaylists": "Folder",
@@ -5258,18 +5640,6 @@ export default {
     "failed": "Sampul tidak diatur: {{error}}",
     "notImage": "Berkas itu bukan gambar yang dapat dibaca Folia"
   },
-  "fnmusic": {
-    "serverUrl": "Alamat server",
-    "serverUrlPlaceholder": "IP atau FN ID: 192.168.1.10:5666 / baixiaokeji",
-    "username": "Akun",
-    "usernamePlaceholder": "Akun fnOS Music atau akun NAS",
-    "password": "Kata sandi",
-    "login": "Masuk",
-    "loginNote": "Masukkan alamat server, akun, dan kata sandi fnOS Music",
-    "errorBadCredentials": "Akun atau kata sandi salah",
-    "errorNetwork": "Tidak dapat menghubungi server. Periksa alamat dan koneksi Anda.",
-    "errorBadResponse": "Server mengembalikan respons yang tidak dikenali"
-  },
   "navidrome": {
     "title": "Navi",
     "enable": "Hubungkan Navidrome (Eksperimental)",
@@ -5319,6 +5689,19 @@ export default {
     "cloudDrive": "Cloud Drive",
     "cloudDriveDesc": "NetEase Cloud Music Drive",
     "qqCloudDriveDesc": "Weiyun Music Drive"
+  },
+  "fnmusic": {
+    "serverUrl": "Alamat server",
+    "serverUrlPlaceholder": "cth: http://192.168.1.10:5666",
+    "username": "Akun",
+    "usernamePlaceholder": "Akun fnOS Music atau akun NAS",
+    "password": "Kata sandi",
+    "login": "Masuk",
+    "loginNote": "Masukkan alamat server, akun, dan kata sandi fnOS Music",
+    "errorBadCredentials": "Akun atau kata sandi salah",
+    "errorNetwork": "Tidak dapat menghubungi server. Periksa alamat dan koneksi Anda.",
+    "errorBadResponse": "Server mengembalikan respons yang tidak dikenali",
+    "errorBadServerUrl": "Alamat server tidak valid, contoh: http://192.168.1.10:5666"
   },
   "hifi": {
     "settings": {
@@ -5562,6 +5945,8 @@ export default {
     "stageLocalInputDescription": "Stage dalam mode input tunggal lokal. Perangkat eksternal dapat mengirim lirik atau media, tetapi pemutaran dan tampilan dikendalikan oleh Folia itu sendiri."
   },
   "libraryBravaisArtist": {
+    "allSongsCountUnit_one": "lagu",
+    "allSongsCountUnit_other": "lagu",
     "playTopSongs": "Putar lagu populer",
     "songCount_one": "{{count}} lagu",
     "songCount_other": "{{count}} lagu",
@@ -5579,7 +5964,8 @@ export default {
     "posterTopSongs": "Lagu populer"
   },
   "libraryBravaisAlbum": {
-    "posterLabel": "Poster album"
+    "posterLabel": "Poster album",
+    "openArtist": "Buka artis {{name}}"
   },
   "artistGrid": {
     "localArtist": "Artis Lokal: {{artistName}}",
@@ -5590,7 +5976,9 @@ export default {
     "addTopSongsToQueue": "Antrekan lagu teratas",
     "topSongsAddedToQueue_one": "{{count}} lagu teratas ditambahkan ke antrean putar",
     "topSongsAddedToQueue_other": "{{count}} lagu teratas ditambahkan ke antrean putar",
-    "noTopSongsToQueue": "Tidak ada lagu teratas yang bisa diantrekan"
+    "noTopSongsToQueue": "Tidak ada lagu teratas yang bisa diantrekan",
+    "allSongs": "Semua lagu",
+    "allSongsCollectionName": "Semua lagu {{artistName}}"
   },
   "obs": {
     "connecting": "Menghubungkan ke Folia",
@@ -5882,7 +6270,7 @@ export default {
       "panel_slide": "Tombol itu juga bisa digeser ke kiri, dan itu membuka jendela perintah.",
       "panel_source_tab": "Tab yang mengikuti sumber: sumber lirik, offset lini masa, penguatan audio.",
       "lyric_export": "Mengemas lirik yang tersimpan di perangkat ini menjadi satu zip berisi berkas .fia dan LRC enhanced.",
-      "player_bar": "Apa yang ada di kapsul, dan dua slot yang kamu pilih sendiri.",
+      "player_bar": "Apa yang ada di kapsul, cara mengganti dua slotnya di tempat, dan aksi cepat yang muncul saat kamu berhenti di sana.",
       "player_page": "Apa yang ada di halaman pemutar, letak tiap bagian, dan cara mengacak.",
       "ponder_basics": "Petunjuk hover, tahan G, Ctrl+G seluruh halaman, dan cara mematikannya.",
       "settings_page": "Bagaimana pengaturan dikelompokkan, dan melompat ke sana dari jendela perintah.",
@@ -6343,9 +6731,12 @@ export default {
         "bar": "Bilah kontrol bawah",
         "slots": "Dua slot",
         "bottomUiSettings": "Pengaturan · Bilah kontrol",
-        "picker": "Pemilih di pengaturan",
+        "picker": "Pemilih tombol",
         "queue": "Antrean putar",
-        "volumeSurface": "Panel volume"
+        "volumeSurface": "Panel volume",
+        "quickActions": "Aksi cepat",
+        "paletteButton": "Buka jendela perintah",
+        "capsulePalette": "Jendela perintah"
       },
       "panelSlide": {
         "toggle": "Tombol panel",
@@ -6416,6 +6807,7 @@ export default {
         "row": "Sebuah lagu",
         "rowActions": "Tombol baris",
         "footer": "Aksi untuk semua",
+        "historyTab": "Riwayat putar",
         "expand": "Bentangkan jadi kanvas",
         "canvas": "Kanvas",
         "canvasGroup": "Satu kelompok di kanvas",
@@ -6623,7 +7015,7 @@ export default {
       "settingsPageDirectNavigation": "Lompat langsung dari perintah",
       "playerBarBasics": "Isi kapsul kontrol",
       "playerBarHeight": "Tingginya bisa diubah",
-      "playerBarSlots": "Dua slot kanan bisa diganti",
+      "playerBarSlots": "Dua slot kanan bisa diganti di tempat",
       "playerBarShuffle": "Acak hanya sekali kocok",
       "playerBarVolume": "Volume ada di command palette",
       "panelSlideToPalette": "Geser untuk membuka command palette",
@@ -6637,7 +7029,8 @@ export default {
       "lyricMatchLocal": "Tiga sakelar tambahan untuk lagu lokal",
       "scratchpadCollect": "Mengumpulkan lagu",
       "scratchpadDrawer": "Membuka dan kelompok",
-      "scratchpadCanvas": "Kanvas"
+      "scratchpadCanvas": "Kanvas",
+      "playerBarQuickActions": "Berhenti sejenak untuk aksi cepat"
     },
     "captions": {
       "bravaisSeam": {
@@ -6816,8 +7209,8 @@ export default {
         "playerToggleWhere": "Pegangan samping menempel di tepi kanan layar, dasarnya sejajar dengan bilah kontrol. Bentuknya bulat; tekan sekali dan panel kontrol kanan terbuka.",
         "playerPanelWhere": "Panel terbuka di atas pegangan, menempel di tepi kanan. Ia terbuka di tab Sampul lagu ini, dan baris paling bawah memuat tab: Sampul, Kontrol, Playlist, Kualitas, dan lainnya.",
         "playerPaletteSlide": "Ada juga rel yang tersembunyi di belakang pegangan. Tahan pegangan, seret ke kiri melewati garis pemicu, lalu lepaskan: itu membuka jendela perintah, bukan panel.",
-        "playerPaletteOpened": "Jendela perintah turun dari atas layar, rata tengah. Semua urusan “mencari fitur” ada di sini.",
-        "playerPaletteOtherWays": "Tidak perlu menyeret: {{mod}} + K membuka jendela yang sama dari mana saja, dan di halaman pemutar tombol S polos melakukan hal yang sama selama fokus tidak berada di kotak teks. Di layar sentuh, ketuk dekat tepi kanan untuk memunculkan pegangannya lebih dulu.",
+        "playerPaletteOpened": "Jendela perintah tumbuh dari bilah kontrol di bawah: kotak input ada di bawah, dengan hasil terbaik tepat di atasnya. Kalau bilah tidak terlihat, jendela turun dari atas layar. Semua urusan “mencari fitur” ada di sini.",
+        "playerPaletteOtherWays": "Tidak perlu menyeret: {{mod}} + K membuka jendela yang sama dari mana saja, dan di halaman pemutar tombol S polos melakukan hal yang sama selama fokus tidak berada di kotak teks — begitu juga klik di bagian kosong bilah kontrol, kecuali pemutaran diatur dibuka di Lattice. Di layar sentuh, ketuk dekat tepi kanan untuk memunculkan pegangannya lebih dulu.",
         "playerCommandFilter": "Begitu jendela terbuka, langsung ketik. Ia menyaring berdasarkan nama, alias dan kata kunci sekaligus. ↑↓ memilih, Enter menjalankan — kamu tidak perlu tahu perintah itu masuk kategori apa.",
         "playerCommandArgument": "Perintah yang butuh argumen tidak langsung jalan. Ketik namanya, tekan spasi, dan ia melipat jadi satu label di baris masukan sementara kursor menunggu di belakangnya. Isi argumennya, lalu Enter.",
         "playerExecuteCloseFirst": "Mode eksekusi dimasuki saat jendela perintah tertutup. Tekan Esc untuk menutupnya dulu: saat jendela terbuka, titik dua hanya masuk ke baris masukan.",
@@ -6847,8 +7240,8 @@ export default {
         "basicsIntro": "Kontrol pemutaran Folia hanya kapsul ini. Deretan tombol permanen yang dipasang pemutar lain di bawah — sebelumnya, berikutnya, acak, ulang, volume — tidak punya tempat tetap di sini.",
         "basicsPlay": "Satu-satunya tombol yang selalu ada adalah putar / jeda. Pada jendela lebar ia di paling kiri; saat barisnya terlalu sempit untuk satu baris, ia pindah ke tengah baris kedua, dengan dua slot di kedua sisinya.",
         "basicsTitle": "Ganti lagu lewat judul, bukan tombol. Arahkan penunjuk ke judul, panah muncul di kedua sisi dan mempratinjau nama lagu sebelumnya dan berikutnya — kamu memilih sambil membaca, bukan menekan buta.",
-        "basicsProgress": "Seret atau klik bilah kemajuan untuk melompat. Mengklik bagian kapsul yang lain bukan jeda: itu membuka halaman pemutar, atau di Lattice menarik tampilan kembali ke lagu saat ini.",
-        "basicsSlots": "Sisanya ditaruh di dua posisi kanan ini. Kamu memilih dua dari sepuluh aksi; selebihnya tidak ada di bilah — itulah sebabnya di sini tidak ada deretan tombol tetap.",
+        "basicsProgress": "Seret atau klik bilah kemajuan untuk melompat. Mengklik bagian kapsul yang lain bukan jeda: biasanya itu membuka halaman pemutar, atau Lattice bila pemutaran diatur dibuka di sana (FM Pribadi tetap ke halaman pemutar); kalau kamu sudah di halaman pemutar dan klik itu tidak menuju Lattice, ia membuka jendela perintah; di Lattice itu menarik tampilan kembali ke lagu saat ini.",
+        "basicsSlots": "Sisanya ditaruh di dua posisi kanan ini. Kamu yang memilih isinya, dan klik kanan atau tekan lama untuk menggantinya di tempat; selebihnya tidak ada di bilah, dan beberapa yang sering dipakai muncul di atas kapsul saat penunjuk berhenti di sana.",
         "basicsCollapsed": "Jauhkan penunjuk dan kapsul melipat kembali jadi satu bilah kemajuan. Bentuk inilah yang biasa kamu lihat; dekati dan ia mengembang lagi.",
         "heightIntro": "Jarak bilah ini dari tepi bawah layar bisa diubah, dan kartu lagu serta panel samping di setiap halaman ikut bergeser.",
         "heightSettings": "Pintunya di Pengaturan → Halaman pemutar, di bawah Bilah kontrol: satu penggeser untuk angkanya, dan “Atur posisi di halaman pemutar” di sebelahnya mengubah kapsul jadi sesuatu yang bisa diseret. Mencari perintah yang sama di command palette sama saja. Tombol di bawah membawamu ke sana.",
@@ -6858,7 +7251,13 @@ export default {
         "shuffleIntro": "Acak di sini tidak seperti di tempat lain - ia bukan mode yang terus menyala.",
         "shuffleOnce": "Tekan dan Folia mengacak antrean saat ini di tempat, sekali; urutan itulah yang berlaku. Ingin lain? Tekan lagi.",
         "volumeIntro": "Bilah kontrol bawah tidak punya penggeser volume permanen.",
-        "volumeOpens": "Menekan di sini membuka panel volume di dalam command palette, bukan penggeser kecil di tempat."
+        "volumeOpens": "Menekan di sini membuka panel volume di dalam command palette, bukan penggeser kecil di tempat.",
+        "slotsHold": "Tekan lama sebuah tombol sampai lingkaran di sekelilingnya penuh, atau langsung klik kanan.",
+        "slotsPick": "Aksi yang bisa ditaruh muncul tepat di atasnya; klik salah satu untuk menggantinya. Memilih aksi yang ada di slot lain akan menukar keduanya. Pilihan yang sama ada di pengaturan — tombol di bawah langsung ke sana.",
+        "slotsSuggest": "Kalau kamu sering menjalankan salah satu aksi ini dari jendela perintah, bilah akan menanyakan sekali apakah mau menaruhnya di sini.",
+        "quickIntro": "Biarkan penunjuk berhenti di kapsul, dan sederet aksi untuk lagu ini muncul di atasnya: volume, suka, tambah ke daftar putar, acak, subtitel, dan gaya lirik. Yang sudah ada di dua slotmu tidak ditampilkan lagi. Di layar sentuh deretan ini langsung muncul saat kamu mengetuk kapsul hingga terbuka atau menjeda, tanpa volume, dan hilang lagi setelah 4 detik tidak disentuh.",
+        "quickPalette": "Yang paling kanan membuka jendela perintah. Jendela itu tumbuh dari kapsul itu sendiri: kotak input mendarat di tempat kapsul, dengan hasil terbaik tepat di sebelahnya.",
+        "quickOther": "Mengklik bagian kosong kapsul di halaman pemutar membukanya dengan cara yang sama (di layar sentuh, ketuk lagi saat deretan itu muncul), kecuali pemutaran diatur dibuka di Lattice — maka klik itu menuju Lattice. {{mod}} + K juga menumbuhkannya dari kapsul selama kapsul terlihat. Saat ditutup, ia menyusut kembali ke kapsul."
       },
       "commandPalette": {
         "type": "Perintah dicari, bukan ditelusuri. Ketik begitu jendela terbuka dan ia menyaring nama, alias dan kata kunci sekaligus; separuh nama biasanya sudah cukup.",
@@ -7056,7 +7455,7 @@ export default {
         "appear": "Di tab Sampul, baris di bawah judul ini selalu ada: tindakan untuk lagu ini di kiri, jalan ke beranda dan pengaturan di ujung kanan. Di tab lain baris ini disimpan dan hanya tombol suka yang tersisa, di atas.",
         "settings": "Roda gigi membuka pengaturan. Panel menutup lebih dulu, lalu jendela pengaturan muncul.",
         "home": "Rumah di ujung kanan kembali ke dinding poster di beranda; panel menutup lebih dulu. Pemutaran tidak terhenti.",
-        "addToPlaylist": "Bintang menambahkan lagu ini ke playlist. Ia hanya ada bila sumber saat ini mendukung playlist; saat lagu tidak bisa ditambahkan ia meredup, dan mengarahkan penunjuk ke sana menjelaskan alasannya.",
+        "addToPlaylist": "Bintang menyimpan lagu ini ke daftar putar; baris pertama adalah Lagu yang Disukai (hati). Ia meredup bila sumber tidak mendukung daftar putar maupun suka, dan mengarahkan penunjuk ke sana menjelaskan alasannya.",
         "like": "Hati menyukai lagu ini. Bila sumber saat ini tidak bisa melakukannya, tombolnya meredup, dan mengarahkan penunjuk ke sana menjelaskan alasannya.",
         "playingFrom": "Bila antrean dimulai dari sebuah playlist atau album, tombol bertuliskan namanya muncul di sini: klik untuk kembali ke halaman itu dan menemukan lagu ini di sana. Begitu antrean berisi lagu lain, tombol ini hilang."
       },
@@ -7091,8 +7490,8 @@ export default {
         "platforms": "Kolom di kiri memuat semua platform. Yang sudah masuk punya gambar di ujung kanan barisnya; baris yang kelabu tidak bisa dipilih, dan menyorotnya menyebutkan alasannya.",
         "code": "Pilih satu platform dan sisi kanan menampilkan cara masuknya. Kebanyakan berupa kode QR untuk dipindai dengan aplikasi ponsel platform itu; ada yang meminta memilih cara dulu, ada yang membuka browser dengan sekali klik.",
         "steps": "Ikon-ikon kecil di kanan bawah menunjukkan sudah sampai mana proses masuk: kode, konfirmasi di ponsel, akun.",
-        "account": "Untuk platform yang sudah masuk, inilah akunnya. “Logout” hanya keluar dari platform ini.",
-        "switch": "Beberapa platform bisa masuk sekaligus. Saat yang dipilih bukan yang sedang dipakai, muncul tombol ganti yang menjadikannya platform yang dipakai; pil di kanan bawah ikut berganti."
+        "account": "Untuk platform yang sudah masuk, inilah akunnya. “Logout” hanya keluar dari platform ini, dan hanya lagunya yang dikeluarkan dari antrean.",
+        "switch": "Beberapa platform bisa masuk sekaligus. Saat yang dipilih bukan yang sedang dipakai, muncul tombol ganti yang menjadikannya platform yang dipakai; pil di kanan bawah ikut berganti. Berganti platform tidak mengubah antrean, jadi lagu dari beberapa platform bisa ada di sana bersama-sama."
       },
       "lyricMatch": {
         "where": "“Cocokkan Online” di tab sumber panel membuka jendela ini. Di bawah judul tertulis lagu mana yang sedang dicarikan lirik.",
@@ -7114,55 +7513,12 @@ export default {
         "groupActions": "Di kanan kepala kelompok: “Antrekan grup ini” dan “Tambahkan grup ini ke daftar putar…”. Satu daftar putar hanya menerima lagu dari satu sumber; karena dikelompokkan per sumber, satu kelompok pas untuk satu daftar putar.",
         "rowActions": "Arahkan penunjuk ke sebuah baris untuk: putar di antrean, tambahkan ke antrean, tambahkan ke daftar putar, dan keluarkan dari buku catatan. Lagu tetap ada setelah dimasukkan ke antrean atau daftar putar; keluarkan sendiri bila sudah tidak perlu.",
         "footer": "Baris paling bawah: tambahkan semua ke antrean, ganti antrean dengan buku catatan, dan kosongkan. Mengosongkan perlu dua klik.",
+        "history": "“Riwayat putar” di atas laci adalah halaman kedua: lagu yang diputar di perangkat ini dalam 7 hari terakhir (platform daring, berkas lokal, Navidrome), per hari, terbaru di atas. Tiap baris bisa diputar di antrean, diantrekan, ditambahkan ke buku catatan, atau disimpan ke daftar putar.",
         "expand": "Di atas laci, di kiri tombol tutup: “Bentangkan jadi kanvas”.",
         "canvas": "Setelah dibentangkan, tiap lagu menjadi kartu, tetap dikelompokkan per sumber, dan kepala kelompok mendapat “Pilih grup ini”. Esc lebih dulu membatalkan pilihan, lalu kembali ke daftar.",
-        "drag": "Seret kartu untuk mengatur urutan. Kartu hanya berpindah di dalam kelompoknya sendiri, dan menempel ke tempat terdekat saat dilepas.",
-        "select": "Seret kotak di tempat kosong untuk memilih kartu di dalamnya; {{mod}}-klik sebuah kartu untuk menambah atau menguranginya. Baris bawah lalu bekerja pada pilihan: tambahkan ke antrean, tambahkan ke daftar putar, keluarkan. Bila pilihan berasal dari sumber berbeda, tambahkan ke daftar putar menjadi abu-abu."
+        "drag": "Seret kartu untuk mengatur urutan. Kartu hanya berpindah di dalam kelompoknya sendiri, dan menempel ke tempat terdekat saat dilepas. Di layar sentuh, tekan lama kartu sampai terangkat, lalu seret.",
+        "select": "Seret kotak di tempat kosong untuk memilih kartu di dalamnya; {{mod}}-klik sebuah kartu untuk menambah atau menguranginya. Sebuah menu mengambang di atas kartu yang dipilih: tambahkan ke antrean, tambahkan ke daftar putar, keluarkan, batalkan pilihan. Bila pilihan berasal dari sumber berbeda, tambahkan ke daftar putar menjadi abu-abu."
       }
     }
-  },
-  "scratchpad": {
-    "title": "Buku catatan",
-    "count_one": "{{count}} lagu",
-    "count_other": "{{count}} lagu",
-    "hint": "Lagu untuk didengar atau dirapikan nanti. Menaruhnya di sini tidak mengubah antrean.",
-    "empty": "Belum ada apa-apa. Arahkan penunjuk ke kartu lagu, baris daftar lagu, atau hasil pencarian lalu pilih \"Tambahkan ke buku catatan\", atau catat lagu yang sedang diputar dari palet perintah.",
-    "open": "Buka buku catatan",
-    "close": "Tutup buku catatan",
-    "play": "Putar di antrean",
-    "enqueue": "Tambahkan ke antrean",
-    "addToPlaylist": "Tambahkan ke daftar putar…",
-    "remove": "Keluarkan dari buku catatan",
-    "enqueueAll": "Antrekan semua",
-    "replaceQueue": "Putar, ganti antrean",
-    "clear": "Kosongkan",
-    "confirmClear": "Klik lagi untuk mengosongkan",
-    "sourceLocal": "Lokal",
-    "collect": "Tambahkan ke buku catatan",
-    "collectScope": "Tambahkan semua ke buku catatan",
-    "originSearch": "Pencarian \"{{query}}\"",
-    "originExploreSection": "Jelajahi · {{section}}",
-    "collectFiltered_one": "Tambahkan {{count}} lagu tersaring ke buku catatan",
-    "collectFiltered_other": "Tambahkan {{count}} lagu tersaring ke buku catatan",
-    "addedOne": "Dicatat ke buku catatan",
-    "addedMany_one": "{{count}} lagu dicatat ke buku catatan",
-    "addedMany_other": "{{count}} lagu dicatat ke buku catatan",
-    "skippedDuplicates_one": "{{count}} sudah ada di sana",
-    "skippedDuplicates_other": "{{count}} sudah ada di sana",
-    "alreadyInOne": "Lagu ini sudah ada di buku catatan",
-    "alreadyInAll": "Semua lagu ini sudah ada di buku catatan",
-    "full": "Buku catatan penuh (paling banyak {{count}} lagu). Kosongkan sebagian dulu.",
-    "saveFailed": "Buku catatan gagal disimpan (penyimpanan lokal penuh); perubahan ini akan hilang saat dimulai ulang",
-    "expandCanvas": "Bentangkan jadi kanvas",
-    "collapseCanvas": "Kembali ke daftar",
-    "canvasHint": "Seret kartu untuk mengurutkan; kartu menempel saat dilepas. Seret kotak di ruang kosong untuk memilih beberapa.",
-    "selectGroup": "Pilih grup ini",
-    "enqueueGroup": "Antrekan grup ini",
-    "addGroupToPlaylist": "Tambahkan grup ini ke daftar putar…",
-    "selectedCount_one": "{{count}} dipilih",
-    "selectedCount_other": "{{count}} dipilih",
-    "removeSelected": "Keluarkan",
-    "clearSelection": "Batalkan pilihan",
-    "mixedSourcesHint": "Pilihan berasal dari lebih dari satu sumber; daftar putar hanya menerima lagu dari satu sumber"
   }
-};
+} as const;

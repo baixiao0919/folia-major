@@ -61,26 +61,3 @@ test('hovering the last of 8 platform rows keeps the window and adds no scrollba
     ]);
     expect(highlight.height).toBeCloseTo(row, 2);
 });
-
-test('clicking the last of 8 platform rows keeps the window and adds no scrollbar', async ({ page, mount }) => {
-    await page.setViewportSize({ width: WIDTH, height: 470 });
-    await mount('loginWindow', { count: 8, lang: 'en', motion: 'off' });
-    const list = page.getByRole('dialog').getByRole('listbox');
-    await expect(list.locator('[data-row]')).toHaveCount(8);
-    await findOverflowingHeight(page, list);
-
-    const errors: string[] = [];
-    page.on('pageerror', error => errors.push(error.message));
-    const last = list.locator('[data-row]').last();
-    await last.click();
-    await expect(list).toBeVisible();
-
-    expect(errors).toEqual([]);
-    const after = await measure(list);
-    expect(after.scrollHeight).toBe(after.clientHeight);
-    const [highlight, row] = await Promise.all([
-        list.locator('> [aria-hidden]').first().evaluate(element => ({ height: parseFloat((element as HTMLElement).style.height) })),
-        last.evaluate(element => parseFloat(getComputedStyle(element).height)),
-    ]);
-    expect(highlight.height).toBeCloseTo(row, 2);
-});

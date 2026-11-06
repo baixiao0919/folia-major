@@ -55,6 +55,7 @@ const FIELD_LABEL_KEYS: Record<string, string> = {
     hidePlayerTranslationSubtitle: 'options.hidePlayerTranslationSubtitle',
     showSubtitleTranslation: 'options.showSubtitleTranslation',
     subtitleContentMode: 'options.subtitleContentMode',
+    subtitleOverlayLayout: 'options.subtitleOverlayRows',
     subtitleOverlayBackground: 'options.subtitleOverlayBackground',
     subtitleOverlayOpacity: 'options.subtitleOverlayOpacity',
     showHarmonySubtitle: 'options.showHarmonySubtitle',
@@ -95,6 +96,7 @@ const FIELD_LABEL_KEYS: Record<string, string> = {
     stageTrackPillTimeoutSec: 'options.stageTrackPillTimeout',
     stageTrackPillOnHome: 'options.stageTrackPillOnHome',
     stageTrackPillPosition: 'options.stageTrackPillPosition',
+    stageTrackPillInObs: 'options.stageTrackPillInObs',
     libraryWallStackEdges: 'options.bravaisStackEdges',
     libraryWallSeamClear: 'options.bravaisSeamClear',
     libraryWallSeamStyle: 'options.bravaisSeamStyle',
@@ -103,6 +105,7 @@ const FIELD_LABEL_KEYS: Record<string, string> = {
     libraryWallSeamDirection: 'options.bravaisSeamDirection',
     // 流体玻璃整组复用图形设置里的分组标题；三个子项由 settingLabelLookup 解析到各自的滑杆文案。
     liquidGlass: 'options.liquidGlassSection',
+    latticeBadgeCurrentOnly: 'options.latticeBadgeCurrentOnly',
     playerHeaderBlur: 'options.playerHeaderBlur',
 };
 

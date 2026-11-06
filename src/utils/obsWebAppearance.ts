@@ -1,12 +1,14 @@
-import type { SubtitleContentMode, Theme, VisualizerMode } from '../types';
+import type { SubtitleContentMode, SubtitleOverlayLayout, Theme, VisualizerMode } from '../types';
 import type { VisualizerTuningBundle } from '../components/visualizer/tuningRegistry';
 import type { VisualizerBackgroundConfig } from '../components/visualizer/backgrounds/definition';
 // OBS 覆盖层不加载 mods（initModVisualizers 需要 Electron 桥接，web 上是 no-op），
 // 所以短码里的模式只可能是内建的。
 import { DEFAULT_VISUALIZER_MODE, isBuiltinVisualizerMode } from '../types/visualizerModes';
 import { decompressConfig } from './appearanceCodec';
+import { parseSubtitleOverlayLayout } from './lyrics/subtitleOverlayLayout';
 import type { ObsAiConfig } from '../services/aiText';
 import { getWebAiProvider } from '../services/runtimeConfig';
+import { resolveObsNowPlayingCard, type ObsNowPlayingCardConfig } from './obsNowPlayingCard';
 
 // src/utils/obsWebAppearance.ts
 // Parse the OBS URL params (including the appearance cfg shortcode) into the appearance
@@ -32,6 +34,7 @@ export interface ObsWebParams {
   transparent: boolean;
   visualizer: string; // single-mode override (empty = use the cfg's mode)
   themeMode: ObsThemeMode | null; // null = link predates the marker; infer from cfg instead
+  language: string | null; // Folia's UI language when the link was copied; null = OBS's own
 }
 
 export interface ObsWebAppearance {
@@ -48,6 +51,7 @@ export interface ObsWebAppearance {
   hideTranslationSubtitle?: boolean;
   showSubtitleTranslation?: boolean;
   subtitleContentMode?: SubtitleContentMode;
+  subtitleOverlayLayout?: SubtitleOverlayLayout;
   subtitleOverlayBackground?: boolean;
   subtitleUpcomingLyricsBlur?: boolean;
   subtitleOverlayOpacity?: number;
@@ -64,6 +68,8 @@ export interface ObsWebAppearance {
   subtitleFontFamily?: string | null;
   subtitleFontFallbackFamilies?: string[];
   background: VisualizerBackgroundConfig;
+  // The now playing card, when the cfg asks for it in the browser source; null draws none.
+  nowPlayingCard: ObsNowPlayingCardConfig | null;
 }
 
 export function parseObsWebParams(search: string): ObsWebParams {
@@ -80,6 +86,7 @@ export function parseObsWebParams(search: string): ObsWebParams {
     transparent: params.get('transparent') === '1',
     visualizer: params.get('visualizer')?.trim() || '',
     themeMode: readObsThemeMode(params),
+    language: params.get('lang')?.trim() || null,
   };
 }
 
@@ -166,6 +173,7 @@ export function buildObsAppearanceFromShortcode(
     hideTranslationSubtitle: decoded?.hidePlayerTranslationSubtitle,
     showSubtitleTranslation: decoded?.showSubtitleTranslation,
     subtitleContentMode: decoded?.subtitleContentMode,
+    subtitleOverlayLayout: parseSubtitleOverlayLayout(decoded?.subtitleOverlayLayout) ?? undefined,
     subtitleOverlayBackground: decoded?.subtitleOverlayBackground,
     subtitleUpcomingLyricsBlur: decoded?.subtitleUpcomingLyricsBlur,
     subtitleOverlayOpacity: decoded?.subtitleOverlayOpacity,
@@ -182,5 +190,11 @@ export function buildObsAppearanceFromShortcode(
     subtitleFontFamily: decoded?.subtitleFontFamily,
     subtitleFontFallbackFamilies: Array.isArray(decoded?.subtitleFontFallbackFamilies) ? decoded.subtitleFontFallbackFamilies : undefined,
     background,
+    nowPlayingCard: resolveObsNowPlayingCard({
+      inObs: decoded?.stageTrackPillInObs,
+      mode: decoded?.stageTrackPillMode,
+      timeoutSec: decoded?.stageTrackPillTimeoutSec,
+      position: decoded?.stageTrackPillPosition,
+    }),
   };
 }

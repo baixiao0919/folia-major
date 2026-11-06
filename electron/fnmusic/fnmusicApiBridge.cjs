@@ -9,15 +9,10 @@
 //
 // 协议（提取自飞牛音乐网页 JS bundle，见 docs/fnmusic-protocol.md）：
 //  - 基础路径 {origin}/music/api/v1{path}
-//  - 每个请求带 authx 头：nonce={6位随机}&timestamp={Date.now()}&sign={md5}
-//    sign = md5("NDzZTVxnRKP8Z0jXg1VAMonaG8akvh" + "_" + pathname + "_" + nonce + "_" + timestamp + "_" + bodyHash + "_" + apiKey)
-//    bodyHash(GET) = md5(decodeURIComponent(排序后的 query string))
-//    bodyHash(POST) = md5(JSON.stringify(body))
-//    apiKey = "6D5602D4-A342-4799-A0F0-BB795E7167D0"（bundle 内 XOR 混淆，已还原）
-//  - 认证：登录返回 {userToken, user}；后续请求带 Cookie: music-token={userToken}
-//  - 响应信封：{ code, msg, data }，code ∈ {0, 200} 视为成功
-//  - 播放流：GET /music/api/v1/track/stream 返回播放源；若 url 为 hls://{fileId}?quality=，
-//    则继续 GET {origin}/api/stream/unified?fileId=...&quality=...（此接口不签名）取 m3u8
+//  - 认证：POST /music/api/v1/user/password-login {username, password: sha256(password)} →
+//    {userToken, user}；后续请求带 Cookie: music-token={userToken}（不再使用 authx 签名头）
+//  - 响应信封：{ code, msg, data }，code ∈ {0, 200} 视为成功；code 120001 = 账号或密码错误
+//  - 播放流：GET /music/api/v1/track/stream?guid= 直接回原始音频文件（实测 200 audio/x-flac），不分音质
 //
 // 安全约定（与桌面端其他平台的主进程桥一致）：
 //  - 服务器地址与凭据（token）只存在主进程：safeStorage 加密后写入 store，渲染进程只发操作。
@@ -42,9 +37,25 @@ const FN_MUSIC_PRIVILEGED_SCHEME = {
 // 实测登录与 stream 均不需要 authx 签名（2026-10-28 服务端验证），因此不内嵌
 // 客户端标识/密钥、不为每个请求签名（与 UPSTREAMS 的约定一致）。
 const SUCCESS_CODES = new Set([0, 200]);
-const MD5 = value => crypto.createHash('md5').update(String(value), 'utf8').digest('hex');
 const SHA256 = value => crypto.createHash('sha256').update(String(value), 'utf8').digest('hex');
 const CONFIG_STORE_KEY = 'fnmusic-config';
+// deviceId 不是凭据（登录还要密码），单独明文存：登出清掉配置后再登录仍用同一台设备，不在 NAS 上多出一台 Folia。
+const DEVICE_STORE_KEY = 'fnmusic-device-id';
+
+/** 规范化用户填的服务器地址：没写协议按 http（fnOS 默认 5666 端口是 HTTP），只收 http/https，去掉末尾斜杠。不合法回 null。 */
+const normalizeBase = (value) => {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+  const withScheme = /^[a-z][a-z\d+.-]*:\/\//i.test(raw) ? raw : `http://${raw}`;
+  try {
+    const url = new URL(withScheme);
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
+    if (!url.hostname) return null;
+    return `${url.origin}${url.pathname}`.replace(/\/+$/, '');
+  } catch {
+    return null;
+  }
+};
 
 // —— FN Connect 中继（外网登录）支持：登录框填纯 FN ID → 自动走 https://<fnid>.fnos.net ——
 // 参考 fnmusic-desktop-api 私有协议观察仓库：
@@ -61,13 +72,6 @@ const resolveServer = (input) => {
     return `https://${host}.${RELAY_DOMAIN}`;
   }
   return s;
-};
-
-/** 地址规范化：缺协议补 http://，缺端口补 :5666；https 保持端口不变（中继 https 默认 443）。 */
-const normalizeServer = (input) => {
-  let t = /^https?:\/\//i.test(input) ? input : `http://${input}`;
-  if (/^https:\/\//i.test(t) || /^http:\/\/[^/?#]+:\d+/i.test(t)) return t;
-  return t.replace(/^(http:\/\/[^/?#]+)/i, (m) => `${m}:5666`);
 };
 
 /** 输入清理：去空白、全角冒号，去 /music/api/v1 与 /music 后缀、去尾部斜杠。 */
@@ -107,16 +111,6 @@ const isRecord = value => Boolean(value) && typeof value === 'object' && !Array.
 const log = (...args) => console.log('[FnMusic]', ...args);
 const warn = (...args) => console.warn('[FnMusic]', ...args);
 
-/** 排序后的 key=value 串（与网页端 yO + decodeURIComponent 等价的输入串）。 */
-const sortedQueryString = (params) => {
-  if (!params) return '';
-  return Object.keys(params)
-    .filter(key => params[key] != null)
-    .sort()
-    .map(key => `${key}=${String(params[key])}`)
-    .join('&');
-};
-
 const encodeQuery = (params) => {
   if (!params) return '';
   const usp = new URLSearchParams();
@@ -134,7 +128,7 @@ const requestOnce = (url, { method, headers, body }) => new Promise((resolve, re
     headers,
     // 只对私网地址（局域网自签名 NAS）放行证书校验；公网 FN Connect 中继等必须严格校验，
     // 防止中间人拿到密码摘要与 userToken。
-    rejectUnauthorized: parsed.protocol !== 'https:' || isPrivateHost(parsed.hostname),
+    rejectUnauthorized: parsed.protocol !== 'https:' || !isPrivateHost(parsed.hostname),
     timeout: 12000, // 12s 无响应即失败：NAS 关机/断网时快速返回错误，界面不永久转圈
   }, res => {
     const chunks = [];
@@ -229,7 +223,8 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       if (!canEncrypt()) return null;
       return JSON.parse(safeStorage.decryptString(Buffer.from(String(encoded), 'base64')));
     } catch (error) {
-      warn('无法解密已保存的飞牛配置（可能换了机器密钥）:', error instanceof Error ? error.message : String(error));
+      // 日志交错误本体（栈/字段都在），不只 message。
+      warn('无法解密已保存的飞牛配置（可能换了机器密钥）:', error);
       return null;
     }
   };
@@ -265,8 +260,13 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     const upstream = transport.request(targetUrl, {
       method: 'GET',
       headers,
-      rejectUnauthorized: targetUrl.protocol !== 'https:' || isPrivateHost(targetUrl.hostname),
+      // 只对私网地址（局域网自签名 NAS）放行证书校验；公网必须严格校验，防止中间人窃取 token。
+      rejectUnauthorized: targetUrl.protocol !== 'https:' || !isPrivateHost(targetUrl.hostname),
+      timeout: 12000, // 12s 无响应即失败：NAS 关机/断网时快速返回错误，不挂死播放/封面请求
     }, (up) => {
+      // 上面的 timeout 是套接字空闲超时，只用来等响应头；响应开始后关掉它——播放暂停时 Chromium 不再读，
+      // 背压会让上游空闲远超 12s，不关会在暂停后把流掐断。
+      upstream.setTimeout(0);
       const out = {
         'Content-Type': up.headers['content-type'] || 'application/octet-stream',
         'Access-Control-Allow-Origin': '*',
@@ -274,16 +274,11 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       if (up.headers['content-length']) out['Content-Length'] = up.headers['content-length'];
       if (up.headers['accept-ranges']) out['Accept-Ranges'] = up.headers['accept-ranges'];
       if (up.headers['content-range']) out['Content-Range'] = up.headers['content-range'];
-      // 渲染层取消请求（拖进度条/切歌）时销毁上游连接，不留下暂停着的请求。
-      const web = Readable.toWeb(up);
-      const originalCancel = web.cancel?.bind(web);
-      if (originalCancel) {
-        web.cancel = (reason) => {
-          upstream.destroy();
-          return originalCancel(reason);
-        };
-      }
-      resolve(new Response(web, { status: up.statusCode || 200, headers: out }));
+      // Readable.toWeb 在 cancel 时本身会销毁源流（渲染层拖进度条/切歌即可断开上游），无需覆盖。
+      resolve(new Response(Readable.toWeb(up), { status: up.statusCode || 200, headers: out }));
+    });
+    upstream.on('timeout', () => {
+      upstream.destroy(new Error(`上游请求超时（12s）: ${targetUrl}`));
     });
     upstream.on('error', (error) => {
       warn('上游请求失败:', error instanceof Error ? error : new Error(String(error)));
@@ -307,8 +302,6 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       const guid = u.searchParams.get('guid');
       if (!guid) return denied(400);
       const params = { guid };
-      const quality = u.searchParams.get('quality');
-      if (quality) params.quality = quality;
       // 2026-10-28 服务端实测：track/stream 不带 authx 同样返回音频（200 audio/x-flac）。
       return forwardUpstream(config, '/music/api/v1/track/stream', params, { range });
     }
@@ -335,23 +328,28 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
         authenticated: Boolean(config?.token),
         base: config?.base ?? null,
         username: config?.username ?? null,
+        userId: config?.userId ?? null,
+        nickname: config?.nickname ?? null,
       };
     },
 
     /** 登录：POST /music/api/v1/user/password-login，密码 SHA-256，成功后加密保存配置。
      *  服务器地址支持：局域网直连（IP[:端口]）与 FN ID 中继（纯 FN ID → https://<fnid>.fnos.net）。 */
-    async login({ base, username, password, deviceId }) {
-      if (!base || !username || !password) {
+    async login({ base: rawBase, username, password, deviceId }) {
+      if (!rawBase || !username || !password) {
         return { ok: false, status: 0, error: { code: 'invalid-params', message: '登录缺少服务器地址 / 账号 / 密码' } };
       }
-      const server = normalizeServer(cleanInput(resolveServer(base)));
+      const server = normalizeBase(cleanInput(resolveServer(rawBase)));
       if (!server) {
-        return { ok: false, status: 0, error: { code: 'invalid-address', message: '服务器地址无法解析' } };
+        return { ok: false, status: 0, error: { code: 'invalid-base', message: '服务器地址无效' } };
       }
       const relay = server.includes(RELAY_DOMAIN) ? 1 : 0;
-      // 持久复用 deviceId：同一台机器登录同一 NAS 不产生新设备（与飞牛网页端一致）。
-      const existing = readConfig();
-      const effectiveDeviceId = deviceId || existing?.deviceId || crypto.randomBytes(16).toString('hex');
+      // 持久复用 deviceId：同一台机器登录同一 NAS 不产生新设备（与飞牛网页端一致）；登出之后也留着。
+      const storedDeviceId = store.get(DEVICE_STORE_KEY);
+      const effectiveDeviceId = deviceId
+        || (typeof storedDeviceId === 'string' && storedDeviceId ? storedDeviceId : '')
+        || readConfig()?.deviceId
+        || crypto.randomBytes(16).toString('hex');
       const result = await performRequest({
         base: server,
         method: 'POST',
@@ -371,7 +369,12 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
           error: { code: 'invalid-response', message: '登录响应缺少 userToken 或 user' },
         };
       }
-      writeConfig({ base: server, username, token: result.data.userToken, deviceId: effectiveDeviceId, relay });
+      store.set(DEVICE_STORE_KEY, effectiveDeviceId);
+      // 账号身份取登录答复里的 user（guid / 昵称），不只用登录名：两台 NAS 上同名的账号不是同一个人。
+      const user = isRecord(result.data.user) ? result.data.user : {};
+      const userId = String(user.guid ?? user.id ?? user.uid ?? '');
+      const nickname = String(user.name ?? user.nickname ?? user.username ?? '');
+      writeConfig({ base: server, username, token: result.data.userToken, deviceId: effectiveDeviceId, userId, nickname, relay });
       return { ok: true, status: result.status, data: { user: result.data.user } };
     },
 
@@ -395,11 +398,11 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     },
 
     /** 播放地址：返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。 */
-    async stream({ trackId, quality }) {
+    async stream({ trackId }) {
       const config = readConfig();
       if (!config?.base) return { ok: false, status: 0, error: { code: 'unconfigured', message: '飞牛尚未配置服务器' } };
+      // track/stream 回原始文件，不分音质（协议只验证过 guid 参数），不转发音质。
       const q = new URLSearchParams({ guid: trackId });
-      if (quality) q.set('quality', quality);
       return { ok: true, status: 200, data: { url: `folia-fnmusic://stream?${q.toString()}` } };
     },
 

@@ -39,7 +39,7 @@
 ## QQ 音乐（`qq`）
 
 - **上游**：第三方库 `@yakult-green-tea/qq-music-api`（仓库 yakult-green-tea/qq-music-api），代我们向 QQ 音乐的接口发请求。
-- **版本**：3.3.3，根目录 `package.json`（钉死）和 `deploy/docker/qq-api/package.json` 都是。
+- **版本**：3.3.6，根目录 `package.json`（钉死）和 `deploy/docker/qq-api/package.json` 都是。
 - **怎么用**：
   - 桌面端：主进程 require 这个包，包在 require 时自己起一个 HTTP 服务（`electron/qq/qqApiStartup.cjs`）；页面经 `window.electron.getQqPort` 拿到端口，向 `http://127.0.0.1:<端口>` 发请求（`qq/qqTransport.ts`）。登录会话由 `electron/qq/qqAuthSessionRepository.cjs` 存。
   - 网页版：用包的 `./serverless` 导出，Vercel 的入口是 `api-ts/qq.ts`（编译成入库的 `api/qq.js`），Cloudflare 的是 `worker/qq.ts`，扫码登录通道在 `worker/qqQrChannel.ts`。两边都挂在 `/api/qq`，`VITE_QQ_API_BASE` 填 `/api/qq`。
@@ -107,6 +107,13 @@
 - **上游**：用户自己的 Navidrome 服务，走 Subsonic API（`/rest/<接口>`），入口是 `src/services/navidromeService.ts`。歌词等扩展先问 `getOpenSubsonicExtensions` 再决定用不用。
 - **版本**：请求里写 `v=1.16.1`（Subsonic API 版本）、`c=Folia`；鉴权用 `md5(密码 + salt)` 的 token。没有要装的包。
 - **上游变了怎么跟**：Subsonic 是公开的协议，服务端版本由用户自己定。`test/unit/navidrome/navidromeService.test.ts` 用替身代替服务端，管的是我们拼请求和读答复的写法。
+
+## Apple Music（`appleMusic`）原生宿主
+
+- **上游**：Apple Music 官方网页与页面内 MusicKit；网页会变化，没有固定版本。macOS 使用系统 WKWebView，不引入独立浏览器 SDK。
+- **Windows SDK**：`Microsoft.Web.WebView2` 固定为 `1.0.4314.35`，在 `electron/appleMusic/windows/FoliaAppleMusicCompanion.csproj` 用 NuGet 精确版本区间 `[1.0.4314.35]` 声明。升级时只改这个宿主的 SDK 声明，并重新构建及执行 Windows 验收。
+- **Windows 运行时**：使用本机 WebView2 Evergreen，独立于 SDK 更新；不随仓库分发浏览器。需要系统 .NET Framework 4.8。源码已提供，未在 Windows 编译或验证 DRM，默认入口停用；实验开关与验收见 `electron/appleMusic/windows/README.md`。
+- **哪些测试能抓到**：Vitest 覆盖父进程请求、队列、协议与平台可用性分支；抓不到 C# 编译、WebView2 登录/DRM 出声或运行时升级造成的网页行为变化，必须在 Windows 实机验收。
 
 ## 飞牛音乐（`fnmusic`，仅桌面端）
 
