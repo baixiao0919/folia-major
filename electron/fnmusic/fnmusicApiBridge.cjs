@@ -12,7 +12,7 @@
 //  - 认证：POST /music/api/v1/user/password-login {username, password: sha256(password)} →
 //    {userToken, user}；后续请求带 Cookie: music-token={userToken}（不再使用 authx 签名头）
 //  - 响应信封：{ code, msg, data }，code ∈ {0, 200} 视为成功；code 120001 = 账号或密码错误
-//  - 播放流：GET /music/api/v1/track/stream?guid= 直接回原始音频文件（实测 200 audio/x-flac），不分音质
+//  - 播放流：GET /music/api/v1/track/stream?guid= 回音频文件（实测 200 audio/x-flac）；带 quality 时由服务端决定是否按档位转码
 //
 // 安全约定（与桌面端其他平台的主进程桥一致）：
 //  - 服务器地址与凭据（token）只存在主进程：safeStorage 加密后写入 store，渲染进程只发操作。
@@ -303,6 +303,9 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       const guid = u.searchParams.get('guid');
       if (!guid) return denied(400);
       const params = { guid };
+      // 档位跟着转发：服务端认这个参数时按档位转码，不认时按默认回原文件。
+      const quality = u.searchParams.get('quality');
+      if (quality) params.quality = quality;
       // 2026-10-28 服务端实测：track/stream 不带 authx 同样返回音频（200 audio/x-flac）。
       return forwardUpstream(config, '/music/api/v1/track/stream', params, { range });
     }
@@ -399,11 +402,13 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
     },
 
     /** 播放地址：返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。 */
-    async stream({ trackId }) {
+    async stream({ trackId, quality }) {
       const config = readConfig();
       if (!config?.base) return { ok: false, status: 0, error: { code: 'unconfigured', message: '飞牛尚未配置服务器' } };
-      // track/stream 回原始文件，不分音质（协议只验证过 guid 参数），不转发音质。
+      // 档位照渲染层要的那一档拼进协议地址，由协议 handler 转给 /track/stream：
+      // 服务端不认就按默认回原文件，认了才按档位转码。
       const q = new URLSearchParams({ guid: trackId });
+      if (quality) q.set('quality', quality);
       return { ok: true, status: 200, data: { url: `folia-fnmusic://stream?${q.toString()}` } };
     },
 

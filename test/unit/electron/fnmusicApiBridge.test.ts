@@ -76,7 +76,7 @@ describe('FnMusic desktop bridge', () => {
         expect(await bridge.coverUrl({ coverId: 'abc' })).toMatchObject({ ok: false, error: { code: 'unconfigured' } });
     });
 
-    it('shapes stream URLs with the custom protocol and the track only (the server sends the original file)', async () => {
+    it('shapes stream URLs with the custom protocol, the track and the requested quality level', async () => {
         const bridge = createFnmusicApiBridge({ store: seededStore(), safeStorage: cipher() });
         const result = await bridge.stream({ trackId: 'track-42', quality: 'lossless' });
         expect(result.ok).toBe(true);
@@ -84,7 +84,7 @@ describe('FnMusic desktop bridge', () => {
         expect(url.protocol).toBe('folia-fnmusic:');
         expect(url.hostname).toBe('stream');
         expect(url.searchParams.get('guid')).toBe('track-42');
-        expect(url.searchParams.has('quality')).toBe(false);
+        expect(url.searchParams.get('quality')).toBe('lossless');
     });
 
     it('shapes cover URLs with coverId and size', async () => {

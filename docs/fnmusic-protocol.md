@@ -32,7 +32,7 @@
 - 服务器地址与 token 用 `safeStorage` 加密存进主进程 store（`fnmusic-config`），渲染进程只发操作、不持有明文。
 - 系统加密不可用（`isEncryptionAvailable()` 为假或 Linux `basic_text`）时退回只在本次运行内保存（照 `electron/qishui/session.cjs`）。
 - **播放与封面走自定义协议 `folia-fnmusic://`**（`protocol.handle('folia-fnmusic')`，参照 `electron/ytm/audio.cjs`）：
-  - 播放：`folia-fnmusic://stream?guid={trackGUID}` → 主进程转发 `GET /music/api/v1/track/stream`（回原始文件，不分音质；provider 只列一档音质）
+  - 播放：`folia-fnmusic://stream?guid={trackGUID}&quality={可选档位}` → 主进程转发 `GET /music/api/v1/track/stream`（档位随请求转发：服务端认时按档位转码，不认时按默认回原文件；provider 列 `standard` / `high` / `lossless` 三档）
   - 封面：`folia-fnmusic://cover?coverId={coverId}&size={可选}` → 主进程转发 `GET /music/api/v1/static/cover`
   - 转发时带 `Cookie: music-token=…` 与 Range；自签名 HTTPS 只对私网地址放行证书校验（`rejectUnauthorized: false`），公网 FN Connect 中继等仍严格校验。
   - 协议地址稳定，重启不变（歌曲对象只存 `coverId`，显示时再生成地址）。

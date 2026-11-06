@@ -353,15 +353,16 @@ export const fnmusicProvider: OnlineMusicProvider = {
         },
     },
     playback: {
-        // track/stream 只回 NAS 上的原始文件，没有可选的音质：只列一档，音质选项不给不起作用的档位。
-        audioQualityLevels: ['standard'],
+        // 飞牛逼站的 stream 认 quality：不带按服务端默认回原文件，带了才可能转码到更低码率。
+        // 这里列到 lossless 为止——NAS 上的源文件最多就是无损，hires / ultra 在飞牛没有对应档位。
+        audioQualityLevels: ['standard', 'high', 'lossless'],
         async getSongDetail(id) {
             const raw = await fnmusicRequest<unknown>('/music/api/v1/track/metadata', { trackGUID: id });
             const item = record(raw);
             return normalizeFnMusicSong(item.track ?? item.song ?? raw);
         },
         async getAudioSource(song, quality: AudioQualityPreference) {
-            const url = await fnMusicStreamSource(songIdOf(song));
+            const url = await fnMusicStreamSource(songIdOf(song), quality);
             return { url, fetchedAt: Date.now(), quality } as ProviderAudioSource;
         },
     },
