@@ -1812,6 +1812,10 @@ export default {
         "title": "Visualizer: Nebbia",
         "description": "Alihkan ke Nebbia, lirik ditulis di jendela bus yang berembun"
       },
+      "visualizer-prompt": {
+        "title": "Visualizer: Prompt",
+        "description": "Alihkan ke visualizer kotak prompt"
+      },
       "visualizer-hanabi": {
         "title": "Visualizer: Hanabi",
         "description": "Alihkan ke PV lirik kembang api Hanabi"

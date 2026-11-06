@@ -1812,6 +1812,10 @@ export default {
         "title": "Visualizer: Nebbia",
         "description": "Switch to Nebbia, lyrics written on a fogged-up bus window"
       },
+      "visualizer-prompt": {
+        "title": "Visualizer: Prompt",
+        "description": "Switch to the prompt-box visualizer"
+      },
       "visualizer-hanabi": {
         "title": "Visualizer: Hanabi",
         "description": "Switch to the Hanabi fireworks lyric PV"

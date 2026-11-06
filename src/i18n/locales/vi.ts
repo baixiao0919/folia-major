@@ -1812,6 +1812,10 @@ export default {
         "title": "Hiệu ứng thị giác: Nebbia",
         "description": "Chuyển sang Nebbia, viết lời bài hát trên cửa kính xe buýt mờ hơi nước"
       },
+      "visualizer-prompt": {
+        "title": "Hiệu ứng thị giác: Prompt",
+        "description": "Chuyển sang dạng hiển thị hộp gợi ý"
+      },
       "visualizer-hanabi": {
         "title": "Hiệu ứng thị giác: Hanabi",
         "description": "Chuyển sang PV lời pháo hoa Hanabi"

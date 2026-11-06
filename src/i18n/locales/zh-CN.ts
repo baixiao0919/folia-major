@@ -1804,6 +1804,10 @@ export default {
         "title": "切换到可视化：雾笺",
         "description": "切换到雾笺：在起雾的公交车窗上写歌词"
       },
+      "visualizer-prompt": {
+        "title": "切换到可视化：提示词",
+        "description": "切换到提示词输入框可视化"
+      },
       "visualizer-hanabi": {
         "title": "切换到可视化：花火",
         "description": "切换到花火烟花歌词 PV 可视化"
@@ -1856,6 +1860,10 @@ export default {
         "title": "背景切换到 嵌入背景",
         "description": "切换背景到嵌入网页模式"
       },
+      "background-transparent": {
+        "title": "背景：透明",
+        "description": "把背景切换成完全透明的布局"
+      },
       "background-sora": {
         "title": "背景切换：空",
         "description": "将背景切换到星空 (Sora)"
@@ -1871,6 +1879,10 @@ export default {
       "settings-toggle-player-back-button": {
         "title": "始终显示播放页返回按钮",
         "description": "切换播放页左上角返回按钮的常驻显示"
+      },
+      "settings-toggle-player-bar-pinned": {
+        "title": "固定播放条",
+        "description": "让底部播放条保持展开，不自动收起"
       },
       "settings-gridview-cards": {
         "title": "网格卡片外观",

@@ -85,6 +85,7 @@ exports[`command palette registry contract > keeps the registered command order 
   "settings-appearance",
   "settings-ai-provider",
   "settings-theme-presets",
+  "settings-liquid-glass",
   "settings-lyrics-renderer",
   "settings-grid-card-style",
   "settings-general",
@@ -182,6 +183,7 @@ exports[`command palette registry contract > keeps the registered command order 
   "settings-toggle-transparent",
   "settings-toggle-daylight",
   "settings-toggle-player-back-button",
+  "settings-toggle-player-bar-pinned",
   "settings-toggle-lattice-vignette",
   "settings-toggle-lattice-badge-current-only",
   "settings-toggle-lattice-auto-focus",
@@ -255,6 +257,7 @@ exports[`command palette registry contract > keeps the registered command order 
   "smart-beat-cached",
   "smart-beat-on",
   "visualizer-sonnet",
+  "visualizer-prompt",
   "visualizer-tempera",
   "visualizer-lumiere",
   "visualizer-hanabi",
@@ -288,5 +291,6 @@ exports[`command palette registry contract > keeps the registered command order 
   "background-latent-both",
   "background-url",
   "background-sora",
+  "background-transparent",
 ]
 `;
