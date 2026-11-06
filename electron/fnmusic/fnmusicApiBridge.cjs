@@ -74,13 +74,14 @@ const resolveServer = (input) => {
   return s;
 };
 
-/** 输入清理：去空白、全角冒号，去 /music/api/v1 与 /music 后缀、去尾部斜杠。 */
+/** 输入清理：去空白、全角冒号，去 /music/api/v1 与 /music 后缀、去尾部斜杠。
+ *  尾部斜杠只在前面不是协议分隔符时去掉，免得把 `http://` 抹成 `http:` 后被当成合法主机名。 */
 const cleanInput = (input) => String(input ?? '')
   .replace(/\s+/g, '')
   .replace(/[：︓]/g, ':')
   .replace(/\/music\/api\/v1\/*$/i, '')
   .replace(/\/music\/*$/i, '')
-  .replace(/\/+$/, '');
+  .replace(/(?<![:\/])\/+$/, '');
 
 /** 构造请求 Cookie 头：token + 中继标志（登录请求无 token 时只带 mode=relay）。 */
 const buildAuthCookie = ({ token, relay }) => {
