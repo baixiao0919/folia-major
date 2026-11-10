@@ -861,7 +861,6 @@ const qqMusicu = async (module: string, method: string, param: Raw): Promise<Raw
 // 是 App 端 app.c.nf.migu.cn / app.u.nf.migu.cn（listen1 也走这套）。全部 GET，不需要账号。
 // 封面字段 img1/img2 是 /data/oss/... 相对路径，拼在 d.musicapp.migu.cn 下才是绝对地址。
 
-const MIGU_API = 'https://app.c.nf.migu.cn/MIGUM3.0/v1.0';
 const MIGU_SEARCH = 'https://app.u.nf.migu.cn/pc/resource/song/item/search/v1.0';
 const MIGU_COVER = 'https://d.musicapp.migu.cn';
 const MIGU_REFERER = 'https://music.migu.cn/';
@@ -994,7 +993,7 @@ const miguLiveCharts = async (): Promise<LxApiChart[]> => {
         // 同一条响应也填进榜图缓存，withMiguChartCovers 的兜底路径不会再用旧榜名。
         miguChartCoverCache = {
             at: Date.now(),
-            covers: new Map(charts.filter((chart) => chart.coverUrl).map((chart) => [chart.id, chart.coverUrl!])),
+            covers: new Map(charts.flatMap((chart) => (chart.coverUrl ? [[chart.id, chart.coverUrl] as [string, string]] : []))),
         };
     }
     return charts;
@@ -1007,7 +1006,7 @@ const miguLiveCharts = async (): Promise<LxApiChart[]> => {
 // 搜索 search、场景分类树 feed.modes、按场景拉歌 feed（scene）。播放交给用户导入的
 // LX 汽水音源，所以这里只取元数据。桥不可用（网页 / 桌面）时一律返回空，不拖慢界面。
 
-const qishuiReady = (): boolean => getQishuiAvailability().configured === true;
+const qishuiReady = (): boolean => Boolean(getQishuiAvailability().configured);
 
 /** 桥返回的歌（toFoliaSongs 形状）→ 洛雪的 LxApiSong。 */
 const qishuiSong = (raw: Raw): LxApiSong => {
@@ -1045,9 +1044,7 @@ const qishuiSearchSongs = async (keyword: string, limit: number, offset: number)
  * 被 512KB 上限挡掉后只剩渐变底，封面就跟标题对不上了。公开 CDN 的图不需要 CORS，
  * 直接给地址既保真又不占内存；取不到才是 undefined，由调用方画兜底。
  */
-const qishuiCover = async (_id: string, raw: unknown): Promise<string | undefined> => (
-    normalizeCover(qishuiImage(raw))
-);
+const qishuiCover = (_id: string, raw: unknown): string | undefined => normalizeCover(qishuiImage(raw));
 
 /** 官方场景分类树（/feed/mode/）→ 洛雪的 LxSquareTagCatalog。 */
 const qishuiTagCatalog = async (): Promise<LxSquareTagCatalog> => {
@@ -1082,7 +1079,7 @@ const qishuiTagCatalog = async (): Promise<LxSquareTagCatalog> => {
  * 此时返回的是歌曲而非歌单——但工作台的歌单页要的是集合，所以用「虚拟歌单」卡片承载：
  * id = `scene:<sceneId>`，曲目由 lxApiPlaylistTracks 按 scene 解析。
  */
-const qishuiPlaylistSquare = async (limit: number, _offset: number): Promise<LxApiPage<LxApiCollection>> => {
+const qishuiPlaylistSquare = async (limit: number): Promise<LxApiPage<LxApiCollection>> => {
     if (!qishuiReady()) return { items: [], hasMore: false };
     try {
         const data = asArray(await requestQishui('feed.modes'));
@@ -1451,7 +1448,7 @@ const miguTagCatalog = async (): Promise<LxSquareTagCatalog> => {
     ).catch(() => null));
     const blocks = asArray(payload?.data);
     const tagOf = (entry: Raw): LxSquareTag | null => {
-        const texts = asArray(entry.texts).map((item) => String(item ?? ''));
+        const texts = asArray(entry.texts).map((item) => toText(item));
         return texts.length >= 2 && texts[1] && stripTags(texts[0])
             ? { id: texts[1], name: stripTags(texts[0]) }
             : null;
@@ -1577,7 +1574,7 @@ export const lxApiPlaylistSquare = async (
     if (platform === 'mg' || platform === 'qs') {
         return platform === 'mg'
             ? miguPlaylistSquare(limit, offset, tagId)
-            : qishuiPlaylistSquare(limit, offset);
+            : qishuiPlaylistSquare(limit);
     }
     {
         // QQ：categoryId=10000000 是「全部」；带标签时换成目录接口给的 categoryId。
@@ -1739,21 +1736,20 @@ export const lxApiPlaylistTracks = async (
         const total = toNumber(payload?.totalCount);
         return { items: songs, hasMore: offset + songs.length < total };
     }
-    if (platform === 'qs') {
-        // scene 虚拟歌单：`scene:<id>` → 按场景拉推荐歌曲。
-        const scene = playlistId.startsWith('scene:') ? playlistId.slice(6) : '';
-        if (!qishuiReady()) return { items: [], hasMore: false };
-        try {
-            const data = asRecord(await requestQishui('feed', {
-                limit: Math.min(limit, 30),
-                ...(scene ? { scene } : {}),
-            }));
-            const songs = asArray(data?.songs).map(qishuiSong).filter((s) => s.id && s.name);
-            return { items: songs.slice(offset, offset + limit), hasMore: Boolean(data?.hasMore) };
-        } catch (error) {
-            console.warn('[lxmusic] 汽水场景曲目失败：', error);
-            return { items: [], hasMore: false };
-        }
+    // 前五家各自 return；走到这里只剩「汽水」。scene 虚拟歌单：`scene:<id>` → 按场景拉推荐歌曲。
+    // scene 虚拟歌单：`scene:<id>` → 按场景拉推荐歌曲。
+    const scene = playlistId.startsWith('scene:') ? playlistId.slice(6) : '';
+    if (!qishuiReady()) return { items: [], hasMore: false };
+    try {
+        const data = asRecord(await requestQishui('feed', {
+            limit: Math.min(limit, 30),
+            ...(scene ? { scene } : {}),
+        }));
+        const songs = asArray(data?.songs).map(qishuiSong).filter((s) => s.id && s.name);
+        return { items: songs.slice(offset, offset + limit), hasMore: Boolean(data?.hasMore) };
+    } catch (error) {
+        console.warn('[lxmusic] 汽水场景曲目失败：', error);
+        return { items: [], hasMore: false };
     }
     return { items: [], hasMore: false };
 };
