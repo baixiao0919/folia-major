@@ -68,7 +68,7 @@ import {
 
 type ParsedId = { platform: LxPlatformKey; nativeId: string };
 
-const KNOWN_ID_PLATFORMS = new Set<string>(['wy', 'kg', 'kw', 'tx', 'mg']);
+const KNOWN_ID_PLATFORMS = new Set<string>(['wy', 'kg', 'kw', 'tx', 'mg', 'qs']);
 
 /** `wy:123` → { platform: 'wy', nativeId: '123' }；同时兼容上一版的 `netease|123`。 */
 const parseSongId = (id: MediaId | string): ParsedId | null => {
@@ -382,6 +382,7 @@ const parseLrcToLyricData = (lrc: string): LyricData => {
 
 const isPublicPlatform = (platform: LxPlatformKey): platform is LxPublicPlatform => (
     platform === 'wy' || platform === 'kg' || platform === 'kw' || platform === 'tx'
+    || platform === 'mg' || platform === 'qs'
 );
 
 /**

@@ -24,7 +24,7 @@ const PER_PLATFORM = 15;
 /**
  * 歌单页顶部的筛选条件：看哪一家、按什么排、按哪个分类。
  * `platform: 'all'` 是四家混排（洛雪桌面版默认那屏），选到某一家才只看它。
- * 分类只有网易云真的认（`cat` 换成别的值会换出一整批不同的歌单，见 lxmusicTransport 里的实测注释）。
+ * 分类只有网易云真的认（`cat` 换成别的值会换出一整批不同的歌单，见 lxPublicApi 里的实测注释）。
  */
 export type LxSquareFilter = {
     platform: LxPublicPlatform | 'all';
