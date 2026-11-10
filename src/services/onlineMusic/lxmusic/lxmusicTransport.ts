@@ -1006,10 +1006,11 @@ const miguLiveCharts = async (): Promise<LxApiChart[]> => {
 // 搜索 search、场景分类树 feed.modes、按场景拉歌 feed（scene）。播放交给用户导入的
 // LX 汽水音源，所以这里只取元数据。桥不可用（网页 / 桌面）时一律返回空，不拖慢界面。
 
-const qishuiReady = (): boolean => Boolean(getQishuiAvailability().configured);
+const qishuiReady = (): boolean => getQishuiAvailability().configured;
 
 /** 桥返回的歌（toFoliaSongs 形状）→ 洛雪的 LxApiSong。 */
 const qishuiSong = (raw: Raw): LxApiSong => {
+    const album = asRecord(raw.album);
     const artists = asArray(raw.artists).map((item) => toText(item.name)).filter(Boolean);
     return {
         platform: 'qs',
@@ -1017,9 +1018,9 @@ const qishuiSong = (raw: Raw): LxApiSong => {
         name: stripTags(pick(raw, 'name', 'title')),
         artists: artists.length > 0 ? artists.map((item) => ({ name: item })) : [{ name: '未知歌手' }],
         album: {
-            id: toText(raw.album?.id),
-            name: toText(raw.album?.name) || '未知专辑',
-            coverUrl: normalizeCover(raw.album?.coverUrl),
+            id: toText(album?.id),
+            name: toText(album?.name) || '未知专辑',
+            coverUrl: normalizeCover(album?.coverUrl),
         },
         coverUrl: normalizeCover(raw.cover),
         durationMs: toNumber(raw.durationMs),
@@ -1056,7 +1057,7 @@ const qishuiTagCatalog = async (): Promise<LxSquareTagCatalog> => {
             const id = toText(item.id);
             const name = stripTags(item.name);
             if (!id || !name) continue;
-            const coverUrl = await qishuiCover(id, item.coverUrl);
+            const coverUrl = qishuiCover(id, item.coverUrl);
             const tag: LxSquareTag = { id, name, ...(coverUrl ? { coverUrl } : {}) };
             const group = toText(item.group) || '推荐场景';
             const list = groups.get(group) ?? [];
@@ -1083,18 +1084,18 @@ const qishuiPlaylistSquare = async (limit: number): Promise<LxApiPage<LxApiColle
     if (!qishuiReady()) return { items: [], hasMore: false };
     try {
         const data = asArray(await requestQishui('feed.modes'));
-        const items = await Promise.all(data.map(async (item) => {
+        const items = data.map((item) => {
             const id = toText(item.id);
             return {
                 platform: 'qs' as const,
                 id: `scene:${id}`,
                 name: stripTags(item.name) || '推荐场景',
                 kind: 'playlist' as const,
-                coverUrl: await qishuiCover(id, item.coverUrl),
+                coverUrl: qishuiCover(id, item.coverUrl),
                 description: toText(item.group) || undefined,
                 creatorName: '汽水音乐',
             };
-        }));
+        });
         return {
             items: items.filter((item) => item.id && item.name && item.id !== 'scene:').slice(0, limit),
             hasMore: false,
@@ -1114,16 +1115,16 @@ const qishuiDiscoverCharts = async (): Promise<LxApiChart[]> => {
     if (!qishuiReady()) return [];
     try {
         const data = asArray(await requestQishui('discover.modes'));
-        return await Promise.all(data.map(async (item) => {
+        return data.map((item) => {
             const id = `radio:${toText(item.id)}`;
             return {
                 platform: 'qs' as const,
                 id,
                 name: stripTags(item.name) || '模式探索',
-                coverUrl: await qishuiCover(id, item.cover),
+                coverUrl: qishuiCover(id, item.cover),
                 description: stripTags(item.description) || undefined,
             };
-        }));
+        });
     } catch (error) {
         console.warn('[lxmusic] 汽水模式探索失败：', error);
         return [];
