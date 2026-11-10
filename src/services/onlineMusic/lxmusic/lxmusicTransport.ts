@@ -1455,10 +1455,13 @@ const miguTagCatalog = async (): Promise<LxSquareTagCatalog> => {
             : null;
     };
     const hot = asArray(blocks[0]?.content).map(tagOf).filter((tag): tag is LxSquareTag => Boolean(tag));
-    const groups = blocks.slice(1).map((block) => ({
-        title: stripTags(block.header?.title),
-        tags: asArray(block.content).map(tagOf).filter((tag): tag is LxSquareTag => Boolean(tag)),
-    })).filter((group) => group.title && group.tags.length > 0);
+    const groups = blocks.slice(1).map((block) => {
+        const header = asRecord(block.header);
+        return {
+            title: stripTags(header?.title),
+            tags: asArray(block.content).map(tagOf).filter((tag): tag is LxSquareTag => Boolean(tag)),
+        };
+    }).filter((group) => group.title && group.tags.length > 0);
     // 真机取不到 / 解析出空树时，用洛雪官方固化表顶上，保证歌单页一定有目录。
     return hot.length > 0 && groups.length > 0 ? { hot, groups } : MIGU_TAG_SNAPSHOT;
 };
