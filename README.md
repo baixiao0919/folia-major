@@ -16,6 +16,9 @@
 > **源码**：[self-build 分支](https://github.com/baixiao0919/folia-major/tree/self-build) 含上述自研代码；窄屏一体胶囊、场景引擎等为**官方功能**，随上游同步，不是本仓库实现。
 >
 > **安装包**统一发布在本仓库 [Releases](https://github.com/baixiao0919/folia-major/releases)，仅供本人留档。**使用中遇到问题**请回到官方仓库 / 官方站点，不要以本仓库为准。
+
+---
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b5d0e863-48be-497b-b0e9-4bd8d8ce9bf0" alt="Folia" width="100%" />
 </p>
