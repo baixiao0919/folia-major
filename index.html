@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folia · 个人自用构建</title>
+<meta name="description" content="Folia 歌词可视化播放器的个人自用 Windows 构建，基于 chthollyphile/folia-major 的 fork，非官方版本。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0f1c'/%3E%3Ccircle cx='12' cy='21' r='4' fill='%23e9b44c'/%3E%3Ccircle cx='12' cy='21' r='1.4' fill='%230a0f1c'/%3E%3Cpath d='M16 21V9l7-2v10' stroke='%23e9b44c' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
+<style>
+:root{
+  --night:#080c16;
+  --night-2:#0e1524;
+  --line:rgba(233,240,255,.12);
+  --ink:#e9eeF7;
+  --muted:#8b96ac;
+  --amber:#e9b44c;
+  --cyan:#7fb3e0;
+  --serif:"Songti SC","Noto Serif SC","Source Han Serif SC","SimSun",Georgia,serif;
+  --sans:"PingFang SC","HarmonyOS Sans SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --mono:"JetBrains Mono","Cascadia Mono",Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--night);color:var(--ink);font-family:var(--sans);
+  line-height:1.7;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ===== 顶栏 ===== */
+.topbar{border-bottom:1px solid var(--line)}
+.topbar-inner{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;padding:16px 20px;font-size:13px;color:var(--muted);min-width:0}
+@media(max-width:519px){.topbar-inner{font-size:12px;gap:6px 14px;padding:14px 20px}}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand b{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.06em;color:var(--ink)}
+.brand span{font-size:12px;letter-spacing:.02em}
+.topbar-links{display:flex;gap:18px}
+.topbar-links a{position:relative;padding-bottom:2px}
+.topbar-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--amber);transition:right .35s ease}
+.topbar-links a:hover::after,.topbar-links a:focus-visible::after{right:0}
+
+/* ===== 主视觉 ===== */
+.hero{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center;min-height:520px}
+.hero-media{position:absolute;inset:0;z-index:-1}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:64% 46%}
+.hero-media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(8,12,22,1) 0%,rgba(8,12,22,.98) 34%,rgba(8,12,22,.62) 56%,rgba(8,12,22,.34) 82%,rgba(8,12,22,.5) 100%),
+  linear-gradient(180deg,rgba(8,12,22,.55) 0%,rgba(8,12,22,.2) 42%,rgba(8,12,22,.95) 100%);}
+.hero-body{padding:64px 20px 56px;width:100%}
+@media(min-width:768px){.hero-body{padding:88px 20px 76px}}
+@media(min-width:768px){.hero{min-height:650px}}
+@media(min-width:768px){
+  .hero-body>*{max-width:520px}
+}
+.kicker{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);letter-spacing:.04em}
+.kicker::before{content:"";width:22px;height:1px;background:var(--amber)}
+h1{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(38px,9.6vw,86px);line-height:1.1;letter-spacing:.04em;
+  margin:14px 0 0;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.45);
+  overflow-wrap:break-word;
+}
+h1 .latin{display:block;font-size:clamp(13px,1.7vw,17px);letter-spacing:.34em;color:var(--amber);margin-bottom:10px;font-family:var(--sans);font-weight:400}
+.lede{max-width:44ch;margin-top:22px;font-size:15px;color:#c6cddd}
+@media(min-width:768px){.lede{font-size:16.5px}}
+.lede strong{color:var(--ink);font-weight:500}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+@media(max-width:519px){.actions{flex-direction:column}.actions .btn{width:100%;justify-content:center}}
+.btn{display:inline-flex;align-items:center;gap:9px;min-height:46px;padding:0 20px;border-radius:2px;font-size:14.5px;letter-spacing:.02em;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-primary{background:var(--amber);color:#1a1206;font-weight:600}
+.btn-primary:hover{background:#f2c565;transform:translateY(-1px)}
+.btn-ghost{border:1px solid rgba(233,240,255,.28);color:var(--ink);background:rgba(8,12,22,.35)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* ===== 版本规格 ===== */
+.spec{border-bottom:1px solid var(--line)}
+.spec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+@media(min-width:768px){.spec-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.spec-cell{padding:22px 0 24px;border-bottom:1px solid var(--line);min-width:0}
+.spec-cell:nth-child(odd){padding-right:18px}
+.spec-cell:nth-child(even){padding-left:18px;border-left:1px solid var(--line)}
+@media(min-width:768px){
+  .spec-cell:nth-child(even){border-left:0;padding-left:0}
+  .spec-cell:not(:first-child){border-left:1px solid var(--line);padding-left:26px}
+  .spec-cell:not(:last-child){padding-right:26px;border-bottom:0}
+  .spec-grid{border-bottom:1px solid var(--line)}
+}
+@media(max-width:519px){
+  .spec-grid{grid-template-columns:1fr}
+  .spec-cell{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:15px 0}
+  .spec-cell:nth-child(odd){padding-right:0}
+  .spec-cell:nth-child(even){padding-left:0;border-left:0}
+  .spec-cell .k{flex:0 0 auto}
+  .spec-cell .v{margin-top:0;text-align:right}
+}
+.k{display:block;font-size:11.5px;letter-spacing:.16em;color:var(--muted)}
+.v{display:block;margin-top:7px;font-family:var(--mono);font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.md5-row{display:flex;align-items:center;gap:10px;margin-top:7px}
+.md5-row .v{margin-top:0;font-size:12.5px;overflow-wrap:anywhere}
+.copy{flex:none;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--muted);cursor:pointer;transition:color .18s,border-color .18s}
+.copy:hover{color:var(--amber);border-color:var(--amber)}
+.copy svg{width:14px;height:14px}
+@media(min-width:768px){.md5-row .v{white-space:nowrap}}
+
+/* ===== 通用区块 ===== */
+section.block{padding:64px 0}
+@media(min-width:768px){section.block{padding:88px 0}}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12.5px;letter-spacing:.05em;color:var(--muted)}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.6vw,34px);letter-spacing:.03em;margin-top:16px;line-height:1.3}
+h2 em{font-style:normal;color:var(--amber)}
+.sub{max-width:52ch;margin-top:12px;color:var(--muted);font-size:14.5px}
+
+/* ===== 自研清单 ===== */
+.list{margin-top:40px;border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:1fr;gap:4px;padding:20px 0;border-bottom:1px solid var(--line)}
+@media(min-width:768px){
+  .item{grid-template-columns:minmax(180px,26%) 1fr;gap:28px;padding:26px 0;align-items:baseline}
+}
+.item-head{display:flex;align-items:center;gap:11px}
+.item-head svg{width:17px;height:17px;flex:none;color:var(--amber);opacity:.9}
+.item-head h3{font-size:16px;font-weight:600;letter-spacing:.01em}
+.item p{font-size:14.5px;color:#b3bccd;line-height:1.75;min-width:0;overflow-wrap:break-word}
+
+/* ===== 界面样貌 ===== */
+.shots{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;align-items:start}
+@media(min-width:768px){.shots{grid-template-columns:1.12fr .88fr;gap:18px}}
+.shots figure{margin:0;border:1px solid var(--line);background:var(--night-2);overflow:hidden}
+.shots img{width:100%;height:auto;display:block}
+.shots figcaption{padding:12px 14px 14px;font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+
+/* ===== 官方式对照 ===== */
+.pair{display:grid;grid-template-columns:1fr;gap:0;margin-top:38px}
+@media(min-width:768px){.pair{grid-template-columns:1fr 1fr;gap:0 44px}}
+.pair-col{padding:22px 0;border-top:1px solid var(--line)}
+@media(min-width:768px){.pair-col{padding:6px 0 0;border-top:1px solid var(--line)}}
+.pair-col .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;color:var(--muted);min-height:32px}
+.pair-col .tag i{width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block}
+.pair-col.us .tag i{background:var(--amber)}
+.pair-col h3{font-family:var(--serif);font-size:20px;font-weight:600;margin-top:12px;letter-spacing:.02em}
+.pair-col p{margin-top:10px;font-size:14.5px;color:#b3bccd;line-height:1.78}
+.pair-col ul{margin-top:12px;padding-left:0;list-style:none}
+.pair-col li{font-size:14px;color:#b3bccd;padding-left:16px;position:relative;line-height:1.9}
+.pair-col li::before{content:"";position:absolute;left:0;top:.9em;width:7px;height:1px;background:rgba(233,240,255,.34)}
+
+/* ===== 安装 ===== */
+.term{margin-top:30px;border:1px solid var(--line);background:#060a12;padding:20px 18px 22px;overflow-x:auto}
+.term .bar{display:flex;gap:6px;margin-bottom:14px}
+.term .dot{width:8px;height:8px;border-radius:50%;background:rgba(233,240,255,.16)}
+.term pre{font-family:var(--mono);font-size:12.5px;line-height:2;color:#cfd7e6;white-space:pre}
+.term pre .cm{color:#6b768c}
+.term pre .hl{color:var(--amber)}
+.note{margin-top:14px;font-size:13px;color:var(--muted);line-height:1.8}
+
+/* ===== 页脚 ===== */
+footer{border-top:1px solid var(--line);padding:48px 0 56px;background:var(--night-2)}
+.foot-grid{display:grid;grid-template-columns:1fr;gap:26px}
+@media(min-width:768px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr}}
+.foot-brand{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.05em}
+.foot-brand span{color:var(--amber)}
+.foot-decl{margin-top:12px;font-size:13px;color:var(--muted);max-width:42ch;line-height:1.8}
+.foot-col h4{font-size:12px;letter-spacing:.14em;color:var(--muted);font-weight:500}
+.foot-col ul{margin-top:12px;list-style:none;display:grid;gap:9px}
+.foot-col a{font-size:13.5px;color:#c2cad9;border-bottom:1px solid rgba(194,202,217,.24);transition:border-color .2s,color .2s}
+.foot-col a:hover{color:var(--amber);border-color:var(--amber)}
+.credit{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:#6f7a90;line-height:1.9}
+
+/* ===== 动效：只留交互反馈，内容一律静态可见 ===== */
+.btn{transition:transform .18s ease,background .18s ease,border-color .18s ease}
+@media(prefers-reduced-motion:reduce){
+  .btn{transition:none}
+  .btn:hover{transform:none}
+}
+.copy{min-width:30px}
+.copy-tip{position:fixed;left:50%;bottom:28px;transform:translate(-50%,10px);background:var(--amber);color:#1a1206;font-size:13px;padding:9px 16px;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:9}
+.copy-tip.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand"><b>Folia</b><span>个人自用构建 · 非官方</span></div>
+    <div class="topbar-links">
+      <a href="https://github.com/chthollyphile/folia-major">上游仓库</a>
+      <a href="https://github.com/baixiao0919/folia-major/releases">Releases</a>
+      <a href="https://github.com/baixiao0919/folia-major/tree/self-build">源码</a>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-media"><img src="assets/hero-night.webp" alt="Folia 播放界面：深蓝夜空背景上逐字点亮的歌词，底部为播放控制胶囊"></div>
+  <div class="wrap hero-body">
+    <p class="kicker hero-in d1">Windows 桌面版 · lx39 构建</p>
+    <h1 class="hero-in d2"><span class="latin">LYRICS REIMAGINED</span>辞曲新境</h1>
+    <p class="lede hero-in d3">歌词可视化播放器。这一份是<strong>本人自用的构建</strong>，由 <strong>chthollyphile/folia-major</strong> fork 而来，加了几个自己需要的东西。它不是官方版本，也不代表原作者。</p>
+    <div class="actions hero-in d4">
+      <a class="btn btn-primary" href="https://github.com/baixiao0919/folia-major/releases/download/v0.7.28-lx39/Folia-Setup-0.7.28.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v11m0 0 4-4m-4 4-4-4M4 18h16"/></svg>
+        下载 v0.7.28-lx39
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/baixiao0919/folia-major/tree/self-build">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C6.7 3.1 5.7 3.4 5.7 3.4a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.3 9.8c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        查看自研源码
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="spec">
+  <div class="wrap">
+    <div class="spec-grid">
+      <div class="spec-cell"><span class="k">版本</span><span class="v">v0.7.28-lx39</span></div>
+      <div class="spec-cell"><span class="k">平台 / 体积</span><span class="v">Windows x64 · 265 MB</span></div>
+      <div class="spec-cell"><span class="k">构建基准</span><span class="v">0.7.28 + lx39 改动</span></div>
+      <div class="spec-cell">
+        <span class="k">MD5</span>
+        <div class="md5-row">
+          <span class="v" id="md5">8AE769EE6339D0944574A4E941B99460</span>
+          <button class="copy" id="copyBtn" aria-label="复制 MD5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <p class="eyebrow reveal">与官方的差别</p>
+    <h2 class="reveal">我们自己加的<em>，只有这六项</em></h2>
+    <p class="sub reveal">其余功能都来自上游。界面上你看到的绝大多数东西是官方做的，包括那个窄屏一体胶囊——它不是我们写的。</p>
+
+    <ul class="list">
+      <li class="item reveal">
+        <div class="item-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M6 8.4v7.6a2.4 2.4 0 0 0 2.4 2.4h7.2"/></svg>
+          <h3>洛雪音源</h3>
+        </div>
+        <p>把洛雪的自建源接进来做聚合搜索与播放：网易云、QQ、酷狗、酷我、咪咕、汽水，六家一起查，只挑能播的那条。这也是目前比官方多出来的主要一块。</p>
+      </li>
+
+      <li class="item reveal">
+        <div class="item-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M7 15.5 10 11l3 3 2-2.2 2 3.7"/></svg>
+          <h3>液态玻璃 UI</h3>
+        </div>
+        <p>播放器界面与设置页的一层玻璃质感：模糊、色散、亮度可调，能跟着封面色走。属于外观层，不影响播放逻辑。</p>
+      </li>
+
+      <li class="item reveal">
+        <div class="item-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 0 1 14-5M20 12a8 8 0 0 1-14 5"/><path d="M18 4v3h-3M6 20v-3h3"/></svg>
+          <h3>局域网投送 + 音响遥控</h3>
+        </div>
+        <p>把正在播的歌通过 DLNA 丢给电视或音箱，同时在电脑上留一个遥控面板：播放、暂停、切歌、调音量，不用掏手机。</p>
+      </li>
+
+      <li class="item reveal">
+        <div class="item-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5h14v14H5z"/><path d="M9 9h6v6H9z"/></svg>
+          <h3>文字 PV 与内置歌词样式</h3>
+        </div>
+        <p>逐字点亮的文字 PV 展示方式，以及黑胶、跳一跳、52Hz、虹光几套内置样式——官方样式之外补的那部分。</p>
+      </li>
+
+      <li class="item reveal">
+        <div class="item-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16V8m4 10V6m4 12V9m4 8V7m4 9v-4"/></svg>
+          <h3>六档音质选择</h3>
+        </div>
+        <p>音质改成六档可选，从省流量到高解析，按当前音源实际能给到的上限挑，不做无意义的档位。</p>
+      </li>
+
+      <li class="item reveal">
+        <div class="item-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="7" height="14" rx="1.5"/><rect x="13" y="5" width="8" height="14" rx="1.5"/><path d="M5.5 9h2M15.5 9h3"/></svg>
+          <h3>飞牛音乐（fnmusic）</h3>
+        </div>
+        <p>连自己家里的飞牛 NAS 听歌：登录后直接拿封面、列表和播放地址，走的是自家局域网，不经过第三方。</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">界面样貌</p>
+    <div class="shots">
+      <figure>
+        <img src="assets/style-fume.webp" alt="Folia 播放界面：歌词在画面中央逐句浮现并点亮">
+        <figcaption>歌词在画面中央逐句成形，随演奏点亮</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/style-pendolo.webp" alt="Folia 另一套歌词样式：不同的排布与色彩">
+        <figcaption>换一套样式，排布与色彩随之改变</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow reveal">界限</p>
+    <h2 class="reveal">哪些是官方的<em>，哪些是我们的</em></h2>
+    <p class="sub reveal">这一版把上游的代码同步下来用，只在上面叠自己的东西。所以两边的账要分清。</p>
+
+    <div class="pair">
+      <div class="pair-col reveal">
+        <span class="tag"><i></i>随上游同步</span>
+        <h3>官方功能</h3>
+        <ul>
+          <li>窄屏一体胶囊：播放控制收成一条胶囊，官方做的</li>
+          <li>场景引擎（影厅等场景化界面）</li>
+          <li>歌词可视化的引擎本体与大部分样式</li>
+          <li>播放内核、音源接入框架、设置体系</li>
+        </ul>
+      </div>
+      <div class="pair-col us reveal">
+        <span class="tag"><i></i>本仓库自研</span>
+        <h3>我们改的部分</h3>
+        <ul>
+          <li>洛雪六家音源聚合（官方没有）</li>
+          <li>液态玻璃外观层</li>
+          <li>DLNA 投送与音响遥控面板</li>
+          <li>文字 PV、补充的内置歌词样式、六档音质</li>
+          <li>飞牛音乐桥</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow reveal">安装</p>
+    <h2 class="reveal">下载下来怎么装</h2>
+    <div class="term reveal">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <pre><span class="cm"># 常规安装，装完直接打开</span>
+<span class="hl">Folia-Setup-0.7.28.exe</span>
+
+<span class="cm"># 静默安装到默认目录</span>
+<span class="hl">Folia-Setup-0.7.28.exe</span> /S</pre>
+    </div>
+    <p class="note">装完会覆盖旧版本，歌单和设置保留在原来的用户目录里。这个包我只在自己的机器上装过并跑通，别人的环境没有逐一验证。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Folia<span>·</span>自用构建</div>
+        <p class="foot-decl">本页与这个仓库都是个人使用与留档，非官方发布，与原作者及官方站点无关。遇到问题请回官方仓库，不要以这里为准。</p>
+      </div>
+      <div class="foot-col">
+        <h4>下载与源码</h4>
+        <ul>
+          <li><a href="https://github.com/baixiao0919/folia-major/releases">全部 Releases</a></li>
+          <li><a href="https://github.com/baixiao0919/folia-major/releases/download/v0.7.28-lx39/Folia-Setup-0.7.28.exe">v0.7.28-lx39 安装包</a></li>
+          <li><a href="https://github.com/baixiao0919/folia-major/tree/self-build">self-build 自研代码</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>官方</h4>
+        <ul>
+          <li><a href="https://github.com/chthollyphile/folia-major">chthollyphile/folia-major</a></li>
+          <li><a href="https://github.com/baixiao0919/folia-major">本仓库（fork）</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="credit">界面截图取自项目仓库，用于说明功能形态。页面为静态单页，无统计、无第三方请求。</p>
+  </div>
+</footer>
+
+<div class="copy-tip" id="tip">MD5 已复制</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('copyBtn');
+  var tip = document.getElementById('tip');
+  var code = document.getElementById('md5').textContent.trim();
+  function showTip(){
+    tip.classList.add('on');
+    clearTimeout(showTip._t);
+    showTip._t = setTimeout(function(){ tip.classList.remove('on'); }, 1600);
+  }
+  btn.addEventListener('click', function(){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(showTip, fallback);
+    } else { fallback(); }
+  });
+  function fallback(){
+    var ta = document.createElement('textarea');
+    ta.value = code; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); showTip(); } catch(e) { showTip(); }
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
