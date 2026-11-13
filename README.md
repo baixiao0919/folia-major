@@ -3,11 +3,19 @@
 >
 > 本仓库是 [chthollyphile/folia-major](https://github.com/chthollyphile/folia-major) 的个人 fork，仅供本人自用与实机测试，**不是官方版本**，与原作者及官方站点无关。
 >
-> - 本版在上游基础上加了自研改动（洛雪音源、液态玻璃 UI、局域网投送与音响遥控、文字 PV、内置歌词样式等）；窄屏一体胶囊等为**官方功能**，随上游同步
-> - Windows 安装包发布在本仓库的 [Releases](https://github.com/baixiao0919/folia-major/releases)，仅供本人留档
-> - 使用中遇到问题请回到官方仓库 / 官方站点，不要以本仓库为准
-
----
+> **最新构建**：`v0.7.28-lx39` → [下载 Folia-Setup-0.7.28.exe](https://github.com/baixiao0919/folia-major/releases/download/v0.7.28-lx39/Folia-Setup-0.7.28.exe)（265 MB，Windows）
+>
+> **相对官方的自研改动**
+> - 洛雪音源：网易云 / QQ / 酷狗 / 酷我 / 咪咕 / 汽水 六家聚合
+> - 液态玻璃 UI 与配套设置项
+> - 局域网 DLNA 投送 + 音响遥控
+> - 文字 PV 歌词样式、内置歌词样式（黑胶 / 跳一跳 / 52Hz / 虹光）
+> - 六档音质选择
+> - 飞牛音乐（fnmusic）桥
+>
+> **源码**：[self-build 分支](https://github.com/baixiao0919/folia-major/tree/self-build) 含上述自研代码；窄屏一体胶囊、场景引擎等为**官方功能**，随上游同步，不是本仓库实现。
+>
+> **安装包**统一发布在本仓库 [Releases](https://github.com/baixiao0919/folia-major/releases)，仅供本人留档。**使用中遇到问题**请回到官方仓库 / 官方站点，不要以本仓库为准。
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b5d0e863-48be-497b-b0e9-4bd8d8ce9bf0" alt="Folia" width="100%" />
 </p>
