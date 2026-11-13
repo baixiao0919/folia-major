@@ -3,7 +3,7 @@
 >
 > This repository is a personal fork of [chthollyphile/folia-major](https://github.com/chthollyphile/folia-major), kept only for my own use and on-device testing. It is **not an official release** and is not affiliated with the upstream author or the official site.
 >
-> - Personal additions on top of upstream: lxmusic (Luoxue) sources, liquid-glass UI, LAN cast + speaker remote, text-PV lyrics, built-in lyric styles. The compact capsule and other core features are **upstream s own**
+> - Personal additions on top of upstream: lxmusic (Luoxue) sources, liquid-glass UI, LAN cast + speaker remote, text-PV lyrics, built-in lyric styles. The compact capsule and other core features are **upstream's own**
 > - Windows installers are published under this repo's [Releases](https://github.com/baixiao0919/folia-major/releases) for personal archival only
 > - For support, please refer to the official repository / official site rather than this fork
 
