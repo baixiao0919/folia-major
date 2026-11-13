@@ -127,11 +127,12 @@
 }
 
 .remote-window[data-bg='default'] .remote-paper {
-  background: linear-gradient(180deg, #18181c 0%, #0f0f12 100%);
+  /* 液态玻璃底：半透明渐变让 data-glass 的 backdrop-filter 折射得动，同时保留深色保证文本可读。 */
+  background: linear-gradient(180deg, rgba(24, 24, 28, 0.72) 0%, rgba(15, 15, 18, 0.86) 100%);
 }
 
 .remote-window[data-bg='default'][data-theme='light'] .remote-paper {
-  background: linear-gradient(180deg, #fbfaf8 0%, #f3f2ee 100%);
+  background: linear-gradient(180deg, rgba(251, 250, 248, 0.68) 0%, rgba(243, 242, 238, 0.84) 100%);
 }
 
 .remote-window[data-bg='cover'] .remote-paper {

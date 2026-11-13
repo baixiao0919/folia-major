@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getSizedCoverUrl } from '../../utils/coverUrl';
 import { getSongArtistLabel, getSongCoverUrl } from '../../services/onlineMusic/songMetadata';
 import { useSidePanelBottomPx } from '../../hooks/usePlayerBottomBarBottomPx';
+import { useGlass } from '@/shinoinject/useGlass';
 
 export interface SidePanelListProps<T> {
     isOpen: boolean;
@@ -46,6 +47,7 @@ export function SidePanelList<T>({
     const listContainerRef = useRef<HTMLDivElement>(null);
     const virtualListRef = useRef<any>(null);
     const bottomBarBottomPx = useSidePanelBottomPx();
+    useGlass();
 
     const rowProps = React.useMemo(() => ({ items, renderItem }), [items, renderItem]);
 
@@ -106,6 +108,7 @@ export function SidePanelList<T>({
                     exit={{ opacity: 0, x: 60, scale: 0.95 }}
                     transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     data-testid="side-panel-list"
+                    data-glass data-glass-light
                     className="absolute right-6 top-24 w-80 max-w-[calc(100vw-3rem)] rounded-3xl z-[80] flex flex-col p-6 shadow-2xl border backdrop-blur-2xl pointer-events-auto theme-glass-panel"
                     style={{
                         bottom: bottomBarBottomPx,

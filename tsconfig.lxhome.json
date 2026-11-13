@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "strict": true,
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "release",
+    "sync-server",
+    "original"
+  ],
+  "include": [
+    "src/**/*.d.ts",
+    "src/App.tsx",
+    "src/services/onlineMusic/lxmusic/lxmusicProvider.ts",
+    "src/services/onlineMusic/lxmusic/lxPublicApi.ts",
+    "src/services/onlineMusic/lxmusic/lxSquareCollections.ts",
+    "src/services/onlineMusic/lxmusic/lxLikedSongs.ts",
+    "src/services/onlineMusic/lxmusic/lxSavedPlaylists.ts",
+    "src/services/onlineMusic/omni.ts",
+    "src/components/app/AddToPlaylistHost.tsx",
+    "src/components/app/search/SearchResultRow.tsx",
+    "src/components/lxmusic/LxSquareToolbar.tsx", "src/components/lxmusic/LxGlassRail.tsx",
+    "src/components/lxmusic/LxChartBoard.tsx",
+    "src/components/lxmusic/LxAlbumWall.tsx",
+    "src/components/lxmusic/LxWorkspace.tsx",
+    "src/stores/useLxWorkspaceStore.ts"
+  ]
+}

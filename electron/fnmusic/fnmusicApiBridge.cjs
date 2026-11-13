@@ -340,6 +340,9 @@ const createFnmusicApiBridge = ({ store, safeStorage }) => {
       const guid = u.searchParams.get('guid');
       if (!guid) return denied(400);
       const params = { guid };
+      // 档位跟着转发：服务端认这个参数时按档位转码，不认时按默认回原文件。
+      const quality = u.searchParams.get('quality');
+      if (quality) params.quality = quality;
       // 2026-10-28 服务端实测：track/stream 不带 authx 同样返回音频（200 audio/x-flac）。
       return forwardUpstream(config, '/music/api/v1/track/stream', params, { range });
     }

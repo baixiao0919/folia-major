@@ -62,7 +62,7 @@ export const DEFAULT_MEDIA_CACHE_LIMIT_GB = 5;
 export type AudioQuality = AudioQualityPreference;
 
 export const resolveStoredAudioQuality = (saved: string | null): AudioQuality => (
-    saved === 'standard' || saved === 'ultra' || saved === 'lossless' || saved === 'hires' ? saved : 'high'
+    saved === 'standard' || saved === 'ultra' || saved === 'lossless' || saved === 'hires' || saved === 'master' ? saved : 'high'
 );
 
 /**

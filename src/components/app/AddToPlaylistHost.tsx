@@ -116,8 +116,10 @@ export const AddToPlaylistHost: React.FC<AddToPlaylistHostProps> = ({
     // 喜欢列表由「我喜欢」那一行代表（红心），不在歌单里再出现一次。
     const songPlaylists = useMemo(
         () => (currentSong ? omni.getPlaylistsForSong(currentSong).filter(playlist => !(playlist.isLiked && omni.canLikeSong(currentSong))) : []),
+        // 每次重新打开弹层都重算一次：洛雪这类把歌单记在本机的 provider 不走 accounts，
+        // 新建完一个歌单再点收藏，要能立刻看见它。
         // eslint-disable-next-line react-hooks/exhaustive-deps -- accounts is what getPlaylistsForSong reads
-        [accounts, currentSong],
+        [accounts, currentSong, isOpen],
     );
     const shownPlaylistCount = useMemo(
         () => (shownSong ? omni.getPlaylistsForSong(shownSong).length : 0),

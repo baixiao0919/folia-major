@@ -20,8 +20,8 @@ export const CLICK_THROUGH_UNLOCK_HOTSPOT = {
 } as const;
 
 // Right-edge offsets (px from the window's right edge) of the unlock button in AppShell.
-export const CLICK_THROUGH_UNLOCK_BUTTON_RIGHT_OFFSET = 180;
-export const CLICK_THROUGH_UNLOCK_BUTTON_RIGHT_OFFSET_WITH_FULLSCREEN_BUTTON = 224;
+export const CLICK_THROUGH_UNLOCK_BUTTON_RIGHT_OFFSET = 224;
+export const CLICK_THROUGH_UNLOCK_BUTTON_RIGHT_OFFSET_WITH_FULLSCREEN_BUTTON = 300;
 export const CLICK_THROUGH_UNLOCK_BUTTON_WIDTH = 28;
 
 // Right-edge offsets and width of the media button group beside the unlock button in AppShell.

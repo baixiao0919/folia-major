@@ -2343,7 +2343,7 @@ EXPERIMENTAL (`omni.providers`): a song as a mod provider describes it.
 Audio quality levels an Omni provider may be asked for.
 
 ```ts
-type FoliumAudioQuality = 'standard' | 'high' | 'lossless' | 'hires'
+type FoliumAudioQuality = 'standard' | 'high' | 'lossless' | 'hires' | 'master'
 ```
 
 ### FoliumOmniProviderDef

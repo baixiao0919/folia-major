@@ -86,6 +86,15 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.on('debug-memory-sample', listener);
         return () => ipcRenderer.removeListener('debug-memory-sample', listener);
     },
+    // 局域网音响投送（electron/lanCast）：发现、推送、停止都由主进程做，
+    // 渲染层只拿设备列表与结果；地址中继也在主进程内完成。
+    lanCastDiscover: (options) => ipcRenderer.invoke('lan-cast-discover', options),
+    lanCastCast: (track) => ipcRenderer.invoke('lan-cast-cast', track),
+    lanCastStop: (options) => ipcRenderer.invoke('lan-cast-stop', options),
+    // 音响音量走 RenderingControl：读回当前音量/静音，或直接改。
+    lanCastVolume: (options) => ipcRenderer.invoke('lan-cast-volume', options),
+    lanCastSetVolume: (options) => ipcRenderer.invoke('lan-cast-set-volume', options),
+    lanCastSetMute: (options) => ipcRenderer.invoke('lan-cast-set-mute', options),
     platform: process.platform,
     isLinuxX11: process.platform === 'linux' && !process.env.WAYLAND_DISPLAY,
     getSettings: () => ipcRenderer.invoke('get-settings'),
@@ -185,6 +194,7 @@ contextBridge.exposeInMainWorld('electron', {
     kugouRequest: (operation, params) => ipcRenderer.invoke('kugou-api-request', operation, params),
     qishuiRequest: (operation, params) => ipcRenderer.invoke('qishui-api-request', operation, params),
     fnmusicRequest: (operation, params) => ipcRenderer.invoke('fnmusic-api-request', operation, params),
+    lxFetch: (url, init) => ipcRenderer.invoke('lx-fetch', url, init),
     bodianRequest: (operation, params) => ipcRenderer.invoke('bodian-api-request', operation, params),
     ytmRequest: (operation, params) => ipcRenderer.invoke('ytm-api-request', operation, params),
     appleMusicRequest: (operation, params) => ipcRenderer.invoke('apple-music-request', operation, params),

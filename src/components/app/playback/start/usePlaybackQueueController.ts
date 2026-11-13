@@ -1012,7 +1012,8 @@ export function usePlaybackQueueController({
         setLyrics(null);
         setCurrentLineIndex(-1);
         currentTime.set(0);
-        setDuration(0);
+        // 不写 0：这一首自己带着时长就先填上分母，免得碰上不报长度的音源流时整首歌都画不出进度。
+        setDuration(getStageSnapshotSongDurationMs(resolvedSong) / 1000);
         showSong({ ...resolvedSong, onlineLyricsState: onlineLyricsState ?? undefined });
         setCachedCoverUrl(null);
         setAudioSrc(null);

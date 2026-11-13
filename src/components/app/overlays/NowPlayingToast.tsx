@@ -227,12 +227,21 @@ const NowPlayingToast: React.FC<NowPlayingToastProps> = ({
                         onLayoutAnimationComplete={invalidateLayout}
                         data-toast-card=""
                         type="button"
+                        data-glass
                         layout="size"
                         onClick={isPositioning ? event => event.preventDefault() : onActivate}
                         {...(isPositioning ? position.handlers : {})}
                         disabled={!onActivate && !isPositioning}
                         aria-label={isPositioning ? t('options.stageTrackPillReposition') : onActivate ? activateLabel : undefined}
-                        style={isPositioning ? { touchAction: 'none', outline: '2px solid currentColor', outlineOffset: 3 } : undefined}
+                        style={{
+                            ...(isPositioning ? { touchAction: 'none', outline: '2px solid currentColor', outlineOffset: 3 } : {}),
+                            backgroundColor: isDaylight ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
+                            borderTop: isDaylight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.12)',
+                            borderBottom: isDaylight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.12)',
+                            outline: isPositioning ? '2px solid currentColor' : '1px solid rgba(40,40,40,0.2)',
+                            outlineOffset: isPositioning ? 3 : undefined,
+                            boxShadow: '2px 2px 8px 2px rgba(40,40,40,0.4)',
+                        }}
                         initial={{ opacity: 0, x: isPositioning ? 0 : -24 }}
                         animate={{ opacity: 1, x: 0 }}
                         whileTap={onActivate && !isPositioning ? { opacity: 0.85 } : undefined}

@@ -76,12 +76,12 @@ describe('fnmusicProvider account', () => {
 });
 
 describe('fnmusicProvider playback', () => {
-    it('lists one quality level and asks the bridge for the original file without a quality', async () => {
-        expect(fnmusicProvider.playback!.audioQualityLevels).toEqual(['standard']);
-        bridgeRequest.mockResolvedValue({ ok: true, data: { url: 'folia-fnmusic://stream?guid=track-1' } });
-        const source = await fnmusicProvider.playback!.getAudioSource(normalizeFnMusicSong({ guid: 'track-1' }), 'standard');
-        expect(source?.url).toBe('folia-fnmusic://stream?guid=track-1');
-        expect(bridgeRequest).toHaveBeenCalledWith('stream', { trackId: 'track-1' });
+    it('lists the levels the fixstation tells apart and passes the requested one to the bridge', async () => {
+        expect(fnmusicProvider.playback!.audioQualityLevels).toEqual(['standard', 'high', 'ultra', 'lossless', 'hires', 'master']);
+        bridgeRequest.mockResolvedValue({ ok: true, data: { url: 'folia-fnmusic://stream?guid=track-1&quality=lossless' } });
+        const source = await fnmusicProvider.playback!.getAudioSource(normalizeFnMusicSong({ guid: 'track-1' }), 'lossless');
+        expect(source?.url).toBe('folia-fnmusic://stream?guid=track-1&quality=lossless');
+        expect(bridgeRequest).toHaveBeenCalledWith('stream', { trackId: 'track-1', quality: 'lossless' });
     });
 });
 

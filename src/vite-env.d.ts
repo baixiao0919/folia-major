@@ -814,6 +814,37 @@ declare global {
 
   interface Window {
     electron?: {
+      /** 局域网音响投送（electron/lanCast/）：发现、推送、停止与地址中继都在主进程。 */
+      lanCastDiscover?: (options?: { timeoutMs?: number }) => Promise<{
+        devices: Array<{ id: string; name: string; location: string; controlUrl: string; manufacturer: string }>;
+      }>;
+      lanCastCast?: (track: {
+        url: string;
+        title: string;
+        artist: string;
+        album?: string;
+        coverUrl?: string;
+        durationMs?: number;
+        controlUrl: string;
+      }) => Promise<{ ok: boolean; url?: string }>;
+      lanCastStop?: (options?: { controlUrl?: string }) => Promise<{ ok: boolean }>;
+      /** 音响音量（UPnP RenderingControl）：设备不支持时 volume 为 null。 */
+      lanCastVolume?: (options?: { renderingControlUrl?: string }) => Promise<{
+        ok: boolean;
+        volume: number | null;
+        muted: boolean | null;
+        reason?: string;
+      }>;
+      lanCastSetVolume?: (options?: { renderingControlUrl?: string; volume?: number }) => Promise<{
+        ok: boolean;
+        volume?: number;
+        reason?: string;
+      }>;
+      lanCastSetMute?: (options?: { renderingControlUrl?: string; muted?: boolean }) => Promise<{
+        ok: boolean;
+        muted?: boolean;
+        reason?: string;
+      }>;
       webUtils?: {
         /** Resolves the OS path of a dropped File (File.path was removed in modern Electron). */
         getPathForFile: (file: File) => string;
@@ -976,6 +1007,23 @@ declare global {
           body?: string;
         },
       ) => Promise<ElectronLyricProxyResponse>;
+      /** 洛雪音源的桌面取数通道（IPC lx-fetch）：跨域请求由主进程转发，环回/私网地址会被拒绝。 */
+      lxFetch?: (
+        url: string,
+        init?: {
+          method?: string;
+          headers?: Record<string, string>;
+          bodyText?: string;
+          bodyBase64?: string;
+        },
+      ) => Promise<{
+        ok: boolean;
+        status: number;
+        statusText?: string;
+        headers?: Record<string, string>;
+        bodyText?: string;
+        error?: string;
+      }>;
       getNeteasePort: () => Promise<number>;
       getNeteaseApiStatus: () => Promise<ElectronNeteaseApiStatus>;
       /** 内嵌后端（网易、QQ）的诊断快照；没有内嵌后端的 provider 回 null。 */

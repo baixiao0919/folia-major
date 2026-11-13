@@ -280,6 +280,9 @@
           "StartupWMClass": "folia-major"
         }
       }
+    },
+    "electronDownload": {
+      "isVerifyChecksum": false
     }
   },
   "dependencies": {
@@ -356,7 +359,8 @@
     "vitest": "^4.1.11",
     "wait-on": "^9.1.0",
     "wanakana": "^5.3.1",
-    "zustand": "^5.0.15"
+    "zustand": "^5.0.15",
+    "7zip-bin": "^5.2.0"
   },
   "overrides": {
     "@babel/plugin-transform-runtime": "7.29.7",

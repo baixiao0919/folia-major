@@ -2458,7 +2458,7 @@ export interface FoliumProviderSong {
 }
 
 /** Audio quality levels an Omni provider may be asked for. */
-export type FoliumAudioQuality = 'standard' | 'high' | 'lossless' | 'hires';
+export type FoliumAudioQuality = 'standard' | 'high' | 'lossless' | 'hires' | 'master';
 
 /**
  * EXPERIMENTAL (`omni.providers`): an online music source. The host adapts it

@@ -169,6 +169,9 @@ export const resolveCollectionArtistCatalogId = (
 ): number | string | undefined => {
     if (isMatchingRef(artist.catalogRef, providerId, 'artist')) return artist.catalogRef.id;
     const catalog = getOnlineMusicProvider(providerId)?.catalog;
-    if (catalog?.canResolveSongCatalogRefs || catalog?.resolveSongCatalogRefs) return undefined;
+    // 只认「能力声明」：声明了 canResolveSongCatalogRefs 的 provider 会给每一个能打开的歌手放 ref，
+    // 没有 ref 就是打不开。只提供 resolver 的（洛雪：歌手 ref 是在歌曲上现编的，集合里没有）仍旧
+    // 用自己给的 id 去开，别把本来能点的歌手一刀切成不可点。
+    if (catalog?.canResolveSongCatalogRefs) return undefined;
     return artist.id === '' || artist.id === 0 || artist.id === '0' || artist.id === undefined ? undefined : artist.id;
 };

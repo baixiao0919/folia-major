@@ -7,10 +7,11 @@ export type MediaId = string | number;
 export type OnlineProviderId = 'netease' | (string & {});
 // The provider that is active where none was chosen, or where the one chosen is not there.
 export const DEFAULT_ONLINE_PROVIDER_ID: OnlineProviderId = 'netease';
-// Lowest first as `omni` orders them: standard, high, ultra, lossless, hires. 'ultra' is a level
-// only for a provider that lists it (YouTube Music, for a Premium member); everywhere else a stored
-// 'ultra' stands for 'high'.
-export type AudioQualityPreference = 'standard' | 'high' | 'ultra' | 'lossless' | 'hires';
+// Lowest first as `omni` orders them: standard, high, ultra, lossless, hires, master. 'ultra' and
+// 'master' are levels only for a provider that lists them (YouTube Music lists 'ultra' for a
+// Premium member); everywhere else a stored 'ultra' stands for 'high', and 'master' for the highest
+// level the provider does list.
+export type AudioQualityPreference = 'standard' | 'high' | 'ultra' | 'lossless' | 'hires' | 'master';
 export type ProviderCatalogEntityKind = 'album' | 'artist' | 'playlist';
 
 export interface ProviderCatalogRef {
@@ -1094,10 +1095,22 @@ export interface OnlineMutationProvider {
     ): Promise<void>;
     /** Makes an empty playlist of the account's own; without it, the app offers none to make. */
     createPlaylist?(name: string): Promise<ProviderCollection>;
+    /**
+     * Where a song can be put, for a provider that keeps its playlists on this machine instead of
+     * on the platform (洛雪 is one: no account, no server-side collections). Answering here takes
+     * the place of the account's cached collections for the picker; without it, those are used.
+     */
+    listPlaylists?(): ProviderCollection[];
     /** Whether this album or playlist can be saved to the account's library; without it, any can. */
     canSubscribe?(collection: ProviderCollection): boolean;
     subscribePlaylist?(playlist: MediaId | ProviderCollection, subscribed: boolean): Promise<void>;
     subscribeAlbum?(id: MediaId, subscribed: boolean): Promise<void>;
+    /**
+     * Where a song can be put, for a provider that keeps its playlists on this machine instead of
+     * on the platform (洛雪 is one: no account, no server-side collections). Answering here takes
+     * the place of the account's cached collections for the picker; without it, those are used.
+     */
+    listPlaylists?(): ProviderCollection[];
 }
 
 // Something a provider has to tell the listener unasked. The text is an i18n key, translated by the UI.

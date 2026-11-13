@@ -306,7 +306,7 @@ export const PolaroidCard = React.memo<PolaroidCardProps>(
                         <div className="group/song-title relative max-w-full">
                             <div
                                 {...{ [CARD_TITLE_ATTR]: '' }}
-                                className="text-s font-bold tracking-tight opacity-90 max-w-full line-clamp-4 whitespace-normal break-words"
+                                className="text-xl font-lighter tracking-tight opacity-90 max-w-full line-clamp-4 whitespace-normal break-words"
                             >
                                 {item.name}
                             </div>
@@ -332,7 +332,7 @@ export const PolaroidCard = React.memo<PolaroidCardProps>(
                                 <>
                                     <span
                                         onClick={openAlbum}
-                                        className={`text-[9px] opacity-35 font-mono line-clamp-2 whitespace-normal break-words max-w-full ${
+                                        className={`text-[12px] opacity-35 font-mono line-clamp-2 whitespace-normal break-words max-w-full ${
                                             canOpenAlbum ? 'hover:underline hover:opacity-85 cursor-pointer' : ''
                                         }`}
                                     >

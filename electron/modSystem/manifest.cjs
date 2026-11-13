@@ -148,7 +148,12 @@ const parseHostRange = (range) => {
 
 const satisfiesHostRange = (version, range) => {
     const comparators = parseHostRange(range);
-    const parsed = parseVersion(version);
+    // The host version may carry an edition/build suffix (e.g.
+    // "0.7.25-fnmusic-liquidglass"): compare only the semver X.Y.Z part so a
+    // mod's declared range (">0.7.22") still matches this build. A version
+    // with no parsable X.Y.Z keeps failing closed below.
+    const base = String(version ?? '').split('-')[0];
+    const parsed = parseVersion(base);
     if (!comparators || !parsed) {
         return false;
     }

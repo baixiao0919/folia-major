@@ -5,6 +5,7 @@ import { PlayerState } from '../../types';
 import { idleVideoExportState } from '../../types/videoExport';
 import { useReducedMotionFor } from '../../hooks/useReducedMotionFor';
 import { isRemoteExportBusy } from './RemoteExportTab';
+import { GlassFilterDefs, useGlass } from '../../shinoinject/useGlass.tsx';
 import RemoteKeyRow from './RemoteKeyRow';
 import RemoteLyricBlock from './RemoteLyricBlock';
 import RemoteProgressLine from './RemoteProgressLine';
@@ -56,6 +57,8 @@ const readStoredBackgroundMode = (): RemoteBackgroundMode => {
 };
 
 const RemoteControlApp: React.FC = () => {
+    // 液态玻璃：每次 commit 后扫描挂载，滤镜容器常驻（见 GlassFilterDefs 注释）。
+    useGlass();
     const { t } = useTranslation();
     const reduceMotion = useReducedMotionFor('uiMicroMotion');
     const snapshot = useRemoteSnapshot();
@@ -160,7 +163,9 @@ const RemoteControlApp: React.FC = () => {
             onFocus={event => setHasKeyboardFocus(event.target.matches(':focus-visible'))}
             onBlur={() => setHasKeyboardFocus(false)}
         >
-            <div ref={cardRef} className="remote-card">
+            {/* 液态玻璃滤镜注入容器：遥控窗口是独立根，必须自带一份（见 useGlass.tsx 的 GlassFilterDefs）。 */}
+            <GlassFilterDefs />
+            <div ref={cardRef} className="remote-card" data-glass data-glass-jelly data-glass-light>
                 <div className="remote-paper">
                     {backgroundMode === 'cover' && (
                         <>

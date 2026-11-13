@@ -3,15 +3,13 @@ import { Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { AI_PROVIDER_PRESETS, inferAiProviderFromUrl, modelAlwaysThinks, resolveAiConnection, resolveAiProviderPreset, retiredModelHint } from '../../../../../services/aiText';
 import { openAIEndpointOf } from '../../../../../utils/openAIEndpoint';
-import { Button, Group, NumberField, Reveal, Row, Select, TextField, Toggle, Value, option, parseNumberText, type SettingsGroupDef, type SettingsOptionDef } from '../../kit';
+import { Button, FoldedGroup, NumberField, Reveal, Row, Select, TextField, Toggle, Value, option, parseNumberText, type SettingsGroupDef, type SettingsOptionDef } from '../../kit';
 import { AiConnectionTestReply, AiConnectionTestStatus, useAiConnectionTest } from '../AiConnectionTest';
 import { useSettingsPage, type AiApiKeyName, type ElectronSettingsState } from '../settingsPageContext';
 import { AiModelPicker } from './AiModelPicker';
 
-// One AI connection for the whole app — song themes and anything else that
-// asks services/aiText. The group id stays `electronSettings`: commands and links name that anchor.
-// It has a page of its own, so it shows open rather than folded into one row.
-const AI: SettingsGroupDef = { id: 'electronSettings', titleKey: 'options.aiServiceProviders', electronOnly: true };
+// AI connection settings, separated from appearance layout; requests stay behind services/aiText.
+const AI: SettingsGroupDef = { id: 'electronSettings', titleKey: 'options.electronSettings', electronOnly: true };
 const O = {
     provider: option(AI, 'aiProvider', 'options.aiProvider'),
     endpoint: option(AI, 'aiEndpoint', 'options.aiEndpoint'),
@@ -138,7 +136,7 @@ const AiProviderSettings: React.FC = () => {
     const temperature = adapter.temperature;
 
     return (
-        <Group def={AI}>
+        <FoldedGroup def={AI} summary={t('options.aiProvider_' + preset.id)}>
             <Row option={O.provider}>
                 <Select value={preset.id} options={AI_PROVIDER_PRESETS.map(value => ({ value: value.id, label: t('options.aiProvider_' + value.id) }))} onChange={selectProvider} />
             </Row>
@@ -197,9 +195,7 @@ const AiProviderSettings: React.FC = () => {
                     {t(electronSaveStatus === 'saving' ? 'options.settingsSaving' : 'options.save')}
                 </Button>
             </Row>
-            {/* 这一份是所有 AI 功能共用的，不是某一个风格自己的。 */}
-            <Row notice={t('options.aiServiceDesc')} />
-        </Group>
+        </FoldedGroup>
     );
 };
 

@@ -21,6 +21,7 @@ export const BUILTIN_VISUALIZER_MODES = [
     'nebbia',
     'fume',
     'hanabi',
+    'kinetic',
     'lumiere',
     'machi',
     'monet',
@@ -30,6 +31,7 @@ export const BUILTIN_VISUALIZER_MODES = [
     'still',
     'tempera',
     'tilt',
+    'prompt',
 ] as const;
 
 export const BUILTIN_VISUALIZER_BACKGROUND_MODES = [
@@ -39,6 +41,7 @@ export const BUILTIN_VISUALIZER_BACKGROUND_MODES = [
     'nomand',
     'sora',
     'url',
+    'transparent',
 ] as const;
 
 export const DEFAULT_VISUALIZER_MODE: VisualizerMode = 'classic';

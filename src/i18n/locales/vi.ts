@@ -1,9 +1,25 @@
-// Vietnamese (vi) interface text, laid out line for line like en.ts.
-
 export default {
-  "appleMusic": {
-    "libraryPlaylistName": "Tất cả bài hát"
-  },
+  "appleMusic": { "libraryPlaylistName": "Tất cả bài hát" },
+  "lanCastTitle": "Truyền tới loa",
+  "lanCastHint": "Tìm loa DLNA / UPnP trong cùng Wi-Fi",
+  "lanCastNoTrack": "Hiện không có bài nào đang phát",
+  "lanCastScanning": "Đang tìm…",
+  "lanCastDevices": "Đã tìm thấy {{count}} loa",
+  "lanCastDevices_other": "Đã tìm thấy {{count}} loa",
+  "lanCastRescan": "Tìm lại",
+  "lanCastNoDevice": "Không tìm thấy loa. Hãy chắc chắn loa ở cùng Wi-Fi và đã bật truyền DLNA.",
+  "lanCastPlaying": "Âm thanh đã chuyển sang {{name}}, thiết bị này đã tắt tiếng",
+  "lanCastFollowed": "Đổi bài sẽ tự động gửi tới {{name}}",
+  "lanCastLocalHint": "Thiết bị này đã tắt tiếng; thanh tiến trình và lời vẫn chạy, âm thanh chỉ phát ở loa. Đổi bài sẽ tự động theo.",
+  "lanCastStop": "Dừng truyền và bật lại âm thanh thiết bị này",
+  "lanCastClose": "Đóng",
+  "lanCastRemoteTitle": "Điều khiển loa",
+  "lanCastVolume": "Âm lượng loa",
+  "lanCastMute": "Tắt tiếng",
+  "lanCastUnmute": "Bật tiếng",
+  "lanCastMuteHint": "Loa đang tắt tiếng; nhấn biểu tượng loa bên trái để lấy lại âm thanh.",
+  "lanCastVolumeUnsupported": "Loa này không mở điều khiển âm lượng. Ở đây chỉ có thể đổi loa hoặc dừng.",
+  "lanCastSwitch": "Đổi loa",
   "scratchpad": {
     "title": "Sổ ghi nhanh",
     "count_one": "{{count}} bài",
@@ -250,7 +266,14 @@ export default {
     "helpFilter": "Nhập để lọc trang này",
     "helpSearch": "Tìm kiếm trực tuyến (trang chủ)",
     "filterPlaceholder": "Lọc trang này",
-    "kind": {"track": "Bài hát", "playlist": "Danh sách phát", "album": "Album", "artist": "Nghệ sĩ", "folder": "Thư mục", "feed": "Radio"}
+    "kind": {
+      "track": "Bài hát",
+      "playlist": "Danh sách phát",
+      "album": "Album",
+      "artist": "Nghệ sĩ",
+      "folder": "Thư mục",
+      "feed": "Radio"
+    }
   },
   "wallTools": {
     "shuffle": "Xáo trộn hàng đợi phát",
@@ -320,7 +343,17 @@ export default {
       "localTitle": "Chưa nhập nhạc cục bộ",
       "localBody": "Chọn “{{action}}” dưới mục “⋯” trên thanh thông tin; thư mục, album và nghệ sĩ của bạn sẽ lấp đầy bức tường này."
     },
-    "special": {"liked": "Bài hát yêu thích", "cloud": "Ổ đám mây", "personal-fm": "FM cá nhân", "fm-station": "Radio", "daily": "Gợi ý hàng ngày", "all-songs": "Tất cả bài hát", "local-favorites": "Yêu thích", "navidrome-random": "Ngẫu nhiên", "navidrome-favorites": "Đã gắn sao"}
+    "special": {
+      "liked": "Bài hát yêu thích",
+      "cloud": "Ổ đám mây",
+      "personal-fm": "FM cá nhân",
+      "fm-station": "Radio",
+      "daily": "Gợi ý hàng ngày",
+      "all-songs": "Tất cả bài hát",
+      "local-favorites": "Yêu thích",
+      "navidrome-random": "Ngẫu nhiên",
+      "navidrome-favorites": "Đã gắn sao"
+    }
   },
   "libraryTui": {
     "back": "Quay lại",
@@ -357,7 +390,16 @@ export default {
     "columnType": "Loại",
     "columnTracks": "Bài hát",
     "columnDescription": "Mô tả",
-    "itemType": {"playlist": "danh sách phát", "album": "album", "artist": "nghệ sĩ", "folder": "thư mục", "cloud": "đám mây", "radio": "radio", "daily_recommendations": "hàng ngày", "personal_fm": "FM"},
+    "itemType": {
+      "playlist": "danh sách phát",
+      "album": "album",
+      "artist": "nghệ sĩ",
+      "folder": "thư mục",
+      "cloud": "đám mây",
+      "radio": "radio",
+      "daily_recommendations": "hàng ngày",
+      "personal_fm": "FM"
+    },
     "homeHints": "↑↓ di chuyển · PgUp/PgDn chuyển trang · Tab chuyển mục · F6 nguồn · Enter mở · Esc xóa bộ lọc, rồi đóng",
     "homeTreeHints": "←→ thu gọn",
     "homeBatchHints": "Ins chọn · {{mod}}+A chọn tất cả · {{mod}}+Enter phát · {{mod}}+Shift+Enter vào hàng đợi",
@@ -503,6 +545,7 @@ export default {
     "lumiereReset": "Đã đặt lại thông số Lumiere",
     "nebbiaReset": "Đã đặt lại thông số Nebbia",
     "hanabiReset": "Đã đặt lại thông số Hanabi",
+    "kineticReset": "Text PV tuning reset",
     "machiReset": "Đã đặt lại thông số Machi",
     "uploadEmojiFirst": "Cần tải lên gói biểu cảm tùy chỉnh trước",
     "monetBgUpdated": "Đã cập nhật ảnh nền Monet",
@@ -560,6 +603,8 @@ export default {
     "themeSourceCover": "Tạo chủ đề chuyển sang trích xuất màu bìa",
     "aiThemeUpdatedCustomPreferred": "Đã cập nhật chủ đề AI, vẫn ưu tiên chủ đề tùy chỉnh",
     "aiThemeGeneratedCustomPreferred": "Đã tạo chủ đề AI, nhưng vẫn ưu tiên chủ đề tùy chỉnh",
+    "playerBarPinned": "Bilah pemutar tetap terbuka",
+    "playerBarUnpinned": "Bilah pemutar akan menutup lagi saat pointer leave"
   },
   "status": {
     "playerChromeAlwaysHidden": "Giao diện luôn ẩn",
@@ -672,7 +717,7 @@ export default {
     "connecting": "Đang kết nối",
     "disconnected": "Mất kết nối",
     "randomVisualizerModePerSongOn": "Đã bật hiệu ứng lời ngẫu nhiên theo bài",
-    "randomVisualizerModePerSongOff": "Đã tắt hiệu ứng lời ngẫu nhiên theo bài",
+    "randomVisualizerModePerSongOff": "Đã tắt hiệu ứng lời ngẫu nhiên theo bài"
   },
   "commandPalette": {
     "placeholder": "Nhập lệnh hoặc tìm kiếm...",
@@ -699,8 +744,19 @@ export default {
     "previewQueueSearchEmpty": "Nhập tên bài hát, nghệ sĩ, album hoặc số thứ tự",
     "pickerFilterPlaceholder": "Nhập để lọc, sau đó nhấp hoặc nhấn Enter",
     "pickerCurrent": "Hiện tại: {{mode}}",
-    "librarySuitePicker": { "active": "Đang dùng", "switch": "Chuyển thư viện sang giao diện này" },
-    "libraryWallPicker": { "active": "Đang dùng", "windows": "Cửa sổ mỗi khối: {{count}}", "windowsShare": "{{percent}}% mỗi khối hiển thị hiệu ứng thị giác", "seamStyle": "Thanh thông tin: {{style}}", "seamTheme": "Theo màu chủ đề", "seamPrint": "Mực và giấy cố định, tương phản cao", "seamPattern": "Họa tiết tối giản theo màu chủ đề" },
+    "librarySuitePicker": {
+      "active": "Đang dùng",
+      "switch": "Chuyển thư viện sang giao diện này"
+    },
+    "libraryWallPicker": {
+      "active": "Đang dùng",
+      "windows": "Cửa sổ mỗi khối: {{count}}",
+      "windowsShare": "{{percent}}% mỗi khối hiển thị hiệu ứng thị giác",
+      "seamStyle": "Thanh thông tin: {{style}}",
+      "seamTheme": "Theo màu chủ đề",
+      "seamPrint": "Mực và giấy cố định, tương phản cao",
+      "seamPattern": "Họa tiết tối giản theo màu chủ đề"
+    },
     "pickerDescription": {
       "visualizer": {
         "still": "Một dòng đứng yên — không hoạt ảnh, không hình nền, nhẹ nhất",
@@ -1128,7 +1184,12 @@ export default {
       "settings-language-zh-TW": { "title": "Chuyển ngôn ngữ sang Tiếng Trung Phồn thể", "description": "Sử dụng Tiếng Trung Phồn thể cho giao diện" },
       "settings-language-en": { "title": "Chuyển sang tiếng Anh", "description": "Sử dụng tiếng Anh cho giao diện" },
       "settings-language-in": { "title": "Chuyển sang tiếng Indonesia", "description": "Sử dụng tiếng Indonesia cho giao diện" },
-      "settings-language-vi": { "title": "Chuyển sang tiếng Việt", "description": "Sử dụng tiếng Việt cho giao diện" }
+      "settings-language-vi": { "title": "Chuyển sang tiếng Việt", "description": "Sử dụng tiếng Việt cho giao diện" },
+      "background-transparent": { "title": "Latar: Transparan", "description": "Alihkan latar ke tata letak sepenuhnya transparan" },
+      "settings-toggle-player-bar-pinned": { "title": "Sematkan bilah pemutar", "description": "Jaga bilah pemutar bawah tetap terbuka alih-alih menyusut sendiri" },
+      "visualizer-prompt": { "title": "Hiệu ứng thị giác: Prompt", "description": "Chuyển sang dạng hiển thị hộp gợi ý" },
+      "visualizer-kinetic": { "title": "Visualizer: Text PV", "description": "Switch to the kinetic typography text PV visualizer" },
+      "settings-liquid-glass": { "title": "Kaca cair", "description": "Langsung ke kekuatan, blur, dan prasetel kaca cair" },
     }
   },
   "ui": {
@@ -1200,6 +1261,7 @@ export default {
     "visualizerLumiere": "Lumiere",
     "visualizerNebbia": "Nebbia",
     "visualizerHanabi": "Hanabi",
+    "visualizerKinetic": "Text PV",
     "visualizerMachi": "Machi",
     "cadenzeTuning": "Hiệu chỉnh Tâm cảnh",
     "resetVisualizerTuning": "Đặt lại thông số hiệu ứng lời",
@@ -1297,7 +1359,8 @@ export default {
     "pausePreview": "Tạm dừng xem trước",
     "enterThemeName": "Nhập tên chủ đề...",
     "viewLyricsTimeline": "Xem dòng thời gian lời bài hát",
-    "trashDislike": "Bỏ qua / Không thích"
+    "trashDislike": "Bỏ qua / Không thích",
+    "visualizerPrompt": "Prompt"
   },
   "panel": {
     "cover": "Ảnh bìa",
@@ -1547,6 +1610,7 @@ export default {
     "syncing": "Đang đồng bộ...",
     "logout": "Đăng xuất",
     "logoutConfirmTitle": "Đăng xuất khỏi {{provider}}?",
+    "logoutClearsQueue": "Danh sách phát sẽ bị xóa sạch.",
     "logoutRemovesSongs": "Các bài của nền tảng này sẽ bị bỏ khỏi danh sách phát; các bài khác vẫn giữ nguyên.",
     "guestMode": "Chế độ khách",
     "loginOnHome": "Đăng nhập tại Trang chủ",
@@ -1556,6 +1620,7 @@ export default {
     "qualityUltra": "Siêu cao",
     "qualityLossless": "Lossless",
     "qualityHires": "Hi-Res",
+    "qualityMaster": "Master",
     "vipOnly": "Chỉ VIP"
   },
   "playlist": {
@@ -1764,7 +1829,7 @@ export default {
     "submit": "Gửi",
     "submitting": "Đang gửi…",
     "formErrorUnknown": "Đăng nhập thất bại. Kiểm tra thông tin đã nhập và thử lại.",
-    "formLoggedInRefreshFailed": "Đã đăng nhập nhưng không tải được tài khoản. Thử lại hoặc mở lại cửa sổ đăng nhập.",
+    "formLoggedInRefreshFailed": "Đã đăng nhập nhưng không tải được tài khoản. Thử lại hoặc mở lại cửa sổ đăng nhập."
   },
   "failure": {
     "unreachable": "Không thể kết nối tới {{provider}}",
@@ -1829,6 +1894,8 @@ export default {
     "loginNoteBodian": "Mở ứng dụng Bodian Music quét mã QR và xác nhận đăng nhập",
     "loginTitleFnMusic": "Đăng nhập fnOS Music",
     "loginNoteFnMusic": "Nhập địa chỉ máy chủ và tài khoản fnOS Music để phát nhạc từ NAS của bạn",
+    "loginTitleLxmusic": "Nguồn LX Music",
+    "loginNoteLxmusic": "LX Music không dùng tài khoản: hãy nhập script nguồn của bạn để tìm và phát. Script do bạn cung cấp, Folia không kèm sẵn.",
     "loginTitleYtm": "Đăng nhập YouTube Music",
     "loginTitleAppleMusic": "Đăng nhập Apple Music",
     "loginNoteAppleMusic": "Đăng nhập trong cửa sổ Apple. Mật khẩu của bạn chỉ được gửi cho Apple.",
@@ -2043,7 +2110,9 @@ export default {
     "dailyStyleSaveFailed": "Không chuyển được sang các phong cách này. Vui lòng thử lại sau",
     "dislikeRecommendationFailed": "Không thể đổi gợi ý này. Hãy thử lại sau.",
     "removeTrackFailed": "Gỡ bài hát thất bại",
-    "stage": "Sân khấu"
+    "stage": "Sân khấu",
+    "exploreScrollbar": "Bilah gulir jelajah",
+    "exploreJumpToSection": "Lompat ke {{section}}"
   },
   "animation": {
     "calm": "Êm dịu",
@@ -2092,7 +2161,10 @@ export default {
     "ponderDescription": "Tìm hiểu thao tác cơ bản và cơ chế vận hành của Folia",
     "version": "phiên bản"
   },
-  "qishui": { "recentPlayed": "Gần đây đã phát trên Qishui", "recommended": "Được đề xuất cho bạn" },
+  "qishui": {
+    "recentPlayed": "Gần đây đã phát trên Qishui",
+    "recommended": "Được đề xuất cho bạn"
+  },
   "listeningRank": {
     "qqWeek": "Bảng xếp hạng nghe · Tuần này",
     "qqYear": "Bảng xếp hạng nghe · Năm",
@@ -2124,12 +2196,14 @@ export default {
   },
   "lyricProvider": {
     "qishui": "Qishui Music",
+
+    "lxmusic": "LX Music",
     "netease": "NetEase Cloud Music",
     "qq": "QQ Music",
     "kugou": "Kugou Music",
     "spotify": "Spotify",
     "appleMusic": "Apple Music",
-    "amll": "AMLLDB",
+    "amll": "AMLLDB"
   },
   "onlineProviderName": {
     "appleMusic": "Apple Music",
@@ -2140,7 +2214,9 @@ export default {
     "ytm": "YT Music",
     "spotify": "Spotify",
     "qishui": "Qishui",
+    "lxmusic": "LX Music",
     "fnmusic": "fnOS",
+    "lxmusic": "LX Music"
   },
   "globalLyricOffset": {
     "title": "Độ lệch thời gian toàn cục",
@@ -2153,7 +2229,7 @@ export default {
     "description": "Áp dụng cho mọi bài hát trên thiết bị này và không đồng bộ. Độ lệch từng bài trong bảng trình phát vẫn sẽ cộng dồn.",
     "pendingApply": "Chỉ xem trước. Hiện áp dụng: {{applied}}ms - nhấn Áp dụng để lưu.",
     "noLyrics": "Phát bài hát có lời để xem trước độ lệch",
-    "waitingForLine": "Đang đợi câu tiếp theo",
+    "waitingForLine": "Đang đợi câu tiếp theo"
   },
   "lyricFilter": {
     "title": "Bộ lọc lời bài hát",
@@ -2179,9 +2255,15 @@ export default {
     "addRule": "Thêm quy tắc",
     "addByWords": "Theo từ ngữ",
     "addWritten": "Quy tắc tự viết (nâng cao)",
-    "preset": {"copyright": "Thông báo bản quyền", "lyricSource": "Ghi chú nguồn lời"},
+    "preset": {
+      "copyright": "Thông báo bản quyền",
+      "lyricSource": "Ghi chú nguồn lời"
+    },
     "presetBadge": "Thường gặp",
-    "presetDesc": {"copyright": "Các ghi chú như “Bảo lưu mọi quyền” hoặc “không cover khi chưa được phép”", "lyricSource": "Các ghi chú như “Lời được đóng góp bởi” hoặc “Dịch bởi”"},
+    "presetDesc": {
+      "copyright": "Các ghi chú như “Bảo lưu mọi quyền” hoặc “không cover khi chưa được phép”",
+      "lyricSource": "Các ghi chú như “Lời được đóng góp bởi” hoặc “Dịch bởi”"
+    },
     "shapeStarts": "Bắt đầu bằng",
     "shapeContains": "Chứa",
     "shapeWhole": "Đúng bằng",
@@ -2232,7 +2314,7 @@ export default {
     "footerIncomplete": " (chưa kiểm tra hết)",
     "footerScanning": "Sau khi lưu: xóa {{song}} dòng ở đây; đang kiểm tra các bài đã nghe…",
     "footerSongOnly": "Sau khi lưu: xóa {{song}} dòng ở đây",
-    "untitled": "Bài hát không rõ",
+    "untitled": "Bài hát không rõ"
   },
   "lyricStaff": {
     "title": "Thông tin sản xuất đầu bài",
@@ -2262,13 +2344,13 @@ export default {
     "verdictRetime": "Hiện, dàn đều qua đoạn dạo đầu",
     "verdictHide": "Ẩn",
     "verdictSummary": "{{lines}} dòng credit, {{window}}s dạo đầu, cần {{required}}s để hiện hết",
-    "verdictSummaryAbsorbed": "{{lines}} dòng credit + {{absorbed}} dòng gộp, {{window}}s dạo đầu, cần {{required}}s để hiện hết",
+    "verdictSummaryAbsorbed": "{{lines}} dòng credit + {{absorbed}} dòng gộp, {{window}}s dạo đầu, cần {{required}}s để hiện hết"
   },
   "replayGain": {
     "off": "Tắt ReplayGain",
     "track": "ReplayGain: Bài hát",
     "album": "ReplayGain: Album",
-    "auto": "ReplayGain: Cân bằng thông minh",
+    "auto": "ReplayGain: Cân bằng thông minh"
   },
   "settings": {
     "lyricMatchPriority": "Ưu tiên khớp lời",
@@ -2341,7 +2423,6 @@ export default {
     "settingsPageGeneral": "Cài đặt chung",
     "settingsPageInteraction": "Phím tắt & Thao tác nhanh",
     "settingsPageIntegration": "Kết nối & Tích hợp",
-    "settingsPageAi": "Dịch vụ AI",
     "settingsPageStorage": "Lưu trữ & Sao lưu",
     "settingsPageDesktop": "Ứng dụng máy tính",
     "settingsPageGraphics": "Hoạt họa & Hiệu năng",
@@ -2409,6 +2490,7 @@ export default {
     "globalShortcutSlot": "Phím tắt {{index}}",
     "globalShortcutCommand": "Lệnh cho phím tắt {{index}}",
     "globalShortcutNoCommand": "Chưa chọn",
+    "globalShortcutLettersAndDigits": "Chỉ chấp nhận chữ cái A–Z và số 0–9",
     "globalShortcutNeedsModifier": "Cần ít nhất một phím bổ trợ",
     "globalShortcutShiftOnly": "Chỉ Shift là để gõ chữ và chọn văn bản; hãy thêm một phím bổ trợ khác",
     "globalShortcutSingleModifier": "Tổ hợp chỉ có một phím bổ trợ thường là phím tắt của phần mềm hoặc hệ thống; hãy thêm một phím nữa (phím chức năng thì một phím là đủ)",
@@ -2873,7 +2955,6 @@ export default {
     "playerCapIgnoreClearHint": "Giữ lời bài hát khi tạm dừng, rảnh hoặc đóng cửa sổ; chỉ làm mới khi thực sự đổi trình phát.",
     "playerCapWaitingLyrics": "Đã kết nối, chờ lời bài hát",
     "playerCapConnecting": "Đang kết nối Nexus PlayerCap…",
-
     "stageAddress": "Địa chỉ Stage",
     "stageSession": "Phiên hiện tại",
     "stageSessionReady": "Phiên đã sẵn sàng",
@@ -3005,6 +3086,62 @@ export default {
     "partitaSemanticLayout": "Bố cục ngữ nghĩa CJK",
     "partitaStaggerMin": "Độ so le tối thiểu",
     "partitaStaggerMax": "Độ so le tối đa",
+    "kineticSettings": "Text PV Tuning",
+    "kineticGroupFx": "Intensity",
+    "kineticGroupTech": "Techniques",
+    "kineticMotion": "Motion",
+    "kineticGlitch": "Glitch",
+    "kineticChroma": "Chroma shift",
+    "kineticDecorAmount": "Decor amount",
+    "kineticDensity": "Cut density",
+    "kineticTexture": "Texture",
+    "kineticBgSwitch": "Background switch",
+    "kineticFlash": "Flash",
+    "kineticKoma": "Frame rate",
+    "kineticKoma8": "On threes (8)",
+    "kineticKoma12": "On twos (12)",
+    "kineticKoma0": "Every frame",
+    "kineticHud": "HUD",
+    "kineticHud_auto": "Chorus only",
+    "kineticHud_on": "Always",
+    "kineticHud_off": "Off",
+    "kineticHideNo": "Hide line number",
+    "kineticHideTime": "Hide timecode",
+    "kineticSeed": "Seed",
+    "kineticReseed": "Reseed",
+    "kineticOpenEditor": "Original editor",
+    "kineticOpenEditorAction": "Open original editor",
+    "kineticGroupEditor": "Original editor",
+    "kineticEditorHint": "All parameters (style/layout/enter/exit/decor/camera/export) live in the original editor; folia plays its output fullscreen, following the song.",
+    "kineticOn": "On",
+    "kineticOff": "Off",
+    "kineticAuto": "Auto",
+    "kineticPickLayout": "Layout",
+    "kineticPickEnter": "Entrance",
+    "kineticPickHold": "Hold",
+    "kineticPickExit": "Exit",
+    "kineticPickDecor": "Decor element",
+    "kineticPickCam": "Camera",
+    "kineticPickFx": "Screen effect",
+    "kineticPickTrans": "Transition",
+    "kineticScheme": "Palette",
+    "kineticLockScheme": "Lock palette",
+    "kineticEntrance": "Entrance",
+    "kineticEntrancePop": "Pop",
+    "kineticEntranceSlide": "Slide",
+    "kineticEntranceDrop": "Drop",
+    "kineticEntranceWipe": "Wipe",
+    "kineticLayout": "Layout",
+    "kineticLayoutCascade": "Cascade",
+    "kineticLayoutGrid": "Staggered grid",
+    "kineticLayoutBlock": "Block",
+    "kineticStaggerScale": "Per-char delay",
+    "kineticActiveScale": "Active scale",
+    "kineticOffsetAmplitude": "Row offset",
+    "kineticCameraShake": "Camera shake",
+    "kineticShowUnderline": "Underline decor",
+    "kineticShowEcho": "Echo ghost",
+    "kineticShowStroke": "Text stroke",
     "avoidOverlap": "Tránh chồng chữ",
     "avoidOverlapHint": "Giãn cách chữ theo kích thước khi phóng to và xoay",
     "fumeSettings": "Tinh chỉnh Fume",
@@ -3312,6 +3449,7 @@ export default {
     "nebbiaSpotX": "Vị trí đèn rọi",
     "nebbiaRainHit": "Giọt mưa trên kính",
     "nebbiaRainBig": "Giọt lớn mỗi từ",
+    "nebbiaResolution": "Độ phân giải kết xuất",
     "nebbiaScenery": "Cảnh bên ngoài",
     "nebbiaSceneryHint": "Mỗi phần của cảnh có thể tắt riêng; tắt hết thì chỉ còn bầu trời. Đốm sáng là đèn neon, đèn đường và biển hiệu; tắt mặt đường thì đèn xe và đốm sáng không còn bóng phản chiếu. Giọt mưa trên kính được chỉnh bằng các thanh trượt ở trên.",
     "nebbiaScenery_spot": "Đèn rọi",
@@ -3468,6 +3606,28 @@ export default {
     "machiAdaptive": "Tự giảm chất lượng",
     "machiAdaptiveHint": "Khi tốc độ khung hình thấp kéo dài, giảm dần dưới các thiết lập này (siêu lấy mẫu và MSAA ở cạnh trước, sau đó quầng sáng, phản chiếu, làm mờ độ sâu trường ảnh, độ phân giải và khử răng cưa hậu kỳ, bóng đổ sau cùng), không bao giờ cao hơn lựa chọn của bạn. Đổi thiết lập sẽ bắt đầu lại từ thiết lập mới.",
     "machiAdaptiveActive": "Hiện đã giảm {{count}} bậc.",
+    "liquidGlassSection": "Kaca cair",
+    "liquidGlassSectionDesc": "Sesuaikan material komponen antarmuka Folia.",
+    "liquidGlassPreset": "Preset",
+    "liquidGlassPresetDesc": "Tampilan siap pakai yang menyetel kekuatan, blur, dan jarak lengkung tepi sekaligus.",
+    "liquidGlassPresetFrosted": "Kaca buram",
+    "liquidGlassPresetClear": "Cairan jernih",
+    "liquidGlassPresetHazy": "Cairan kabur",
+    "liquidGlassPresetEco": "Hemat daya",
+    "liquidGlassStrength": "Kekuatan Bias",
+    "liquidGlassStrengthDesc": "Seberapa kuat tepi kaca membiaskan isi di belakangnya.",
+    "liquidGlassBend": "Jarak Bidang Bias",
+    "liquidGlassBendDesc": "Seberapa jauh tepi yang dibiaskan menjangkau dari tepi ke pusat, dalam piksel. Makin besar nilainya, makin kecil area datar di tengah.",
+    "liquidGlassBlur": "Blur",
+    "liquidGlassBlurDesc": "Nilai blur elemen transparan.",
+    "liquidGlassSat": "Saturasi",
+    "liquidGlassSatDesc": "Saturasi latar yang terlihat lewat kaca.",
+    "liquidGlassLight": "Efek Cahaya",
+    "liquidGlassLightDesc": "Cahaya yang mengikuti kursor di atas kaca, makin terang saat ditekan.",
+    "liquidGlassJelly": "Efek Jeli",
+    "liquidGlassJellyDesc": "Memanjang saat diseret lalu memantul kembali.",
+    "liquidGlassGpuBlockedNotice": "Kaca cair tidak tersedia selama GPU render disetel ke Hemat daya; kembali ke Otomatis atau Performa tinggi lalu mulai ulang Folia untuk mengaktifkannya kembali.",
+    "liquidGlassValueLabel": "Nilai",
     "hanabiFireworksSection": "Pháo hoa",
     "hanabiStageSection": "Sân khấu & Khung cảnh",
     "hanabiTextSection": "Văn bản lời bài hát",
@@ -3619,6 +3779,7 @@ export default {
     "lyricRenderFollowGlobal": "Theo cài đặt chung",
     "lyricRenderScaleStyleHint": "Kiểu này vẽ ở bao nhiêu lần độ phân giải; trên 1× là siêu lấy mẫu. Theo cài đặt chung dùng giá trị trong Hiệu năng & Hoạt họa (hiện là {{value}}).",
     "lyricAntialiasStyleHint": "Theo cài đặt chung dùng giá trị trong Hiệu năng & Hoạt họa (hiện là {{value}}).",
+    "importGroupLiquidGlass": "Kaca cair",
     "themePresets": "Chủ đề mẫu",
     "themePresetsDefault": "Mặc định",
     "openThemePark": "Mở Theme Park",
@@ -3666,7 +3827,7 @@ export default {
     "themeGenerationSourceCover": "Màu ảnh bìa",
     "themeGenerationSourceAiDesc": "Dùng AI đọc lời bài hát để phân tích bảng màu theo cảm xúc. Cần cấu hình API key và sẽ tiêu tốn token.",
     "themeGenerationSourceAiUnavailable": "Chưa cấu hình API Key cho nhà cung cấp AI đã chọn, tính năng phân tích AI bị tắt.",
-    "configureAiApiKey": "Mở cài đặt dịch vụ AI",
+    "configureAiApiKey": "Mở cài đặt chủ đề AI",
     "themeGenerationSourceCoverDesc": "Tạo bảng màu trực tiếp từ ảnh bìa. Không cần API key nhưng tính biểu cảm và số thuộc tính sẽ ít hơn.",
     "autoGenerateSongThemeCoverDesc": "Khi bài hát đang phát chưa có chủ đề trong bộ nhớ đệm, tự tạo từ ảnh bìa và áp dụng.",
     "autoGenerateSongThemeDesc": "Khi bài hát đang phát chưa có chủ đề AI trong bộ nhớ đệm, tự động tạo và áp dụng.",
@@ -3679,8 +3840,7 @@ export default {
     "clearAll": "Xóa tất cả",
     "confirmClearAll": "Bạn có chắc muốn xóa tất cả bộ nhớ đệm?",
     "cacheClearing": "Đang dọn dẹp...",
-    "aiServiceProviders": "Nhà cung cấp và khóa",
-    "aiServiceDesc": "Áp dụng cho mọi tính năng AI: tạo chủ đề AI và mọi chỗ dùng AI về sau.",
+    "electronSettings": "Cài đặt chủ đề AI",
     "aiProvider": "Nhà cung cấp AI",
     "useSystemProxyAI": "Dùng proxy hệ thống cho AI",
     "useSystemProxyAIDesc": "Chỉ định tuyến các yêu cầu AI qua proxy hệ thống.",
@@ -3941,6 +4101,10 @@ export default {
     "autoAiLyricSegmentationDesc": "Khi phát bài có lời tiếng Trung hoặc tiếng Nhật chưa lưu cách tách từ, tự động dùng AI tách lời thành từ. Chỉ ảnh hưởng các kiểu lời sắp chữ theo từ. Chạy một lần cho mỗi bài và tốn yêu cầu AI.",
     "visualizerMode": "Chế độ",
     "noDescription": "Chưa có mô tả",
+    "playerBarPin": "Sematkan bilah pemutar",
+    "playerBarUnpin": "Lepaskan bilah pemutar",
+    "visualizerBackgroundModeTransparent": "Transparan",
+    "visualizerBackgroundModeTransparentDesc": "Mengisi lapisan latar dengan sampul lagu, tanpa lapisan warna dan blur Monet serta tanpa elemen tambahan."
   },
   "releaseNotes": {
     "v0_7_0": {
@@ -4584,7 +4748,7 @@ export default {
     "noExportCodec": "Hệ thống không có codec xuất video khả dụng.",
     "windowResizeFailed": "Không thể đổi kích thước cửa sổ theo độ phân giải xuất.",
     "recordingCancelled": "Đã hủy quay.",
-    "recorderUnknownError": "Trình quay gặp lỗi không xác định.",
+    "recorderUnknownError": "Trình quay gặp lỗi không xác định."
   },
   "player": {
     "play": "Phát",
@@ -4605,7 +4769,7 @@ export default {
     "slotSuggestionReplacePrimary": "Thay nút bên trái ({{action}})",
     "slotSuggestionReplaceSecondary": "Thay nút bên phải ({{action}})",
     "capsuleQuickActions": "Thao tác nhanh",
-    "capsuleOpensPalette": "Nhấp để mở bảng lệnh",
+    "capsuleOpensPalette": "Nhấp để mở bảng lệnh"
   },
   "localMusic": {
     "foldersAndPlaylists": "Thư mục",
@@ -4811,7 +4975,7 @@ export default {
     "localInfoSkippedCount": "Đã bỏ qua {{count}} mục dùng thông tin nội bộ",
     "useLocalInfoForSelected": "Dùng thông tin nội bộ ({{count}})",
     "coverCacheFailed": "Đã lưu siêu dữ liệu nhưng không thể lưu đệm ảnh bìa. URL trực tuyến vẫn sẽ được dùng khi khả dụng.",
-    "lyricsNotAppliedOtherSaved": "Chưa áp dụng lời bài hát; các lựa chọn khác đã được lưu.",
+    "lyricsNotAppliedOtherSaved": "Chưa áp dụng lời bài hát; các lựa chọn khác đã được lưu."
   },
   "localCollectionCover": {
     "menuLabel": "Đặt ảnh bìa",
@@ -4889,7 +5053,7 @@ export default {
     "restoreServerPresetFailed": "Không thể kết nối cấu hình máy chủ sẵn có. Thử lại sau.",
     "cloudDrive": "Ổ đĩa đám mây",
     "cloudDriveDesc": "Ổ đĩa NetEase Cloud Music",
-    "qqCloudDriveDesc": "Ổ nhạc đám mây Weiyun",
+    "qqCloudDriveDesc": "Ổ nhạc đám mây Weiyun"
   },
   "fnmusic": {
     "serverUrl": "Địa chỉ máy chủ",
@@ -4967,7 +5131,7 @@ export default {
       "navidrome": "Bài hát Navidrome cũng dùng mpv",
       "navidromeDesc": "Lấy tệp gốc từ máy chủ, không chuyển mã. Khi tắt, bài hát Navidrome dùng Web Audio.",
       "softwareVolume": "Âm lượng phần mềm",
-      "softwareVolumeDesc": "Để thanh âm lượng trong Folia điều chỉnh âm lượng của mpv. Khi đó đường tín hiệu không còn bit-perfect.",
+      "softwareVolumeDesc": "Để thanh âm lượng trong Folia điều chỉnh âm lượng của mpv. Khi đó đường tín hiệu không còn bit-perfect."
     },
     "player": {
       "badge": "HiFi · {{verdict}}",
@@ -5143,7 +5307,7 @@ export default {
   },
   "unifiedPanel": {
     "nowPlayingStageDescription": "Now Playing do trình phát ngoài điều khiển. Folia chỉ hiển thị lời bài hát và hiệu ứng thị giác.",
-    "stageLocalInputDescription": "Stage đang ở chế độ nhập nội bộ đơn luồng. Thiết bị ngoài có thể đẩy lời hoặc phương tiện, nhưng Folia sẽ tự kiểm soát phát và hiển thị.",
+    "stageLocalInputDescription": "Stage đang ở chế độ nhập nội bộ đơn luồng. Thiết bị ngoài có thể đẩy lời hoặc phương tiện, nhưng Folia sẽ tự kiểm soát phát và hiển thị."
   },
   "libraryBravaisArtist": {
     "allSongsCountUnit_one": "bài hát",
@@ -5181,7 +5345,7 @@ export default {
     "topSongsAddedToQueue_other": "Đã thêm {{count}} bài nổi bật vào hàng đợi phát",
     "noTopSongsToQueue": "Không có bài hát nổi bật để thêm vào hàng đợi",
     "allSongs": "Tất cả bài hát",
-    "allSongsCollectionName": "Tất cả bài hát của {{artistName}}",
+    "allSongsCollectionName": "Tất cả bài hát của {{artistName}}"
   },
   "obs": {
     "connecting": "Đang kết nối Folia",
@@ -5473,7 +5637,7 @@ export default {
     "sizeCustom": "Tùy chỉnh",
     "save": "Lưu",
     "recording": "Đang ghi hình",
-    "startingSoon": "Sắp bắt đầu",
+    "startingSoon": "Sắp bắt đầu"
   },
   "aiHelp": {
     "openButton": "Cần trợ giúp?",
@@ -5959,7 +6123,7 @@ export default {
       },
       "lyricsAnimation": {
         "panel": "Cài đặt · Hiệu ứng lời bài hát",
-        "entry": "Kiểu hiệu ứng lời bài hát",
+        "entry": "Kiểu hiệu ứng lời bài hát"
       },
       "themeSettings": {
         "panel": "Cài đặt · Chủ đề cài sẵn",
@@ -6525,6 +6689,7 @@ export default {
         "heightSettings": "Mục này nằm ở Cài đặt → Giao diện đáy: thanh trượt chỉnh độ cao trực tiếp, và “Kéo chỉnh vị trí trên trang phát” cạnh bên cho phép kéo thanh điều khiển. Tìm lệnh này trong bảng lệnh cũng cho kết quả tương tự. Nút bên dưới sẽ đưa bạn đến thẳng đó.",
         "heightDrag": "Khi đã bật chỉnh vị trí, nhấn giữ bất kỳ đâu trên thanh rồi kéo lên hoặc xuống. Thả tay để áp dụng và vị trí sẽ được ghi nhớ.",
         "slotsIntro": "Hai nút bên phải thanh tiến trình không cố định, và mỗi ô tùy chọn hoàn toàn độc lập.",
+        "slotsWhere": "Tùy chọn trong cài đặt: lặp lại, xáo trộn, yêu thích, hàng đợi, âm lượng, hẹn giờ ngủ cùng 4 tác vụ khác, áp dụng ngay khi chọn.",
         "shuffleIntro": "Tính năng xáo trộn này khác với nơi khác — đây không phải chế độ duy trì liên tục.",
         "shuffleOnce": "Nhấn một lần, Folia sẽ xáo trộn hàng đợi hiện tại ngay tại chỗ; thứ tự mới sẽ được giữ nguyên. Muốn xáo trộn tiếp? Nhấn lại lần nữa.",
         "volumeIntro": "Thanh điều khiển đáy không có thanh trượt âm lượng cố định.",
@@ -6733,14 +6898,13 @@ export default {
         "settings": "Nút trên cùng bên trái mở Cài đặt. Nhấn vào sẽ thu gọn bảng trước, sau đó mở cửa sổ cài đặt phủ lên trang.",
         "home": "Nút dưới cùng bên trái quay lại trang chủ thư viện, cũng thu gọn bảng trước. Nhạc vẫn tiếp tục phát.",
         "addToPlaylist": "Nút ngôi sao lưu bài hát này vào danh sách phát; dòng đầu tiên là Bài hát đã thích (trái tim). Nút sẽ mờ đi khi nguồn không hỗ trợ cả danh sách phát lẫn thích, và hiển thị lý do khi rê chuột.",
-
         "like": "Trái tim là thích bài hát này. Khi nguồn hiện tại không hỗ trợ, nút này sẽ mờ đi và rê chuột vào sẽ hiển thị lý do.",
         "playingFrom": "Khi hàng đợi được bắt đầu từ danh sách phát hoặc album, một nút có tên nguồn sẽ xuất hiện tại đây: nhấp vào để quay lại trang đó và tìm bài hát. Nút này sẽ biến mất khi hàng đợi chuyển sang các bài hát khác."
       },
       "lyricsAnimation": {
         "where": "Hiệu ứng chuyển động lời không đổi ở trang phát nhạc, mà nằm trong Cài đặt · Giao diện mục \"Hiệu ứng lời\", và hàng trên cùng này là lối vào.",
         "playground": "Mục này mở không gian tinh chỉnh hiệu ứng toàn màn hình. Khung lớn bên trái xem trước trực tiếp giao diện hiển thị; cột hẹp bên phải là phần cài đặt.",
-        "playgroundSections": "Kiểu hiệu ứng được chọn ở hàng mẫu dưới phần xem trước. Cột bên phải có năm trang: Lời bài hát, Hình nền, Chung, Phụ đề, Cài đặt chung; trang Lời bài hát chứa các thiết lập của kiểu bạn đã chọn.",
+        "playgroundSections": "Kiểu hiệu ứng được chọn ở hàng mẫu dưới phần xem trước. Cột bên phải có năm trang: Lời bài hát, Hình nền, Chung, Phụ đề, Cài đặt chung; trang Lời bài hát chứa các thiết lập của kiểu bạn đã chọn."
       },
       "themeSettings": {
         "presetDefault": "Bên trái là cài đặt sẵn tích hợp, Mực / Trắng: một chấm chuyển màu nhỏ trên nhãn, tự đổi giữa sáng và tối theo chế độ giao diện.",

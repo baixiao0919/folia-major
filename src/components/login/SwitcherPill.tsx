@@ -114,7 +114,19 @@ const SwitcherPill: React.FC<SwitcherPillProps> = ({ account, onBackToPlayer }) 
             className="pointer-events-auto absolute bottom-4 right-4 z-[100] md:bottom-6 md:right-6"
             style={{ ...settingsTokens(isDaylight, theme), ...kitMotionTokens(reduced), '--login-edge': 'var(--st-menu)' } as React.CSSProperties}
         >
-            <div className="flex items-center rounded-[26px] bg-[var(--st-menu)] p-0.5 text-[color:var(--st-t1)] shadow-lg md:p-1.5">
+            <div
+                data-glass
+                data-glass-jelly
+                data-glass-light
+                className="flex items-center rounded-[26px] p-0.5 text-[color:var(--st-t1)] shadow-lg md:p-1.5"
+                style={{
+                    backgroundColor: isDaylight ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
+                    borderTop: isDaylight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.12)',
+                    borderBottom: isDaylight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.12)',
+                    outline: '1px solid rgba(40,40,40,0.2)',
+                    boxShadow: '2px 2px 8px 2px rgba(40,40,40,0.4)',
+                }}
+            >
                 <Tooltip text={t('home.switchOnlineProvider')} className="inline-flex">
                     <button
                         type="button"

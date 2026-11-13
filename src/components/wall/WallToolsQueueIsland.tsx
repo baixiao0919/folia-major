@@ -339,6 +339,7 @@ export function WallToolsQueueIsland({ id, host, trailsPanel = false, onClosePan
 
     return (
         <motion.section
+            data-glass
             id={id}
             role="region"
             aria-label={t('wallTools.queueIsland')}

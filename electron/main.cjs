@@ -71,8 +71,10 @@ const {
 const { createKugouApiBridge } = require('./kugou/kugouApiBridge.cjs');
 const { createExternalUrlOpener } = require('./externalUrlPolicy.cjs');
 const { createSenderGuardedHandler } = require('./ipcAccessGuard.cjs');
+const { createLanCastController } = require('./lanCast/index.cjs');
 const { createQishuiApiBridge } = require('./qishui/qishuiApiBridge.cjs');
 const { createFnmusicApiBridge, FN_MUSIC_SCHEME, FN_MUSIC_PRIVILEGED_SCHEME } = require('./fnmusic/fnmusicApiBridge.cjs');
+const { createLxBridge, LX_STREAM_SCHEME, LX_STREAM_PRIVILEGED_SCHEME } = require('./lxmusic/lxBridge.cjs');
 const { createQishuiMediaPolicy } = require('./qishui/mediaCors.cjs');
 const { createBodianApiBridge } = require('./bodian/bodianApiBridge.cjs');
 const { createBodianMediaPolicy } = require('./bodian/mediaCors.cjs');
@@ -88,7 +90,6 @@ const { DEFAULT_DISCORD_APPLICATION_ID, createDiscordPresenceController } = requ
 const { createVoiceInputPauseMonitor } = require('./voiceInputPause.cjs');
 const { createWindowSystemMenuGuard } = require('./windowSystemMenu.cjs');
 const { createMacDockMenu } = require('./macDockMenu.cjs');
-const { createWindowsThumbar } = require('./windowsThumbar.cjs');
 const { createDisplaySleepBlocker } = require('./displaySleepBlocker.cjs');
 const { createVideoExportFileWriter } = require('./videoExportFileWriter.cjs');
 const { finalizeVideoExportFile } = require('./videoExportMp4.cjs');
@@ -181,6 +182,7 @@ protocol.registerSchemesAsPrivileged([
   YTM_AUDIO_PRIVILEGED_SCHEME,
   SPOTIFY_AUDIO_PRIVILEGED_SCHEME,
   FN_MUSIC_PRIVILEGED_SCHEME,
+  LX_STREAM_PRIVILEGED_SCHEME,
 ]);
 
 // Trusts only the known KuGou media CDN hostname mismatch while preserving TLS checks elsewhere.
@@ -372,6 +374,8 @@ const qishuiMediaPolicy = createQishuiMediaPolicy();
 // 飞牛音乐桥：服务器与凭据由主进程 safeStorage 加密保存（渲染进程只发操作）；播放/封面走
 // 自定义协议（协议 handler 实时转发，无需本地 HTTP 代理、无需启动时恢复）。
 const fnMusicApiBridge = createFnmusicApiBridge({ store, safeStorage });
+// 洛雪音源桥：桌面端跨域取数（IPC lx-fetch）与音频流代理（folia-lx://stream），无状态。
+const lxBridge = createLxBridge();
 const qishuiApiBridge = createQishuiApiBridge({ store, safeStorage, fetch: (url, options) => electronNet.fetch(url, options),
   onAudioSource: url => qishuiMediaPolicy.register(url),
 });
@@ -446,6 +450,27 @@ const spotifyApiBridge = createSpotifyApiBridge({ store, safeStorage,
     const chosen = owner ? await dialog.showOpenDialog(owner, options) : await dialog.showOpenDialog(options);
     return chosen.canceled ? null : chosen.filePaths[0] ?? null;
   },
+});
+// 局域网音响投送（PR #256 的桌面等价实现）：SSDP 发现在 electron/lanCast/ssdp.cjs，
+// SOAP 控制在 soap.cjs，回环地址与自定义协议由 gateway.cjs 转成音响能拉的 http 地址。
+// resolveProtocol 复用已注册的自定义协议处理器，投送期间才起网关，停止即关。
+const lanCastController = createLanCastController({
+  resolveProtocol: (url) => {
+    try {
+      const parsed = new URL(url);
+      if (parsed.protocol === `${FN_MUSIC_SCHEME}:`) {
+        return request => fnMusicApiBridge.handleProtocolRequest(request);
+      }
+      if (parsed.protocol === `${YTM_AUDIO_SCHEME}:`) {
+        return request => ytmApiBridge.handleAudioRequest(request);
+      }
+      if (parsed.protocol === `${SPOTIFY_AUDIO_SCHEME}:`) {
+        return request => spotifyApiBridge.handleAudioRequest(request);
+      }
+    } catch { /* 不是合法 URL：交给调用方当普通地址处理。 */ }
+    return null;
+  },
+  log: text => console.info(text),
 });
 const qqAuthSessionRepository = createQqAuthSessionRepository({ store, safeStorage });
 // AI API keys are sealed with safeStorage instead of sitting in config.json as plaintext, and never
@@ -2773,14 +2798,6 @@ const THUMBAR_BUTTON_ICONS = process.platform === 'win32'
   }
   : null;
 
-// Windows only; off Windows every call on it does nothing.
-const windowsThumbar = createWindowsThumbar({
-  isSupported: process.platform === 'win32',
-  getWindow: () => mainWindow,
-  icons: THUMBAR_BUTTON_ICONS,
-  sendAction: (action) => sendThumbarAction(action),
-});
-
 // macOS menu bar icons should be monochrome template images with transparent backgrounds.
 function createTrayIconImage() {
   if (process.platform !== 'darwin') {
@@ -3136,6 +3153,10 @@ function setMainWindowFullscreen(win, fullscreen) {
   win.setFullScreen(fullscreen);
 }
 
+function isWindowsThumbarSupported() {
+  return process.platform === 'win32';
+}
+
 function sendThumbarAction(action) {
   if (!mainWindow || mainWindow.isDestroyed()) {
     return;
@@ -3144,12 +3165,51 @@ function sendThumbarAction(action) {
   mainWindow.webContents.send('thumbar-action', action);
 }
 
-// Windows builds a new taskbar button for a window shown after being hidden, and Electron forgets
-// the old thumbar when the window hides (SetThumbarButtonsAdded(false) in native_window_views.cc,
-// #28390), so the next write is what re-adds the buttons. Nothing writes on show, so the cached
-// buttons are replayed here instead of waiting for the next playback change.
-function replayMainWindowThumbarButtons() {
-  return windowsThumbar.replay({ taskbarButtonVisible: !mainWindowSkipTaskbarEnabled });
+function updateWindowThumbarButtons(state = {}) {
+  if (!isWindowsThumbarSupported() || !mainWindow || mainWindow.isDestroyed()) {
+    return false;
+  }
+
+  const {
+    hasActiveTrack = false,
+    canGoPrevious = false,
+    canGoNext = false,
+    isPlaying = false,
+  } = state;
+
+  if (!hasActiveTrack) {
+    try {
+      return mainWindow.setThumbarButtons([]);
+    } catch (error) {
+      console.warn('[Electron] Failed to clear Windows thumbar buttons', error);
+      return false;
+    }
+  }
+
+  try {
+    return mainWindow.setThumbarButtons([
+      {
+        tooltip: 'Previous Track',
+        icon: THUMBAR_BUTTON_ICONS.previous,
+        flags: canGoPrevious ? [] : ['disabled'],
+        click: () => sendThumbarAction('previous'),
+      },
+      {
+        tooltip: isPlaying ? 'Pause' : 'Play',
+        icon: isPlaying ? THUMBAR_BUTTON_ICONS.pause : THUMBAR_BUTTON_ICONS.play,
+        click: () => sendThumbarAction('play-pause'),
+      },
+      {
+        tooltip: 'Next Track',
+        icon: THUMBAR_BUTTON_ICONS.next,
+        flags: canGoNext ? [] : ['disabled'],
+        click: () => sendThumbarAction('next'),
+      },
+    ]);
+  } catch (error) {
+    console.warn('[Electron] Failed to set Windows thumbar buttons', error);
+    return false;
+  }
 }
 
 function getDefaultCacheDirectory() {
@@ -3276,10 +3336,6 @@ function setMainWindowSkipTaskbarEnabled(enabled) {
   mainWindowSkipTaskbarEnabled = Boolean(enabled);
   if (mainWindow && !mainWindow.isDestroyed()) {
     mainWindow.setSkipTaskbar(mainWindowSkipTaskbarEnabled);
-    if (!mainWindowSkipTaskbarEnabled) {
-      // The taskbar button is back; Electron re-adds the buttons only when it remembers adding them.
-      replayMainWindowThumbarButtons();
-    }
   }
   refreshTrayMenu();
   return mainWindowSkipTaskbarEnabled;
@@ -6133,7 +6189,7 @@ function createWindow(options = {}) {
   // the titlebar corner can temporarily restore mouse interaction even though the lock toggle
   // itself is no longer rendered in wallpaper mode.
   setMainWindowClickThroughEnabled(mainWindowClickThroughEnabled);
-  windowsThumbar.reset();
+  updateWindowThumbarButtons();
   win.on('resize', () => {
     saveWindowState(win, { deferred: true });
   });
@@ -6217,19 +6273,10 @@ function createWindow(options = {}) {
       refreshTrayMenu();
     }
   });
-  win.on('show', () => {
-    refreshTrayMenu();
-    replayMainWindowThumbarButtons();
-  });
-  win.on('hide', () => {
-    refreshTrayMenu();
-    windowsThumbar.noteHidden();
-  });
+  win.on('show', refreshTrayMenu);
+  win.on('hide', refreshTrayMenu);
   win.on('minimize', refreshTrayMenu);
-  win.on('restore', () => {
-    refreshTrayMenu();
-    replayMainWindowThumbarButtons();
-  });
+  win.on('restore', refreshTrayMenu);
 
   return win;
 }
@@ -6409,6 +6456,7 @@ app.whenReady().then(async () => {
   protocol.handle(YTM_AUDIO_SCHEME, request => ytmApiBridge.handleAudioRequest(request));
   protocol.handle(SPOTIFY_AUDIO_SCHEME, request => spotifyApiBridge.handleAudioRequest(request));
   protocol.handle(FN_MUSIC_SCHEME, request => fnMusicApiBridge.handleProtocolRequest(request));
+  protocol.handle(LX_STREAM_SCHEME, request => lxBridge.handleProtocolRequest(request));
   // Transcode fallback is an optional degradation path; a failure preparing it must never keep
   // the rest of this handler, createWindow() included, from running.
   try {
@@ -7375,6 +7423,51 @@ registerLoginBackendIpc({
 // window - that is the CSP and preload layer's job, not this check's. isFirstPartyWindowContents is
 // defined next to the other trust checks (after isTrustedRemoteControlContents).
 
+// 局域网投送：发现与推送都会对局域网发/收包，只允许第一方窗口调用。
+ipcMain.handle('lan-cast-discover', createSenderGuardedHandler({
+  channel: 'lan-cast-discover',
+  isTrusted: isFirstPartyWindowContents,
+  onUntrusted: () => ({ devices: [] }),
+  handler: (event, options) => lanCastController.discover({ timeoutMs: options?.timeoutMs })
+    .then(devices => ({ devices })),
+}));
+ipcMain.handle('lan-cast-cast', createSenderGuardedHandler({
+  channel: 'lan-cast-cast',
+  isTrusted: isFirstPartyWindowContents,
+  onUntrusted: () => ({ ok: false }),
+  handler: (event, track) => lanCastController.cast(track),
+}));
+ipcMain.handle('lan-cast-stop', createSenderGuardedHandler({
+  channel: 'lan-cast-stop',
+  isTrusted: isFirstPartyWindowContents,
+  onUntrusted: () => ({ ok: false }),
+  handler: (event, options) => lanCastController.stop({ controlUrl: options?.controlUrl }),
+}));
+// 音响音量：也是局域网报文，同样只给第一方窗口。读失败回 volume:null，界面据此把音量条藏起来。
+ipcMain.handle('lan-cast-volume', createSenderGuardedHandler({
+  channel: 'lan-cast-volume',
+  isTrusted: isFirstPartyWindowContents,
+  onUntrusted: () => ({ ok: false, volume: null, muted: null }),
+  handler: (event, options) => lanCastController.volume({ renderingControlUrl: options?.renderingControlUrl }),
+}));
+ipcMain.handle('lan-cast-set-volume', createSenderGuardedHandler({
+  channel: 'lan-cast-set-volume',
+  isTrusted: isFirstPartyWindowContents,
+  onUntrusted: () => ({ ok: false }),
+  handler: (event, options) => lanCastController.setVolume({
+    renderingControlUrl: options?.renderingControlUrl,
+    volume: options?.volume,
+  }),
+}));
+ipcMain.handle('lan-cast-set-mute', createSenderGuardedHandler({
+  channel: 'lan-cast-set-mute',
+  isTrusted: isFirstPartyWindowContents,
+  onUntrusted: () => ({ ok: false }),
+  handler: (event, options) => lanCastController.setMute({
+    renderingControlUrl: options?.renderingControlUrl,
+    muted: options?.muted,
+  }),
+}));
 ipcMain.handle('kugou-api-status', createSenderGuardedHandler({
   channel: 'kugou-api-status',
   // 只回传可用性、登录状态与错误：拒绝时给一个「没有这个能力」的取值，让调用方走 unavailable 分支。
@@ -7394,6 +7487,12 @@ ipcMain.handle('qishui-api-request', (event, operation, params) => {
 
 // 飞牛音乐请求桥：服务器与凭据保存在主进程，渲染进程只发操作；Cookie 认证头、
 // 自签名证书容忍都在主进程桥内完成（用受信窗口守卫）。
+// 洛雪音源的桌面取数通道：音源脚本请求的是任意第三方主机，渲染进程会被 CORS 挡住。
+// 公网 http(s) 放行，环回与私网在桥内部拒绝（见 electron/lxmusic/lxBridge.cjs）。
+ipcMain.handle('lx-fetch', firstParty('lx-fetch', async (event, url, init) => {
+  return lxBridge.handleFetch({ url, ...(init && typeof init === 'object' ? init : {}) });
+}));
+
 ipcMain.handle('fnmusic-api-request', createSenderGuardedHandler({
   channel: 'fnmusic-api-request',
   isTrusted: (event) => isTrustedMainWindowContents(event.sender),
@@ -7874,7 +7973,12 @@ ipcMain.handle('thumbar-update-buttons', (event, state) => {
 
   // One report feeds both: the Windows taskbar buttons and the macOS Dock menu.
   macDockMenu.setState(state);
-  return windowsThumbar.setState(state);
+  return updateWindowThumbarButtons({
+    hasActiveTrack: Boolean(state?.hasActiveTrack),
+    canGoPrevious: Boolean(state?.canGoPrevious),
+    canGoNext: Boolean(state?.canGoNext),
+    isPlaying: Boolean(state?.isPlaying),
+  });
 });
 
 ipcMain.handle('remote-control-open', (event) => {

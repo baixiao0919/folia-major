@@ -353,15 +353,17 @@ export const fnmusicProvider: OnlineMusicProvider = {
         },
     },
     playback: {
-        // track/stream 只回 NAS 上的原始文件，没有可选的音质：只列一档，音质选项不给不起作用的档位。
-        audioQualityLevels: ['standard'],
+        // 飞牛逼站的 stream 认 quality：不带按服务端默认回原文件，带了才可能转码到更低码率。
+        // 服务端真正认的只有标准/极高/无损三档；ultra、hires、master 传过去会回落到原文件，
+        // 听感上等同最高档，所以这里照六档全列，面板上无损以上也能选到。
+        audioQualityLevels: ['standard', 'high', 'ultra', 'lossless', 'hires', 'master'],
         async getSongDetail(id) {
             const raw = await fnmusicRequest<unknown>('/music/api/v1/track/metadata', { trackGUID: id });
             const item = record(raw);
             return normalizeFnMusicSong(item.track ?? item.song ?? raw);
         },
         async getAudioSource(song, quality: AudioQualityPreference) {
-            const url = await fnMusicStreamSource(songIdOf(song));
+            const url = await fnMusicStreamSource(songIdOf(song), quality);
             return { url, fetchedAt: Date.now(), quality } as ProviderAudioSource;
         },
     },
@@ -394,7 +396,10 @@ export const fnmusicProvider: OnlineMusicProvider = {
         // 表单式登录：登录窗口按声明渲染字段，提交后由本 provider 完成登录（主进程保存凭据）。
         getLoginForm: () => ({
             fields: [
-                { key: 'base', type: 'url', labelKey: 'fnmusic.serverUrl', placeholderKey: 'fnmusic.serverUrlPlaceholder', required: true },
+                // type 用 text 而非 url：支持局域网 IP 直连（http://192.168.x.x:5666）与 FN ID 中继
+                // （纯短码 baixiaokeji → https://baixiaokeji.fnos.net），后者不是合法 URL，会被原生
+                // input[type=url] 校验拦截。桥侧 resolveServer 负责识别并切换。
+                { key: 'base', type: 'text', labelKey: 'fnmusic.serverUrl', placeholderKey: 'fnmusic.serverUrlPlaceholder', required: true },
                 { key: 'username', type: 'text', labelKey: 'fnmusic.username', placeholderKey: 'fnmusic.usernamePlaceholder', required: true },
                 { key: 'password', type: 'password', labelKey: 'fnmusic.password', required: true },
             ],

@@ -43,6 +43,7 @@ const AUDIO_QUALITY_OPTIONS: Array<{
     { value: 'ultra', labelKey: 'account.qualityUltra' },
     { value: 'lossless', labelKey: 'account.qualityLossless' },
     { value: 'hires', labelKey: 'account.qualityHires' },
+    { value: 'master', labelKey: 'account.qualityMaster' },
 ];
 
 const selectLogoutPending = (snapshot: LibraryAccountSnapshot) => snapshot.logout.status === 'pending';

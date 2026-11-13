@@ -5,6 +5,7 @@ import { Button, Menu, Progress, Reveal, Row } from '../kit';
 import { openOutsideLink } from '../../../../utils/system/outsideLink';
 import { useSettingsPage } from './settingsPageContext';
 import { offersChinaDrives } from './ChinaDrivesRow';
+import { getBuildKind } from '../../../../utils/buildProvenance';
 
 // src/components/modal/settings/pages/FoundUpdateRow.tsx
 // The row a found update gets, on the 通用 page and on the Help page: the new version, the list of
@@ -21,6 +22,11 @@ type FoundUpdateRowProps = {
 
 export const FoundUpdateRow: React.FC<FoundUpdateRowProps> = ({ sub }) => {
     const { t } = useTranslation();
+    // 自用版（非官方构建）不显示「发现新版本」：版本号与官方对齐后，这类提示只会说明
+    // 官方仓库又发了一版而我们这份是改装版，点下去也没有能用的下载源。
+    if (getBuildKind() !== 'official') {
+        return null;
+    }
     const sourcesRef = useRef<HTMLButtonElement>(null);
     const sourcesId = useId();
     // The version the list of sources was opened for: an open list goes with its update.

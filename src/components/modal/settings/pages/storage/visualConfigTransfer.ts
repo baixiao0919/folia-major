@@ -4,6 +4,7 @@ import { buildVisualSettingsConfig } from '../../../../../services/obs/visualSet
 import { isThemeGenerationSource, type ThemeGenerationSource } from '../../../../../services/themePreferences';
 import { useLatticeSettingsStore } from '../../../../../stores/useLatticeSettingsStore';
 import { useLibraryWallLookStore } from '../../../../../stores/useLibraryWallLookStore';
+import { useLiquidGlassSettingsStore } from '../../../../../stores/useLiquidGlassSettingsStore';
 import { usePlayerChromeSettingsStore } from '../../../../../stores/usePlayerChromeSettingsStore';
 import { isScratchpadHandleStyle, useScratchpadSettingsStore } from '../../../../../stores/useScratchpadSettingsStore';
 import { useStageSettingsStore } from '../../../../../stores/useStageSettingsStore';
@@ -361,9 +362,15 @@ export const applyImportedConfig = (config: any, keys: string[], theme: ConfigTh
     if (has('libraryWallSeamDirection') && isLibraryWallSeamDirection(config.libraryWallSeamDirection)) {
         storeLibraryWall.setSeamDirection(config.libraryWallSeamDirection);
     }
+
+    // 流体玻璃：一组全局参数，整组套用，落库与刷新走 store 自己的 commit。
+    if (has('liquidGlass') && config.liquidGlass) {
+        useLiquidGlassSettingsStore.getState().handleSetLiquidGlassParams(config.liquidGlass);
+    }
     // The scratchpad side tab's resting look (the 主页与歌单 page's scratchpad group writes it).
     if (has('scratchpadHandleStyle') && isScratchpadHandleStyle(config.scratchpadHandleStyle)) {
         useScratchpadSettingsStore.getState().setHandleStyle(config.scratchpadHandleStyle);
+
     }
     // Numbering only the playing song, on both tile walls (the 播放页 page's tile wall group writes it).
     if (has('latticeBadgeCurrentOnly')) {

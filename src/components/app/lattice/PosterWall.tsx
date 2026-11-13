@@ -48,6 +48,8 @@ type PosterWallProps = {
     startTileId?: string | null;
     /** Only for playback focus and visibility tracking; the chrome reads transport state from context. */
     currentSong: SongResult | null;
+    /** The wall's day/night mode: the chrome below the field (the section finder) follows it. */
+    isDaylight: boolean;
     onPlay: (tile: LatticeTile) => void;
     /** A double click on a poster (#834). */
     onPlayFromWall: (tile: LatticeTile) => void;
@@ -90,6 +92,7 @@ export default function PosterWall({
     sections,
     startTileId = null,
     currentSong,
+    isDaylight,
     onPlay,
     onPlayFromWall,
     onTogglePlayback,
@@ -493,7 +496,7 @@ export default function PosterWall({
         </div>
         {/* Outside the field, whose keys and drags are the wall's: the explore wall's way to a section. */}
         {wallSections.section !== null && (
-            <LatticeSectionFinder sections={wallLayout.sections} current={wallSections.section} onChoose={chooseSection} />
+            <LatticeSectionFinder sections={wallLayout.sections} current={wallSections.section} onChoose={chooseSection} isDaylight={isDaylight} />
         )}
         </>
     );

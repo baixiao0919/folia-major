@@ -745,7 +745,7 @@ const forgetKugouAnonymousSearchFallback = (keyword: string): void => {
 };
 
 const qualityValue = (quality: AudioQualityPreference): string => ({
-    standard: '128', high: '320', ultra: '320', lossless: 'flac', hires: 'high',
+    standard: '128', high: '320', ultra: '320', lossless: 'flac', hires: 'high', master: 'high',
 })[quality];
 
 const QUALITY_FALLBACKS: Record<AudioQualityPreference, AudioQualityPreference[]> = {
@@ -755,6 +755,8 @@ const QUALITY_FALLBACKS: Record<AudioQualityPreference, AudioQualityPreference[]
     ultra: ['high', 'standard'],
     lossless: ['lossless', 'high', 'standard'],
     hires: ['hires', 'lossless', 'high', 'standard'],
+    // For the type: KuGou has no tier above Hi-Res, so 'master' resolves like 'hires'.
+    master: ['hires', 'lossless', 'high', 'standard'],
 };
 
 const qualityFallbacks = (quality: AudioQualityPreference): AudioQualityPreference[] => QUALITY_FALLBACKS[quality];

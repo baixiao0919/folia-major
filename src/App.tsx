@@ -7,6 +7,8 @@ import SceneHost from './components/scenes/engine/SceneHost';
 import CommandPalette from './components/command-palette/CommandPalette';
 import AddToPlaylistHost from './components/app/AddToPlaylistHost';
 import ScratchpadHost from './components/app/scratchpad/ScratchpadHost';
+import { LxWorkspace } from './components/lxmusic/LxWorkspace';
+import { useLxWorkspaceStore } from './stores/useLxWorkspaceStore';
 import { useScratchpadPlayback, useScratchpadQueuePort } from './components/app/scratchpad/useScratchpadPlayback';
 import { useCommandPalette } from './components/command-palette/useCommandPalette';
 import { useCommandPaletteContext } from './hooks/useCommandPaletteContext';
@@ -79,7 +81,7 @@ import type { MediaId, ProviderCollection } from './types/onlineMusic';
 import { resolveSongCatalogRef } from './services/onlineMusic/catalogRefs';
 import { omni } from './services/onlineMusic/omni';
 import { consumeProgrammaticPause, playbackFade } from './services/playbackFade';
-import { getSongAlbumLabel, getSongArtistLabel, getSongCoverUrl } from './services/onlineMusic/songMetadata';
+import { getProviderSongMetadata, getSongAlbumLabel, getSongArtistLabel, getSongCoverUrl } from './services/onlineMusic/songMetadata';
 import { isNavidromeEnabled } from './services/navidromeService';
 import { useAppNavigation } from './hooks/useAppNavigation';
 import { useNeteaseLibrary } from './hooks/useNeteaseLibrary';
@@ -147,8 +149,8 @@ import { useOnlineProviderAccountStore } from './stores/useOnlineProviderAccount
 import { useShallow } from 'zustand/react/shallow';
 import { clampMediaVolume, toSafeRemoteUrl } from './utils/appPlaybackHelpers';
 import { hasLoopedToStart } from './services/playedTrackCache';
-import { getOnlineProviderIdForSong, isLocalPlaybackSong, isNavidromePlaybackSong, isStagePlaybackSong } from './utils/appPlaybackGuards';
-import { writeLyricOffset } from './utils/lyrics/lyricOffsetMemory';
+import { getOnlineProviderIdForSong, getPlaybackSongKey, isLocalPlaybackSong, isNavidromePlaybackSong, isStagePlaybackSong } from './utils/appPlaybackGuards';
+import { readLyricOffset, writeLyricOffset } from './utils/lyrics/lyricOffsetMemory';
 import { FALLBACK_AI_DUAL_THEME } from './services/themeSanitizer';
 import { BASE_DUAL_THEME, DAYLIGHT_THEME, DEFAULT_THEME } from './services/baseThemes';
 import { initializeSyncCoordinator } from './services/sync/syncCoordinator';
@@ -199,6 +201,8 @@ import { useFoliumAnimationIntensity } from './mods/runtime/visualizer/hostAnima
 import { refreshPrefetchAfterQueueEdit } from './services/prefetchService';
 import { FoliumStageLayerSlot } from './mods/folium/registries/stageLayers';
 import { runsOnWindows } from './utils/platform';
+import { GlassFilterDefs } from './shinoinject/useGlass.tsx';
+import LanCastFollower from './components/lan-cast/LanCastFollower';
 
 const LOCAL_MUSIC_UPDATED_EVENT = 'folia-local-music-updated';
 const DEV_DEBUG_SHORTCUT_LABEL = 'Alt+Shift+D';
@@ -1179,6 +1183,10 @@ export default function App() {
     // Derived in usePlaybackStore now, so that any consumer can read the display layer without
     // being handed it. The ternaries (rather than `??`) live there for the same reason they lived
     // here: null is a real value for lyrics, cover and duration.
+    // 洛雪工作台：入口在设置页与来源选择处，页面本身挂在这一层——只有这里拿得到播放 / 入队。
+    const isLxWorkspaceOpen = useLxWorkspaceStore((state) => state.isOpen);
+    const closeLxWorkspace = useLxWorkspaceStore((state) => state.close);
+
     const displaySong = usePlaybackStore(selectDisplaySong);
     const displayCoverUrl = usePlaybackStore(selectDisplayCoverUrl);
     const displayDuration = usePlaybackStore(selectDisplayDuration);
@@ -1325,6 +1333,24 @@ export default function App() {
             setDuration(element.duration);
         }
     }, [audioSrc, audioRef, setDuration]);
+
+    // 上面那一段只认元素自己报出来的时长。有些音源流就是不给分母：代理/分块转发不带
+    // Content-Length，Chromium 报 Infinity 或 NaN，`loadedmetadata` 也就永远不会给我们一个
+    // 能用的数字——那首歌的进度条整首都停在 00:00，切到下一首又正常（用户看到的就是这样）。
+    // 所以只要这一首自己带着时长（provider 元数据里就有），就先用它把分母填上；元素后来报出
+    // 真实长度时由上面和 onLoadedMetadata 校正，两边都是真实值时也不在这里改小。
+    useEffect(() => {
+        if (!audioSrc) return;
+        const element = audioRef.current;
+        const elementSeconds = element && element.currentSrc === audioSrc
+            && Number.isFinite(element.duration) && element.duration > 0
+            ? element.duration
+            : 0;
+        if (elementSeconds > 0) return;
+        const metadataSeconds = getProviderSongMetadata(currentSong).durationMs / 1000;
+        if (!(metadataSeconds > 0)) return;
+        setDuration(prev => (prev > 0 ? prev : metadataSeconds));
+    }, [audioSrc, currentSong, audioRef, setDuration]);
 
     const { setupAudioAnalyzer, cacheSongAssets, cacheSongAssetsFor, adoptActiveDeckSource } = usePlaybackAudioBridge({
         audioRef,
@@ -1668,7 +1694,7 @@ export default function App() {
         audioRef,
         getDisplayAudioElement: automix.getDisplayElement,
         stageSource,
-        coverUrl: displayCoverUrl,
+        coverUrl,
         offsetMs: effectiveLyricTimelineOffsetMs,
         theme: visualizerTheme,
         subtitleTheme: visualizerSubtitleTheme,
@@ -2767,6 +2793,12 @@ export default function App() {
             </>}
         >
 
+            {/* 玻璃滤镜注入容器：全应用唯一，常驻不卸载，见 src/mods/useGlass.tsx。 */}
+            <GlassFilterDefs />
+
+            {/* 投送跟随：投送中切歌要跟着推给同一台音响，跨页面常驻（面板只活在播放页）。 */}
+            <LanCastFollower />
+
             {/* 首页层、Lattice 与两面墙共用的右下角工具按钮（WallToolsDock：交接时按钮节点不重建）。 */}
             <WallToolsDockHost host={wallToolsHost}>
             {/* Home Mount Point */}
@@ -2890,6 +2922,18 @@ export default function App() {
                 nowPlayingConnectionStatus={nowPlayingConnectionStatus}
                 playerCapConnectionStatus={playerCapConnectionStatus}
             />
+
+            {/* 洛雪工作台：免登录，歌单广场 / 榜单 / 专辑 / 电台 / 本地 / 搜索各一页，整页浮层。
+                它的搜索、歌单广场、榜单不跟着宿主那套走，所以自己开一张台。 */}
+            {isLxWorkspaceOpen && (
+                <LxWorkspace
+                    theme={theme}
+                    isDaylight={isDaylight}
+                    onClose={closeLxWorkspace}
+                    onPlayTrack={(track) => { void playSong(track, [], false, { shouldNavigateToPlayer: false }); }}
+                    onAddToQueue={(track) => { addOnlineSongToQueue(track); }}
+                />
+            )}
 
             <AppOverlays model={appOverlaysModel} />
 

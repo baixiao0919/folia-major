@@ -628,6 +628,8 @@ export const compressConfig = (config: any): string => {
     if (config.smartBeat) minified.smb = compressSmartBeat(config.smartBeat);
     if (config.temperaTuning) minified.tmp = compressTempera(config.temperaTuning);
     if (config.lumiereTuning) minified.lmt = compressLumiere(config.lumiereTuning);
+    // 流体玻璃的三个参数是一组小对象，原样塞进去比再压一轮划算。
+    if (config.liquidGlass) minified.lgt = config.liquidGlass;
     // Folium param values are already plain JSON keyed by scope; stored as-is.
     if (config.foliumParams) minified.fp = config.foliumParams;
     if (config.urlBackgroundList) minified.ubl = config.urlBackgroundList;
@@ -722,6 +724,8 @@ export const decompressConfig = (str: string): any => {
         || parsed.lwbl !== undefined
         || parsed.lwbb !== undefined
         || parsed.lwsd !== undefined
+        // 流体玻璃只有自己一组时，也要认成短码形态。
+        || parsed.lgt !== undefined
         // Numbering only the playing song on both tile walls (#930), for the same reason.
         || parsed.lbco !== undefined
         || parsed.phb !== undefined
@@ -789,6 +793,7 @@ export const decompressConfig = (str: string): any => {
         if (parsed.smb) decompressed.smartBeat = decompressSmartBeat(parsed.smb);
         if (parsed.tmp) decompressed.temperaTuning = decompressTempera(parsed.tmp);
         if (parsed.lmt) decompressed.lumiereTuning = decompressLumiere(parsed.lmt);
+        if (parsed.lgt) decompressed.liquidGlass = parsed.lgt;
         if (parsed.fp) decompressed.foliumParams = parsed.fp;
         if (parsed.ubl) decompressed.urlBackgroundList = parsed.ubl;
         if (parsed.ubid) decompressed.urlBackgroundSelectedId = parsed.ubid;
@@ -834,6 +839,7 @@ export const decompressConfig = (str: string): any => {
             'libraryWallStackEdges',
             'libraryWallSeamClear', 'libraryWallSeamStyle', 'libraryWallBackdropLyrics', 'libraryWallBackdropBlur',
             'libraryWallSeamDirection',
+            'liquidGlass',
             'latticeBadgeCurrentOnly',
             'playerHeaderBlur',
             'scratchpadHandleStyle',

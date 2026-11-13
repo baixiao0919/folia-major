@@ -11,6 +11,9 @@ import PlayerControlSlotButton from './floating-player/PlayerControlSlotButton';
 import PlayerBottomBarPositioner from './floating-player/PlayerBottomBarPositioner';
 import PlayerControlSlotPicker from './floating-player/PlayerControlSlotPicker';
 import PlayerControlSlotSuggestion from './floating-player/PlayerControlSlotSuggestion';
+import PlayerBarGlow from './floating-player/PlayerBarGlow';
+import { useGlass } from '../shinoinject/useGlass.tsx';
+import { releaseGlassJelly } from '../shinoinject/liquidglass.ts';
 import CapsuleQuickActions, { useCapsuleQuickActionsDwell } from './floating-player/CapsuleQuickActions';
 import { usePlayerControlSlotCustomization } from './floating-player/usePlayerControlSlotCustomization';
 import { usePlayerBottomBarBottomPx } from '../hooks/usePlayerBottomBarBottomPx';
@@ -67,6 +70,20 @@ const INSTANT_LAYOUT = { duration: 0 };
 
 /** 紧凑档收起的那一下：展开的内容再画这么久，clip-path 往下收完再换成收起的样子（bottomDock.css 同一个时长）。 */
 const COMPACT_CLOSE_MS = 280;
+/*
+ * 页面切换时胶囊的宽高 / 圆角整套变化，走 framer 的 layout 动画，动画期间逐帧改写 inline transform。
+ * 果冻会话同样在写 transform（收编 base 后叠加形变），两者同时进行会互相覆盖：
+ * 切换那一瞬间按下的拖拽会被 layout 修正吃掉，观感上就是「果冻失效」。
+ * 所以切换时先摘掉 data-glass-jelly 并收掉进行中的会话，等动画放完再挂回去。
+ *
+ * 判定只看 DOM：每帧比一次胶囊的 inline transform，连续静默若干帧即视为落定。不依赖 framer 的
+ * 动画回调 —— 尺寸没变时它根本不触发，而单纯用固定超时又会在这段时间里真的没有果冻。
+ * 超时只是最后一道保险，防动画被中断后一直挂着。
+ */
+const JELLY_REARM_QUIET_FRAMES = 6;
+const JELLY_REARM_MIN_WAIT_MS = 180;
+const JELLY_REARM_MAX_WAIT_MS = 1200;
+
 const HOVER_EXPAND_DELAY_MS = 20;
 const HOVER_COLLAPSE_DELAY_MS = 100;
 /**
@@ -206,9 +223,51 @@ const FloatingPlayerControls: React.FC<FloatingPlayerControlsProps> = ({
     const { ref: layoutRef, invalidate: invalidateLayout } = usePlayerOverlayObstacle('player-controls', 'playback', !isHidden);
     // 命令面板从胶囊原地长出来时要量它，所以胶囊节点除了交给遮挡登记，也留一份自己的。
     const capsuleElementRef = useRef<HTMLDivElement | null>(null);
+    // 果冻注入开关：页面切换时先摘掉，等胶囊的 layout 动画放完再挂回去。
+    const [jellyArmed, setJellyArmed] = useState(true);
+    const jellyRearmRafRef = useRef<number | null>(null);
+    const capsuleElRef = useRef<HTMLElement | null>(null);
+    const disarmJelly = useCallback(() => {
+        // 先让进行中的会话收摊：它写的是同一个 inline transform，留着会和 layout 动画互相覆盖。
+        releaseGlassJelly();
+        setJellyArmed(false);
+        if (jellyRearmRafRef.current !== null) {
+            cancelAnimationFrame(jellyRearmRafRef.current);
+            jellyRearmRafRef.current = null;
+        }
+        // 等 transform 连续若干帧不再变化（layout spring 放完）再挂回果冻。
+        // 读的是 inline transform（framer 的 layout 动画逐帧写这里），不触发样式重算；
+        // 只靠 DOM 状态判断，不依赖动画库的回调。超时是动画被打断时的保险。
+        const startedAt = performance.now();
+        let lastTransform: string | null = null;
+        let quietFrames = 0;
+        const waitForSettle = () => {
+            jellyRearmRafRef.current = null;
+            const el = capsuleElRef.current;
+            if (!el || !el.isConnected) {
+                setJellyArmed(true);
+                return;
+            }
+            const transform = el.style.transform;
+            quietFrames = transform === lastTransform ? quietFrames + 1 : 0;
+            lastTransform = transform;
+            const elapsed = performance.now() - startedAt;
+            // 至少等一小段：切换那一帧 transform 还没开始变，只比一次会立刻判成「已静止」。
+            const settled = elapsed >= JELLY_REARM_MIN_WAIT_MS
+                && (quietFrames >= JELLY_REARM_QUIET_FRAMES || elapsed >= JELLY_REARM_MAX_WAIT_MS);
+            if (settled) {
+                setJellyArmed(true);
+                return;
+            }
+            jellyRearmRafRef.current = requestAnimationFrame(waitForSettle);
+        };
+        jellyRearmRafRef.current = requestAnimationFrame(waitForSettle);
+    }, []);
+    // 胶囊节点同时交给 overlay 布局登记、命令面板 morph 计时和果冻重挂的等待逻辑。
     const capsuleRef = useCallback((element: HTMLDivElement | null) => {
         layoutRef(element);
         capsuleElementRef.current = element;
+        capsuleElRef.current = element;
     }, [layoutRef]);
     // 面板正以胶囊为外壳开着：胶囊自己淡出，免得两个叠在一起。
     const isMorphedIntoPalette = useCapsulePaletteStore(state => state.isMorphed);
@@ -340,6 +399,13 @@ const FloatingPlayerControls: React.FC<FloatingPlayerControlsProps> = ({
     // 收起时透过遮罩看不到它往下缩；面板收回时量的正是它此刻的样子，收回去的宽度就对得上。
     const showExpanded = isPositioning || hoverExpands || (isTouchRevealed && currentView === 'player') || slotPicker !== null || showSlotSuggestion || slotCustomization.isShowingChange || (canAutoExpand && playerState !== PlayerState.PLAYING && currentView !== 'home' && !isHoverSuppressed);
     showExpandedRef.current = showExpanded;
+
+    // 页面切换时胶囊的 layout 动画期间收掉果冻会话，动画落定后挂回（见 JELLY_REARM_* 注释）。
+    useEffect(() => {
+        disarmJelly();
+    }, [currentView, disarmJelly]);
+    // 液态玻璃注入：让 shinoinject 的玻璃渲染管线接管带 data-glass 的节点。
+    useGlass();
 
     // 胶囊的离散状态写进 store（再写到 <html data-capsule>）：挂件、卡片让位、字幕按它摆，不量胶囊。
     // 胶囊淡出了（播放页控件自动隐藏、或者它正当着命令面板）就算收着：暂停时它虽然“展开”，
@@ -816,6 +882,10 @@ const FloatingPlayerControls: React.FC<FloatingPlayerControlsProps> = ({
                         // 经外层 lift 表达，再让 drag 往这个节点写一份 y 会叠加成两倍位移；
                         // 而且 dragConstraints 依赖的起始值放在 ref 里不会触发重渲染，读到的会是上一帧的。
                         data-ponder="player-bar"
+                        data-glass
+                        // 果冻注入开关：页面切换的 layout 动画期间摘掉，动画放完由 disarmJelly 的帧循环挂回。
+                        data-glass-jelly={jellyArmed ? '' : undefined}
+                        data-glass-light
                         onPointerDown={handlePositionDragStart}
                         onPointerMove={handlePositionDragMove}
                         onPointerUp={handlePositionDragEnd}
@@ -831,8 +901,14 @@ const FloatingPlayerControls: React.FC<FloatingPlayerControlsProps> = ({
                             ${isCompact
                                 // 紧凑档收起和展开同一个宽度、同一个圆角（展开是圆角卡片，不是更高的胶囊），内边距交给里面的排布。
                                 ? `compact-capsule w-full ${glassBgExpanded}`
-                                : `rounded-full ${showExpanded ? `p-3 ${glassBgExpanded} w-full` : `px-4 py-2 ${glassBgCollapsed} ${COLLAPSED_WIDTH_CLASS}`}`}`}
+                                : `rounded-full isolate ${showExpanded ? `p-3 ${glassBgExpanded} w-full` : `px-4 py-2 ${glassBgCollapsed} ${COLLAPSED_WIDTH_CLASS}`}`}`}
                     >
+                        {/* 播放时从胶囊底边发出的水光：在胶囊内部，z-index: -1 压在内容下面、
+                            浮在胶囊自己的底色上面，照亮底边而不盖住控件。
+                            expanded 传进去：胶囊展开/收起时画布要重新量一次尺寸。 */}
+                        {!isCompact && (
+                            <PlayerBarGlow active={playerState === PlayerState.PLAYING} expanded={showExpanded} />
+                        )}
                         <motion.div
                             layout
                             transition={{ layout: isCompact ? INSTANT_LAYOUT : CONTROL_LAYOUT_SPRING }}

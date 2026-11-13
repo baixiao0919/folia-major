@@ -52,6 +52,14 @@ const SearchResultRow: React.FC<SearchResultRowProps> = ({
     const coverUrl = getSizedCoverUrl(metadata.coverUrl, 120);
     const artists = metadata.artists;
     const album = metadata.album;
+    // 洛雪下搜索是四家一起搜、交替排开的：每一行标出来自哪一家，否则分不清这首是谁家的。
+    // 平台短名由 provider 写进 providerData（这里不认识任何平台 id）。
+    const platformTag = (() => {
+        const ref = track.sourceRef;
+        if (!ref || ref.kind !== 'online') return '';
+        const label = (ref.providerData as Record<string, unknown> | undefined)?.platformLabel;
+        return typeof label === 'string' ? label : '';
+    })();
     const canOpenAlbum = Boolean(album?.name && (
         track.isLocal ? album.entityId
             : track.isNavidrome ? track.navidromeData?.albumId
@@ -88,6 +96,11 @@ const SearchResultRow: React.FC<SearchResultRowProps> = ({
 
                 <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
+                        {platformTag && (
+                            <span className="shrink-0 font-mono text-[10px] font-normal opacity-45" data-search-row-platform>
+                                [{platformTag}]
+                            </span>
+                        )}
                         <button
                             type="button"
                             disabled={isUnavailable}

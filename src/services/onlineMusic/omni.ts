@@ -57,6 +57,7 @@ import { resolveProviderLyricsChorus } from '../../utils/lyrics/chorusResolver';
 import { DEFAULT_ONLINE_PROVIDER_ID, OnlineProviderError } from '../../types/onlineMusic';
 import { useOnlineProviderAccountStore } from '../../stores/useOnlineProviderAccountStore';
 import { getPlaybackSourceRef } from '../../utils/appPlaybackGuards';
+import { applyImportedAudioResolver } from './importedAudioRouting';
 import { toSafePlaybackUrl } from '../../utils/appPlaybackHelpers';
 import { saveSongReplayGain } from './resourceCache';
 import {
@@ -101,7 +102,7 @@ import type { AccountReadOutcome, AccountReadReason } from './account/accountRea
 type PageInput = { limit: number; offset: number };
 
 // The quality levels, lowest first.
-const AUDIO_QUALITY_LEVELS: readonly AudioQualityPreference[] = ['standard', 'high', 'ultra', 'lossless', 'hires'];
+const AUDIO_QUALITY_LEVELS: readonly AudioQualityPreference[] = ['standard', 'high', 'ultra', 'lossless', 'hires', 'master'];
 // A provider that lists none of its own tells these four apart. 'ultra' is not among them: it
 // is a level only for a provider that lists it, so no other provider is ever asked at it.
 const UNLISTED_AUDIO_QUALITY_LEVELS: readonly AudioQualityPreference[] = ['standard', 'high', 'lossless', 'hires'];
@@ -819,7 +820,9 @@ export const omni = {
         ) {
             return [];
         }
-        const collections = useOnlineProviderAccountStore.getState().accounts[source.providerId]?.collections || [];
+        const collections = provider.mutations.listPlaylists?.()
+            || useOnlineProviderAccountStore.getState().accounts[source.providerId]?.collections
+            || [];
         return collections.filter(collection => (
             collection.type === 'playlist'
             && (provider.mutations?.canAddToPlaylist?.(collection) ?? true)
@@ -1203,6 +1206,15 @@ export const omni = {
     },
 
     async getAudioSource(song: SongResult, quality: AudioQualityPreference): Promise<OmniAudioSource | null> {
+        // 导入的音源（洛雪）对所有在线歌曲都先答一次，包括别家平台自己的曲目。
+        // 答 null（没装音源、平台没映射、几家都失败）时，下面的 provider 路径原样继续。
+        const imported = await applyImportedAudioResolver(song, quality);
+        if (imported?.url) {
+            const source = imported;
+            if (source.replayGain) void saveSongReplayGain(song, source.replayGain);
+            noteAudioSourceLevel(source.url, { level: quality, preview: Boolean(source.preview) });
+            return applyOmniAudioHook(song, source);
+        }
         const provider = providerForSong(song);
         const level = audioQualityFor(provider.id, quality);
         let source: OmniAudioSource | null;

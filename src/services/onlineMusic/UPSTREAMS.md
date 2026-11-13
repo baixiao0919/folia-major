@@ -99,11 +99,11 @@
 ## 汽水音乐（`qishui`，仅桌面端）
 
 - **上游**：[`qishui-music-api`](https://github.com/GSQZ/qishui-music-api)，MIT 许可，独立维护车机 HTTP 协议、客户端参数、票据签名、主动扫码授权、目录分页、推荐状态及未加密音频地址选择，不依赖官方客户端安装。
-- **版本**：0.2.1，钉死在根目录 `package.json`，锁文件使用 npm Registry 的 tarball 和 integrity，不使用本地文件、tarball 或 Git 分支引用。包没有传递的运行时依赖；网页版和 Docker 不调用它。
+- **版本**：0.2.0，钉死在根目录 `package.json`，锁文件使用 npm Registry 的 tarball 和 integrity，不使用本地文件、tarball 或 Git 分支引用。包没有传递的运行时依赖；网页版和 Docker 不调用它。
 - **怎么用**：`electron/qishui/qishuiApiBridge.cjs` 直接调用 `createQishuiApi`，注入设备标识、会话仓库和 Electron `net.fetch`，只放行包导出的 `QISHUI_OPERATIONS`。`session.cjs` 保留原来的存储键和 safeStorage 加密，设备标识由包生成和校验；加密不可用时会话只在内存中保存。`mediaCors.cjs` 只登记已签发音频地址及公共图片域名。渲染进程只从包导入类型，不加载协议代码。
 - **我们不改包**：Folia 不覆盖包内文件，不保留平台客户端标识、签名或协议实现。包只使用主动扫码授权的会话，不读取其他应用凭据、不加载官方客户端原生模块、不解密受保护音频；没有接口的写入能力保持关闭。
 - **上游变了怎么跟**：在独立仓库修复协议并发布新版本，Folia 明确升级钉死版本后回归。确认扫码、会话恢复、搜索、自己的歌单及下一页、逐字歌词、标准音质地址、试听标记与片段歌词起点、场景切换和补歌，以及红心、自建歌单增删、最近播放分页和可播性检查；场景目录仍从包读取，不在界面写死。打包后核对 npm 包及其运行时依赖进入产物。
-- **测试**：协议、扫码、推荐流和受保护音频拒绝的单测跟随独立包。Folia 的 `test/unit/electron/qishuiApiBridge.test.ts` 测操作白名单、会话加密恢复、内存回退和音频登记；`test/unit/qishui/packagePaging.test.ts` 使用真实包、桥和 renderer adapter，只替换 HTTP 答复，核对不透明游标、喜欢列表、最近播放分页和新增写入操作。`test/unit/qishui/` 其余测试覆盖归一化、歌词时间、本地匹配、歌词源可用性、电台目录和 Omni 能力边界。0.2.0 接入后已启动 macOS Electron 开发版，确认加载新版包、恢复登录、读取喜欢列表并打开最近播放，用户本地测试反馈未发现问题；0.2.1 补上公共客户端票据过期重取与失效后的有界重试，已核对 Registry 发布内容并做宿主回归；Windows、Linux、完整安装包和真实长期续期仍需人工验收。
+- **测试**：协议、扫码、推荐流和受保护音频拒绝的单测跟随独立包。Folia 的 `test/unit/electron/qishuiApiBridge.test.ts` 测操作白名单、会话加密恢复、内存回退和音频登记；`test/unit/qishui/packagePaging.test.ts` 使用真实包、桥和 renderer adapter，只替换 HTTP 答复，核对不透明游标、喜欢列表、最近播放分页和新增写入操作。`test/unit/qishui/` 其余测试覆盖归一化、歌词时间、本地匹配、歌词源可用性、电台目录和 Omni 能力边界。0.2.0 接入后已启动 macOS Electron 开发版，确认加载新版包、恢复登录、读取喜欢列表并打开最近播放，用户本地测试反馈未发现问题；Windows、Linux、完整安装包和长期续期仍需人工验收。
 
 ## Navidrome（不是 Omni 的 provider）
 
@@ -126,3 +126,12 @@
 - **我们不改上游**：Folia 不覆盖 fnOS 网页端文件，不保留客户端标识、签名或协议实现，只适配其公开 HTTP 接口。
 - **上游变了怎么跟**：fnOS 网页端改接口或字段后，`fnmusicApiBridge.cjs` 的请求与 `fnmusicProvider.ts` 的归一化要跟着改；登录失败、接口返回变化以 `[FnMusic]` 前缀日志为准。
 - **测试**：`test/unit/fnmusic/` 覆盖归一化、登录参数构造、翻页与可播性检查；桥接层逻辑在 `test/unit/electron/` 下用替身测操作白名单与加密配置恢复。
+
+## 洛雪（LX Music）（`lxmusic`，桌面端）
+
+- **上游**：用户自己在洛雪里配置的音源脚本（原版 LX Music 的「自定义源」），以及各家音乐平台的公开网页接口（QQ 音乐、酷狗、酷我、网易云、咪咕）。脚本在渲染进程的沙箱里跑出直链（`lxRuntime.ts`），接口请求经主进程转发。
+- **版本**：无外部 npm 包；接口与脚本格式按 2026-11 实测，记录在 `src/services/onlineMusic/lxmusic/` 下。
+- **怎么用**：`lxmusicTransport.ts` 只发 `url` 与 `init`，主进程 `electron/lxmusic/lxBridge.cjs` 走 `lx-fetch` 通道转发，挡掉环回与私网地址；音频流走 `folia-lx://stream` 自定义协议（主进程 `protocol.handle` 转发，带脚本要求的请求头）。脚本里的 cookie 留在主进程，渲染进程不经手。
+- **我们不改上游**：Folia 不内置、不打包任何音源脚本，只提供导入与运行；脚本由用户自己提供并自行负责。
+- **上游变了怎么跟**：接口字段变动改 `lxmusicTransport.ts` 与 `lxmusicProvider.ts` 的归一化；脚本格式变动改 `lxRuntime.ts`；取数失败以 `lxDiagnostics` 的报告为准。
+- **测试**：`test/unit/onlineMusic/` 覆盖归一化、翻页、榜单与集合、歌词（含 `[awlrc:` 容器）、脚本解析与收藏对账。

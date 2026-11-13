@@ -244,6 +244,7 @@ export const selectVisualizerSettingsSnapshot = (state: VisualizerSettingsState)
     handleSetBackgroundOpacity: state.handleSetBackgroundOpacity,
     handleSetVisualizerBackgroundMode: state.handleSetVisualizerBackgroundMode,
     handleSetVisualizerFrameRate: state.handleSetVisualizerFrameRate,
+    handleSetLyricRenderQuality: state.handleSetLyricRenderQuality,
     handleSetVisualizerMode: state.handleSetVisualizerMode,
     handleSetVisualizerOpacity: state.handleSetVisualizerOpacity,
     handleSetSmartBeat: state.handleSetSmartBeat,
@@ -256,6 +257,7 @@ export const selectVisualizerSettingsSnapshot = (state: VisualizerSettingsState)
     smartBeat: state.smartBeat,
     visualizerBackgroundMode: state.visualizerBackgroundMode,
     visualizerFrameRate: state.visualizerFrameRate,
+    lyricRenderQuality: state.lyricRenderQuality,
     visualizerMode: state.visualizerMode,
     visualizerOpacity: state.visualizerOpacity,
 });

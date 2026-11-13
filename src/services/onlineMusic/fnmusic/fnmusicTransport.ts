@@ -18,7 +18,7 @@ import { OnlineProviderError } from '../../../types/onlineMusic';
 export type FnMusicBridgeParams =
     | { base: string; username: string; password: string }              // login（deviceId 由主进程复用已存值）
     | { path: string; method: 'GET' | 'POST'; params?: Record<string, string | number | boolean | undefined>; body?: Record<string, unknown> } // request
-    | { trackId: string }                                                      // stream
+    | { trackId: string; quality?: string }                                     // stream（档位随请求带给服务端）
     | { coverId: string; size?: number }                                       // coverUrl
     | {};                                                                      // logout / getStatus
 
@@ -96,12 +96,16 @@ export async function fnmusicRequest<T = unknown>(
     return result.data as T;
 }
 
-/** 播放地址：主进程返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。回的是原始文件，不分音质。 */
-export async function fnMusicStreamSource(trackId: string): Promise<string> {
+/**
+ * 播放地址：主进程返回 folia-fnmusic:// 协议 URL（协议 handler 实时转发，URL 不带凭据）。
+ * 档位随请求带过去：飞牛服务端会按 quality 决定回原文件还是转码后的文件，不带就是服务端默认。
+ */
+export async function fnMusicStreamSource(trackId: string, quality?: string): Promise<string> {
     if (!hasElectronBridge()) {
         throw new OnlineProviderError('unavailable', '飞牛音乐仅支持桌面端（需主进程桥）', 'fnmusic');
     }
-    const result = await (window as any).electron.fnmusicRequest('stream', { trackId } as FnMusicBridgeParams) as FnMusicBridgeResult;
+    const params = quality ? { trackId, quality } : { trackId };
+    const result = await (window as any).electron.fnmusicRequest('stream', params as FnMusicBridgeParams) as FnMusicBridgeResult;
     if (!result.ok) throw bridgeError(result, 'track/stream');
     const data = result.data as { url?: string } | null;
     const url = text(data?.url);

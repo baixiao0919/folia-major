@@ -68,6 +68,12 @@ const QQ_QUALITY_FALLBACKS: Record<
         { apiQuality: '320', resolvedQuality: 'high' },
         { apiQuality: '128', resolvedQuality: 'standard' },
     ],
+    // For the type: QQ has no tier above Hi-Res, so 'master' resolves like 'hires'.
+    master: [
+        { apiQuality: 'flac', resolvedQuality: 'lossless' },
+        { apiQuality: '320', resolvedQuality: 'high' },
+        { apiQuality: '128', resolvedQuality: 'standard' },
+    ],
 };
 
 const getQqSongMid = (song: SongResult): string => {
