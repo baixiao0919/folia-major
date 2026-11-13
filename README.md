@@ -3,7 +3,7 @@
 >
 > 本仓库是 [chthollyphile/folia-major](https://github.com/chthollyphile/folia-major) 的个人 fork，仅供本人自用与实机测试，**不是官方版本**，与原作者及官方站点无关。
 >
-> - 本版含个人改动（局域网投送、液态玻璃 UI、窄屏一体胶囊等），可能落后或偏离上游主线
+> - 本版在上游基础上加了自研改动（洛雪音源、液态玻璃 UI、局域网投送与音响遥控、文字 PV、内置歌词样式等）；窄屏一体胶囊等为**官方功能**，随上游同步
 > - Windows 安装包发布在本仓库的 [Releases](https://github.com/baixiao0919/folia-major/releases)，仅供本人留档
 > - 使用中遇到问题请回到官方仓库 / 官方站点，不要以本仓库为准
 
