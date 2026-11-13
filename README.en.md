@@ -1,3 +1,13 @@
+> [!IMPORTANT]
+> **Unofficial build · Personal use**
+>
+> This repository is a personal fork of [chthollyphile/folia-major](https://github.com/chthollyphile/folia-major), kept only for my own use and on-device testing. It is **not an official release** and is not affiliated with the upstream author or the official site.
+>
+> - Local patches (LAN cast, liquid-glass UI, compact capsule controls) may lag behind or diverge from upstream
+> - Windows installers are published under this repo's [Releases](https://github.com/baixiao0919/folia-major/releases) for personal archival only
+> - For support, please refer to the official repository / official site rather than this fork
+
+---
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b5d0e863-48be-497b-b0e9-4bd8d8ce9bf0" alt="Folia" width="100%" />
 </p>
