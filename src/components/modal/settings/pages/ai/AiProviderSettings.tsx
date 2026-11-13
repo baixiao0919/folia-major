@@ -3,13 +3,15 @@ import { Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { AI_PROVIDER_PRESETS, inferAiProviderFromUrl, modelAlwaysThinks, resolveAiConnection, resolveAiProviderPreset, retiredModelHint } from '../../../../../services/aiText';
 import { openAIEndpointOf } from '../../../../../utils/openAIEndpoint';
-import { Button, FoldedGroup, NumberField, Reveal, Row, Select, TextField, Toggle, Value, option, parseNumberText, type SettingsGroupDef, type SettingsOptionDef } from '../../kit';
+import { Button, Group, NumberField, Reveal, Row, Select, TextField, Toggle, Value, option, parseNumberText, type SettingsGroupDef, type SettingsOptionDef } from '../../kit';
 import { AiConnectionTestReply, AiConnectionTestStatus, useAiConnectionTest } from '../AiConnectionTest';
 import { useSettingsPage, type AiApiKeyName, type ElectronSettingsState } from '../settingsPageContext';
 import { AiModelPicker } from './AiModelPicker';
 
-// AI connection settings, separated from appearance layout; requests stay behind services/aiText.
-const AI: SettingsGroupDef = { id: 'electronSettings', titleKey: 'options.electronSettings', electronOnly: true };
+// One AI connection for the whole app — song themes and anything else that
+// asks services/aiText. The group id stays `electronSettings`: commands and links name that anchor.
+// It has a page of its own, so it shows open rather than folded into one row.
+const AI: SettingsGroupDef = { id: 'electronSettings', titleKey: 'options.aiServiceProviders', electronOnly: true };
 const O = {
     provider: option(AI, 'aiProvider', 'options.aiProvider'),
     endpoint: option(AI, 'aiEndpoint', 'options.aiEndpoint'),
@@ -136,7 +138,7 @@ const AiProviderSettings: React.FC = () => {
     const temperature = adapter.temperature;
 
     return (
-        <FoldedGroup def={AI} summary={t('options.aiProvider_' + preset.id)}>
+        <Group def={AI}>
             <Row option={O.provider}>
                 <Select value={preset.id} options={AI_PROVIDER_PRESETS.map(value => ({ value: value.id, label: t('options.aiProvider_' + value.id) }))} onChange={selectProvider} />
             </Row>
@@ -169,7 +171,7 @@ const AiProviderSettings: React.FC = () => {
             {alwaysThinks && <Row notice={t('options.aiModelAlwaysThinks')} />}
             {/* Shown only for providers that are sent a temperature, with their own range. */}
             <Reveal when={!gemini && Boolean(temperature)}>
-                <Row option={O.temperature} hint={temperature ? t(adapter.temperaturePerModel ? 'options.aiTemperaturePerModelDesc' : 'options.aiTemperatureRangeDesc', temperature) : undefined}>
+                <Row option={O.temperature} note={t('options.aiTemperatureNote')} hint={temperature ? t(adapter.temperaturePerModel ? 'options.aiTemperaturePerModelDesc' : 'options.aiTemperatureRangeDesc', temperature) : undefined}>
                     <NumberField value={parseNumberText(settings.OPENAI_API_TEMPERATURE)}
                         onChange={value => setAi({ OPENAI_API_TEMPERATURE: value === null ? '' : String(value) })}
                         min={temperature?.min ?? 0} max={temperature?.max ?? 2} step={0.1} placeholder="0.7" />
@@ -195,7 +197,9 @@ const AiProviderSettings: React.FC = () => {
                     {t(electronSaveStatus === 'saving' ? 'options.settingsSaving' : 'options.save')}
                 </Button>
             </Row>
-        </FoldedGroup>
+            {/* 这一份是所有 AI 功能共用的，不是某一个风格自己的。 */}
+            <Row notice={t('options.aiServiceDesc')} />
+        </Group>
     );
 };
 
