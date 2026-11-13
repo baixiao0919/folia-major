@@ -3,11 +3,19 @@
 >
 > This repository is a personal fork of [chthollyphile/folia-major](https://github.com/chthollyphile/folia-major), kept only for my own use and on-device testing. It is **not an official release** and is not affiliated with the upstream author or the official site.
 >
-> - Personal additions on top of upstream: lxmusic (Luoxue) sources, liquid-glass UI, LAN cast + speaker remote, text-PV lyrics, built-in lyric styles. The compact capsule and other core features are **upstream's own**
-> - Windows installers are published under this repo's [Releases](https://github.com/baixiao0919/folia-major/releases) for personal archival only
-> - For support, please refer to the official repository / official site rather than this fork
-
----
+> **Latest build**: `v0.7.28-lx39` → [download Folia-Setup-0.7.28.exe](https://github.com/baixiao0919/folia-major/releases/download/v0.7.28-lx39/Folia-Setup-0.7.28.exe) (265 MB, Windows)
+>
+> **Personal additions on top of upstream**
+> - lxmusic (Luoxue) sources: NetEase / QQ / Kugou / Kuwo / Migu / Qishui aggregation
+> - liquid-glass UI and its settings
+> - LAN DLNA cast + speaker remote
+> - text-PV lyric style, built-in lyric styles (vinyl / jump / 52Hz / aurora)
+> - six quality tiers
+> - fnmusic (Feiniu Music) bridge
+>
+> **Source**: the [self-build branch](https://github.com/baixiao0919/folia-major/tree/self-build) holds the code above. The compact capsule, scene engine and other core features are **upstream's own** and arrive via sync, not from this repo.
+>
+> **Installers** are published under this repo's [Releases](https://github.com/baixiao0919/folia-major/releases) for personal archival only. **For support**, please refer to the official repository / official site rather than this fork.
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b5d0e863-48be-497b-b0e9-4bd8d8ce9bf0" alt="Folia" width="100%" />
 </p>
