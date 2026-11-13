@@ -1,3 +1,13 @@
+> [!IMPORTANT]
+> **非官方构建 · 个人自用**
+>
+> 本仓库是 [chthollyphile/folia-major](https://github.com/chthollyphile/folia-major) 的个人 fork，仅供本人自用与实机测试，**不是官方版本**，与原作者及官方站点无关。
+>
+> - 本版含个人改动（局域网投送、液态玻璃 UI、窄屏一体胶囊等），可能落后或偏离上游主线
+> - Windows 安装包发布在本仓库的 [Releases](https://github.com/baixiao0919/folia-major/releases)，仅供本人留档
+> - 使用中遇到问题请回到官方仓库 / 官方站点，不要以本仓库为准
+
+---
 <p align="center">
   <img src="https://github.com/user-attachments/assets/b5d0e863-48be-497b-b0e9-4bd8d8ce9bf0" alt="Folia" width="100%" />
 </p>
